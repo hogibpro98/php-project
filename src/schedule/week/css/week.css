@@ -1,0 +1,156 @@
+.skeduler-container {
+    margin: 0px 0 0 0px;
+    width: 1700px;
+    height: 900px;
+    overflow: scroll;
+}
+
+.data-grn {
+    /* position: absolute; */
+    overflow: hidden;
+    background-color: #D2EFED;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 0.125em 0.25em rgb(0 0 0 / 25%);
+    margin-top: 2px;
+    cursor: pointer;
+    color: #000000;
+    word-wrap: break-word;
+    min-width: 0;
+    min-height: 0;
+    z-index: 2;
+    transition: all .4s;
+
+    top: 2;
+    left: 0;
+    right: 10px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid;
+    background: rgba(47, 120, 230, 0.3);
+    border-color: #2F78E6;
+}
+
+.data-grn2 {
+    /* position: absolute; */
+    overflow: hidden;
+    background-color: #D2EFED;
+    padding: 10px;
+    box-sizing: border-box;
+    box-shadow: 0px 0.125em 0.25em rgb(0 0 0 / 25%);
+    margin-top: 2px;
+    cursor: pointer;
+    color: #000000;
+    word-wrap: break-word;
+    min-width: 0;
+    min-height: 0;
+    z-index: 3;
+    transition: all .4s;
+
+    top: 2;
+    left: 0;
+    right: 10px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid;
+    background: rgba(255, 255, 255, 0.8);
+    border-color: #E8E9EC;
+}
+
+.skeduler-headers:before {
+    border-top: 0px;
+}
+
+.skeduler-headers {
+    display: flex;
+    border-left: 0px;
+    padding-left: 101px;
+    position: relative;
+}
+
+.skeduler-headers>div {
+    flex: 0 0 200px;
+    /* height: 30px; */
+    /* padding-top: 10px; */
+    /* background-color: #D3E0EF;
+        border-left: 1px solid #B0CEE9;
+        border-bottom: 1px solid #B0CEE9; */
+    border-top: 0px;
+    text-align: center;
+
+    color: #174A84;
+    font-size: 93.8%;
+    font-weight: 500;
+    min-width: 175px;
+    height: 45px;
+    border: 1px solid #A9C5F1;
+    padding: 8px 0;
+    border-radius: 20px 20px 0 0;
+    background: rgba(202, 206, 213, 0.1);
+}
+
+.skeduler-main-timeline div {
+    width: 90px;
+    height: 27px;
+    text-align: left;
+    padding-left: 10px;
+    padding-top: 3px;
+    color: #333333;
+    border-right: 1px solid #B0CEE9;
+    border-left: 1px solid #B0CEE9;
+}
+
+div.skeduler-cell {
+    display: flex;
+}
+
+.d_time {
+    display: inline-block;
+    font-size: 62.5%;
+    line-height: 120%;
+    color: #000;
+}
+
+body {
+    margin: 20px;
+}
+
+.item {
+    padding: 10px;
+    width: 80px;
+    height: 20px;
+    /* border: 1px solid #2e6da4;
+        background-color: #7da8c3; */
+    color: #FFFFFF;
+
+}
+
+.item:hover {
+    cursor: pointer;
+}
+
+.item span {
+    display: inline-block;
+}
+
+.drop_area {
+    margin-top: 50px;
+    width: 200px;
+    height: 200px;
+    border: 1px solid #3a945b;
+    background: #f0fff0;
+}
+
+.drop_area p {
+    margin: 10px;
+}
+
+/* .ui-selected {
+            background-color: #1cc7ff;
+    } */
+
+.ui-selectable-helper {
+    position: absolute;
+    z-index: 0;
+    border: 1px dotted black;
+}

@@ -1,0 +1,61 @@
+#subpage .kaeru-box { clear: both;}
+#subpage table.t-kaeru { clear:both; text-align:center;}
+.kaeru-box:hover table.t-kaeru  { position:relative; z-index:9999;}
+#content {}
+#subpage {}
+
+/*---------------------------------------------------------------------------
+  KAERU COMMON
+---------------------------------------------------------------------------*/
+
+/* PHOTO INPUT */
+#subpage .kaeru-box .photo-r,
+#subpage .kaeru-box .photo-l,
+#subpage .kaeru-box .photo {position:relative !important;}
+#subpage .kaeru-box .photo-r input,
+#subpage .kaeru-box .photo-l input,
+#subpage .kaeru-box .photo input { position:absolute !important; z-index:9999 !important;}
+#subpage .kaeru-box .photo-r input {top:0 !important; left:20px !important;}
+#subpage .kaeru-box .photo-l input {top:0 !important; left:0 !important;}
+#subpage .kaeru-box .photo input {top:0 !important; left:0 !important;}
+
+/* SPACE and EDIT */
+#subpage .kaeru-box .indention {background:url(../image/indention_bg.gif) center center !important;}
+#subpage .kaeru-box .embedded { position: relative; background:url(../image/edit_bg.gif) center center !important;}
+#subpage .kaeru-box .embedded input {position:absolute !important; top:0 !important; left:0 !important; z-index:9999 !important;}
+
+/* TABLE */
+#subpage .kaeru-box .pc_table { margin-bottom:20px; padding:20px 0; background:url(../image/table_pc.gif);}
+#subpage .kaeru-box .sm_table { display:block !important; margin-bottom:20px; padding:20px 0; background:url(../image/table_sm.gif);}
+#subpage .kaeru-box table.hyou .sm_mid { display:block; padding:20px 0; background:url(../image/table_tit.gif);} 
+
+/* FLOAT */
+#subpage .parent_box2 { clear:none; float:left; width:50%; }
+#subpage .parent_link2 { clear:none; float:left; width:50%; }
+#subpage .parent_link3 { clear:none; float:left; width:33.3%; }
+#subpage .parent_link4 { clear:none; float:left; width:25%;}
+#subpage .parent_file2 { clear:none; float:left; width:50%; }
+#subpage .parent_file3 { clear:none; float:left; width:33.3%; }
+#subpage .parent_file4 { clear:none; float:left; width:25%;}
+#subpage .parent_g1 { clear:none; float:left; width:100%;}
+#subpage .parent_g2 { clear:none; float:left; width:50%;}
+#subpage .parent_g3 { clear:none; float:left; width:33.3%;}
+#subpage .parent_g4 { clear:none; float:left; width:25%;}
+#subpage .parent_g5 { clear:none; float:left; width:20%;}
+#subpage .parent_b2 { clear:none; float:left; width:50%; }
+#subpage .parent_b3 { clear:none; float:left; width:33.3%;}
+
+#subpage .kaeru-box .box2,
+#subpage .kaeru-box .link2,
+#subpage .kaeru-box .link3,
+#subpage .kaeru-box .link4,
+#subpage .kaeru-box .file2,
+#subpage .kaeru-box .file3,
+#subpage .kaeru-box .file4,
+#subpage .kaeru-box ul.g1,
+#subpage .kaeru-box ul.g2,
+#subpage .kaeru-box ul.g3,
+#subpage .kaeru-box ul.g4,
+#subpage .kaeru-box ul.g5,
+#subpage .kaeru-box .b2,
+#subpage .kaeru-box .b3 { float:none !important; margin:10px 20px; width:auto;}

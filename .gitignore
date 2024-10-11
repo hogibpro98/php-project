@@ -1,0 +1,24 @@
+.idea
+.vscode
+kantaki_dev.sql
+#souce code
+/src/batch
+/src/csv
+/src/debug
+/src/excel
+/src/image
+/src/migration
+/src/mock
+/src/nbproject
+/src/pdf
+/src/tool
+/src/upload
+#php
+/src/vendor
+/src/composer.lock
+#js
+/src/node_module
+/src/package-lock.json
+#docker
+/src/Dockerfile
+/src/docker-compose.yml

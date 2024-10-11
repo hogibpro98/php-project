@@ -1,0 +1,2301 @@
+/*====================================================================================================
+  POPUP PARTS
+====================================================================================================*/
+
+/* root.html スケジュール詳細 - ON MEMO CLICK */
+/* .sched_details {
+	display:none;
+	position:absolute;
+	top:0;
+	left:100%;
+	z-index:985;
+	width:385px;
+	background:#FFF;
+	padding:25px 20px 10px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+} */
+.sched_details {
+	display:none;
+	position:absolute;
+	top:0%;
+	left:50%;
+	z-index:985;
+	width:400px;
+	background:#FFF;
+	padding:25px 20px 10px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+}
+
+.sched_details .sched_tit { font-size:93.8%; font-weight:500; color:#174A84; margin-bottom:30px; }
+.sched_details .s_detail { padding-bottom:10px; margin-bottom:40px; }
+.sched_details p.mid {
+	width:100px;
+	font-size:87.5%;
+	font-weight:500;
+	color:#174A84;
+	line-height:100%;
+	vertical-align:top;
+}
+.sched_details .box1 { margin:10px 0; }
+.sched_details .box1 p { display:inline-block; vertical-align:middle; }
+.sched_details .box1 p.m_time { display:block; margin-left:103px; margin-top:10px; }
+.sched_details .box1 select { width:50px; font-size:93.8%; padding:8px; }
+.sched_details .box1 input[type="text"] { width:52px; font-size:93.8%; padding: 8px 5px; }
+.sched_details .box1 textarea { width:100%; height:42px; }
+.sched_details .s_constrols { display: flex; justify-content:space-between; padding-top:30px; }
+.sched_details .s_constrols .btn { padding:10px; font-size:75%; margin-left:7px; }
+.sched_details .s_constrols .cancel { margin-left:0; }
+.sched_details .update { font-size:75%; color:#43425D; margin-top:5px; }
+
+/* root.html スケジュール詳細 - ON MEMO CLICK */
+.add_memo_details .box1 input[type="text"] { text-align:center; }
+
+/* root-table.html スケジュール詳細 - ON MEMO CLICK */
+.add_memo_details .box1 input.date_dayOnly { width:140px; border-color: #A9C5F1; }
+.rt_memo .s_detail { margin-bottom:0; padding-bottom:0; }
+.rt_memo .s_constrols { padding-top:20px; }
+
+/* root-table.html - ON MEMO CLICK */
+.user_select { display:block; padding:20px; z-index:984; top:17%; }
+.user_select .s_detail { margin-bottom:0; }
+.user_select .box1 { margin:0; }
+.user_select select.staff { width:155px; font-size:81.3%; }
+
+
+/* root.html 利用者スケジュール 新規作成_default */
+.new_default {
+	display:none;
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	z-index: 50;
+	/*width:487px;*/
+	width:700px !important;
+	padding:10px;
+	background:#FFF;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	box-shadow:0 2px 6px rgba(0, 0, 0, 0.04);
+	transform:translateY(-50%);
+}
+.sched_default { position:fixed; left:0; right:0; margin:auto; top:50%; transform:translateY(-50%); }
+.new_default .sched_tit { font-size:93.8%; font-weight:500; color:#174A84; margin-bottom:20px; }
+.new_default .s_detail { padding-bottom:10px; }
+.new_default p.mid {
+	width:100px;
+	font-size:87.5%;
+	font-weight:500;
+	color:#174A84;
+	line-height:100%;
+}
+.new_default .box1 { margin:10px 0; position:relative; }
+.new_default .box1 p { display:inline-block; vertical-align:middle; }
+.new_default .box1 select { width:50px; font-size:93.8%; padding:8px; }
+.new_default .box1 input[type="text"]:not(.master_date) { width:52px; font-size:93.8%; padding: 8px 5px; }
+.new_default .box1 input[name="time_from"],
+.new_default .box1 input[name="time_to"] { text-align:center; }
+.new_default .box1 textarea { width:100%; height:42px; }
+.new_default .box1 p.month_list { display:block; margin-left:105px; }
+.new_default .box1 p.month_list span { margin-right:10px; }
+.new_default .box1 p.month_list input[type="checkbox"] { margin-right:5px; }
+.new_default .box1 p.month_list label { font-size:81.3%; font-weight:500; color:#43425D; }
+.new_default .box1 .mid.day { width:auto; }
+.new_default .box1 p.day_list { margin-left:15px; }
+.new_default .box1 p.day_list span { margin-right:10px; }
+.new_default .box1 p.day_list input[type="checkbox"] { margin-right:5px; }
+.new_default .box1 p.day_list label { font-size:81.3%; font-weight:500; color:#43425D; }
+.new_default .box1 p input[class="user_id"] { width:80px!important; }
+.new_default .box1 p input[class="user_name"] { width:182px!important; }
+.new_default .box1 p span.staff { font-size:87.5%; }
+.new_default .box1 p span.select-gray { color:rgba(0, 0, 0, 0.62); }
+.new_default .box1 p.own_expense { margin-left:45px; }
+.new_default .box1 p.own_expense label { font-size:87.5%; font-weight:500; color:#174A84; margin-right:5px; }
+.new_default .add_sub { position:relative; border:1px #BEBEBE; border-style:dashed none; padding: 15px 0; }
+.new_default .add_sub > * { display: inline-block; vertical-align:middle; }
+.new_default .add_sub p.mid { width:80px; line-height:150%; vertical-align:top; padding-top:5px; }
+.new_default .add_sub ol { list-style:none; margin:0; padding-left:0; }
+.new_default .add_sub ol li { counter-increment:custom; margin-bottom:5px; padding-left:19px; }
+.new_default .add_sub ol li::before {
+	content:counter(custom) " ";
+	color:#174A84;
+	font-size:87.5%;
+	font-weight:500;
+	vertical-align: text-top;
+	position:absolute;
+	left:0;
+	top:4px;
+}
+.new_default .add_sub ol li:first-child { counter-reset: custom; }
+.new_default .add_sub ol li select { font-size:75%; width:270px; background-position:95%; }
+.new_default .add_sub ol li select.default { color:rgba(0, 0, 0, 0.62); }
+.new_default .add_sub .add_btn {
+	position:absolute;
+	bottom:21px;
+	color:#FFF;
+	width:32px;
+	height:32px;
+	cursor:pointer;
+	font-weight:700;
+	margin-left:7px;
+	font-size:162.5%;
+	user-select:none;
+	line-height:32px;
+	border-radius:5px;
+	text-align:center;
+	background:#EB53C2;
+}
+.new_default .cost {
+	display:flex;
+	position:relative;
+	margin-bottom:20px;
+	padding:10px 0 20px;
+	justify-content:space-between;
+	border-bottom:1px dashed #BEBEBE;
+}
+.new_default .cost > * { display:inline-block; vertical-align:middle; }
+.new_default .cost label { width:65px; font-size:87.5%; font-weight:500; color:#174A84; }
+.new_default .s_constrols { display: flex; justify-content:space-between; padding-top:10px; }
+.new_default .s_constrols .btn { padding:10px; font-size:75%; margin-left:7px; }
+.new_default .s_constrols .cancel { margin-left:0; }
+.new_default .update { font-size:75%; color:#43425D; margin-top:5px; }
+
+
+/* root.html 9.ルート管理:ルート追加 */
+.add_root {
+	display:none;
+	position:absolute;
+	top:100px;
+	left:auto;
+	z-index:985;
+	width:300px;
+	right:-20px;
+	padding:10px;
+	background:#FFF;
+	border-radius:5px;
+	border:1px solid #CACED5;
+}
+.add_root .sched_tit { font-size:93.8%; font-weight:500; color:#174A84; margin-bottom:30px; }
+.add_root .s_detail { padding-bottom:10px; margin-bottom:40px; }
+.add_root p.mid {
+	width:74px;
+	font-size:87.5%;
+	font-weight:500;
+	color:#174A84;
+	line-height:100%;
+	vertical-align:top;
+}
+.add_root .box1 { margin:10px 0; }
+.add_root .box1 p { display:inline-block; vertical-align:middle; }
+.add_root .box1 p.m_time { display:block; margin-left:103px; margin-top:10px; }
+.add_root .box1 select { width:50px; font-size:93.8%; padding:8px; }
+.add_root .box1 input[type="text"] { width:200px; font-size:100%; padding: 8px 5px; }
+.add_root .box1 textarea { width:100%; height:42px; }
+.add_root .box1 p span.type { display:block; }
+.add_root .box1 p span.type label { margin-left:5px; }
+.add_root .s_constrols { position:relative; display: flex; justify-content:space-between; padding-top:30px; }
+.add_root .s_constrols .btn { padding:10px; font-size:75%; margin-left:7px; }
+.add_root .s_constrols .cancel { margin-left:0; }
+.add_root .s_constrols span.trash { position:absolute; left:93px; }
+.add_root .s_constrols span.save { width:74px; text-align: center; }
+
+
+/* root.html 9.ルート管理:ルート追加 for th */
+.th_root { right:auto; left:0; top:5px; text-align:left; }
+
+
+/* root.html ルート管理:看多機通い - ON MEMO CLICK */
+.new_default {
+	overflow-y:auto;
+	max-height:calc(100vh - 10%);
+	/*overflow: -moz-scrollbars-none;*/
+	-ms-overflow-style: none;
+}
+/*.new_default::-webkit-scrollbar { width: 0 !important }*/
+.new_default p.list_delete {
+	width:32px;
+	height:32px;
+	position:absolute;
+	top:0;
+	right:-38px;
+	border-radius:5px;
+	background:#FFF;
+	text-align:center;
+	cursor:pointer;
+	text-indent:-9999px;
+	border:1px solid #A7A7A7;
+	background:#FFF url(../image/icon_trash2.png) no-repeat center;
+}
+.new_default .box1 p.own_expense { float:right; margin-left:0; margin-right:10px; }
+.new_default .box1 .expense_val { margin-left:3px; position:relative; }
+.new_default .box1 .expense_val input[type="text"] { width:78px; padding-right:25px; }
+.new_default .box1 .expense_val label {
+	position:absolute;
+	right:5px;
+	bottom:2px;
+	color:#174A84;
+	font-size:68.8%;
+	font-weight:500;
+	line-height:100%;
+}
+.new_default .add_sub ol li { margin-bottom:10px; position:relative; }
+.new_default .add_sub ol li p.period_txt { font-size:75%; overflow:hidden; }
+.new_default .add_sub ol li p.period_txt b { font-weight:500; color:#174A84; margin-right:10px; }
+.new_default .add_sub ol li p.period_txt span { color:#000; }
+.new_default .add_sub ol li p.period_txt a.f-right { float:right; color:#57585A; }
+.new_default .add_sub ol li p.period_txt a.c-red { color:#FF0000; display:block; }
+.new_default .add_sub .add_btn { right:20px; bottom:27px; }
+.new_default .cost { padding:10px 0; margin-bottom:0; }
+.new_default .cost label { width:auto; margin-right:5px; }
+.new_default .service_dets { border-bottom:1px dashed #BEBEBE; padding-bottom:20px; }
+.new_default .service_dets .mid {
+	font-size:87.5%;
+	font-weight:500;
+	color:#174A84;
+	line-height:100%;
+	padding:10px 0;
+	margin-bottom:10px;
+	border-bottom:1px dashed #BEBEBE;
+	background:url(../image/arrow_up.png) no-repeat 97%;
+}
+.new_default .service_dets .service_list {}
+.new_default .service_dets ul { padding:7px 0; border-bottom:1px solid #D6D6D6; }
+.new_default .service_dets ul::after { display:block; clear:both; content:""; }
+.new_default .service_dets ul+ul {}
+.new_default .service_dets ul li { float:left; font-size:75%; padding:0 2px; }
+.new_default .service_dets ul li:nth-child(1) { width:26px; padding:0; }
+.new_default .service_dets ul li:nth-child(2) { width:121px; }
+.new_default .service_dets ul li:nth-child(3) { width:161px; }
+.new_default .service_dets ul li:nth-child(4) { width:127px; }
+.new_default .service_dets ul li:nth-child(5) { width:25px; }
+.new_default .service_dets ul li:nth-child(1):not(:empty) { width:26px; }
+.new_default .service_dets ul li span {
+	left:-5px;
+	width:29px;
+	color:#FFF;
+	display:block;
+	padding:5px 0;
+	line-height:100%;
+	border-radius:5px;
+	text-align:center;
+	position:relative;
+}
+.new_default .service_dets ul li span.off { background:#A7190E; font-size:66.7%; }
+.new_default .service_dets ul li span.wb { background:#F96D6D; font-size:83.3%; }
+.new_default .service_dets ul li input.service_time { width:52px; font-size:125%; padding:8px 5px; }
+.new_default .service_dets ul li select { font-size:116.7%; width:100%; padding:8px 20px 8px 10px; }
+.new_default .service_dets ul li input.c_care { width:100%; font-size:108.3%; padding:8px 10px; margin-top:5px; }
+.new_default .service_dets ul li p.list_delete { position:initial; margin-top:3px; }
+.new_default .service_dets .btn { margin-top:10px; padding:8px 10px 8px 20px; }
+.root_commute .update { margin-bottom:40px; }
+
+
+/* root.html ルート管理:看多機宿泊:登録子画面 - ON MEMO CLICK */
+.new_default .cost .cost_edit {
+	position:absolute;
+	font-size:75%;
+	color:#009CA7;
+	border-color:#009CA7;
+	left:0;
+	top:55px;
+}
+.new_default .cost ul li { font-size:93.8%; color:#000; line-height:120%; margin:10px 0; }
+
+
+/* root.html ルート管理:訪問看護(医保):登録子画面 - ON MEMO CLICK */
+.root_insurance {}
+.root_insurance .box1 p.mid { width:130px; }
+.root_insurance .box_i { margin:0 30px; }
+.root_insurance .box_i .box1.kinkyuu p { width:100%; display:block; }
+.root_insurance .box_i .box1 select { width:211px; padding-right:20px; background-position:96%; }
+.root_insurance .box_i .box1 select.kubun { width:317px; margin-top:7px; }
+.root_insurance .box_i .box1.area span+span { margin-left:25px; }
+.root_insurance .box_i .box1.area input { margin-right:5px; }
+.root_insurance .update { margin-bottom:0; }
+
+/* root.html ルート管理:訪問看護(介護):登録子画面 - ON MEMO CLICK */
+.root_care {}
+.root_care .box1.code_search input { margin-right:5px; }
+.root_care .box_i { margin-left:105px; }
+.root_care .box_i p.mid { width:50px; }
+.root_care .box_i .box1 select { width:290px; }
+.root_care .update { margin-bottom:0; }
+
+
+/* root.html ルート管理:定期巡回:登録子画面 - ON MEMO CLICK */
+.root_patrol .update { margin-bottom:0; }
+
+
+/* root-table.html 9.ルート管理:ルート追加 for th */
+.th_root2 { top:2px; left:auto; right:20px; }
+
+
+/* root-table.html 7.ルート表：従業員選択 */
+.employees {
+	display:none;
+	position:fixed;
+	top:100px;
+	z-index:985;
+	width:514px;
+	padding:20px;
+	background:#FFF;
+	text-align:left;
+	border-radius:5px;
+	border:1px solid #CACED5;
+}
+.employees .emp_tit { color:#174A84; margin-bottom:30px; }
+.employees table { width:100%; }
+.employees table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.employees table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.employees table tbody { display:block; height:175px; overflow-y:overlay; overflow: -moz-scrollbars-none; -ms-overflow-style: none; }
+.employees table tbody::-webkit-scrollbar { width: 0 !important }
+.employees table tbody tr { border-bottom:1px solid #A5C9FF; }
+.employees table tr th {
+	vertical-align:text-top;
+	font-size:87.5%;
+	font-weight:400;
+	color:#174A84;
+	line-height:100%;
+	padding:8px 0;
+	background:#F1F8FF;
+}
+.employees table tr td { font-size:87.5%; line-height:100%; padding:10px 0; }
+.employees table tr .input { width:30px; text-align:center; }
+.employees table tr .shimei { width:130px; }
+.employees table tr .shikaku { width:112px; }
+.employees table tr .unten { width:110px; }
+.employees table tr .tokutei { width:75px; }
+
+
+/* root-table.html ルート表示:利用者スケジュール新規作成_default */
+.new_default {}
+.new_default .box1 input.date_dayOnly { width:140px; border-color:#A9C5F1; }
+
+/* root-table.html ルート表示:看多機通い */
+.common_part1 {}
+
+/* root-table.html ルート表示看多機宿泊:登録子画面 */
+.common_part2 {}
+
+/* root-table.html USER LISTS ON SEARCH CLICK */
+.user_lists {
+	display:none;
+	top:35px;
+	left:-122px;
+	width:270px;
+	padding:10px;
+	z-index: 985;
+	background:#FFF;
+	position:absolute;
+	border-radius:5px;
+	border:1px solid #CACED5;
+}
+.user_lists li.active,
+.user_lists li:hover { background:#FFB881; cursor:pointer; }
+.user_lists li p { display:inline-block; padding:5px; }
+.new_default .box1 p .n_search { transform:scale(1.0); transition:0.5s ease; }
+.new_default .box1 p .n_search.scale { transform:scale(1.2); }
+
+
+/* root.html & root-table.html ルート表示看多機 訪問看護:登録子画面 */
+.fukusei_stat {
+	color:#FFF;
+	padding:5px 0;
+	font-size:93.8%;
+	font-weight:500;
+	line-height:100%;
+	text-align:center;
+	background:#FF6565;
+}
+.duplicated {}
+.duplicated .sched_tit { margin-bottom:10px; }
+
+/* root.html & root-table.html ルート表示:複製:看多機通い */
+.duplicated1 {}
+.duplicated1 .sched_tit { margin-bottom:10px; }
+
+/* root.html & root-table.html ルート表示:複製:看多機宿泊:登録子画面 */
+.duplicated2 {}
+.duplicated2 .sched_tit { margin-bottom:10px; }
+
+
+/* schedule.html 18:週間スケジュール：新規作成_default */
+.new_default .box1 span.user_res { font-size:87.5%; }
+.new_default .box1 span.label_t { font-size:75%; }
+.new_default .box1 span.staff_id { font-size:87.5%; }
+
+
+/* schedule.html 6:週間スケジュール:定期巡回:登録子画面 */
+/* schedule.html ルート管理:訪問看護(医保):登録子画面 */
+.new_default .box1.recent_calc input.date_no-Day { border-color:#A9C5F1; }
+
+
+/* schedule.html 6:週間スケジュール：実費モダール（登録画面） */
+.actual_cost {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:834px;
+	z-index: 985;
+	transform:translateY(-50%);
+}
+.actual_cost .sched_tit { margin-bottom:10px; }
+.actual_cost p.list_delete { position:initial; }
+.actual_cost .add_sub { border:none; padding-right:35px; }
+.actual_cost .add_sub table { width:100%; }
+.actual_cost .add_sub table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.actual_cost .add_sub table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.actual_cost .add_sub table tbody { display:block; height:147px; overflow-y: overlay; -ms-overflow-style: none; overflow: -moz-scrollbars-none; }
+.actual_cost .add_sub table tbody::-webkit-scrollbar { width: 0 !important }
+.actual_cost .add_sub table tr th {
+	color:#174A84;
+	font-size:87.5%;
+	font-weight:500;
+	text-align:left;
+	vertical-align:text-top;
+	line-height:120%;
+}
+.actual_cost .add_sub table tr td { padding:5px 3px; }
+.actual_cost .add_sub table tr td span { font-size:93.8%; margin-left:5px; }
+.actual_cost .add_sub table tr td select { font-size:93.8%; padding:8px 20px 8px 7px; }
+.actual_cost .add_sub table tr td input[type="text"] { font-size:93.8%; }
+.actual_cost .add_sub table tr td.type select { width:76px; }
+.actual_cost .add_sub table tr td.item select { width:323px; background-position:96%; }
+.actual_cost .add_sub table tr td.price input { width:76px; }
+.actual_cost .add_sub table tr td.tax select { width:60px; }
+.actual_cost .add_sub table tr td.sales_tax input { width:40px; }
+.actual_cost .add_sub table tr td.d_cate select { width:106px; }
+.actual_cost .add_sub table tr th.type,
+.actual_cost .add_sub table tr td.type { width:82px; }
+.actual_cost .add_sub table tr th.item,
+.actual_cost .add_sub table tr td.item { width:320px; }
+.actual_cost .add_sub table tr th.price,
+.actual_cost .add_sub table tr td.price { width:80px; }
+.actual_cost .add_sub table tr th.tax,
+.actual_cost .add_sub table tr td.tax { width:65px; }
+.actual_cost .add_sub table tr th.sales_tax,
+.actual_cost .add_sub table tr td.sales_tax { width:64px; }
+.actual_cost .add_sub table tr th.d_cate,
+.actual_cost .add_sub table tr td.d_cate { width:110px; }
+.actual_cost .add_sub table tr th:last-child,
+.actual_cost .add_sub table tr td:last-child { width:38px; }
+.actual_cost .add_sub .add_btn { right:0; bottom:23px; margin-left:0; }
+.actual_cost .s_constrols { padding-top:20px; }
+.actual_cost .s_constrols .save { width:70px; text-align:center; }
+
+
+/* root.html && root-table.html 9.ルート管理:登録 */
+.register_root {
+	right:0;
+	left:0;
+	margin:auto;
+	width:500px;
+	text-align:left;
+}
+.register_root .s_detail { padding-bottom:0; }
+.register_root .box1 { position:relative; }
+.register_root .box1 p.mid { width:135px; }
+.register_root .box1 p select { width:167px; color:rgba(0, 0, 0, 0.62); }
+.register_root .box1 p select.s_month { width:50px; }
+.register_root .box1 p select.taiou-sha { width:111px; color:#000; }
+.register_root .box1 p input[type="text"] { width:52px; text-align:center; font-size:93.8%; }
+.register_root .box1 p .n_search { transform:scale(1.0); transition:0.5s ease; }
+.register_root .box1.r_type p.mid { padding-left:70px; }
+.register_root .s_constrols { padding-top:0; }
+
+.user_response { left:139px; }
+
+
+/* root-table.html 7.ルート種類	 */
+.root_type {
+	display:none;
+	position:absolute;
+	width:459px;
+	z-index: 985;
+	left:0;
+	top:50%;
+	right:0;
+	margin:auto;
+	padding:18px;
+	transform:translateY(-50%);
+	background:#FFF;
+	border-radius:5px;
+	border:1px solid #CACED5;
+}
+.root_type .sched_tit { text-align:center; margin-bottom:0; }
+.root_type ul.type_lists {}
+.root_type ul.type_lists::after { display:block; clear:both; content:""; }
+.root_type ul.type_lists li {
+	float:left;
+	width:126px;
+	padding:13px 0;
+	margin-top:20px;
+	font-size:93.8%;
+	text-align:center;
+	line-height:100%;
+	border-radius:6px;
+	box-shadow:0 2px 6px rgba(0, 0, 0, 0.16);
+	border:1px solid #929292;
+}
+.root_type ul.type_lists li:nth-child(3n+2) { margin:20px 15px 0; }
+
+
+
+/* root-table.html 利用者選択	 */
+.user_selection { width:370px; z-index:986; }
+.user_selection table { width:100%; }
+.user_selection table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.user_selection table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.user_selection table tbody { display:block; height:278px; overflow-y:overlay; }
+.user_selection table tbody tr { border-bottom:1px solid #A5C9FF; }
+.user_selection table tr th {
+	padding:7px 5px;
+	color:#174A84;
+	font-size:87.5%;
+	font-weight:400;
+	text-align:left;
+	line-height:100%;
+	background:#F1F8FF;
+}
+.user_selection table tr td { font-size:87.5%; padding:5px; }
+.user_selection table tr th:nth-child(1),
+.user_selection table tr td:nth-child(1) { width:30px; padding-left:10px; }
+.user_selection table tr th:nth-child(2),
+.user_selection table tr td:nth-child(2) { width:60px; }
+.user_selection table tr th:nth-child(3),
+.user_selection table tr td:nth-child(3) { width:90px; }
+.user_selection table tr th:nth-child(4),
+.user_selection table tr td:nth-child(4) { width:75px; }
+
+
+
+/* schedule.html モーダル_別利用者に複製 */
+.dupli_modal {
+	position:absolute;
+	left:0;
+	right:0;
+	top:0;
+	margin:auto;
+	width:360px;
+	transform:none;
+}
+.dupli_modal .box1 p.mid { width:60px; }
+.new_default .box1 p .n_search { width:32px; }
+.dupli_modal .box1 p input.n_num { width:75px!important; }
+.dupli_modal .box1 p input.n_name { width:155px!important; margin-left:5px; }
+
+/* 利用者重複一覧 */
+.cont_user-dup {
+	position:absolute;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:574px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_user-dup .tit { color:#174A84; margin-bottom:10px; }
+.cont_user-dup table { width:100%; }
+.cont_user-dup table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_user-dup table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_user-dup table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_user-dup table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_user-dup table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_user-dup table tr th:nth-child(3) { width:292px; }
+.cont_user-dup table tr td:nth-child(1) { text-align:center; }
+.cont_user-dup table tr td:nth-child(3) { width:292px; }
+.cont_user-dup table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_user-dup table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+
+/* insurance-master.html 契約事業所 */
+.cont_office {
+	position:absolute;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:574px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_office .tit { color:#174A84; margin-bottom:10px; }
+.cont_office table { width:100%; }
+.cont_office table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_office table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_office table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_office table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_office table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_office table tr th:nth-child(3) { width:292px; }
+.cont_office table tr td:nth-child(1) { text-align:center; }
+.cont_office table tr td:nth-child(3) { width:292px; }
+.cont_office table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_office table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+/* 所属事業所 */
+.cont_office_simple {
+	position:absolute;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:574px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_office_simple .tit { color:#174A84; margin-bottom:10px; }
+.cont_office_simple table { width:100%; }
+.cont_office_simple table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_office_simple table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_office_simple table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_office_simple table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_office_simple table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_office_simple table tr th:nth-child(3) { width:292px; }
+.cont_office_simple table tr td:nth-child(1) { text-align:center; }
+.cont_office_simple table tr td:nth-child(3) { width:292px; }
+.cont_office_simple table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_office_simple table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+/* 所属事業所 */
+.cont_office_copy {
+	position:absolute;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:574px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_office_copy .tit { color:#174A84; margin-bottom:10px; }
+.cont_office_copy table { width:100%; }
+.cont_office_copy table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_office_copy table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_office_copy table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_office_copy table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_office_copy table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_office_copy table tr th:nth-child(3) { width:292px; }
+.cont_office_copy table tr td:nth-child(1) { text-align:center; }
+.cont_office_copy table tr td:nth-child(3) { width:292px; }
+.cont_office_copy table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_office_copy table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+/* 看護師等 */
+.cont_staff {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_staff .tit { color:#174A84; margin-bottom:10px; }
+.cont_staff table { width:100%; }
+.cont_staff table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_staff table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_staff table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_staff table tr th:nth-child(3) { width:292px; }
+.cont_staff table tr td:nth-child(1) { text-align:center; }
+.cont_staff table tr td:nth-child(3) { width:292px; }
+.cont_staff table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_staff table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+.cont_staff .btnSearch {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+.cont_staff2 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_staff2 .tit { color:#174A84; margin-bottom:10px; }
+.cont_staff2 table { width:100%; }
+.cont_staff2 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff2 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff2 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_staff2 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_staff2 table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_staff2 table tr th:nth-child(3) { width:292px; }
+.cont_staff2 table tr td:nth-child(1) { text-align:center; }
+.cont_staff2 table tr td:nth-child(3) { width:292px; }
+.cont_staff2 table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_staff2 table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+.cont_staff3 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_staff3 .tit { color:#174A84; margin-bottom:10px; }
+.cont_staff3 table { width:100%; }
+.cont_staff3 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff3 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff3 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_staff3 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_staff3 table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_staff3 table tr th:nth-child(3) { width:292px; }
+.cont_staff3 table tr td:nth-child(1) { text-align:center; }
+.cont_staff3 table tr td:nth-child(3) { width:292px; }
+.cont_staff3 table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_staff3 table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+.cont_staff4 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_staff4 .tit { color:#174A84; margin-bottom:10px; }
+.cont_staff4 table { width:100%; }
+.cont_staff4 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff4 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff4 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_staff4 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_staff4 table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_staff4 table tr th:nth-child(3) { width:292px; }
+.cont_staff4 table tr td:nth-child(1) { text-align:center; }
+.cont_staff4 table tr td:nth-child(3) { width:292px; }
+.cont_staff4 table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_staff4 table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+
+.cont_staff5 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_staff5 .tit { color:#174A84; margin-bottom:10px; }
+.cont_staff5 table { width:100%; }
+.cont_staff5 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff5 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff5 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_staff5 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_staff5 table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_staff5 table tr th:nth-child(3) { width:292px; }
+.cont_staff5 table tr td:nth-child(1) { text-align:center; }
+.cont_staff5 table tr td:nth-child(3) { width:292px; }
+.cont_staff5 table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_staff5 table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+.cont_staff_modal {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:1000px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+	z-index:998;
+}
+.cont_staff_modal .tit { color:#174A84; margin-bottom:10px; }
+.cont_staff_modal table { width:100%; }
+.cont_staff_modal table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff_modal table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_staff_modal table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_staff_modal table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_staff_modal table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_staff_modal table tr th:nth-child(3) { width:200px; }
+.cont_staff_modal table tr td:nth-child(1) { text-align:center; }
+.cont_staff_modal table tr td:nth-child(3) { width:200px; }
+.cont_staff_modal table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_staff_modal table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+	z-index:999;
+}
+
+/* 利用者 */
+.cont_user {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+	z-index:100;
+}
+.cont_user .tit { color:#174A84; margin-bottom:10px; }
+.cont_user table { width:100%; }
+.cont_user table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_user table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_user table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_user table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_user table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_user table tr th:nth-child(3) { width:292px; }
+.cont_user table tr td:nth-child(1) { text-align:center; }
+.cont_user table tr td:nth-child(3) { width:292px; }
+.cont_user table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_user table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+.cont_user2 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+	z-index:100;
+}
+.cont_user2 .tit { color:#174A84; margin-bottom:10px; }
+.cont_user2 table { width:100%; 	}
+.cont_user2 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_user2 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_user2 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_user2 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_user2 table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_user2 table tr th:nth-child(3) { width:292px; }
+.cont_user2 table tr td:nth-child(1) { text-align:center; }
+.cont_user2 table tr td:nth-child(3) { width:292px; }
+.cont_user2 table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_user2 table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+/* 所属拠点 */
+.cont_place_search {
+	position:absolute;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:574px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_place_search .tit { color:#174A84; margin-bottom:10px; }
+.cont_place_search table { width:100%; }
+.cont_place_search table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_place_search table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_place_search table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_place_search table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_place_search table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_place_search table tr th:nth-child(3) { width:292px; }
+.cont_place_search table tr td:nth-child(1) { text-align:center; }
+.cont_place_search table tr td:nth-child(3) { width:292px; }
+.cont_place_search table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_place_search table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+/* insurance-master.html 介護保険証 */
+.cont_nursing {
+	position:absolute;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:574px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_nursing .tit { color:#174A84; margin-bottom:10px; }
+.cont_nursing table { width:100%; }
+.cont_nursing table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_nursing table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_nursing table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_nursing table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_nursing table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_nursing table tr th:nth-child(3) { width:292px; }
+.cont_nursing table tr td:nth-child(1) { text-align:center; }
+.cont_nursing table tr td:nth-child(3) { width:292px; }
+.cont_nursing table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_nursing table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+/* 介護保険証 */
+.modal_insurance {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50vh;
+	margin:auto;
+	width:900px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.modal_insurance .tit { color:#174A84; margin-bottom:10px; }
+.modal_insurance table { width:100%; }
+.modal_insurance table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_insurance table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_insurance table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.modal_insurance table tbody tr { border-bottom:1px solid #A5C9FF; }
+.modal_insurance table tr th {
+	text-align:center;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:5px 10px;
+	width:120px;
+}
+.modal_insurance table tr td{
+    padding: 5px 10px;
+}
+.modal_insurance table select{
+    width: 250px;
+}
+.modal_insurance_btn{
+    margin-top: 20px;
+    text-align: center;
+}
+.modal_insurance_btn button{
+    display: inline-block;
+    font-size: 87.5%;
+    color: #FFF;
+    line-height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    text-decoration: none;
+    background: #5362EB;
+}
+
+/* 居宅支援事業所履歴 */
+.modal_office2 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50vh;
+	margin:auto;
+	width:900px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.modal_office2 .tit { color:#174A84; margin-bottom:10px; }
+.modal_office2 table { width:100%; }
+.modal_office2 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_office2 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_office2 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.modal_office2 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.modal_office2 table tr th {
+	text-align:center;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:5px 10px;
+	width:120px;
+}
+.modal_office2 table tr td{
+    padding: 5px 10px;
+}
+.modal_office2 table select{
+    width: 250px;
+}
+.modal_office2_btn{
+    margin-top: 20px;
+    text-align: center;
+}
+.modal_office2_btn button{
+    display: inline-block;
+    font-size: 87.5%;
+    color: #FFF;
+    line-height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    text-decoration: none;
+    background: #5362EB;
+}
+
+/* 傷病名 */
+.cont_sick {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_sick .tit { color:#174A84; margin-bottom:10px; }
+.cont_sick table { width:100%; }
+.cont_sick table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_sick table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_sick table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_sick table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_sick table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_sick table tr th:nth-child(3) { width:292px; }
+.cont_sick table tr td:nth-child(1) { text-align:center; }
+.cont_sick table tr td:nth-child(3) { width:292px; }
+.cont_sick table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_sick table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+/* 主治医情報 */
+.cont_doc {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_doc .tit { color:#174A84; margin-bottom:10px; }
+.cont_doc table { width:100%; }
+.cont_doc table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_doc table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_doc table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_doc table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_doc table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_doc table tr th:nth-child(3) { width:292px; }
+.cont_doc table tr td:nth-child(1) { text-align:center; }
+.cont_doc table tr td:nth-child(3) { width:292px; }
+.cont_doc table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_doc table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+/* 主治医情報 */
+.cont_ofc {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_ofc .tit { color:#174A84; margin-bottom:10px; }
+.cont_ofc table { width:100%; }
+.cont_ofc table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_ofc table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_ofc table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_ofc table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_ofc table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_ofc table tr th:nth-child(3) { width:292px; }
+.cont_ofc table tr td:nth-child(1) { text-align:center; }
+.cont_ofc table tr td:nth-child(3) { width:292px; }
+.cont_ofc table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_ofc table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+/* 家族構成 */
+.cont_fml {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50%;
+	margin:auto;
+	width:800px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.cont_fml .tit { color:#174A84; margin-bottom:10px; }
+.cont_fml table { width:100%; }
+.cont_fml table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_fml table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.cont_fml table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.cont_fml table tbody tr { border-bottom:1px solid #A5C9FF; }
+.cont_fml table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+	width:120px;
+}
+.cont_fml table tr th:nth-child(3) { width:292px; }
+.cont_fml table tr td:nth-child(1) { text-align:center; }
+.cont_fml table tr td:nth-child(3) { width:292px; }
+.cont_fml table tr td { width:120px; font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.cont_fml table tr td button {
+	width:65px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+/* 医療保険証 */
+.modal_insurance3 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50vh;
+	margin:auto;
+	width:900px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.modal_insurance3 .tit { color:#174A84; margin-bottom:10px; }
+.modal_insurance3 table { width:100%; }
+.modal_insurance3 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_insurance3 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_insurance3 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.modal_insurance3 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.modal_insurance3 table tr th {
+	text-align:center;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:5px 10px;
+	width:120px;
+}
+.modal_insurance3 table tr td{
+    padding: 5px 10px;
+}
+.modal_insurance3 table select{
+    width: 250px;
+}
+.modal_insurance3_btn{
+    margin-top: 20px;
+    text-align: center;
+}
+.modal_insurance3_btn button{
+    display: inline-block;
+    font-size: 87.5%;
+    color: #FFF;
+    line-height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    text-decoration: none;
+    background: #5362EB;
+}
+
+/* 公費 */
+.modal_insurance4 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50vh;
+	margin:auto;
+	width:900px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.modal_insurance4 .tit { color:#174A84; margin-bottom:10px; }
+.modal_insurance4 table { width:100%; }
+.modal_insurance4 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_insurance4 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_insurance4 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.modal_insurance4 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.modal_insurance4 table tr th {
+	text-align:center;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:5px 10px;
+	width:120px;
+}
+.modal_insurance4 table tr td{
+    padding: 5px 10px;
+}
+.modal_insurance4 table select{
+    width: 250px;
+}
+.modal_insurance4_btn{
+    margin-top: 20px;
+    text-align: center;
+}
+.modal_insurance4_btn button{
+    display: inline-block;
+    font-size: 87.5%;
+    color: #FFF;
+    line-height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    text-decoration: none;
+    background: #5362EB;
+}
+
+/* 紹介機関 */
+.modal_introduct {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50vh;
+	margin:auto;
+	width:900px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.modal_introduct .tit { color:#174A84; margin-bottom:10px; }
+.modal_introduct table { width:100%; }
+.modal_introduct table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_introduct table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_introduct table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.modal_introduct table tbody tr { border-bottom:1px solid #A5C9FF; }
+.modal_introduct table tr th {
+	text-align:center;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:5px 10px;
+	width:120px;
+}
+.modal_introduct table tr td{
+    padding: 5px 10px;
+}
+.modal_introduct table select{
+    width: 250px;
+}
+.modal_introduct_btn{
+    margin-top: 20px;
+    text-align: center;
+}
+.modal_introduct_btn button{
+    display: inline-block;
+    font-size: 87.5%;
+    color: #FFF;
+    line-height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    text-decoration: none;
+    background: #5362EB;
+}
+
+.modal_introduct1 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50vh;
+	margin:auto;
+	width:900px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.modal_introduct1 .tit { color:#174A84; margin-bottom:10px; }
+.modal_introduct1 table { width:100%; }
+.modal_introduct1 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_introduct1 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_introduct1 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.modal_introduct1 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.modal_introduct1 table tr th {
+	text-align:center;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:5px 10px;
+	width:120px;
+}
+.modal_introduct1 table tr td{
+    padding: 5px 10px;
+}
+.modal_introduct1 table select{
+    width: 250px;
+}
+
+.modal_introduct2 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50vh;
+	margin:auto;
+	width:900px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.modal_introduct2 .tit { color:#174A84; margin-bottom:10px; }
+.modal_introduct2 table { width:100%; }
+.modal_introduct2 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_introduct2 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_introduct2 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.modal_introduct2 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.modal_introduct2 table tr th {
+	text-align:center;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:5px 10px;
+	width:120px;
+}
+.modal_introduct2 table tr td{
+    padding: 5px 10px;
+}
+.modal_introduct2 table select{
+    width: 250px;
+}
+
+.modal_introduct3 {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50vh;
+	margin:auto;
+	width:900px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.modal_introduct3 .tit { color:#174A84; margin-bottom:10px; }
+.modal_introduct3 table { width:100%; }
+.modal_introduct3 table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_introduct3 table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_introduct3 table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.modal_introduct3 table tbody tr { border-bottom:1px solid #A5C9FF; }
+.modal_introduct3 table tr th {
+	text-align:center;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:5px 10px;
+	width:120px;
+}
+.modal_introduct3 table tr td{
+    padding: 5px 10px;
+}
+.modal_introduct3 table select{
+    width: 250px;
+}
+
+/* サービス */
+.modal_service {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50vh;
+	margin:auto;
+	width:900px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.modal_service .tit { color:#174A84; margin-bottom:10px; }
+.modal_service table { width:100%; }
+.modal_service table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_service table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_service table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.modal_service table tbody tr { border-bottom:1px solid #A5C9FF; }
+.modal_service table tr th {
+	text-align:center;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:5px 10px;
+	width:120px;
+}
+.modal_service table tr td{
+    padding: 5px 10px;
+}
+.modal_service table select{
+    width: 250px;
+}
+.modal_service_btn{
+    margin-top: 20px;
+    text-align: center;
+}
+.modal_service_btn button{
+    display: inline-block;
+    font-size: 87.5%;
+    color: #FFF;
+    line-height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    text-decoration: none;
+    background: #5362EB;
+}
+
+/* 医療機関 */
+.modal_hospital {
+	position:fixed;
+	left:0;
+	right:0;
+	top:50vh;
+	margin:auto;
+	width:900px;
+	height:440px;
+	display:none;
+	background:#FFF;
+	padding:10px 25px 0 18px;
+	border-radius:5px;
+	border:1px solid #CACED5;
+	transform:translateY(-50%);
+}
+.modal_hospital .tit { color:#174A84; margin-bottom:10px; }
+.modal_hospital table { width:100%; }
+.modal_hospital table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_hospital table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.modal_hospital table tbody { display:block; max-height:305px; overflow-y:overlay; }
+.modal_hospital table tbody tr { border-bottom:1px solid #A5C9FF; }
+.modal_hospital table tr th {
+	text-align:center;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:5px 10px;
+	width:120px;
+}
+.modal_hospital table tr td{
+    padding: 5px 10px;
+}
+.modal_hospital table select{
+    width: 250px;
+}
+.modal_hospital_btn{
+    margin-top: 20px;
+    text-align: center;
+}
+.modal_hospital_btn button{
+    display: inline-block;
+    font-size: 87.5%;
+    color: #FFF;
+    line-height: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    border: 1px solid transparent;
+    text-decoration: none;
+    background: #5362EB;
+}
+
+/* bedsore.html 30.各種帳票：褥瘡計画-画像表示モダール	 */
+.img_display {
+	left:0;
+	right:0;
+	margin:auto;
+	width:838px;
+	max-height:345px;
+	padding-left:30px;
+}
+.img_display .sched_tit { font-size:100%; margin-bottom:5px; }
+.img_display .part_head { padding:10px 0; background:#FFF; display:flex; justify-content:space-between; }
+.img_display .part_head select { width:99px; border-color:#A9C5F1; font-size:81.3%; padding:8px 20px 8px 10px; }
+.img_display .part_head input { width:123px; border-color:#A9C5F1; font-size:93.8%; }
+.img_display .part_head .app_date input { width:98px; }
+.img_display .img_list {
+	max-width:780px;
+	height:680px;
+	margin:0 auto;
+	overflow-y:overlay;
+}
+.img_display .img_list ul { float:left; width:240px; margin:15px 0; }
+.img_display .img_list ul:nth-child(3n+2) { margin:15px; }
+.img_display .img_list ul li { position:relative; }
+.img_display .img_list ul li:nth-child(2) { margin:7px 0; }
+.img_display .img_list ul li p { line-height:180%; font-size:75%; color:#4D4F5C; }
+.img_display .img_list ul li .mid { font-weight:700; color:#174A84; }
+.img_display .img_list ul li textarea { width:100%; height:49px; background:#EFEFEF; }
+.img_display .img_list ul li img { width:100%; }
+.img_display .img_list ul li .btn {
+	color:#FFF;
+	position:absolute;
+	right:0;
+	top:5px;
+	padding:7px;
+	line-height:100%;
+}
+
+
+/* bedsore.html 30.各種帳票：褥瘡計画-画像表示モダール:詳細	 */
+.img_details {
+	left:0;
+	right:0;
+	/*top:10%;*/
+	margin:auto;
+	width:838px;
+	padding-bottom:0;
+	padding-left:30px;
+}
+.img_details .sched_tit { font-size:100%; }
+.img_details .back {
+	width:155px;
+	color:#8A8A8A;
+	text-align:center;
+	border-radius:25px;
+	border-color:#707070;
+	position:absolute;
+	top:50px;
+}
+.img_details .cont_details {
+	max-width:745px;
+	width:100%;
+	padding-right:45px;
+	height:645px;
+	margin-top:65px;
+	text-align:center;
+	overflow-y:overlay;
+}
+.img_details .cont_details img { width:100%; }
+
+
+/* plan.html && report.html 17.訪問看護記録Ⅰ-指示書モダール */
+.i_instructions {
+	position:fixed;
+	left:0;
+	right:0;
+	top:auto;
+	bottom:35%;
+	margin:auto;
+	width:643px;
+	transform:none;
+}
+.i_instructions .instruct {}
+.i_instructions table { width:100%; }
+.i_instructions table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.i_instructions table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.i_instructions table tr th {
+	color:#174A84;
+	font-size:87.5%;
+	font-weight:400;
+	text-align:left;
+	background:#F1F8FF;
+}
+.i_instructions table tr th:nth-child(1),
+.i_instructions table tr td:nth-child(1) { width:50px; }
+.i_instructions table tr th:nth-child(2),
+.i_instructions table tr td:nth-child(2) { width:40px; text-align:center; }
+.i_instructions table tr th:nth-child(3),
+.i_instructions table tr td:nth-child(3) { width:115px; }
+.i_instructions table tr th:nth-child(4),
+.i_instructions table tr td:nth-child(4) { width:90px; }
+.i_instructions table tr th:nth-child(5),
+.i_instructions table tr td:nth-child(5) { width:90px; }
+.i_instructions table tr th:nth-child(6),
+.i_instructions table tr td:nth-child(6) { width:100px; }
+.i_instructions table tr th:nth-child(7),
+.i_instructions table tr td:nth-child(7) { width:40px; text-align:center; }
+.i_instructions table tr th:nth-child(8),
+.i_instructions table tr td:nth-child(8) { width:100px; }
+.i_instructions table tr td { color:#4D4F5C; font-size:81.3%; padding:2px 0; }
+.i_instructions table tr td button {
+	color:#000;
+	width:100%;
+	height:100%;
+	font-size:107.7%;
+	background:#F9F9F9;
+	border-radius:4px;
+	border:1px solid #E8E9EC;
+}
+.i_instructions table tr td .btn { padding:0; }
+.i_instructions table tbody { display:block; max-height:225px; overflow-y:overlay; }
+.i_instructions table tbody tr { border-bottom:1px solid #A5C9FF; }
+
+
+/* plan.html 17.訪問看護記録Ⅰ-病名データベースモダール */
+.dname_db {
+	left:0;
+	right:0;
+	top:auto;
+	bottom:10%;
+	width:449px;
+	margin:auto;
+}
+.dname_db .selected_name {
+	position:absolute;
+	top:12px;
+	right:60px;
+	width:161px;
+	font-size:87.5%;
+	text-align:center;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+.dname_db .d_database { margin-top:5px; }
+.dname_db table { width:100%; }
+.dname_db table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.dname_db table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.dname_db table tr {}
+.dname_db table tr th {
+	color:#174A84;
+	font-size:87.5%;
+	font-weight:400;
+	text-align:left;
+	background:#F1F8FF;
+}
+.dname_db table tr th:nth-child(1),
+.dname_db table tr td:nth-child(1) { width:30px; }
+.dname_db table tr th:nth-child(2),
+.dname_db table tr td:nth-child(2) { width:390px; }
+.dname_db table tr td {
+	padding:3px 0;
+	color:#4D4F5C;
+	font-size:81.3%;
+	line-height:150%;
+	vertical-align:text-top;
+}
+.dname_db table tr td input { margin-left:5px; }
+.dname_db table tbody { display:block; max-height:225px; overflow-y:overlay; }
+.dname_db table tbody tr { border-bottom:1px solid #A5C9FF; }
+
+
+/* report.html モダール_30.報告書 訪問看護記録Ⅱ */
+.gaf_inst { width:401px; }
+
+
+/* user-list.html 週間スケジュール展開ポップアップ */
+.dep_jouken { width:369px; left:auto; right:0; top:101%; padding:10px; }
+.dep_jouken .sched_tit { margin-bottom:10px; }
+.dep_jouken .s_detail { padding:0; margin:0; }
+.dep_jouken .box1 p { font-size:100%; vertical-align:text-top; }
+.dep_jouken .box1 p.mid { width:80px; }
+.dep_jouken .box1 p.mid span { line-height:180%; }
+.dep_jouken .box1 p span { display:block; }
+.dep_jouken .box1 p label { line-height:100%; margin-left:5px; }
+.dep_jouken .box1 input.date_no-Day { width: 123px; }
+.dep_jouken .box1 span:nth-child(2) input[type="text"] { text-align:center; margin:3px; }
+
+
+/* record-detail.html 2.メール送信 */
+.send_msg { height:170px; }
+.send_msg .msg_box-send {
+	background: #FF9900;
+	border: 1px solid #FF9900;
+	color: #fff;
+	right: 10px;
+	padding:8px 20px!important;
+}
+
+
+/* nurse-record2.html 22 Bristol便形状:訪看記録Ⅰ */
+.bristol_scale { width:602px; padding:0; }
+.bristol_scale .close { background:#FFF; }
+.bristol_scale .cont_main img { width:100%; }
+
+/* nurse-record2.html 22 GAF:訪看記録Ⅰ */
+.gaf_scale { width:645px; padding:20px 0 0; }
+.gaf_scale .cont_main img { width:100%; }
+
+
+/* user-schedule.html 18:新規作成_入力イメージ */
+.create_img .box_i .box1:not(.kinkyuu) p.mid { width:150px; }
+
+/* user-schedule.html 18看多機通い:登録子画面 */
+.view_machine {}
+.view_machine .box_i { margin:0 0 0 135px; }
+.view_machine .box_i .box1 p.mid { width:100%; }
+.view_machine .box_i .box1:not(:first-child) p.mid { width:70px; }
+.view_machine .box_i .box1 p { vertical-align:top; line-height:100%; }
+.view_machine .box_i .box1 p span { font-size:75%; margin-right:26px; }
+.view_machine .box_i .box1 p a { font-size:75%; color:#57585A; display:block; line-height:100%; }
+.view_machine .box_i .box1:nth-child(2) p > * { display:inline-block; }
+.view_machine .box_i .box1 p a.c-red { color:#FF0000; }
+.view_machine .box_i .box1 ol { display:inline-block; margin:0; padding:0; list-style:none; }
+.view_machine .box_i .box1 ol li { counter-increment:custom; font-size:75%; line-height:100%; margin-bottom:10px; }
+.view_machine .box_i .box1 ol li:first-child { counter-reset:custom; }
+.view_machine .box_i .box1 ol li::before {
+	content: counter(custom) " ";
+	color: #174A84;
+	font-size: 87.5%;
+	font-weight: 500;
+	padding-right: 5px;
+	vertical-align: middle;
+}
+.view_machine .add_sub ol li p.period_txt a.c-red { line-height:120%; }
+
+/* user-schedule.html モーダル_訪看:サービスコード */
+.visit_service { /*display:block;*/ width:368px; max-height:400px; padding:45px 20px 20px; }
+.visit_service table { width:100%; }
+.visit_service table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.visit_service table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.visit_service table tbody { display:block; max-height:325px; overflow-y:overlay; }
+.visit_service table tbody tr { border-bottom:1px solid #A5C9FF; }
+.visit_service table tr th {
+	text-align:left;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF;
+	color:#174A84;
+	line-height:120%;
+	padding:7px 0;
+}
+.visit_service table tr th:nth-child(1) { width:20%; }
+.visit_service table tr th:nth-child(2) { width:41%; }
+.visit_service table tr th:nth-child(3) { width:30%; }
+.visit_service table tr td:nth-child(1) { width:20%; }
+.visit_service table tr td:nth-child(2) { width:41%; }
+.visit_service table tr td:nth-child(3) { width:30%; }
+.visit_service table tr td { font-size:93.8%; color:#000; line-height:100%; padding:7px 0; }
+.visit_service table tr td button {
+	width:62px;
+	padding:2px 0;
+	border-radius:4px;
+	background:#F9F9F9;
+	border:1px solid #E8E9EC;
+}
+
+/* user-schedule.html モーダル_期間設定：看護小規模１１・日割 && モーダル_18.予定実績画面:日割り */
+.modal_period { padding:20px; width:441px; box-shadow:-10px 10px 20px rgba(183, 183, 183, 0.36); }
+.modal_period .box1 input.date_no-Day { border-color:#A9C5F1; }
+.modal_period .add_sub { border-bottom-style:none; }
+.modal_period .add_sub > * { display:block; }
+.modal_period .add_sub p.mid { margin-bottom:10px; }
+.modal_period .add_sub ol { width:324px; }
+.modal_period .add_sub ol li select { width:95%; padding:7px 25px 7px 15px; font-size:87.5%; background-position:95%; }
+.modal_period p.list_delete { top:2px; }
+.modal_period .add_sub .add_btn { right:0; }
+.modal_period .s_constrols { padding-top:90px; }
+
+/* user-schedule.html モーダル_18.加算:期間設定 */
+.add_period .s_constrols { padding-top:20px; }
+
+
+/* staff-schedule.html 従業員予定実績：新規作成_default */
+.employee_result { width:339px; }
+.employee_result .box1 p.mid { width:85px; }
+.employee_result .box1:first-child p.mid { vertical-align:top; padding-top:10px; }
+.employee_result .box1 input.date_dayOnly { display:block; margin-bottom:10px; }
+.employee_result .box1 input.sched_inp,
+.employee_result .box1 input.memo_inp { width:228px!important; }
+.employee_result .s_constrols { padding-top:15px; border-top:1px dashed #BEBEBE; }
+
+
+
+
+
+/*====================================================================================================
+  UNKNOWN POPUP PARTS
+====================================================================================================*/
+
+/* 3.1基本情報-詳細　変更履歴ポップアップ */
+.hist_revision { width:1199px; padding:20px 18px; }
+.hist_revision .lists { overflow-x:auto; }
+.hist_revision table :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.hist_revision table :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+.hist_revision table tbody { display:block; height:140px; overflow-y:overlay; }
+.hist_revision table tbody tr { border-bottom:1px solid #A5C9FF; }
+.hist_revision table th {
+	font-size:87.5%;
+	color:#174A84;
+	text-align:left;
+	line-height:100%;
+	padding:10px;
+	background:#F1F8FF;
+}
+.hist_revision table td { font-size:87.5%; line-height:100%; padding:10px; }
+.hist_revision table th:nth-child(1), .hist_revision table td:nth-child(1) { width: 110px; }
+.hist_revision table th:nth-child(2), .hist_revision table td:nth-child(2) { width: 120px; }
+.hist_revision table th:nth-child(3), .hist_revision table td:nth-child(3) { width: 450px; }
+.hist_revision table th:nth-child(4), .hist_revision table td:nth-child(4) { width: 480px; }
+
+
+/* スケジュール:複製ポップアップ – 1 && スケジュール:複製ポップアップ – 2 */
+.sched_dupli {}
+.sched_dupli .box1 span.user_res { margin-right:35px; }
+.sched_dupli .box1 select.manager { width:158px; }
+.sched_dupli .box1 p.mid { color:#4D4F5C; font-size:81.3%; }
+.sched_dupli .s_constrols .save { width:111px; text-align:center; }
+
+
+/* 1.popup */
+.popup { padding: 20px 70px 25px 20px; overflow:unset; }
+.popup::before,
+.popup::after {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	z-index: 985;
+}
+.popup::before {
+	top: 14px;
+	left: -17px;
+	border-top: 11px solid transparent;
+	border-right: 17px solid #CACED5;
+	border-bottom: 11px solid transparent;
+}
+.popup::after {
+	top: 15px;
+	left: -14.3px;
+	border-top: 10px solid transparent;
+	border-right: 15px solid #fff;
+	border-bottom: 10px solid transparent;
+}
+.popup .pop_con { text-align: justify; font-size: 87.5%; line-height: 150%; }
+
+
+/* 1.2.記録POPUP */
+.record_popup {}
+.record_popup .popup_wrap { border: 1px solid #E8E9EC; border-radius: 4px; font-size: 87.5%; padding: 10px 10px 90px; line-height: 150%; }
+.record_popup .popup_wrap span { display: block; }
+.record_popup .popup_wrap span.w-ind { text-indent: 20px; }
+
+
+/* 8.2 連携データ実績POPUP */
+.result_popup { width: 561px; }
+.result_popup .popup_list { overflow-x: overlay; padding-bottom: 15%; }
+.result_popup table td { vertical-align: top; }
+.result_popup table tbody { display:table; width:100%; table-layout:fixed; }
+.result_popup table td span { display: block; font-size: 62.5%; line-height: 150%; }
+.result_popup table td:nth-child(1) { font-size: 93.8%; width: 95px; }
+.result_popup table td:nth-child(2) { font-size: 93.8%; width: 150px; }
+.result_popup table td:nth-child(3) { width: 215px; }
+.result_popup table td:nth-child(4) { width: 65px; }
+
+
+
+/* 期間設定アラート */
+.duration_alert {}
+.duration_alert .msg_box-dlt-red {
+	background: #FF3C26;
+	border: 1px solid #FF3C26;
+	color: #fff;
+	right: 10px;
+	padding: 8px 22px!important;
+}
+
+/* 18:訪問看護（介護保険）:登録子画面 */
+.care_insurance {}
+.care_insurance .box1 label { margin-left:5px; }
+.care_insurance .box1 p.mid { width:120px; }
+.care_insurance .box_i1 { margin:0 0 0 120px; }
+.care_insurance .box_i1 p.mid { width:45px; }
+.care_insurance .box_i .box1 select { width:290px; }
+
+
+/* モーダル_定期巡回：サービスコード */
+.patrol_code { width:412px; padding:45px 10px 20px; }
+.patrol_code table tr td { font-size:87.5%; }
+.patrol_code table tr th:nth-child(1),
+.patrol_code table tr td:nth-child(1) { width:18%; }
+.patrol_code table tr th:nth-child(2),
+.patrol_code table tr td:nth-child(2) { width:60%; }
+.patrol_code table tr th:nth-child(3),
+.patrol_code table tr td:nth-child(3) { width:19%; }
+
+
