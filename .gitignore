@@ -14,9 +14,13 @@ kantaki_dev.sql
 /src/tool
 /src/upload
 #php
+/vendor
+/composer.lock
 /src/vendor
 /src/composer.lock
 #js
+/node_module
+/package-lock.json
 /src/node_module
 /src/package-lock.json
 #docker

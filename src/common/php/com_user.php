@@ -91,9 +91,8 @@ if ($server['requestUri'] === '/'
             $_SESSION['login'] = $staffInfo;
             
             // 画面遷移先
-            header('Location:'. TOP_PAGE);
-            exit();
-        
+            nextPage(TOP_PAGE);
+
         //該当id/pass無し
         } else {
             $loginMsg = 'ログイン情報に誤りがあります';
@@ -114,8 +113,7 @@ if ($server['requestUri'] === '/'
 } else {
     $loginUser = !empty($_SESSION['login']) ? $_SESSION['login'] : NULL;
     if (!$loginUser){
-        header('Location:'. LOGIN_PAGE);
-        exit();
+        nextPage();
     }
 
 }
@@ -124,7 +122,17 @@ if ($server['requestUri'] === '/'
 if ($btnLogout){
     $_SESSION = array();
     session_destroy();
-    header('Location:'. LOGIN_PAGE);
-    exit();
+    nextPage();
 }
 
+    /**
+     * $page へ遷移する
+     *
+     * @param string $page 遷移先ページ
+     * @return void
+     */
+function nextPage(string $page = LOGIN_PAGE)
+{
+    header('Location:'. $page);
+    exit;
+}
