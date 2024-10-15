@@ -26,6 +26,9 @@
  * 
  * -----------------------------------------------------------------------
  */
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/user/common/user_data.php');
+
 function getUser($keyId = NULL){
     
     /* -- 初期処理 --------------------------------------------*/
@@ -61,21 +64,23 @@ function getUser($keyId = NULL){
     $ofcList = getData('mst_office');
     
     // 利用者基本情報
-    $where = array();
-    $where['unique_id']  = $keyId;
-    $where['delete_flg'] = 0;
-    $orderBy = 'unique_id DESC';
-    $temp = select('mst_user', '*', $where, $orderBy);
+//    $where = array();
+//    $where['unique_id']  = $keyId;
+//    $where['delete_flg'] = 0;
+//    $orderBy = 'unique_id DESC';
+//    $temp = select('mst_user', '*', $where, $orderBy);
+    $temp = getMstUser($keyId);
     $res['standard'] = isset($temp[0])
             ? $temp[0]
             : array();
     
     // 所属事業所
-    $where = array();
-    $where['user_id']     = $keyId;
-    $where['delete_flg']  = 0;
-    $orderBy = 'unique_id DESC';
-    $temp = select('mst_user_office1', '*', $where, $orderBy);
+//    $where = array();
+//    $where['user_id']     = $keyId;
+//    $where['delete_flg']  = 0;
+//    $orderBy = 'unique_id DESC';
+//    $temp = select('mst_user_office1', '*', $where, $orderBy);
+    $temp = getContractBusinessHistory($keyId, true);
     foreach ($temp as $val){
         $tgtId = $val['unique_id'];
         $ofcId = $val['office_id'];
@@ -85,21 +90,23 @@ function getUser($keyId = NULL){
     
     // 居宅支援事業所
     $where = array();
-    $where['user_id']     = $keyId;
-    $where['delete_flg']  = 0;
-    $orderBy = 'unique_id DESC';
-    $temp = select('mst_user_office2', '*', $where, $orderBy);
+//    $where['user_id']     = $keyId;
+//    $where['delete_flg']  = 0;
+//    $orderBy = 'unique_id DESC';
+//    $temp = select('mst_user_office2', '*', $where, $orderBy);
+    $temp = getHomeSupportOffices($keyId, true);
     foreach ($temp as $val){
         $tgtId = $val['unique_id'];
         $res['office2'][$tgtId] = $val;
     }
     
     // 支払方法
-    $where = array();
-    $where['user_id']     = $keyId;
-    $where['delete_flg']  = 0;
-    $orderBy = 'unique_id DESC';
-    $temp = select('mst_user_pay', '*', $where, $orderBy);
+//    $where = array();
+//    $where['user_id']     = $keyId;
+//    $where['delete_flg']  = 0;
+//    $orderBy = 'unique_id DESC';
+//    $temp = select('mst_user_pay', '*', $where, $orderBy);
+    $temp = getMstUserPay($keyId, true);
     $res['pay'] = isset($temp[0])
             ? $temp[0]
             : array();
@@ -318,7 +325,8 @@ function checkUser($userInfo){
         $err['tab3'] = TRUE;
     }
     foreach ($userInfo['insure1'] as $val){
-        if (empty($val['insure_no'])
+        if (!checkExpiryDate($val['start_day1'], $val['end_day1'])
+                || empty($val['insure_no'])
                 || empty($val['start_day1'])
                 || empty($val['start_day2'])
                 || empty($val['insure_no'])
@@ -372,6 +380,11 @@ function checkUser($userInfo){
 
     /* -- データ返却 ------------------------------------------*/
     return $err;
+}
+
+function checkExpiryDate($start, $end): bool
+{
+    return ($start <= TODAY && $end >= TODAY);
 }
 /* =======================================================================
  * 空データ削除関数

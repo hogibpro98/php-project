@@ -26,6 +26,9 @@
  * 
  * -----------------------------------------------------------------------
  */
+
+require_once($_SERVER['DOCUMENT_ROOT'].'/user/common/user_data.php');
+
 function getUserAry($keyId = array(), $orderByUser = 'unique_id ASC'){
     
     /* -- 初期処理 --------------------------------------------*/
@@ -58,24 +61,26 @@ function getUserAry($keyId = array(), $orderByUser = 'unique_id ASC'){
     /* -- データ取得 ------------------------------------------*/
     
     // 利用者基本情報
-    $where = array();
-    $where['unique_id']  = $keyId;
-    $where['delete_flg'] = 0;
-    $temp = select('mst_user', '*', $where, $orderByUser);
+//    $where = array();
+//    $where['unique_id']  = $keyId;
+//    $where['delete_flg'] = 0;
+//    $temp = select('mst_user', '*', $where, $orderByUser);
+    $temp = getMstUser($keyId);
     foreach ($temp as $val){
         $userId = $val['unique_id'];
         $res[$userId]['standard'] = $val;
     }
     
     // 所属事業所
-    $where = array();
-    $where['user_id']     = $keyId;
-    $where['delete_flg']  = 0;
-    $where['start_day <='] = TODAY;
+//    $where = array();
+//    $where['user_id']     = $keyId;
+//    $where['delete_flg']  = 0;
+//    $where['start_day <='] = TODAY;
 //    $where['end_day >']   = TODAY;
-    $target  = 'unique_id, user_id, start_day, end_day';
-    $orderBy  = 'unique_id DESC';
-    $temp = select('mst_user_office1', $target, $where, $orderBy);
+//    $target  = 'unique_id, user_id, start_day, end_day';
+//    $orderBy  = 'unique_id DESC';
+//    $temp = select('mst_user_office1', $target, $where, $orderBy);
+    $temp = getContractBusinessHistory($keyId, false,'unique_id, user_id, start_day, end_day');
     foreach ($temp as $val){
         $userId = $val['user_id'];
         $tgtId  = $val['unique_id'];
@@ -90,14 +95,15 @@ function getUserAry($keyId = array(), $orderByUser = 'unique_id ASC'){
     }
     
     // 居宅支援事業所
-    $where = array();
-    $where['user_id']     = $keyId;
-    $where['delete_flg']  = 0;
-    $target  = 'unique_id, user_id, start_day, office_code';
-    $target .= ', office_name, address, tel, fax, found_day';
-    $target .= ', person_name, person_kana, plan_type';
-    $orderBy = 'unique_id DESC';
-    $temp = select('mst_user_office2', $target, $where, $orderBy);
+//    $where = array();
+//    $where['user_id']     = $keyId;
+//    $where['delete_flg']  = 0;
+//    $target  = 'unique_id, user_id, start_day, office_code';
+//    $target .= ', office_name, address, tel, fax, found_day';
+//    $target .= ', person_name, person_kana, plan_type';
+//    $orderBy = 'unique_id DESC';
+//    $temp = select('mst_user_office2', $target, $where, $orderBy);
+    $temp = getHomeSupportOffices($keyId);
     foreach ($temp as $val){
         $userId = $val['user_id'];
         $tgtId = $val['unique_id'];
@@ -105,14 +111,15 @@ function getUserAry($keyId = array(), $orderByUser = 'unique_id ASC'){
     }
     
     // 支払方法
-    $where = array();
-    $where['user_id']     = $keyId;
-    $where['delete_flg']  = 0;
-    $target  = 'unique_id, user_id, method, bank_type';
-    $target .= ', bank_code, bank_name, branch_code, branch_name';
-    $target .= ', deposit_type, deposit_code, deposit_name';
-    $orderBy = 'unique_id DESC';
-    $temp = select('mst_user_pay', $target, $where, $orderBy);
+//    $where = array();
+//    $where['user_id']     = $keyId;
+//    $where['delete_flg']  = 0;
+//    $target  = 'unique_id, user_id, method, bank_type';
+//    $target .= ', bank_code, bank_name, branch_code, branch_name';
+//    $target .= ', deposit_type, deposit_code, deposit_name';
+//    $orderBy = 'unique_id DESC';
+//    $temp = select('mst_user_pay', $target, $where, $orderBy);
+    $temp = getMstUserPay($keyId);
     foreach ($temp as $val){
         $userId = $val['user_id'];
         $res[$userId]['pay'] = $val;
@@ -279,21 +286,22 @@ function checkUserList($userInfo){
     }
 
     // 保険証タブ
-    if(isset($userInfo['insure1'])){
-        if (empty($userInfo['insure1'])
-                || empty($userInfo['insure2'])
-    //            || empty($userInfo['insure3'])
-    //            || empty($userInfo['insure4'])
-                || empty($userInfo['office2'])){
-            $res[3] = '保険証の入力が不足しています';
 
+    if (empty($userInfo['insure1'])
+        || empty($userInfo['insure2'])
+        //            || empty($userInfo['insure3'])
+        //            || empty($userInfo['insure4'])
+        || empty($userInfo['office2'])){
+        $res[3] = '保険証の入力が不足しています';
+
+        if(isset($userInfo['insure1'])){
             foreach ($userInfo['insure1'] as $val){
                 if (empty($val['insure_no'])
-                        || empty($val['start_day1'])
-                        || empty($val['start_day2'])
-                        || empty($val['insure_no'])
-                        || empty($val['insured_no'])
-                        || empty($val['care_rank'])){
+                    || empty($val['start_day1'])
+                    || empty($val['start_day2'])
+                    || empty($val['insure_no'])
+                    || empty($val['insured_no'])
+                    || empty($val['care_rank'])){
                     $res[3] = '保険証の入力が不足しています';
                 }
             }
