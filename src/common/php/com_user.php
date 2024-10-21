@@ -6,6 +6,18 @@
 
 /*-- 初期値、パラメータ ------------------------------*/
 
+// User type constants
+const SYSTEM_ADMINISTRATOR = 'システム管理者';
+const CORPORATE_ADMINISTRATOR = '法人管理者';
+const EMPLOYEE = '社員';
+const FUNCTIONAL_LIMITATIONS = '機能制限';
+
+// Employee classification constants
+const FULL_TIME_EMPLOYEE = '正社員';
+const DAILY_WAGE = '日給';
+const REGISTERED_TYPE = '登録型';
+
+
 // ログイン画面メッセージ初期化
 $loginMsg = null;
 

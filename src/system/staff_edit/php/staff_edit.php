@@ -21,6 +21,7 @@ $dispOfc     = array();
 $tgtData     = array();
 $upData      = array();
 $upOfcData   = array();
+$isEdit = false;
 
 // 対象テーブル(メイン)
 $table   = 'mst_staff';
@@ -86,6 +87,47 @@ foreach ($ofcList as $val){
 
 // 汎用マスタ
 $gnrList = getCode();
+
+    /* ===================================================
+     * イベント後処理(描画用データ作成)
+     * ===================================================
+     */
+
+    /* -- データ取得 --------------------------------------------*/
+    if ($keyId) {
+
+        // mst_staff
+        $where = array();
+        $where['unique_id'] = $keyId;
+        $dispData = getData($table, $where);
+        $isEdit = $dispData['unique_id'] ?? false;
+
+        // mst_staff_office
+        $where = array();
+        $where['staff_id'] = $keyId;
+        $dispOfc = getData('mst_staff_office', $where);
+    }
+
+    /* -- データ変換 --------------------------------------------*/
+
+// 誕生日
+    if ($dispData['birthday']){
+        $dispData['birthAry']['Y'] = formatDateTime($dispData['birthday'], 'Y');
+        $dispData['birthAry']['m'] = formatDateTime($dispData['birthday'], 'm');
+        $dispData['birthAry']['d'] = formatDateTime($dispData['birthday'], 'd');
+        $dispData['birthAry']['nengo']  = chgAdToJpNengo($dispData['birthday']);
+        $dispData['birthAry']['wareki'] = chgAdToJpYear($dispData['birthday']);
+    }
+
+// 更新情報
+    if ($keyId){
+        $dispData['create_day']  = formatDateTime($dispData['create_date'],'Y/m/d');
+        $dispData['create_time'] = formatDateTime($dispData['create_date'],'H:i');
+        $dispData['create_name'] = getStaffName($dispData['create_user']);
+        $dispData['update_day']  = formatDateTime($dispData['update_date'],'Y/m/d');
+        $dispData['update_time'] = formatDateTime($dispData['update_date'],'H:i');
+        $dispData['update_name'] = getStaffName($dispData['update_user']);
+    }
 
 /* =================================================== 
  * イベント前処理(更新用配列作成、入力チェックなど)
@@ -169,38 +211,50 @@ if ($btnDel){
  * ===================================================
  */
 // データ更新
-if ($btnEntry && $upData){
-    
-    // mst_staff更新
-    $res = upsert($loginUser, $table, $upData);
-    if (isset($res['err'])){
-        $err[] = 'システムエラーが発生しました';
-        throw new Exception();
-    }
-    $keyId = $res;
-    
-    // ログテーブルに登録する
-    setEntryLog($upData);
+if ($btnEntry && $upData) {
+    $loginRole = $_SESSION['login']['type'] ?? null;
+    $currentData = $dispData;
+    $staffId = $upData['staff_id'] ?? null;
+    $errors = &$_SESSION['notice']['error'];
+    $btnEntry = null;
 
-    // mst_staff_office更新
-    if(!empty($upOfcData)){
-        foreach ($upOfcData as $key => $val){
-            $val['staff_id'] = $keyId;
-            $upOfcData[$key] = $val;
-        }
-        $res = multiUpsert($loginUser, 'mst_staff_office', $upOfcData);
+// Validate permissions and duplicate entries
+    if ($isEdit && !hasPermissionToEdit($loginRole, $currentData, $upData)) {
+        $errors[] = 'Permission denied: Unable to edit.';
+    } elseif (!$isEdit && checkDuplicate($table, $staffId)) {
+        $errors[] = 'Duplicate entry detected.';
+    } else {
+        // mst_staff更新
+        $res = upsert($loginUser, $table, $upData);
         if (isset($res['err'])){
             $err[] = 'システムエラーが発生しました';
             throw new Exception();
         }
-        
+        $keyId = $res;
+
         // ログテーブルに登録する
-        setMultiEntryLog($upOfcData);
+        setEntryLog($upData);
+
+        // mst_staff_office更新
+        if(!empty($upOfcData)){
+            foreach ($upOfcData as $key => $val){
+                $val['staff_id'] = $keyId;
+                $upOfcData[$key] = $val;
+            }
+            $res = multiUpsert($loginUser, 'mst_staff_office', $upOfcData);
+            if (isset($res['err'])){
+                $err[] = 'システムエラーが発生しました';
+                throw new Exception();
+            }
+
+            // ログテーブルに登録する
+            setMultiEntryLog($upOfcData);
+        }
+        // 画面遷移
+        $nextPage = $server['scriptName'].'?id='.$keyId;
+        header("Location: $nextPage", true, 303);
+        exit();
     }
-    // 画面遷移
-    $nextPage = $server['scriptName'].'?id='.$keyId;
-    header("Location:". $nextPage);
-    exit();
 }
 
 // 所属事業所データ削除
@@ -222,47 +276,6 @@ if ($btnDel && $upOfcData){
     exit();
 }
 
-
-/* =================================================== 
- * イベント後処理(描画用データ作成)
- * ===================================================
- */
-
-/* -- データ取得 --------------------------------------------*/
-if ($keyId) {
-    
-    // mst_staff
-    $where = array();
-    $where['unique_id'] = $keyId;
-    $dispData = getData($table, $where);
-    
-    // mst_staff_office
-    $where = array();
-    $where['staff_id'] = $keyId;
-    $dispOfc = getData('mst_staff_office', $where);
-}
-
-/* -- データ変換 --------------------------------------------*/
-
-// 誕生日
-if ($dispData['birthday']){
-    $dispData['birthAry']['Y'] = formatDateTime($dispData['birthday'], 'Y');
-    $dispData['birthAry']['m'] = formatDateTime($dispData['birthday'], 'm');
-    $dispData['birthAry']['d'] = formatDateTime($dispData['birthday'], 'd');
-    $dispData['birthAry']['nengo']  = chgAdToJpNengo($dispData['birthday']);
-    $dispData['birthAry']['wareki'] = chgAdToJpYear($dispData['birthday']);
-}
-
-// 更新情報
-if ($keyId){
-    $dispData['create_day']  = formatDateTime($dispData['create_date'],'Y/m/d');
-    $dispData['create_time'] = formatDateTime($dispData['create_date'],'H:i');
-    $dispData['create_name'] = getStaffName($dispData['create_user']);
-    $dispData['update_day']  = formatDateTime($dispData['update_date'],'Y/m/d');
-    $dispData['update_time'] = formatDateTime($dispData['update_date'],'H:i');
-    $dispData['update_name'] = getStaffName($dispData['update_user']);
-}
-
 /* =================================================== 
  * 例外処理
  * ===================================================
@@ -276,4 +289,27 @@ if ($keyId){
         debug($e);
         exit();
     }
+}
+
+function hasPermissionToEdit($loginRole = null, $currentData = null, $paramData = null): bool
+{
+    if ($loginRole === SYSTEM_ADMINISTRATOR) {
+        return true;
+    }
+    if (in_array($loginRole, [EMPLOYEE, FUNCTIONAL_LIMITATIONS])) {
+        return $currentData['type'] === $paramData['type'] &&
+            $currentData['employee_type'] === $paramData['employee_type'];
+    }
+    if ($loginRole === CORPORATE_ADMINISTRATOR) {
+        return $currentData['type'] === SYSTEM_ADMINISTRATOR;
+    }
+    return false;
+}
+
+function checkDuplicate($table, $keyId) {
+    $where = array();
+    $where['staff_id'] = $keyId;
+    $data = getData($table, $where);
+
+    return $data;
 }
