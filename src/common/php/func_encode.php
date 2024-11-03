@@ -1,4 +1,5 @@
 <?php
+
 //=======================================================================
 //   外部データエンコード関数群
 //=======================================================================
@@ -6,58 +7,61 @@
 /* =======================================================================
  * htmlspecialchars
  * =======================================================================
- * 
- * 　[使用方法] 
+ *
+ * 　[使用方法]
  *      $res = h(①)
- * 
+ *
  *   [引数]
  *      ① 変換チェックする前の文字列情報
- * 
+ *
  *   [戻り値] 文字列
  *      変換した文字列情報を返却
- * 
+ *
  * -----------------------------------------------------------------------
  */
-function h($str){
+function h($str)
+{
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
 }
 /* =======================================================================
  * htmlspecialchars_decode
  * =======================================================================
- * 
- *   [使用方法] 
+ *
+ *   [使用方法]
  *      $res = hd(①)
- * 
+ *
  *   [引数]
  *      ① 変換チェックする前の文字列情報
- * 
+ *
  *   [戻り値] 文字列
  *      変換した文字列情報を返却
- * 
+ *
  * -----------------------------------------------------------------------
  */
-function hd($str){
+function hd($str)
+{
     return htmlspecialchars_decode($str);
 }
 
 /* =======================================================================
  * php->JSON変換関数
  * =======================================================================
- * 
- * 　[使用方法] 
+ *
+ * 　[使用方法]
  *      $res = jsonEncode(①)
  *      jsonエンコードのフィルターを設定するための関数
- * 
+ *
  *   [引数]
  *      ① 変換したい配列
- * 
+ *
  *   [戻り値] 文字列
  *      変換した文字列情報を返却
- * 
+ *
  * -----------------------------------------------------------------------
  */
 
-function jsonEncode($ary){
+function jsonEncode($ary)
+{
     return json_encode($ary, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
 }
 
@@ -72,21 +76,21 @@ function jsonEncode($ary){
  * 戻り値
  *  配列
  */
-function loadJsonFile($filePath = NULL) {
-	$res = array();
-	$jsonData = NULL;
-	// ファイルパスが渡っていない、もしくはファイルが存在しない場合
-	if (!$filePath || !file_exists($filePath)) {
-		return NULL;
-	}
-	// ファイル内容を全て取得
-	$jsonData = file_get_contents($filePath, FALSE, NULL);
-	if (!$jsonData) {
-		return NULL;
-	}
-	// BOMを削除して連想配列へ変換
-	$res = json_decode(preg_replace('/^\xEF\xBB\xBF/', '', $jsonData), true);
-	return $res;
+function loadJsonFile($filePath = null)
+{
+    $res = array();
+    $jsonData = null;
+    // ファイルパスが渡っていない、もしくはファイルが存在しない場合
+    if (!$filePath || !file_exists($filePath)) {
+        return null;
+    }
+    // ファイル内容を全て取得
+    $jsonData = file_get_contents($filePath, false, null);
+    if (!$jsonData) {
+        return null;
+    }
+    // BOMを削除して連想配列へ変換
+    return json_decode(preg_replace('/^\xEF\xBB\xBF/', '', $jsonData), true);
 }
 
 
@@ -94,7 +98,7 @@ function loadJsonFile($filePath = NULL) {
  * 制御コード抜き取り
  * =======================================================================
  */
-function stripControl($str = NULL)
+function stripControl($str = null)
 {
     $ctrlAry = array(
         "00", // NULl（ヌル）
@@ -132,7 +136,7 @@ function stripControl($str = NULL)
         );
 
     $codeAry = array();
-    foreach ($ctrlAry as $code){
+    foreach ($ctrlAry as $code) {
         $codeAry[] = hex2bin($code);
     }
 

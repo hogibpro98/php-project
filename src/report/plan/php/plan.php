@@ -109,6 +109,11 @@ $btnEntry = h(filter_input(INPUT_POST, 'btnEntry'));
 // 複製ボタン
 $btnCopy = h(filter_input(INPUT_POST, 'btnCopy'));
 
+$btnCopy1 = h(filter_input(INPUT_GET, 'btnCopy'));
+if(!empty($btnCopy1)){
+    $btnCopy =$btnCopy1;
+}
+$copyid = filter_input(INPUT_GET, 'copyid');
 // 削除ボタン
 $btnDel = h(filter_input(INPUT_POST, 'btnDel'));
 
@@ -193,7 +198,6 @@ if (($btnEntry || $btnDelPrb || $btnAdd) && $upAry){
 
 // 複製処理
 if ($btnCopy){
-    
     // 問題
     $upPrb2 = array();
     if($upPrb){
@@ -202,7 +206,8 @@ if ($btnCopy){
                 if (isset($upPrb['unique_id'][$seq])){
                     $upPrb2[$seq]['unique_id'] = $upPrb['unique_id'][$seq];
                 }
-                $upPrb2[$seq]['plan_day']   = $upPrb['plan_day'][$seq];
+                //$upPrb2[$seq]['plan_day']   = $upPrb['plan_day'][$seq];
+                $upPrb2[$seq]['plan_day']   = '';
                 $upPrb2[$seq]['problem']    = $upPrb['problem'][$seq];
                 $upPrb2[$seq]['solution']   = $upPrb['solution'][$seq];
                 $upPrb2[$seq]['evaluation'] = $upPrb['evaluation'][$seq];
@@ -214,15 +219,46 @@ if ($btnCopy){
     $upDummy['target_person'] = isset($upDummy['target_person']) 
         ? implode('^', $upDummy['target_person']) 
         : NULL;
-    
     // セッションに入力途中の情報を格納
     $_SESSION['input'] = array();
     $_SESSION['input']['upAry']   = $upAry;
     $_SESSION['input']['upDummy'] = $upDummy;
     $_SESSION['input']['upPrb']   = $upPrb2;
+    $_SESSION['input']['upAry']['staff_id']='';
+    $_SESSION['input']['upDummy']['staff_cd']='';
+    $_SESSION['input']['upDummy']['staff_name']='';
+    $_SESSION['input']['upAry']['report_day']='';
+    $_SESSION['input']['upAry']['validate_start']='';
+    $_SESSION['input']['upAry']['validate_end']='';
+    $_SESSION['input']['upAry']['remarks']='';
+    $_SESSION['input']['upAry']['create_staff1']='';
+    $_SESSION['input']['upDummy']['staff1_cd']='';
+    $_SESSION['input']['upDummy']['staff1_name']='';
+    $_SESSION['input']['upAry']['create_staff2']='';
+    $_SESSION['input']['upDummy']['staff2_cd']='';
+    $_SESSION['input']['upDummy']['staff2_name']='';
+    $_SESSION['input']['upAry']['hospital']='';
+    $_SESSION['input']['upAry']['doctor']='';
+    $_SESSION['input']['upAry']['address']='';
+    $_SESSION['input']['upAry']['tel1']='';
+    $_SESSION['input']['upAry']['tel2']='';
+    $_SESSION['input']['upAry']['fax']='';
+    $_SESSION['input']['upAry']['manager']='';
+    $_SESSION['input']['upDummy']['manager_cd']='';
+    $_SESSION['input']['upDummy']['manager_name']='';
+    $_SESSION['input']['upAry']['status']='';
+    $_SESSION['input']['upAry']['create_job1']='';
+    $_SESSION['input']['upAry']['create_job2']='';
     
+
     // 画面遷移
     $nextPage = '/report/plan/index.php?copy=true&user='.$userId;
+    if($btnCopy1){
+        $nextPage.='&copyid='.$keyId;
+    }
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && $btnCopy) {
+        $_SESSION['notice']['success'][] = '複製されました';
+    }
     header("Location:". $nextPage);
     exit();
 }
@@ -569,16 +605,18 @@ if (!$keyId){
 }
 
 /* -- 計画書-問題 情報 -----------------------------*/
-if ($keyId){
+if ($keyId || $copyid){
     $where = array();
     $where['delete_flg'] = 0;
-    $where['plan_id']  = $keyId;
+    $where['plan_id']  = ($copyid)?$copyid:$keyId;
     $target = '*';
     $temp = select($table2,$target,$where);
     foreach ($temp as $val){
         $tgtId = $val['unique_id'];
-
         $dispPrb[$tgtId] = $val;
+        if($copyid){
+            $dispPrb[$tgtId]['plan_day']='';
+        }
     }
 }
 
@@ -652,7 +690,25 @@ if ($prt){
         
     $res = printPDF($prt, $search);
 }
-
+if($copy){
+    $dispData['address']='';
+    $where = array();
+    $where['delete_flg'] = 0;
+    $where['unique_id']  = $copyid;
+    $temp = select($table1, '*', $where);
+    if (isset($temp[0])){
+        
+        // テーブル値
+        $dispData['goal']=$temp[0]['goal'];
+        $dispData['care_kb']=$temp[0]['care_kb'];
+        $dispData['dealing']=$temp[0]['dealing'];
+        $dispData['medical_material']=$temp[0]['medical_material'];
+        $dispData['requirement']=$temp[0]['requirement'];
+        $dispData['material_needs']=$temp[0]['material_needs'];
+        $dispData['visit_job']=$temp[0]['visit_job'];
+        $dispData['target_person'] = $temp[0]['target_person'];
+    }
+}
 /* =================================================== 
  * 例外処理
  * ===================================================

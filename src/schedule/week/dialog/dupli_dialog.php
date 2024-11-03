@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * 編集モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -58,7 +58,7 @@ $selMinutes = ['','00','05','10','15','20','25','30','35','40','45','50','55'];
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // スケジュールID
@@ -67,7 +67,7 @@ $schId = filter_input(INPUT_GET, 'id');
 // ユーザID
 $userId = filter_input(INPUT_GET, 'user');
 if (!$userId) {
-    $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : NULL;
+    $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : null;
 }
 
 /* -- 更新用パラメータ --------------------------------------- */
@@ -80,7 +80,7 @@ if (!$userId) {
 // 利用者指定なし
 if (empty($userId)) {
     $_SESSION['notice']['error'][] = '利用者を指定していません';
-    $btnEntry = NULL;
+    $btnEntry = null;
 }
 
 
@@ -97,6 +97,11 @@ foreach ($temp as $val) {
 }
 
 // サービスマスタ
+$userSvType = getUserServiceType($userId);
+$svcMstType = array();
+if (isset($services[$userSvType])) {
+    $svcMstType = $services[$userSvType];
+}
 $where = array();
 $where['delete_flg'] = 0;
 $temp = select('mst_service', '*', $where);
@@ -128,7 +133,7 @@ foreach ($temp as $val) {
 // 事業所リスト取得
 $offices = array();
 $ofcList = getOfficeList($placeId);
-foreach($ofcList as $ofcId => $dummy){
+foreach($ofcList as $ofcId => $dummy) {
     $offices[] = $ofcId;
 }
 
@@ -154,34 +159,34 @@ foreach ($temp as $val) {
     $tgtId = $val['unique_id'];
     $zeiType = $val['zei_type'];
     $subsidy = $val['subsidy'];
-    $unInsType['type'][$type] = TRUE;
-    $unInsType['zei_type'][$zeiType] = TRUE;
-    $unInsType['subsidy'][$subsidy] = TRUE;
+    $unInsType['type'][$type] = true;
+    $unInsType['zei_type'][$zeiType] = true;
+    $unInsType['subsidy'][$subsidy] = true;
     $uisList[$type][$tgtId] = $val;
 }
 
 // 保険外マスタにデータが無いときはコードマスタから積む
-if(!empty($unInsType)){
-    
+if(!empty($unInsType)) {
+
     // 種類を積む
     $codeType = $codeList['保険外マスタ']['種類'];
-    foreach($codeType as $cd => $val){
+    foreach($codeType as $cd => $val) {
         $type = $val;
-        $unInsType['type'][$type] = TRUE;
+        $unInsType['type'][$type] = true;
     }
 
     // 税区分を積む
     $zeiType = $codeList['保険外マスタ']['税区分'];
-    foreach($zeiType as $cd => $val){
+    foreach($zeiType as $cd => $val) {
         $type = $val;
-        $unInsType['zei_type'][$type] = TRUE;
+        $unInsType['zei_type'][$type] = true;
     }
 
     // 控除対象を積む
     $subsidy = $codeList['保険外マスタ']['控除対象'];
-    foreach($subsidy as $cd => $val){
+    foreach($subsidy as $cd => $val) {
         $type = $val;
-        $unInsType['subsidy'][$type] = TRUE;
+        $unInsType['subsidy'][$type] = true;
     }
 }
 /* -- 更新用配列作成 ---------------------------------------- */
@@ -212,9 +217,9 @@ foreach ($temp as $val) {
 
     // 更新者名、事業所名
     $val['update_name'] = getStaffName($val['update_user']);
-    $val['office_name'] = getOfficeName($val['office_id'], NULL, 'master');
+    $val['office_name'] = getOfficeName($val['office_id'], null, 'master');
 
-    // 基本サービス名称 
+    // 基本サービス名称
     $svcId = $val['service_id'] ? $val['service_id'] : 'dummy';
     $val['base_service'] = isset($svcInfo[$svcId]) ? $svcInfo[$svcId]['name'] . '(' . $svcInfo[$svcId]['code'] . ')' : '';
 
@@ -240,8 +245,8 @@ if (!empty($tgtData)) {
         // 計画情報、加減算ID
         $tgtPlan = $tgtData['main'];
         $planAddId = $val['unique_id'];
-        $val['start_day'] = $val['start_day'] === '0000-00-00' ? NULL : $val['start_day'];
-        $val['end_day'] = $val['end_day'] === '0000-00-00' ? NULL : $val['end_day'];
+        $val['start_day'] = $val['start_day'] === '0000-00-00' ? null : $val['start_day'];
+        $val['end_day'] = $val['end_day'] === '0000-00-00' ? null : $val['end_day'];
 
         // 格納
         $tgtData['add'][$planAddId] = $val;
@@ -353,7 +358,7 @@ $dispData = $tgtData;
             <p class="month_list">
                 <?php if (isset($mainData['week_num'])) : ?>
                     <span>
-                        <input type="checkbox" name="<?= $mainPrefix ?>[week_num][]" value="第1週" id="week1" <?= strpos($mainData['week_num'], '第1週') != false ? 'checked' : '' ?>>
+                        <input type="checkbox" name="<?= $mainPrefix ?>[week_num][]" value="第1週" id="week1" <?= strpos($mainData['week_num'], '第1週') !== false ? 'checked' : '' ?>>
                         </label>第1週</label>
                     </span>
                     <span>
@@ -391,28 +396,28 @@ $dispData = $tgtData;
             <p>
                 <select name="<?= $mainPrefix ?>[start_time_h]">
                     <?php foreach ($selHour as $val) :?>
-                    <?php $selected = strpos($mainData['start_time'], $val.":") !== false ? ' selected' : ""  ; ?>
+                    <?php $selected = strpos($mainData['start_time'], $val . ":") !== false ? ' selected' : ""  ; ?>
                     <option value="<?= $val ?>" <?= $selected ?>><?= $val ?></option>
                     <?php endforeach; ?>
                 </select>
                 <small>：</small>
                 <select name="<?= $mainPrefix ?>[start_time_m]">
                     <?php foreach ($selMinutes as $val) :?>
-                    <?php $selected = strpos($mainData['start_time'], ":".$val) !== false ? ' selected' : ""  ; ?>
+                    <?php $selected = strpos($mainData['start_time'], ":" . $val) !== false ? ' selected' : ""  ; ?>
                     <option value="<?= $val ?>" <?= $selected ?>><?= $val ?></option>
                     <?php endforeach; ?>
                 </select>
                 <small>～</small>
                 <select name="<?= $mainPrefix ?>[end_time_h]" class="select_time">
                     <?php foreach ($selHour as $val) :?>
-                    <?php $selected = strpos($mainData['end_time'], $val.":") !== false ? ' selected' : ""  ; ?>
+                    <?php $selected = strpos($mainData['end_time'], $val . ":") !== false ? ' selected' : ""  ; ?>
                     <option value="<?= $val ?>" <?= $selected ?>><?= $val ?></option>
                     <?php endforeach; ?>
                 </select>
                 <small>：</small>
                 <select name="<?= $mainPrefix ?>[end_time_m]" class="select_time">
                     <?php foreach ($selMinutes as $val) :?>
-                    <?php $selected = strpos($mainData['end_time'], ":".$val) !== false ? ' selected' : ""  ; ?>
+                    <?php $selected = strpos($mainData['end_time'], ":" . $val) !== false ? ' selected' : ""  ; ?>
                     <option value="<?= $val ?>" <?= $selected ?>><?= $val ?></option>
                     <?php endforeach; ?>
                 </select>
@@ -431,7 +436,7 @@ $dispData = $tgtData;
             <select id="office" class="staff" name="<?= $mainPrefix ?>[office_id]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($ofcList as $ofcId => $val) : ?>
-                    <?php $select = $mainData['office_id'] === $ofcId ? ' selected' : NULL; ?>
+                    <?php $select = $mainData['office_id'] === $ofcId ? ' selected' : null; ?>
                     <option value="<?= $ofcId ?>" <?= $select ?>><?= $val['name'] . "(ID:" . $val['office_no'] . ")" ?></option>
                 <?php endforeach; ?>
             </select>
@@ -440,8 +445,8 @@ $dispData = $tgtData;
             <p class="mid">サービス内容</p>
             <select id="selServiceName" class="staff" name="<?= $mainPrefix ?>[service_name]" style="width:320px">
                 <option value="">選択してください</option>
-                <?php foreach ($svcMst as $type => $dummy) : ?>
-                    <?php $select = $type === $mainData['service_name'] ? ' selected' : NULL; ?>
+                <?php foreach ($svcMstType as $type) : ?>
+                    <?php $select = $type === $mainData['service_name'] ? ' selected' : null; ?>
                     <option value="<?= $type ?>" <?= $select ?>><?= $type ?></option>
                 <?php endforeach; ?>
             </select>
@@ -460,7 +465,7 @@ $dispData = $tgtData;
                 <option value="">選択してください</option>
                 <?php foreach ($svcMst as $type => $svcMst2) : ?>
                     <?php foreach ($svcMst2 as $tgtId => $val) : ?>
-                        <?php $select = $mainData['service_id'] === $tgtId ? ' selected' : NULL; ?>
+                        <?php $select = $mainData['service_id'] === $tgtId ? ' selected' : null; ?>
                         <option class="cngService" data-value="<?= $tgtId ?>" data-service_name="<?= $type ?>" <?= $select ?> value="<?= $val['name'] . '(' . $val['code'] . ')' ?>"> </option>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
@@ -472,7 +477,7 @@ $dispData = $tgtData;
             <select class="staff" name="<?= $mainPrefix ?>[care_job]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($careJobList as $type => $job) : ?>
-                    <?php $select = $job === $mainData['care_job'] ? ' selected' : NULL; ?>
+                    <?php $select = $job === $mainData['care_job'] ? ' selected' : null; ?>
                     <option value="<?= $job ?>" <?= $select ?>><?= $job ?></option>
                 <?php endforeach; ?>
             </select>
@@ -482,7 +487,7 @@ $dispData = $tgtData;
             <select class="staff" name="<?= $mainPrefix ?>[visitor_num]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($visitorNumList as $type => $job) : ?>
-                    <?php $select = $job === $mainData['visitor_num'] ? ' selected' : NULL; ?>
+                    <?php $select = $job === $mainData['visitor_num'] ? ' selected' : null; ?>
                     <option value="<?= $job ?>" <?= $select ?>><?= $job ?></option>
                 <?php endforeach; ?>
             </select>
@@ -492,7 +497,7 @@ $dispData = $tgtData;
             <select class="staff" name="<?= $mainPrefix ?>[area_add]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($areaAddList as $type => $job) : ?>
-                    <?php $select = $job === $mainData['area_add'] ? ' selected' : NULL; ?>
+                    <?php $select = $job === $mainData['area_add'] ? ' selected' : null; ?>
                     <option value="<?= $job ?>" <?= $select ?>><?= $job ?></option>
                 <?php endforeach; ?>
             </select>
@@ -502,7 +507,7 @@ $dispData = $tgtData;
             <select class="staff" name="<?= $mainPrefix ?>[ins_station]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($insStationList as $type => $job) : ?>
-                    <?php $select = $job === $mainData['ins_station'] ? ' selected' : NULL; ?>
+                    <?php $select = $job === $mainData['ins_station'] ? ' selected' : null; ?>
                     <option value="<?= $job ?>" <?= $select ?>><?= $job ?></option>
                 <?php endforeach; ?>
             </select>
@@ -646,7 +651,7 @@ $dispData = $tgtData;
                         <select id="selJippiType<?= $jippi_i ?>" data-index="<?= $jippi_i ?>" name="<?= $jpiPrefix ?>[type][]" class="uis_type selJippiType cngJippi">
                                 <option value="">選択してください</option>
                                 <?php foreach ($unInsType['type'] as $type => $dummy) : ?>
-                                    <?php $select = $jippiList['type'] === $type ? ' selected' : NULL; ?>
+                                    <?php $select = $jippiList['type'] === $type ? ' selected' : null; ?>
                                     <option value="<?= $type ?>" <?= $select ?>><?= $type ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -657,7 +662,7 @@ $dispData = $tgtData;
                                 <option value="">選択してください</option>
                                 <?php foreach ($uisList as $type => $uisList2) : ?>
                                     <?php foreach ($uisList2 as $uisId => $uisData) : ?>
-                                        <?php $select = $jippiList['name'] === $uisData['name'] ? ' selected' : NULL; ?>
+                                        <?php $select = $jippiList['name'] === $uisData['name'] ? ' selected' : null; ?>
                                     <option class="cngJippiType<?= $jippi_i ?>" value="<?= $uisId ?>" 
                                             data-office_id="<?= $uisData['link_office'] ?>"
                                             data-type="<?= $uisData['type'] ?>"
@@ -682,7 +687,7 @@ $dispData = $tgtData;
                             <b class="sm">消費税<br>区分</b>
                         <select id="jippiZeiType<?= $jippi_i ?>" name="<?= $jpiPrefix ?>[zei_type][]" class="uis_zeiType">
                                 <?php foreach ($unInsType['zei_type'] as $zeiType => $dummy) : ?>
-                                    <?php $select = $jippiList['zei_type'] === $zeiType ? ' selected' : NULL; ?>
+                                    <?php $select = $jippiList['zei_type'] === $zeiType ? ' selected' : null; ?>
                                     <option value="<?= $zeiType ?>" <?= $select ?>><?= $zeiType ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -695,7 +700,7 @@ $dispData = $tgtData;
                             <b class="sm">控除区分</b>
                             <select id="jippiSubsidy<?= $jippi_i ?>" name="<?= $jpiPrefix ?>[subsidy][]" class="uis_subsidy">
                                 <?php foreach ($unInsType['subsidy'] as $subsidy => $dummy) : ?>
-                                    <?php $select = $jippiList['subsidy'] === $subsidy ? ' selected' : NULL; ?>
+                                    <?php $select = $jippiList['subsidy'] === $subsidy ? ' selected' : null; ?>
                                     <option value="<?= $subsidy ?>" <?= $select ?>><?= $subsidy ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -791,7 +796,7 @@ $dispData = $tgtData;
                                 <option value="">選択してください</option>
                                 <?php foreach ($svcDtlMst as $type => $svcDtlMst2) : ?>
                                     <?php foreach ($svcDtlMst2 as $tgtId => $val) : ?>
-                                        <?php $select = $svcData['service_detail_id'] === $tgtId ? ' selected' : NULL; ?>
+                                        <?php $select = $svcData['service_detail_id'] === $tgtId ? ' selected' : null; ?>
                                         <option class="cngService" value="<?= $tgtId ?>" data-value="<?= $val['name'] ?>" data-service_name="<?= $type ?>" <?= $select ?>><?= $val['name'] ?></option>
                                     <?php endforeach; ?>
                                 <?php endforeach; ?>
@@ -1122,5 +1127,20 @@ $dispData = $tgtData;
             $('#jippiUisRate' + index).val("");
             $('#jippiSubsidy' + index).val("控除対象外");
         }
+    </script>
+    
+    
+    <script>
+        $(document).ready(function() {
+            $("#dWeekAll").change(function() {
+                $(".dwList").prop("checked", $(this).prop("checked"));
+            });
+
+            $(".dwList").change(function() {
+                if (!$(this).prop("checked")) {
+                    $("#dWeekAll").prop("checked", false);
+                }
+            });
+        });
     </script>
 </div>

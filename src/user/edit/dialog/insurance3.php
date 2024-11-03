@@ -106,8 +106,10 @@
             }
             if (name === "社保") {
                 // 被保険者番号
-                $(".ins3_number1").prop('disabled', true);
-                $(".ins3_number1").addClass("bg-gray2");
+                //$(".ins3_number1").prop('disabled', true);
+                //$(".ins3_number1").addClass("bg-gray2");
+                $(".ins3_number1").prop('disabled', false);
+                $(".ins3_number1").removeClass("bg-gray2");
 
                 // 法別番号
                 $(".ins3_number2").prop('disabled', false);
@@ -177,8 +179,10 @@
             }
             if (name === "国保" || name === "公害" || name === "労災" || name === "その他") {
                 // 被保険者番号
-                $(".ins3_number1").prop('disabled', true);
-                $(".ins3_number1").addClass("bg-gray2");
+                //$(".ins3_number1").prop('disabled', true);
+                //$(".ins3_number1").addClass("bg-gray2");
+                $(".ins3_number1").prop('disabled', false);
+                $(".ins3_number1").removeClass("bg-gray2");
 
                 // 法別番号
                 $(".ins3_number2").prop('disabled', false);
@@ -357,14 +361,14 @@
                         <option data-legal_no="07" value="自衛官">自衛官</option>
                         <option data-legal_no="02" value="船員(職務外)">船員(職務外)</option>
                         <option data-legal_no="02" value="船員(職務上)">船員(職務上)</option>
-                        <option data-legal_no="06" value="組合管掌(30%）">組合管掌(30%）</option>
+                        <option data-legal_no="06" value="組合管掌(30%)">組合管掌(30%)</option>
                         <option data-legal_no="32" value="地方公務員等共済組合(30％)">地方公務員等共済組合(30％)</option>
                         <option data-legal_no="03" value="日雇い(一般)(20％)">日雇い(一般)(20％)</option>
                         <option data-legal_no="04" value="日雇い(特別)(20％)">日雇い(特別)(20％)</option>
-                        <option data-legal_no="34" value="日本私立学校振興・共済事業団(30％）">日本私立学校振興・共済事業団(30％）</option>
-                        <option data-legal_no="39" value="後期高齢者1割(10％)">後期高齢者1割(10％）</option>
-                        <option data-legal_no="39" value="後期高齢者2割(20％)">後期高齢者2割(20％）</option>
-                        <option data-legal_no="39" value="後期高齢者3割(30％)">後期高齢者3割(30％）</option>
+                        <option data-legal_no="34" value="日本私立学校振興・共済事業団(30％)">日本私立学校振興・共済事業団(30％）</option>
+                        <option data-legal_no="39" value="後期高齢者1割(10％)">後期高齢者1割(10％)</option>
+                        <option data-legal_no="39" value="後期高齢者2割(20％)">後期高齢者2割(20％)</option>
+                        <option data-legal_no="39" value="後期高齢者3割(30％)">後期高齢者3割(30％)</option>
                         <option data-legal_no="" value="労災(0％)">労災(0％)</option>
                         <option data-legal_no="" value="公害(0％)">公害(0％)</option>
                     </select>

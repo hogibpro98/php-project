@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * スタッフ検索モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -29,7 +29,7 @@ $tgtData = array();
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // 利用者(外部ID)取得
@@ -44,12 +44,12 @@ $officeName = filter_input(INPUT_GET, 'office_name');
 $uniqueId = filter_input(INPUT_GET, 'id');
 $mode = filter_input(INPUT_GET, 'mode');
 
-$userId = !empty($userId) ? $userId : NULL;
-$userOfcId = !empty($userOfcId) ? $userOfcId : NULL;
-$startDay = !empty($startDay) ? formatDateTime($startDay, "Y-m-d") : NULL;
-$endDay = !empty($endDay) ? formatDateTime($endDay, "Y-m-d") : NULL;
-$officeName = !empty($officeName) ? $officeName : NULL;
-$uniqueId = !empty($uniqueId) ? $uniqueId : NULL;
+$userId = !empty($userId) ? $userId : null;
+$userOfcId = !empty($userOfcId) ? $userOfcId : null;
+$startDay = !empty($startDay) ? formatDateTime($startDay, "Y-m-d") : null;
+$endDay = !empty($endDay) ? formatDateTime($endDay, "Y-m-d") : null;
+$officeName = !empty($officeName) ? $officeName : null;
+$uniqueId = !empty($uniqueId) ? $uniqueId : null;
 
 /* -- 更新用パラメータ --------------------------------------- */
 
@@ -92,12 +92,12 @@ $where['delete_flg'] = 0;
 $orderBy = 'unique_id ASC';
 $temp = select('mst_office', '*', $where, $orderBy);
 foreach ($temp as $val) {
-    $val['place_name'] = isset($plcList[$val['place_id']]) ? $plcList[$val['place_id']] : NULL;
+    $val['place_name'] = isset($plcList[$val['place_id']]) ? $plcList[$val['place_id']] : null;
     $ofcList[$val['unique_id']] = $val;
 }
 
 // 事業所番号取得
-$officeNo = !empty($ofcList[$officeId]['office_no']) ? $ofcList[$officeId]['office_no'] : NULL;
+$officeNo = !empty($ofcList[$officeId]['office_no']) ? $ofcList[$officeId]['office_no'] : null;
 
 // 契約事業所情報取得
 //$dispData = initTable('mst_user_office1');

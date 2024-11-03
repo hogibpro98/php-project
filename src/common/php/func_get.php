@@ -7,19 +7,20 @@
  *     2.検索配列
  *     3.検索順
  *     4.最大件数
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *     $res[field]     = 'テーブル格納データ' ←ID指定の場合
  *     $res[id][field] = 'テーブル格納データ'
- * 
+ *
  * -----------------------------------------------------------------------
  */
 
-function getData($table, $search = array(), $orderBy = 'unique_id ASC', $limit = NULL) {
+function getData($table, $search = array(), $orderBy = 'unique_id ASC', $limit = null)
+{
 
     /* -- 初期処理 -------------------------------------------- */
 
-// 初期化
+    // 初期化
     $res = array();
 
     /* -- データ取得 ------------------------------------------ */
@@ -34,7 +35,6 @@ function getData($table, $search = array(), $orderBy = 'unique_id ASC', $limit =
     if (empty($search['delete_flg'])) {
         $where['delete_flg'] = 0;
     }
-
     $temp = select($table, '*', $where, $orderBy, $limit);
     /* -- データ変換 ------------------------------------------ */
     foreach ($temp as $val) {
@@ -64,26 +64,33 @@ function getData($table, $search = array(), $orderBy = 'unique_id ASC', $limit =
  *      ⑤ メインテーブルとの結合カラム名
  *      ⑥ ソート条件
  *      ⑦ 最大取得件数
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *     $res[field]     = 'テーブル格納データ' ←ID指定の場合
  *     $res[id][field] = 'テーブル格納データ'
- * 
+ *
  * -----------------------------------------------------------------------
  */
 
-function getMultiData($table, $tables, $target = NULL, $where = array(),
-    $joinCol = array(), $orderBy = NULL, $limit = NULL) {
+function getMultiData(
+    $table,
+    $tables,
+    $target = null,
+    $where = array(),
+    $joinCol = array(),
+    $orderBy = null,
+    $limit = null
+) {
 
     /* -- 初期処理 -------------------------------------------- */
 
-// 初期化
+    // 初期化
     $res = array();
     $joinWhere = array();
 
     /* -- 取得条件 -------------------------------------------- */
 
-// 検索条件
+    // 検索条件
     foreach ($where as $key => $val) {
         if ($key === 'delete_flg' && $val === 'all') {
             unset($where[$key]);
@@ -96,7 +103,7 @@ function getMultiData($table, $tables, $target = NULL, $where = array(),
         }
     }
 
-// 対象カラム
+    // 対象カラム
     if (empty($target)) {
         $target = $table . '.*';
         foreach ($tables as $val) {
@@ -104,7 +111,7 @@ function getMultiData($table, $tables, $target = NULL, $where = array(),
         }
     }
 
-// 結合条件
+    // 結合条件
     if (empty($joinCol)) {
         foreach ($tables as $val) {
             $joinWhere[$val][$val . '.link_header'] = $table . '.unique_id';
@@ -118,10 +125,9 @@ function getMultiData($table, $tables, $target = NULL, $where = array(),
     }
 
     /* -- データ取得 ------------------------------------------ */
-    $res = multiSelect($table, $tables, $target, $where, $joinWhere, $orderBy);
+    return multiSelect($table, $tables, $target, $where, $joinWhere, $orderBy);
 
     /* -- データ返却 ------------------------------------------ */
-    return $res;
 }
 
 /* =======================================================================
@@ -129,18 +135,19 @@ function getMultiData($table, $tables, $target = NULL, $where = array(),
  * =======================================================================
  *   [引数]
  *     ①選択肢分類
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *   ＜type指定あり＞
  *     $res[type][id][field] = 'テーブル格納データ'
- * 
+ *
  *   ＜type指定なし＞
  *     $res[id][field] = 'テーブル格納データ'
- * 
+ *
  * -----------------------------------------------------------------------
  */
 
-function getCode($keyGroup = NULL, $keyType = NULL) {
+function getCode($keyGroup = null, $keyType = null)
+{
 
     /* -- 初期処理 -------------------------------------------- */
     $res = array();
@@ -156,7 +163,7 @@ function getCode($keyGroup = NULL, $keyType = NULL) {
     }
     $target = 'unique_id,name,group_div,type';
     $orderBy = 'unique_id ASC';
-    $limit = NULL;
+    $limit = null;
     $temp = select('mst_code', $target, $where, $orderBy, $limit);
 
     /* -- データ変換 ------------------------------------------ */
@@ -187,14 +194,15 @@ function getCode($keyGroup = NULL, $keyType = NULL) {
  * =======================================================================
  */
 
-function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id ASC') {
+function getUserList($placeId = null, $search = array(), $orderBy = 'unique_id ASC')
+{
 
-// 初期化
+    // 初期化
     $res = array();
     $tgtOfc = array();
     $tgtUser = array();
 
-// 事業所マスタ取得
+    // 事業所マスタ取得
     $where = array();
     $where['delete_flg'] = 0;
     if ($placeId) {
@@ -214,7 +222,7 @@ function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id A
         $tgtOfc[] = $tgtId;
     }
 
-// 利用者所属事業所
+    // 利用者所属事業所
     $where = array();
     $where['delete_flg'] = 0;
     $where['office_id'] = $tgtOfc;
@@ -230,27 +238,27 @@ function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id A
             continue;
         }
 
-        if($val['end_day'] === '0000-00-00'){
+        if ($val['end_day'] === '0000-00-00') {
             $val['end_day'] = '2100-12-31';
         }
-        
+
         // 契約中／停止中判定
-//        $search['status'] = !empty($search['status']) ? $search['status'] : '契約中';
-        if (!empty($search['status'])){
-            
-            if ($search['status'] === '契約中'){
-                if ($val['start_day'] > $search['end_day']){
+        //        $search['status'] = !empty($search['status']) ? $search['status'] : '契約中';
+        if (!empty($search['status'])) {
+
+            if ($search['status'] === '契約中') {
+                if ($val['start_day'] > $search['end_day']) {
                     continue;
                 }
-                if (!empty($val['end_day']) && $val['end_day'] < $search['start_day']){
+                if (!empty($val['end_day']) && $val['end_day'] < $search['start_day']) {
                     continue;
                 }
             }
-            
-            if ($search['status'] === '停止中'){
-                if ($val['start_day'] < $search['end_day'] 
-                    && !empty($val['end_day']) 
-                    && $val['end_day'] > $search['start_day']){
+
+            if ($search['status'] === '停止中') {
+                if ($val['start_day'] < $search['end_day']
+                    && !empty($val['end_day'])
+                    && $val['end_day'] > $search['start_day']) {
                     continue;
                 }
             }
@@ -258,7 +266,7 @@ function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id A
         $tgtUser[] = $tgtId;
     }
 
-// 利用者マスタ
+    // 利用者マスタ
     $where = array();
     $where['delete_flg'] = 0;
     $where['unique_id'] = $tgtUser;
@@ -274,7 +282,7 @@ function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id A
         $res[$tgtId] = $val;
     }
 
-// 返却
+    // 返却
     return $res;
 }
 
@@ -283,12 +291,13 @@ function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id A
  * =======================================================================
  */
 
-function getUserInfo($userId, $multi = NULL) {
+function getUserInfo($userId, $multi = null)
+{
 
-// 初期化
+    // 初期化
     $res = array();
 
-// データ取得
+    // データ取得
     $where = array();
     $where['delete_flg'] = 0;
     $where['unique_id'] = $userId;
@@ -307,7 +316,39 @@ function getUserInfo($userId, $multi = NULL) {
         }
     }
 
-// 返却
+    // 返却
+    return $res;
+}
+
+function getUserServiceType($userId) {
+    $res = array();
+
+    $where = array();
+    $where['delete_flg'] = 0;
+    $where['unique_id'] = $userId;
+    $temp = select('mst_user', 'service_type', $where);
+
+    // 返却
+    if (isset($temp[0])) {
+        $res = $temp[0]['service_type'];
+    }
+
+    return $res;
+}
+
+function checkStaffIdDuplicate($staffId) {
+    $res = false;
+
+    $where = array();
+    $where['delete_flg'] = 0;
+    $where['staff_id'] = $staffId;
+
+    $temp = select('mst_staff', 'staff_id', $where);
+
+    if (isset($temp[0])) {
+        $res = true;
+    }
+
     return $res;
 }
 
@@ -316,14 +357,15 @@ function getUserInfo($userId, $multi = NULL) {
  * =======================================================================
  */
 
-function getStaffList($placeId = NULL) {
+function getStaffList($placeId = null)
+{
 
-// 初期化
+    // 初期化
     $res = array();
     $tgtOfc = array();
     $tgtStaff = array();
 
-// 事業所マスタ取得
+    // 事業所マスタ取得
     $where = array();
     $where['delete_flg'] = 0;
     if ($placeId) {
@@ -336,10 +378,10 @@ function getStaffList($placeId = NULL) {
     }
     foreach ($temp as $val) {
         $tgtId = $val['unique_id'];
-        $tgtOfc[$tgtId] = TRUE;
+        $tgtOfc[$tgtId] = true;
     }
 
-// 従業員所属事業所
+    // 従業員所属事業所
     $where = array();
     $where['delete_flg'] = 0;
     $target = 'staff_id,office1_id,office2_id';
@@ -350,13 +392,13 @@ function getStaffList($placeId = NULL) {
     foreach ($temp as $val) {
         $ofc1 = $val['office1_id'];
         $ofc2 = $val['office2_id'];
-        if (isset($tgtOfc[$ofc1]) || isset($tgtOfc[$ofc2])){
+        if (isset($tgtOfc[$ofc1]) || isset($tgtOfc[$ofc2])) {
             $tgtId = $val['staff_id'];
             $tgtStaff[] = $tgtId;
         }
     }
 
-// 従業員マスタ
+    // 従業員マスタ
     $where = array();
     $where['delete_flg'] = 0;
     $where['unique_id'] = $tgtStaff;
@@ -369,7 +411,7 @@ function getStaffList($placeId = NULL) {
         $res[$tgtId] = $val;
     }
 
-// 返却
+    // 返却
     return $res;
 }
 
@@ -378,12 +420,13 @@ function getStaffList($placeId = NULL) {
  * =======================================================================
  */
 
-function getCareRank($userId, $tgtDay = TODAY) {
+function getCareRank($userId, $tgtDay = TODAY)
+{
 
-// 初期化
-    $res = NULL;
+    // 初期化
+    $res = null;
 
-// 介護保険証の情報取得
+    // 介護保険証の情報取得
     $where = array();
     $where['delete_flg'] = 0;
     $where['user_id'] = $userId;
@@ -395,12 +438,12 @@ function getCareRank($userId, $tgtDay = TODAY) {
     $orderBy = 'unique_id ASC';
     $temp = select('mst_user_insure1', $target, $where, $orderBy);
 
-// 最新値を格納
+    // 最新値を格納
     foreach ($temp as $val) {
         $res = $val['care_rank'];
     }
 
-// データ返却
+    // データ返却
     return $res;
 }
 
@@ -409,10 +452,11 @@ function getCareRank($userId, $tgtDay = TODAY) {
  * =======================================================================
  */
 
-function getStaffName($staffId) {
+function getStaffName($staffId)
+{
 
     // 初期化
-    $res = NULL;
+    $res = null;
 
     // スタッフマスタの情報取得
     $where = array();
@@ -422,10 +466,9 @@ function getStaffName($staffId) {
     $temp = select('mst_staff', $target, $where);
 
     // 値を格納
-    $res = $temp ? $temp[0]['last_name'] . $temp[0]['first_name'] : NULL;
+    return $temp ? $temp[0]['last_name'] . $temp[0]['first_name'] : null;
 
     // データ返却
-    return $res;
 }
 
 /* =======================================================================
@@ -433,10 +476,11 @@ function getStaffName($staffId) {
  * =======================================================================
  */
 
-function getStaffCode($staffId) {
+function getStaffCode($staffId)
+{
 
     // 初期化
-    $res = NULL;
+    $res = null;
 
     // スタッフマスタの情報取得
     $where = array();
@@ -446,10 +490,9 @@ function getStaffCode($staffId) {
     $temp = select('mst_staff', $target, $where);
 
     // 値を格納
-    $res = $temp ? $temp[0]['staff_id'] : NULL;
+    return $temp ? $temp[0]['staff_id'] : null;
 
     // データ返却
-    return $res;
 }
 
 /* =======================================================================
@@ -457,13 +500,14 @@ function getStaffCode($staffId) {
  * =======================================================================
  */
 
-function getOfficeList($placeId = NULL, $start = TODAY, $end = TODAY) {
+function getOfficeList($placeId = null, $start = TODAY, $end = TODAY)
+{
 
-// 初期化
-    $res = NULL;
+    // 初期化
+    $res = null;
     $tgtData = array();
 
-// 事業所マスタの取得
+    // 事業所マスタの取得
     $where = array();
     $where['delete_flg'] = 0;
     if ($placeId) {
@@ -472,23 +516,23 @@ function getOfficeList($placeId = NULL, $start = TODAY, $end = TODAY) {
     $where['start_day <='] = $start;
     $orderBy = 'unique_id ASC';
     $temp = select('mst_office', '*', $where, $orderBy);
-    
-// グループ単位で有効なレコードは一つとする
+
+    // グループ単位で有効なレコードは一つとする
     foreach ($temp as $val) {
-        if($val['end_day'] &&  $val['end_day'] <= $end ){
+        if ($val['end_day'] &&  $val['end_day'] <= $end) {
             continue;
         }
         $group = $val['office_group'];
         $tgtData[$group] = $val;
     }
 
-// 形式変更 unique_idをKEYとする
+    // 形式変更 unique_idをKEYとする
     foreach ($tgtData as $group => $val) {
         $tgtId = $val['unique_id'];
         $res[$tgtId] = $val;
     }
 
-// 返却
+    // 返却
     return $res;
 }
 
@@ -497,12 +541,13 @@ function getOfficeList($placeId = NULL, $start = TODAY, $end = TODAY) {
  * =======================================================================
  */
 
-function getOfficeName($tgtId, $tgtDay = TODAY, $type = NULL) {
+function getOfficeName($tgtId, $tgtDay = TODAY, $type = null)
+{
 
-// 初期化
-    $res = NULL;
+    // 初期化
+    $res = null;
 
-// 利用者からの所属事業所名称取得
+    // 利用者からの所属事業所名称取得
     if (!$type || $type === 'user') {
         $where = array();
         $where['delete_flg'] = 0;
@@ -514,16 +559,16 @@ function getOfficeName($tgtId, $tgtDay = TODAY, $type = NULL) {
         $orderBy = 'unique_id ASC';
         $temp = select('mst_user_office1', $target, $where, $orderBy);
         foreach ($temp as $val) {
-            
-            if ($val['end_day']){
-                if ($val['end_day'] < $tgtDay){
+
+            if ($val['end_day']) {
+                if ($val['end_day'] < $tgtDay) {
                     continue;
                 }
             }
-            
+
             $res = $val['office_name'];
         }
-// マスタからの事業所名称取得
+        // マスタからの事業所名称取得
     } else {
         $where = array();
         $where['unique_id'] = $tgtId;
@@ -535,7 +580,7 @@ function getOfficeName($tgtId, $tgtDay = TODAY, $type = NULL) {
         }
     }
 
-// データ返却
+    // データ返却
     return $res;
 }
 
@@ -544,12 +589,13 @@ function getOfficeName($tgtId, $tgtDay = TODAY, $type = NULL) {
  * =======================================================================
  */
 
-function getPlaceList() {
+function getPlaceList()
+{
 
-// 初期化
+    // 初期化
     $res = array();
 
-// マスタ情報取得
+    // マスタ情報取得
     $where = array();
     $where['delete_flg'] = 0;
     $temp = select('mst_place', '*', $where);
@@ -558,7 +604,7 @@ function getPlaceList() {
         $res[$tgtId] = $val['name'];
     }
 
-// データ返却
+    // データ返却
     return $res;
 }
 
@@ -567,15 +613,16 @@ function getPlaceList() {
  * =======================================================================
  */
 
-function getPlaceInfo($placeId = NULL) {
+function getPlaceInfo($placeId = null)
+{
 
-// 初期化
+    // 初期化
     $res = initTable('mst_place');
     if (!$placeId) {
         return $res;
     }
 
-// マスタ情報取得
+    // マスタ情報取得
     $where = array();
     $where['unique_id'] = $placeId;
     $temp = select('mst_place', '*', $where);
@@ -583,7 +630,7 @@ function getPlaceInfo($placeId = NULL) {
         $res = $temp[0];
     }
 
-// データ返却
+    // データ返却
     return $res;
 }
 
@@ -592,12 +639,13 @@ function getPlaceInfo($placeId = NULL) {
  * =======================================================================
  */
 
-function getServiceConfig($svcId) {
+function getServiceConfig($svcId)
+{
 
     // 初期化
-    $res['code'] = NULL;
-    $res['name'] = NULL;
-    
+    $res['code'] = null;
+    $res['name'] = null;
+
     // データ取得
     $where = array();
     $where['delete_flg'] = 0;
@@ -610,7 +658,7 @@ function getServiceConfig($svcId) {
         $res['code'] = $val['code'];
         $res['name'] = $val['name'];
     }
-    
+
     // データ返却
     return $res;
 }
@@ -618,18 +666,19 @@ function getServiceConfig($svcId) {
 // =======================================================================
 // サービス内容が対象データとなるか判定する
 // =======================================================================
-function chkSvcType($serviceName, $type1, $type2) {
+function chkSvcType($serviceName, $type1, $type2)
+{
 
     // 訪問看護、看多機両方指定されている場合は無条件にOK
-//    if (!empty($type1) && !empty($type2)) {
-//        return true;
-//    }
+    //    if (!empty($type1) && !empty($type2)) {
+    //        return true;
+    //    }
     // 訪問看護、看多機両方指定されてい場合はfalse
     if (empty($type1) && empty($type2)) {
         return false;
     }
     // サービス内容が設定されていない場合はfalse
-    else if (empty($serviceName)) {
+    elseif (empty($serviceName)) {
         return false;
     }
 
@@ -650,11 +699,12 @@ function chkSvcType($serviceName, $type1, $type2) {
 // =======================================================================
 // 集計CSVデータ取得
 // =======================================================================
-function getTotal($search) {
-    
+function getTotal($search)
+{
+
     /* -- 初期処理 ----------------------------------------- */
     $res = array();
-    
+
     /* -- 利用者情報 --------------------------------------- */
     if ($search['type'] === '利用者情報') {
 
@@ -669,42 +719,42 @@ function getTotal($search) {
         // 利用者
         $plcId = $search['place'];
         $userList = getUserList($search['place_id'], $search);
-        foreach ($userList as $val){
+        foreach ($userList as $val) {
             $userIds[] = $val['unique_id'];
         }
-        
+
         // 基本情報
-        if (isset($search['target']['standard'])){
+        if (isset($search['target']['standard'])) {
             $res['standard'] = $userList;
         }
         // 介護保険証情報
-        if (isset($search['target']['insure1'])){
+        if (isset($search['target']['insure1'])) {
             $where = array();
             $where['user_id'] = $userIds;
-            $res['insure1'] = getData('mst_user_insure1',$where);
+            $res['insure1'] = getData('mst_user_insure1', $where);
         }
         // 医療保険証情報
-        if (isset($search['target']['insure3'])){
+        if (isset($search['target']['insure3'])) {
             $where = array();
             $where['user_id'] = $userIds;
-            $res['insure3'] = getData('mst_user_insure3',$where);
+            $res['insure3'] = getData('mst_user_insure3', $where);
         }
         // 流入流出情報
-        if (isset($search['target']['introduct'])){
+        if (isset($search['target']['introduct'])) {
             $where = array();
             $where['user_id'] = $userIds;
-            $res['introduct'] = getData('mst_user_introduct',$where);
+            $res['introduct'] = getData('mst_user_introduct', $where);
         }
         // 連絡先情報
-        if (isset($search['target']['family'])){
+        if (isset($search['target']['family'])) {
             $where = array();
             $where['user_id'] = $userIds;
-            $res['family'] = getData('mst_user_family',$where);
+            $res['family'] = getData('mst_user_family', $where);
         }
     }
     /* -- 利用者スケジュール ------------------------------- */
     if ($search['type'] === '利用者スケジュール') {
-        
+
         // 初期化
         $userIds          = array();
         $planIds          = array();
@@ -712,121 +762,122 @@ function getTotal($search) {
         $res['service']   = array();
         $res['add']       = array();
         $res['jippi']     = array();
-        
+
         // 利用者
         $plcId = $search['place'];
         $userList = getUserList($search['place_id'], $search);
-        foreach ($userList as $val){
+        foreach ($userList as $val) {
             $userIds[] = $val['unique_id'];
         }
-        
+
         // 利用者スケジュール
-        if (isset($search['target']['user_plan'])){
+        if (isset($search['target']['user_plan'])) {
             $where = array();
             $where['user_id'] = $userIds;
-            if (!empty($search['start_day'])){
+            if (!empty($search['start_day'])) {
                 $where['use_day >='] = $search['start_day'];
             }
-            if (!empty($search['end_day'])){
+            if (!empty($search['end_day'])) {
                 $where['use_day <='] = $search['end_day'];
             }
-            $planData    = getData('dat_user_plan',$where);
+            $planData    = getData('dat_user_plan', $where);
             $res['user_plan'] = $planData;
-            foreach ($planData as $val){
+            foreach ($planData as $val) {
                 $planIds[] = $val['unique_id'];
             }
         }
         // 利用者スケジュール内訳
-        if (isset($search['target']['service']) && $planIds){
+        if (isset($search['target']['service']) && $planIds) {
             $where = array();
             $where['user_plan_id'] = $planIds;
-            $res['service'] = getData('dat_user_plan_service',$where);
+            $res['service'] = getData('dat_user_plan_service', $where);
         }
         // 加減算情報
-        if (isset($search['target']['add']) && $planIds){
+        if (isset($search['target']['add']) && $planIds) {
             $where = array();
             $where['user_plan_id'] = $planIds;
-            $res['add'] = getData('dat_user_plan_add',$where);
+            $res['add'] = getData('dat_user_plan_add', $where);
         }
         // 実費情報
-        if (isset($search['target']['jippi']) && $planIds){
+        if (isset($search['target']['jippi']) && $planIds) {
             $where = array();
             $where['user_plan_id'] = $planIds;
-            $res['jippi'] = getData('dat_user_plan_jippi',$where);
+            $res['jippi'] = getData('dat_user_plan_jippi', $where);
         }
     }
     /* -- 従業員スケジュール ------------------------------- */
     if ($search['type'] === '従業員スケジュール') {
-        
+
         // 初期化
         $stfIds            = array();
         $res['staff_plan'] = array();
-        
+
         // 従業員
         $plcId = $search['place_id'];
         $stfList = getStaffList($search['place_id']);
-        foreach ($stfList as $val){
+        foreach ($stfList as $val) {
             $stfIds[] = $val['unique_id'];
         }
-        
+
         // 従業員スケジュール
-        if (isset($search['target']['staff_plan'])){
+        if (isset($search['target']['staff_plan'])) {
             $where = array();
             $where['staff_id'] = $stfIds;
-            if (!empty($search['start_day'])){
+            if (!empty($search['start_day'])) {
                 $where['target_day >='] = $search['start_day'];
             }
-            if (!empty($search['end_day'])){
+            if (!empty($search['end_day'])) {
                 $where['target_day <='] = $search['end_day'];
             }
-            $planData    = getData('dat_staff_plan',$where);
-            
+            $planData    = getData('dat_staff_plan', $where);
+
             $res['staff_plan'] = $planData;
-            foreach ($planData as $val){
+            foreach ($planData as $val) {
                 $planIds[] = $val['unique_id'];
             }
         }
     }
-    
+
     /* -- 返却 --------------------------------------------- */
     return $res;
 }
 
 // 前回体重取得関数
 // 1:前回体重、2:前月体重、3:前々月体重
-function getPastWeight($userId=null, $keyId=null){
+function getPastWeight($userId = null, $keyId = null)
+{
 
     // 初期化
     $res    = array();
     $res[1] = null;
     $res[2] = null;
     $res[3] = null;
-    
+
     // パラメータチェック
-    if (!$userId){
+    if (!$userId) {
         return $res;
     }
-    
+
     // KEY日付、KEY月
     $keyDay   = TODAY;
     $keyMonth = THISMONTH;
-    if ($keyId){
+    if ($keyId) {
         $where = array();
         $where['unique_id'] = $keyId;
         $target = 'unique_id,service_day';
         $keyData = select('doc_kantaki', $target, $where);
-        if ($keyData['service_day']){
+        if ($keyData['service_day']) {
             $keyDay   = $keyData['service_day'];
-            $keyMonth = formatDateTime($keyData['service_day'],'Y-m');
+            $keyMonth = formatDateTime($keyData['service_day'], 'Y-m');
         }
     }
-    
+
     // 前月、前々月
     $dt = new DateTime($keyDay);
     $month1 = $dt->modify('first day of -1 month')->format('Y-m');
     $dt = new DateTime($keyDay);
     $month2 = $dt->modify('first day of -2 month')->format('Y-m');
-    
+
     // 過去データの取得
     $search = array();
     $search['user_id']        = $userId;
@@ -834,18 +885,18 @@ function getPastWeight($userId=null, $keyId=null){
     $target  = 'service_day,body_weight';
     $orderBy = 'service_day DESC';
     $temp = select('doc_kantaki', $target, $search, $orderBy);
-    foreach ($temp as $val){
-        
+    foreach ($temp as $val) {
+
         // 1:前回体重
-        if (!$res[1]){
+        if (!$res[1]) {
             $res[1] = $val['body_weight'];
         }
         // 2:前月体重
-        if (!$res[2] && mb_strpos($val['service_day'], $month1) !== false){
+        if (!$res[2] && mb_strpos($val['service_day'], $month1) !== false) {
             $res[2] = $val['body_weight'];
         }
         // 3:前々月体重
-        if (!$res[3] && mb_strpos($val['service_day'], $month2) !== false){
+        if (!$res[3] && mb_strpos($val['service_day'], $month2) !== false) {
             $res[3] = $val['body_weight'];
         }
     }
@@ -857,10 +908,22 @@ function getPastWeight($userId=null, $keyId=null){
 // =======================================================================
 // デバッグ関数
 // =======================================================================
-function debug($target = array()) {
+function debug($target = array())
+{
     echo '<pre>';
     print_r($target);
     echo '</pre>';
 }
 
-?>
+function get_date_from_to($from = '', $to = '')
+{
+    $retutnStr = '';
+    if ($from != '' && $from != '0000-00-00' && $to != '' && $to != '0000-00-00') {
+        $retutnStr = date("Y/m/d", strtotime($from)) . '～' . date("Y/m/d", strtotime($to));
+    } elseif ($from != '' && $from != '0000-00-00') {
+        $retutnStr = date("Y/m/d", strtotime($from)) . '～';
+    } elseif ($to != '' && $to != '0000-00-00') {
+        $retutnStr = '～' . date("Y/m/d", strtotime($to));
+    }
+    return $retutnStr;
+}

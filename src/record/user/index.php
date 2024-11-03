@@ -36,10 +36,8 @@
 
             function protectionChange(id) {
 
-                var res = window.confirm('保護フラグを変更します。よろしいですか？');
-                if (!res) {
-                    return false;
-                } else {
+                if(confirm('保護フラグを変更します。よろしいですか？'))
+                {
                     // 処理タイプ(plan/service/staff)
                     var type = "plan";
                     // プロテクションフラグ更新処理
@@ -68,9 +66,12 @@
 //                    } else {
 //                        $("#" + id).prop("checked", true);
 //                    }
+                    location.reload();
+                }else{
+                    return false;   
                 }
-                location.reload();
 //                window.location.href = "/record/user/index.php";
+                return true;
             }
         </script>
 
@@ -85,6 +86,7 @@
                 <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/common/parts/header.php'); ?>
                 <!--CONTENT-->
                 <article id="content">
+                <form action="" class="p-form-validate" method="post">
                     <!--/// CONTENT_START ///-->
                     <h2>利用者予定実績</h2>
                     <div id="subpage">
@@ -97,12 +99,13 @@
                                 <li><a href="/record/staff/index.php">従業員</a></li>
                             </ul>
 
+                            
                             <div class="search_drop sm">検索</div>
                             <!--/// 検索エリア_START ///-->
-                            <form action="" class="p-form-validate" method="post">
+                            
                                 <div class="cont_head nurse_record">
                                     <div class="box1 profile">
-                                        <select name="search[user_range]" value="<?= $search['user_range'] ?>" class="user_selects">
+                                        <select id="record_user_range_select" name="search[user_range]" value="<?= $search['user_range'] ?>" class="user_selects">
                                             <?php $rangeSelected1 = $search['user_range'] === "すべての利用者" ? 'selected' : '' ?>
                                             <?php $rangeSelected2 = $search['user_range'] === "利用者で絞り込む" ? 'selected' : '' ?>
                                             <option <?= $rangeSelected1 ?>>すべての利用者</option>
@@ -118,7 +121,7 @@
                                             <input type="text" name="search[user_name]" value="<?= $search['user_name'] ?>" class="n_name tgt-usr_name bg-gray2" readonly>
                                         </div>
                                         <div class="period">
-                                            <span class="label_t text_blue">表示対象期間</span>
+                                            <span class="label_t text_blue">表示<br>対象期間</span>
                                             <input type="date" name="search[date_from]" class="" value="<?= $search['date_from'] ?>">～
                                             <input type="date" name="search[date_to]" class="" value="<?= $search['date_to'] ?>">
                                         </div>
@@ -169,6 +172,9 @@
                                 <div class="btn_box">
                                     <span class="modal_open btn add add-op add2 display_part" data-url="/record/user/dialog/usr_pln_new_edit_dialog.php?id=" data-dialog_name="dynamic_modal" style="width:130px;">予定追加</span>
                                 </div>
+                                <div class="sp_user_name">
+                                    <p><?php echo ($search['user_name'] != "") ? $search['user_name'] : "全ての利用者"?></p>
+                                </div>
 
                                 <!-- ダイアログ流し込みエリア -->
                                 <div class="modal_setting table_grp grp3"></div>
@@ -177,7 +183,7 @@
                                     <!-- 予定実績ヘッダー start -->
                                     <div class="tit_box">
                                         <div class="yotei_box">
-                                            <div class="mid">予定　　　　<?= $userList[$userId]['name'] ?></div>
+                                            <div class="mid">予定　　　　<?= $userList[$userId]['name'] ?>　<button type="button" class="modal_open btn edit" data-url="/record/user/dialog/add_span_dialog.php?id=<?= $userId ?>" data-dialog_name="dynamic_modal" style="width:auto">期間指定加算</button></div>
                                             <table>
                                                 <tr>
                                                     <th class="h1">サービス<br>内容</th>
@@ -246,7 +252,7 @@
                                                                                     <?php if (mb_strpos($tgtPlan['service_name'], "訪問看護") === false) : ?>
                                                                                         <button type="submit" name="btnKantaki" class="btn kiroku" value="<?= $planId; ?>">看多機記録</button>
                                                                                     <?php endif; ?>
-                                                                                    <?php if (mb_strpos($tgtPlan['service_name'] ,"訪問看護") !== false) : ?>
+                                                                                    <?php if (mb_strpos($tgtPlan['service_name'], "訪問看護") !== false) : ?>
                                                                                         <button type="submit" name="btnHokan2" class="btn kiroku" value="<?= $planId; ?>">訪看記録Ⅱ</button>
                                                                                     <?php endif; ?>
                                                                                     <?php if (mb_strpos($tgtPlan['service_name'], "送迎") !== false) : ?>
@@ -270,7 +276,7 @@
                                                             </div>
                                                             <div class="layout-3col-box">
                                                                 <div class="record_cont">
-                                                                    <span class="btn_stat"><input type="checkbox" id="<?= $planId ?>" class="protect" value="保護" onChange="protectionChange('<?= $planId ?>');" <?= !empty($tgtPlan['protection_flg']) ? 'checked="true"' : '' ?>"><label for="<?= $planId ?>"><i></i></label></span>
+                                                                    <span class="btn_stat"><input type="checkbox" id="<?= $planId ?>" class="protect" value="保護" onclick="return protectionChange('<?= $planId ?>');" <?= !empty($tgtPlan['protection_flg']) ? 'checked="true"' : '' ?>"><label for="<?= $planId ?>"><i></i></label></span>
                                                                     <?php if (!empty($tgtPlan['disable'])) : ?>
                                                                         <br />
                                                                         <br />
@@ -282,7 +288,7 @@
                                                                     <?php else : ?>
                                                                         <br />
                                                                         <br />
-                                                                        <?php if (mb_strpos($tgtPlan['service_name'] , "訪問看護") !== false) : ?>
+                                                                        <?php if (mb_strpos($tgtPlan['service_name'], "訪問看護") !== false) : ?>
                                                                             <span class="kiroku">訪看記録Ⅱ</span>
                                                                         <?php else: ?>
                                                                             <span class="kiroku">看多機記録</span>
@@ -330,9 +336,9 @@
                                                         <!-- 詳細展開 start -->
                                                         <div class="breakdown" onclick="obj = document.getElementById('<?= $planId . '_open' ?>').style;
                                                                 obj.display = (obj.display == 'none') ? 'block' : 'none';">
-                                                            <a class="breakdown" style="cursor:pointer;"><img src="/common/image/arrow_up2.png" alt="詳細表示"><span style="color:#174A84;font-size:81.3%;">詳細</span></a>
+                                                            <a class="breakdown" style="cursor:pointer;"><img src="/common/image/arrow_up2.svg" alt="詳細表示"><span style="color:#174A84;font-size:81.3%;">詳細</span></a>
                                                         </div>
-                                                        <div div id="<?= $planId . '_open' ?>" style="display:none;clear:both;">
+                                                        <div id="<?= $planId . '_open' ?>" style="display:none;clear:both;">
                                                             <!-- 詳細展開 end -->
 
                                                             <!-- 詳細 start -->
@@ -349,18 +355,19 @@
                                                                                             <span class="wb">WB</span>
                                                                                         <?php endif; ?>
                                                                                         <?= $planSvcInfo['service_name'] ?></div>
-                                                                                    <div class="sched_name"><?= $planSvcInfo['type'] ?></div>
+                                                                                    <div class="sched_name sche_type"><?= $planSvcInfo['type'] ?></div>
                                                                                     <div class="respondent"><?= $planSvcInfo['staff_name'] ?></div>
                                                                                     <div class="modified">
                                                                                         <span><?= $planSvcInfo['update_date'] ?></span>
                                                                                         <span><?= $planSvcInfo['update_name'] ?></span>
-                                                                                    </div>
-                                                                                    <!--<div class="modified"><span></span><span></span></div>-->
                                                                                     <?php if (isset($planSvcInfo['status']) && $planSvcInfo['status'] === "キャンセル") : ?>
                                                                                         <span class="btn1 cancel_appt">予定キャンセル</span>
                                                                                     <?php else : ?>
-                                                                                        <span class="btn1">&nbsp;</span>
+                                                                                        
                                                                                     <?php endif; ?>
+                                                                                    </div>
+                                                                                    <!--<div class="modified"><span></span><span></span></div>-->
+                                                                                    
 
                                                                                     <div class="btn_box">
                                                                                         <p>
@@ -373,10 +380,10 @@
                                                                                             <!-- ボタンアクションエリア -->
                                                                                             <?php if (empty($planSvcInfo['protection_flg'])) : ?>
                                                                                                 <?php if ($planSvcInfo['status'] !== 'キャンセル') : ?>
-                                                                                                    <?php if (mb_strpos($planSvcInfo['service_name'] , "訪問看護") === false) : ?>
+                                                                                                    <?php if (mb_strpos($planSvcInfo['service_name'], "訪問看護") === false) : ?>
                                                                                                         <button type="submit" name="btnKantaki" class="btn kiroku" value="<?= $planId; ?>">看多機記録</button>
                                                                                                     <?php endif; ?>
-                                                                                                    <?php if (mb_strpos($planSvcInfo['service_name'] ,"訪問看護") !== false ) : ?>
+                                                                                                    <?php if (mb_strpos($planSvcInfo['service_name'], "訪問看護") !== false) : ?>
                                                                                                         <button type="submit" name="btnHokan2" class="btn kiroku" value="<?= $planId; ?>">訪看記録Ⅱ</button>
                                                                                                     <?php endif; ?>
                                                                                                     <?php if (mb_strpos($planSvcInfo['service_name'], "送迎") !== false) : ?>
@@ -414,13 +421,16 @@
                                                                                             <div class="row j_row">
                                                                                                 <div class="time"><?= $rcdSvcInfo['start_time'] ?>~<?= $rcdSvcInfo['end_time'] ?></div>
                                                                                                 <div class="sched_name"><?= $rcdSvcInfo['service_name'] ?></div>
-                                                                                                <div class="sched_name"><?= $rcdSvcInfo['type'] ?></div>
+                                                                                                <div class="sched_name sche_type"><?= $rcdSvcInfo['type'] ?></div>
                                                                                                 <div class="respondent"><?= $rcdSvcInfo['staff_name'] ?></div>
-                                                                                                <div class="modified"><span><?= $rcdSvcInfo['update_date'] ?></span><span><?= $rcdSvcInfo['update_name'] ?></span></div>
+                                                                                                <div class="modified">
+                                                                                                    <span><?= $rcdSvcInfo['update_date'] ?></span>
+                                                                                                    <span><?= $rcdSvcInfo['update_name'] ?></span>
+                                                                                                </div>
                                                                                                 <?php if (isset($rcdSvcInfo['status']) && $rcdSvcInfo['status'] === "キャンセル") : ?>
                                                                                                     <span class="btn1 cancel_appt">予定キャンセル</span>
                                                                                                 <?php else : ?>
-                                                                                                    <span class="btn1">&nbsp;</span>
+                                                                                                    
                                                                                                 <?php endif; ?>
                                                                                                 <div class="btn_box">
                                                                                                     <p>
@@ -456,11 +466,13 @@
                                 <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/common/dialog/office.php'); ?>
                                 <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/common/dialog/staff.php'); ?>
                                 <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/common/dialog/user2.php'); ?>
-                            </form>
-                        </div>
+                                </div>
+                            
+                        
                     </div>
 
                     <!--/// CONTENT_END ///-->
+                    </form>
                 </article>
                 <!--CONTENT-->
             </div>

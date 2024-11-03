@@ -26,9 +26,9 @@
                                             <div>
                                                 <input type="text" name="search[kana]" value="<?= $search['kana'] ?>" id="user_name-k" placeholder="全角カナを入力してください。">
                                                 <select name="search[sort]" class="nav-search fil_all">
-                                                    <?php $select = $search['sort'] == NULL || $search['sort'] === "unique_id ASC" ? ' selected' : NULL; ?>
+                                                    <?php $select = $search['sort'] == null || $search['sort'] === "unique_id ASC" ? ' selected' : null; ?>
                                                     <option value="other_id ASC" <?= $select ?>>利用者IDでソート</option>
-                                                    <?php $select = $search['sort'] === "last_kana ASC, first_kana ASC" ? ' selected' : NULL; ?>
+                                                    <?php $select = $search['sort'] === "last_kana ASC, first_kana ASC" ? ' selected' : null; ?>
                                                     <option value="last_kana ASC, first_kana ASC" <?= $select ?>>カナでソート</option>
                                                 </select>
                                                 <button type="submit" name="btnSearch" value="true" class="btn search">絞り込み</button>
@@ -37,11 +37,11 @@
                                         <div class="filter_box">
                                             <div class="fil_con">
                                                 <select id="fil_con" name="search[status]">
-                                                    <?php $select = !$search['status'] ? ' selected' : NULL; ?>
+                                                    <?php $select = !$search['status'] ? ' selected' : null; ?>
                                                     <option value=""<?= $select ?>>契約状態全て</option>
-                                                    <?php $select = $search['status'] === '契約中' ? ' selected' : NULL; ?>
+                                                    <?php $select = $search['status'] === '契約中' ? ' selected' : null; ?>
                                                     <option value="契約中"<?= $select ?>>契約中</option>
-                                                    <?php $select = $search['status'] === '停止中' ? ' selected' : NULL; ?>
+                                                    <?php $select = $search['status'] === '停止中' ? ' selected' : null; ?>
                                                     <option value="停止中"<?= $select ?>>契約中以外</option>
                                                 </select>
                                             </div>
@@ -49,16 +49,16 @@
                                                 <select id="fil_cat" name="search[service]">
                                                     <option value="">サービス利用区分全て</option>
                                                     <?php foreach ($codeList['利用者基本情報_基本情報']['サービス利用区分'] as $val): ?>
-                                                        <?php $select = $search['service'] === $val ? ' selected' : NULL; ?>
+                                                        <?php $select = $search['service'] === $val ? ' selected' : null; ?>
                                                         <option value="<?= $val ?>"<?= $select ?>><?= $val ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
                                             <div class="fil_all">
                                                 <select id="fil_all" name="search[ng]">
-                                                    <?php $select = !$search['ng'] ? ' selected' : NULL; ?>
+                                                    <?php $select = !$search['ng'] ? ' selected' : null; ?>
                                                     <option value="" <?= $select ?>>NG状態全て</option>
-                                                    <?php $select = $search['ng'] ? ' selected' : NULL; ?>
+                                                    <?php $select = $search['ng'] ? ' selected' : null; ?>
                                                     <option value="ng" <?= $select ?>>NGのみ</option>
                                                 </select>
                                             </div>
@@ -74,9 +74,9 @@
                                             <div class="box1">
                                                 <p class="mid"><span class="label_t">展開方法</span></p>
                                                 <p>
-                                    <?php $check = $search['type'] != 2 ? ' checked' : NULL; ?>
+                                    <?php $check = $search['type'] != 2 ? ' checked' : null; ?>
                                                     <span><input type="radio" name="search[type]" value="1" id="method1"<?= $check ?>><label for="method1">差分のみ展開</label></span>
-                                    <?php $check = $search['type'] == 2 ? ' checked' : NULL; ?>
+                                    <?php $check = $search['type'] == 2 ? ' checked' : null; ?>
                                                     <span><input type="radio" name="search[type]" value="2" id="method2"<?= $check ?>><label for="method2">既存削除後に上書き</label></span>
                                                 </p>
                                             </div>
@@ -112,9 +112,9 @@
                                             <div class="box1">
                                                 <p class="mid"><span class="label_t">展開方法</span></p>
                                                 <p>
-                                                    <?php $check = $search['type'] != 2 ? ' checked' : NULL; ?>
+                                                    <?php $check = $search['type'] != 2 ? ' checked' : null; ?>
                                                     <span><input type="radio" name="search[type]" value="1" id="method1"<?= $check ?>><label for="method1">差分のみ展開</label></span>
-                                                    <?php $check = $search['type'] == 2 ? ' checked' : NULL; ?>
+                                                    <?php $check = $search['type'] == 2 ? ' checked' : null; ?>
                                                     <span><input type="radio" name="search[type]" value="2" id="method2"<?= $check ?>><label for="method2">既存削除後に上書き</label></span>
                                                 </p>
                                             </div>

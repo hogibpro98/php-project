@@ -221,16 +221,16 @@
                                                     <dd>
                                                         <div>
                                                             <span class="sm label_t"><label for="sys-kengen">システム権限<span class="req">*</span></label></span>
-                                                            <select id="sys-kengen" name="upAry[type]">
+                                                            <select id="sys-kengen" name="upAry[type]" <?= isDisableByRole($isEdit, $dispData['type']) ? 'disabled' : '' ?>>
                                                                 <option value="" disabled <?= $dispData['type'] == '' ? 'selected' : '' ?> hidden>選択してください</option>
                                                                 <?php foreach ($gnrList['従業員マスタ']['システム権限'] as $val): ?>
-                                                                    <option value="<?= $val ?>" <?= $dispData['type'] == $val ? 'selected' : '' ?>><?= $val ?></option>
+                                                                    <option value="<?= $val ?>" <?= $dispData['type'] == $val ? 'selected' : '' ?> <?= isDisableByRole($isEdit, $dispData['type'], $val) ? 'disabled' : '' ?>><?= $val ?></option>
                                                                 <?php endforeach; ?>
                                                             </select>
                                                         </div>
                                                         <div>
                                                             <span class="label_t"><label for="shain-kubun">社員区分</label></span>
-                                                            <select id="shain-kubun" name="upAry[employee_type]">
+                                                            <select id="shain-kubun" name="upAry[employee_type]" <?= isDisableByRole($isEdit, $dispData['type']) ? 'disabled' : '' ?>>
                                                                 <option value="" disabled <?= $dispData['employee_type'] == '' ? 'selected' : '' ?> hidden></option>
                                                                 <?php foreach ($gnrList['従業員マスタ']['社員区分'] as $val): ?>
                                                                     <option value="<?= $val ?>" <?= $dispData['employee_type'] == $val ? 'selected' : '' ?>><?= $val ?></option>

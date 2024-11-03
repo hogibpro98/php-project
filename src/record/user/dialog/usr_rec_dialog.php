@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * 利用者（実績）編集モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -28,6 +28,7 @@ $svcInfo   = array();
 $svcMst    = array();
 $svcDtlMst = array();
 $addMst    = array();
+$addInfo   = array();
 $unInsMst = array();
 $unInsType = array();
 $unInsInfo = array();
@@ -38,6 +39,7 @@ $tgtData['main']['office_name'] = "";
 $tgtData['add'] = array();
 $tgtData['jippi'] = array();
 $tgtData['service'] = array();
+$tgtData['span'] = array();
 $unInsMst['type'] = array();
 $unInsMst['zei_type'] = array();
 $unInsMst['subsidy'] = array();
@@ -58,7 +60,7 @@ $selMinutes = ['','00', '05', '10', '15', '20', '25', '30', '35', '40', '45', '5
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // 実績ID
@@ -67,7 +69,7 @@ $recordId = filter_input(INPUT_GET, 'id');
 // ユーザID
 $userId = filter_input(INPUT_GET, 'user');
 if (!$userId) {
-    $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : NULL;
+    $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : null;
 }
 
 /*-- 更新用パラメータ ---------------------------------------*/
@@ -96,11 +98,14 @@ $where = array();
 $where['delete_flg'] = 0;
 $temp = select('mst_add', '*', $where);
 foreach ($temp as $val) {
-    $type  = $val['type'];
+    $type = $val['type'];
     $tgtId = $val['unique_id'];
-    $addMst[$type][$tgtId] = $val['name'];
+    $code  = $val['code'];
+    $addInfo[$code] = $val['name'];
+    if (!$val['span_flg'] && !$val['office_flg']) {
+        $addMst[$type][$tgtId] = $val['name'];
+    }
 }
-
 // サービスマスタ
 $where = array();
 $where['delete_flg'] = 0;
@@ -133,7 +138,7 @@ foreach ($temp as $val) {
 // 事業所リスト取得
 $offices = array();
 $ofcList = getOfficeList($placeId);
-foreach($ofcList as $ofcId => $dummy){
+foreach($ofcList as $ofcId => $dummy) {
     $offices[] = $ofcId;
 }
 
@@ -159,9 +164,9 @@ foreach ($temp as $val) {
     $tgtId = $val['unique_id'];
     $zeiType = $val['zei_type'];
     $subsidy = $val['subsidy'];
-    $unInsType['type'][$type] = TRUE;
-    $unInsType['zei_type'][$zeiType] = TRUE;
-    $unInsType['subsidy'][$subsidy] = TRUE;
+    $unInsType['type'][$type] = true;
+    $unInsType['zei_type'][$zeiType] = true;
+    $unInsType['subsidy'][$subsidy] = true;
     $uisList[$type][$tgtId] = $val;
 }
 
@@ -192,12 +197,12 @@ foreach ($temp as $val) {
 
     // 更新者名、事業所名
     $val['update_name'] = getStaffName($val['update_user']);
-    $val['office_name'] = getOfficeName($val['office_id'], NULL, 'master');
+    $val['office_name'] = getOfficeName($val['office_id'], null, 'master');
 
-    // 基本サービス名称 
+    // 基本サービス名称
     $svcId = $val['service_id'] ? $val['service_id'] : 'dummy';
-    $val['base_service'] = isset($svcInfo[$svcId]) 
-        ? $svcInfo[$svcId]['name'] .'('. $svcInfo[$svcId]['code']. ')'
+    $val['base_service'] = isset($svcInfo[$svcId])
+        ? $svcInfo[$svcId]['name'] . '(' . $svcInfo[$svcId]['code'] . ')'
     : '';
 
     // 格納
@@ -222,8 +227,8 @@ if (!empty($tgtData)) {
         // 計画情報、加減算ID
         $tgtPlan = $tgtData['main'];
         $planAddId = $val['unique_id'];
-        $val['start_day'] = $val['start_day'] === '0000-00-00' ? NULL : $val['start_day'];
-        $val['end_day'] = $val['end_day'] === '0000-00-00' ? NULL : $val['end_day'];
+        $val['start_day'] = $val['start_day'] === '0000-00-00' ? null : $val['start_day'];
+        $val['end_day'] = $val['end_day'] === '0000-00-00' ? null : $val['end_day'];
 
         // 格納
         $tgtData['add'][$planAddId] = $val;
@@ -259,6 +264,170 @@ if (!empty($tgtData)) {
 
         // 格納
         $tgtData['service'][$planSvcId] = $val;
+    }
+}
+
+// 当月(開始日日、終了日)
+$tgtDay = !empty($tgtData['main']['use_day'])
+        ? $tgtData['main']['use_day']
+        : TODAY;
+$dt = new DateTime($tgtDay);
+$stDay = $dt->modify('first day of this month')->format('Y-m-d');
+$edDay = $dt->modify('last day of this month')->format('Y-m-d');
+
+// 事業所加算
+foreach ($ofcList as $val) {
+
+    // 初期化
+    $dat = array();
+
+    // 開始日、終了日
+    $dat['start_day'] = $stDay;
+    $dat['end_day']   = $edDay;
+
+    // 入力があれば格納
+    if ($val['add1_1_1']) {
+        $dat['name'] = isset($addInfo[$val['add1_1_1']])
+            ? $addInfo[$val['add1_1_1']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add1_1_2']) {
+        $dat['name'] = isset($addInfo[$val['add1_1_2']])
+            ? $addInfo[$val['add1_1_2']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add1_1_3']) {
+        $dat['name'] = isset($addInfo[$val['add1_1_3']])
+            ? $addInfo[$val['add1_1_3']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add1_1_4']) {
+        $dat['name'] = isset($addInfo[$val['add1_1_4']])
+            ? $addInfo[$val['add1_1_4']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_1_1']) {
+        $dat['name'] = isset($addInfo[$val['add2_1_1']])
+            ? $addInfo[$val['add2_1_1']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_1_2']) {
+        $dat['name'] = isset($addInfo[$val['add2_1_2']])
+            ? $addInfo[$val['add2_1_2']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_1_3']) {
+        $dat['name'] = isset($addInfo[$val['add2_1_3']])
+            ? $addInfo[$val['add2_1_3']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_1_4']) {
+        $dat['name'] = isset($addInfo[$val['add2_1_4']])
+            ? $addInfo[$val['add2_1_4']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_2_1']) {
+        $dat['name'] = isset($addInfo[$val['add2_2_1']])
+            ? $addInfo[$val['add2_2_1']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_2_2']) {
+        $dat['name'] = isset($addInfo[$val['add2_2_2']])
+            ? $addInfo[$val['add2_2_2']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_2_3']) {
+        $dat['name'] = isset($addInfo[$val['add2_2_3']])
+            ? $addInfo[$val['add2_2_3']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_2_4']) {
+        $dat['name'] = isset($addInfo[$val['add2_2_4']])
+            ? $addInfo[$val['add2_2_4']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_3_1']) {
+        $dat['name'] = isset($addInfo[$val['add2_3_1']])
+            ? $addInfo[$val['add2_3_1']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_3_2']) {
+        $dat['name'] = isset($addInfo[$val['add2_3_2']])
+            ? $addInfo[$val['add2_3_2']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_3_3']) {
+        $dat['name'] = isset($addInfo[$val['add2_3_3']])
+            ? $addInfo[$val['add2_3_3']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+    if ($val['add2_3_4']) {
+        $dat['name'] = isset($addInfo[$val['add2_3_4']])
+            ? $addInfo[$val['add2_3_4']]
+            : null;
+        if ($dat['name']) {
+            $tgtData['span'][] = $dat;
+        }
+    }
+}
+
+// 期間指定加算
+$where = array();
+$where['delete_flg'] = 0;
+$where['user_id'] = $userId;
+$temp = select('dat_user_record_add', '*', $where);
+foreach ($temp as $val) {
+    $dat = array();
+    $dat['start_day'] = $val['start_day'];
+    $dat['end_day']   = $val['end_day'];
+    $dat['name']      = $val['add_name'];
+    if ($dat['name']) {
+        $tgtData['span'][] = $dat;
     }
 }
 
@@ -321,7 +490,7 @@ $dispData = $tgtData;
         <?php $jippi_i = 1; ?>
 
         <input type="hidden" name="<?=$mainPrefix ?>[unique_id]" value="<?= $recordId ?>">
-        <div class="box1">
+        <div class="box1 box_datetime">
             <p class="mid" style="width:200px;">日付/時刻</p>
             <p>
                 <input type="date" name="<?=$mainPrefix ?>[use_day]" class="" value="<?= $mainData['use_day'] ?>">
@@ -354,7 +523,7 @@ $dispData = $tgtData;
                 </select>
             </p>
         </div>
-        <div class="box1">
+        <div class="box1 col-wrap">
             <p class="mid" style="width:200px;">利用者</p>
             <p>
                 <span class="user_res"><?= $userInfo['user_name'] ?></span>
@@ -367,26 +536,28 @@ $dispData = $tgtData;
             <select id="office" class="staff" name="<?= $mainPrefix ?>[office_id]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($ofcList as $ofcId => $val) : ?>
-                    <?php $select = $mainData['office_id'] === $ofcId ? ' selected' : NULL; ?>
+                    <?php $select = $mainData['office_id'] === $ofcId ? ' selected' : null; ?>
                     <option value="<?= $ofcId ?>" <?= $select ?>><?= $val['name'] . "(ID:" . $val['office_no'] . ")" ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
-        <div class="box1">
+        <div class="box1 col-wrap">
             <p class="mid" style="width:200px;">サービス内容</p>
             <select id="selServiceName" class="staff" name="<?=$mainPrefix ?>[service_name]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($svcMst as $type => $dummy) : ?>
-                    <?php $select = $type === $mainData['service_name'] ? ' selected' : NULL; ?>
+                    <?php $select = $type === $mainData['service_name'] ? ' selected' : null; ?>
                     <option value="<?= $type ?>" <?= $select ?>><?= $type ?></option>
                 <?php endforeach; ?>
             </select>
-            <p class="" style="margin-left:50px; margin-right:10px;">
-                <span><label>自費</label><input type="checkbox" name="<?=$mainPrefix ?>[jihi_flg]" id="expense" value="1" <?= $mainData['jihi_flg'] == 1 ? 'checked' : '' ?>></span>
-            </p>
-            <span class="">
+            <div class="box_noinsurance">
+                <p class="noins_checkbox">
+                    <span><label>自費</label><input type="checkbox" name="<?=$mainPrefix ?>[jihi_flg]" id="expense" value="1" <?= $mainData['jihi_flg'] == 1 ? 'checked' : '' ?>></span>
+                </p>
+                <span class="noins_inputprice">
                 <input type="text" name="<?= $mainPrefix ?>[jihi_price]" maxlength="11" value="<?= $mainData['jihi_price'] ?>" style="width:80px;"><label>円</label>
-            </span>
+                </span>
+            </div>
         </div>
         <div class="box1">
             <p class="mid" style="width:200px;">基本サービス<br class="pc">コード</p>
@@ -396,38 +567,43 @@ $dispData = $tgtData;
                 <option value="">選択してください</option>
                 <?php foreach ($svcMst as $type => $svcMst2) : ?>
                     <?php foreach ($svcMst2 as $tgtId => $val) : ?>
-                        <?php $select = $mainData['service_id'] === $tgtId ? ' selected' : NULL; ?>
+                        <?php $select = $mainData['service_id'] === $tgtId ? ' selected' : null; ?>
                         <option class="cngService" data-value="<?= $tgtId ?>" data-service_name="<?= $type ?>" <?= $select ?> value="<?= $val['name'] . '(' . $val['code'] . ')' ?>"> </option>
                     <?php endforeach; ?>
                 <?php endforeach; ?>
             </datalist>
+            <p class="" style="margin-left:50px; margin-right:10px;">
+                <input type="date" name="<?= $mainPrefix ?>[start_day]" class="" value="<?= $mainData['start_day'] ?>">
+                ～
+                <input type="date" name="<?= $mainPrefix ?>[end_day]" class="" value="<?= $mainData['end_day'] ?>">
+            </p>
         </div>
-        <div class="box1">
+        <div class="box1 col-wrap">
             <p class="mid" style="width:200px;">訪問職種</p>
             <select class="staff" name="<?= $mainPrefix ?>[care_job]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($careJobList as $type => $job) : ?>
-                    <?php $select = $job === $mainData['care_job'] ? ' selected' : NULL; ?>
+                    <?php $select = $job === $mainData['care_job'] ? ' selected' : null; ?>
                     <option value="<?= $job ?>" <?= $select ?>><?= $job ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
-        <div class="box1">
+        <div class="box1 col-wrap">
             <p class="mid" style="width:200px;">同一建物に訪問した利用者</p>
             <select class="staff" name="<?= $mainPrefix ?>[visitor_num]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($visitorNumList as $type => $job) : ?>
-                    <?php $select = $job === $mainData['visitor_num'] ? ' selected' : NULL; ?>
+                    <?php $select = $job === $mainData['visitor_num'] ? ' selected' : null; ?>
                     <option value="<?= $job ?>" <?= $select ?>><?= $job ?></option>
                 <?php endforeach; ?>
             </select>
         </div>
-        <div class="box1">
+        <div class="box1 col-wrap">
             <p class="mid" style="width:200px;">特別地域加算有無</p>
             <select class="staff" name="<?= $mainPrefix ?>[area_add]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($areaAddList as $type => $job) : ?>
-                    <?php $select = $job === $mainData['area_add'] ? ' selected' : NULL; ?>
+                    <?php $select = $job === $mainData['area_add'] ? ' selected' : null; ?>
                     <option value="<?= $job ?>" <?= $select ?>><?= $job ?></option>
                 <?php endforeach; ?>
             </select>
@@ -437,7 +613,7 @@ $dispData = $tgtData;
             <select class="staff" name="<?= $mainPrefix ?>[ins_station]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($insStationList as $type => $job) : ?>
-                    <?php $select = $job === $mainData['ins_station'] ? ' selected' : NULL; ?>
+                    <?php $select = $job === $mainData['ins_station'] ? ' selected' : null; ?>
                     <option value="<?= $job ?>" <?= $select ?>><?= $job ?></option>
                 <?php endforeach; ?>
             </select>
@@ -450,7 +626,7 @@ $dispData = $tgtData;
             <select class="staff" name="<?= $mainPrefix ?>[qualification]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($qualList as $cdName) : ?>
-                    <?php $select = $cdName === $mainData['qualification'] ? ' selected' : NULL; ?>
+                    <?php $select = $cdName === $mainData['qualification'] ? ' selected' : null; ?>
                     <option value="<?= $cdName ?>" <?= $select ?>><?= $cdName ?></option>
                 <?php endforeach; ?>
             </select>
@@ -460,7 +636,7 @@ $dispData = $tgtData;
             <select class="staff" name="<?= $mainPrefix ?>[no_people]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($peopleList as $cdName) : ?>
-                    <?php $select = $cdName === $mainData['no_people'] ? ' selected' : NULL; ?>
+                    <?php $select = $cdName === $mainData['no_people'] ? ' selected' : null; ?>
                     <option value="<?= $cdName ?>" <?= $select ?>><?= $cdName ?></option>
                 <?php endforeach; ?>
             </select>
@@ -470,7 +646,7 @@ $dispData = $tgtData;
             <select class="staff" name="<?= $mainPrefix ?>[condition1]" style="width:320px">
                 <option value="">選択してください</option>
                 <?php foreach ($condition1List as $cdName) : ?>
-                    <?php $select = $cdName === $mainData['condition1'] ? ' selected' : NULL; ?>
+                    <?php $select = $cdName === $mainData['condition1'] ? ' selected' : null; ?>
                     <option value="<?= $cdName ?>" <?= $select ?>><?= $cdName ?></option>
                 <?php endforeach; ?>
             </select>
@@ -481,6 +657,16 @@ $dispData = $tgtData;
     <div class="add_sub content_add">
         <p class="mid">加減算</p>
         <ol id="add_root">
+            <?php if ($dispData['span']): ?>
+                <?php foreach ($dispData['span'] as $spnData) : ?>
+                    <li>
+                        <input type="text" value="<?= $spnData['name'] ?>" disabled style="width:300px">
+                        <input type="date" value="<?= $spnData['start_day'] ?>" disabled>
+                        <small>～</small>
+                        <input type="date" value="<?= $spnData['end_day'] ?>" disabled>
+                    </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
             <?php if (empty($dispData['add'])) : ?>
                 <li>
                     <input type="hidden" name="<?= $addPrefix ?>[0]schedule_id]" value="<?= $mainData['unique_id'] ?>">
@@ -492,9 +678,6 @@ $dispData = $tgtData;
                             <?php endforeach; ?>
                         <?php endforeach; ?>
                     </select>
-                    <input type="date" name="<?=$addPrefix ?>[0][start_day]" value="<?= isset($addData['start_day']) ? $addData['start_day'] : '' ?>">
-                    <small>～</small>
-                    <input type="date" name="<?=$addPrefix ?>[0][end_day]" value="<?= isset($addData['end_day']) ? $addData['end_day'] : '' ?>">
                     <p class="list_delete row_delete">Delete</p>
                 </li>
             <?php else : ?>
@@ -512,9 +695,6 @@ $dispData = $tgtData;
                                 <?php endforeach; ?>
                             <?php endforeach; ?>
                         </select>
-                        <input type="date" name="<?=$addPrefix ?>[<?= $addId ?>][start_day]" value="<?= isset($addData['start_day']) ? $addData['start_day'] : '' ?>">
-                        <small>～</small>
-                        <input type="date" name="<?=$addPrefix ?>[<?= $addId ?>][end_day]" value="<?= isset($addData['end_day']) ? $addData['end_day'] : '' ?>">
                         <p class="list_delete row_delete">Delete</p>
                     </li>
                 <?php endforeach; ?>
@@ -531,17 +711,20 @@ $dispData = $tgtData;
     </div>
     <div class="add_sub content_jippi" style="border-top: 0;padding-top: 0;">
         <table>
-            <tr>
-                <th class="type">種類</th>
-                <th class="item">項目名称</th>
-                <th class="price" style="width:85px">単価<br>最大7桁</th>
-                <th class="tax">消費税<br>区分</th>
-                <th class="sales_tax" style="width:85px;" ;>消費税率</th>
-                <th class="d_cate">控除区分</th>
-                <th></th>
-                <th></th>
-            </tr>
+            <thead>
+                <tr>
+                    <th class="type">種類</th>
+                    <th class="item">項目名称</th>
+                    <th class="price" style="width:85px">単価<br>最大7桁</th>
+                    <th class="tax">消費税<br>区分</th>
+                    <th class="sales_tax" style="width:85px;" ;>消費税率</th>
+                    <th class="d_cate">控除区分</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
             <?php if (empty($dispData['jippi'])) : ?>
+                <tbody>
                 <tr>
                     <td class="type">
                         <b class="sm">種類</b>
@@ -573,7 +756,7 @@ $dispData = $tgtData;
                             <?php endforeach; ?>
                         </select>
                     </td>
-                    <td class="price" style="width:60px;">
+                    <td class="price">
                         <b class="sm">単価最大7桁</b>
                         <input id="jippiPrice<?= $jippi_i ?>" type="text" class="validate[maxSize[7],onlyNumberSp] uis_price" name="<?= $jpiPrefix ?>[0][price]" value="<?= isset($jippiList['price']) ? $jippiList['price'] : '' ?>" style="width:85px">
                     </td>
@@ -616,7 +799,7 @@ $dispData = $tgtData;
                             <select id="selJippiType<?= $jippi_i ?>" data-index="<?= $jippi_i ?>" name="<?= $jpiPrefix ?>[<?= $jippiId ?>][type]" class="uis_type selJippiType cngJippi">
                                 <option value="">選択してください</option>
                                 <?php foreach ($unInsType['type'] as $type => $dummy) : ?>
-                                    <?php $select = $jippiList['type'] === $type ? ' selected' : NULL; ?>
+                                    <?php $select = $jippiList['type'] === $type ? ' selected' : null; ?>
                                     <option value="<?= $type ?>" <?= $select ?>><?= $type ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -627,7 +810,7 @@ $dispData = $tgtData;
                                 <option value="">選択してください</option>
                                 <?php foreach ($uisList as $type => $uisList2) : ?>
                                     <?php foreach ($uisList2 as $uisId => $uisData) : ?>
-                                        <?php $select = $jippiList['name'] === $uisData['name'] ? ' selected' : NULL; ?>
+                                        <?php $select = $jippiList['name'] === $uisData['name'] ? ' selected' : null; ?>
                                     <option class="cngJippiType<?= $jippi_i ?>" value="<?= $uisId ?>" 
                                             data-office_id="<?= $uisData['link_office'] ?>"
                                             data-type="<?= $uisData['type'] ?>"
@@ -652,7 +835,7 @@ $dispData = $tgtData;
                             <b class="sm">消費税<br>区分</b>
                             <select id="jippiZeiType<?= $jippi_i ?>" name="<?= $jpiPrefix ?>[<?= $jippiId ?>][zei_type]" class="uis_zeiType">
                                 <?php foreach ($unInsType['zei_type'] as $zeiType => $dummy) : ?>
-                                    <?php $select = $jippiList['zei_type'] === $zeiType ? ' selected' : NULL; ?>
+                                    <?php $select = $jippiList['zei_type'] === $zeiType ? ' selected' : null; ?>
                                     <option value="<?= $zeiType ?>" <?= $select ?>><?= $zeiType ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -665,7 +848,7 @@ $dispData = $tgtData;
                             <b class="sm">控除区分</b>
                             <select id="jippiSubsidy<?= $jippi_i ?>" name="<?= $jpiPrefix ?>[<?= $jippiId ?>][subsidy]" class="uis_subsidy">
                                 <?php foreach ($unInsType['subsidy'] as $subsidy => $dummy) : ?>
-                                    <?php $select = $jippiList['subsidy'] === $subsidy ? ' selected' : NULL; ?>
+                                    <?php $select = $jippiList['subsidy'] === $subsidy ? ' selected' : null; ?>
                                     <option value="<?= $subsidy ?>" <?= $select ?>><?= $subsidy ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -680,6 +863,7 @@ $dispData = $tgtData;
                     <?php $jippi_i = $jippi_i + 1; ?>
                 <?php endforeach; ?>
             <?php endif; ?>
+            <tbody>
         </table>
         <p class="btn_append_jippi add_btn">+</p>
     </div>
@@ -763,7 +947,7 @@ $dispData = $tgtData;
                                 <option value="">選択してください</option>
                                 <?php foreach ($svcDtlMst as $type => $svcDtlMst2) : ?>
                                     <?php foreach ($svcDtlMst2 as $tgtId => $val) : ?>
-                                        <?php $select = $svcData['service_detail_id'] === $tgtId ? ' selected' : NULL; ?>
+                                        <?php $select = $svcData['service_detail_id'] === $tgtId ? ' selected' : null; ?>
                                         <option class="cngService" value="<?= $tgtId ?>" data-value="<?= $val['name'] ?>" data-service_name="<?= $type ?>" <?= $select ?>><?= $val['name'] ?></option>
                                     <?php endforeach; ?>
                                 <?php endforeach; ?>
@@ -824,9 +1008,6 @@ $dispData = $tgtData;
     <?php endforeach; ?>
 <?php endforeach; ?>
             newRow += '  </select>';
-            newRow += '  <input type="date" name="<?=$addPrefix ?>[' + addNewCnt + '][start_day]" value="">';
-            newRow += '  <small>～</small>';
-            newRow += '  <input type="date" name="<?=$addPrefix ?>[' + addNewCnt + '][end_day]" value="">';
             newRow += '  <p class="list_delete row_delete">Delete</p>';
             newRow += '</li>';
             $(newRow).appendTo(ol_wrap);
@@ -874,7 +1055,7 @@ $dispData = $tgtData;
             <?php endforeach; ?>
             newRow += '      </select>';
             newRow += '    </td>';
-            newRow += '    <td class="price" style="width:60px;">';
+            newRow += '    <td class="price">';
             newRow += '      <b class="sm">単価最大7桁</b>';
                 newRow += '      <input id="jippiPrice' + jippi_i + '" type="text" class="validate[maxSize[7],onlyNumberSp] uis_price" name="<?= $jpiPrefix ?>[' + jippiNewCnt + '][price]" value="<?= isset($jippiList['price']) ? $jippiList['price'] : '' ?>" style="width:85px" placeholder="半角数字7桁">';
             newRow += '    </td>';

@@ -1,9 +1,9 @@
-<?php require_once(dirname(__FILE__)."/php/place_list.php"); ?>
+<?php require_once(dirname(__FILE__) . "/php/place_list.php"); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <!--COMMON-->
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/common/parts/common.php'); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/common/parts/common.php'); ?>
 <!--CONTENT-->
 <title>拠点管理</title>
 </head>
@@ -11,7 +11,7 @@
 <body>
 <div id="wrapper"><div id="base">
 <!--HEADER-->
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/common/parts/header.php'); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/common/parts/header.php'); ?>
 <!--CONTENT-->
 <article id="content">
 <!--/// CONTENT_START ///-->
@@ -38,7 +38,7 @@
 			<td><?= $val['name'] ?></td>
 			<td><?= $val['layer_code'] ?></td>
 			<td><?= $val['post'] ?></td>
-			<td><?= $val['prefecture'].' '.$val['area'] ?></td>
+			<td><?= $val['prefecture'] . ' ' . $val['area'] ?></td>
                         <?php if (isset($val['看多機'])): ?>
 			<td><a href="/system/office/?id=<?= $tgtId ?>"><?= $val['看多機']['name'] ?></a></td>
                         <?php else: ?>

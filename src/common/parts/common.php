@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="/common/css/basic.css" media="all">
 <link rel="stylesheet" href="/common/css/sanitize.css" media="all">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" media="all">
-<link href="/common/css/sub.css" rel="stylesheet" />
+<link href="/common/css/sub.css?s=10" rel="stylesheet" />
 <link href="/common/css/calendar.css" rel="stylesheet" />
 <link href="/common/css/parts.css" rel="stylesheet" />
 <link rel="stylesheet" href="/common/css/phone.css">

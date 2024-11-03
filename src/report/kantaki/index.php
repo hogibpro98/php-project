@@ -24,7 +24,7 @@
                     <!--/// CONTENT_START ///-->
                     <form action="" method="post" class="p-form-validate" enctype="multipart/form-data" accept-charset="UTF-8">
                         <h2 class="tit_sm">看多機記録</h2>
-                        <div id="patient" class="sm"></div>
+                        <div id="patient" class="sm"><?= $dispData['user_name'] ?></div>
                         <div id="subpage"><div id="kantaki" class="nursing">
                                 <!-- ダイアログ流し込みエリア -->
                                 <div class="modal_setting"></div>
@@ -40,8 +40,10 @@
                                             <p class="n_search user_search">Search</p>
                                             <input type="text" name="upDummy[other_id]" class="tgt-usr_id n_num" value="<?= $dispData['other_id'] ?>" maxlength="7" pattern="^[0-9]+$">
                                             <input type="hidden" id="user_id" name="upAry[user_id]" class="n_num tgt-unique_id" value="<?= $userId ?>">
+                                            <div class="box_username">
                                             <span class="label_t pc">利用者氏名</span>
                                             <input type="text" name="upDummy[user_name]" value="<?= $dispData['user_name'] ?>" class="tgt-usr_name n_name bg-gray2" readonly>
+                                            </div>
                                         </div>
                                         <div class="tit tit_toggle sm">利用者/サービス提供日/担当スタッフ</div>
                                         <div class="box child_toggle">
@@ -51,11 +53,13 @@
                                                     <p class="n_search user_search">Search</p>
                                                     <input type="text" name="upDummy[other_id]" class="tgt-usr_id n_num" value="<?= $dispData['other_id'] ?>" maxlength="7" pattern="^[0-9]+$">
                                                     <input type="hidden" name="upAry[user_id]" class="n_num tgt-unique_id" value="<?= $userId ?>">
-                                                    <span class="label_t">利用者氏名</span>
+                                                    
+                                                    <span class="label_t label_username">利用者氏名</span>
                                                     <input type="text" name="upDummy[user_name]" value="<?= $dispData['user_name'] ?>" class="tgt-usr_name n_name bg-gray2" readonly>
+                                                    
                                                 </div>
                                                 <div class="service_date">
-                                                    <span class="label_t">サービス提供日</span>
+                                                    <span class="label_t">サービス<br class="sm">提供日</span>
                                                     <input type="date" id="service_day" name="upAry[service_day]" class="" value="<?= $dispData['service_day'] ?>">
                                                     <span class="time">
                                                         <select name="upTime[start_time_h]" style="width:60px;">
@@ -86,13 +90,15 @@
                                                             <?php endforeach; ?>
                                                         </select>
                                                     </span>
+                                                    <div class="mark_important">
                                                     <?php $checked = !empty($dispData['important']) ? ' checked' : NULL; ?>
                                                     <input type="checkbox" name="upAry[important]" value="重要" id="add1_1" <?= $checked ?> class="">
                                                     <span class="label_t"><label for="add1_1">重要</label></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="staff_inch">
-                                                <span class="label_t">担当スタッフ</span>
+                                                <span class="label_t">担当<br class="sm">スタッフ</span>
                                                 <div class="staff_wrap">
                                                     <?php $i = 0 ?>
                                                     <?php foreach ($dispStf as $tgtId => $rec): ?>
@@ -144,9 +150,10 @@
                                                 </div>
                                                 <div class="box2">
                                                     <div class="tit tit_toggle sm">身体図</div>
+                                                    
+                                                    <div class="child_toggle photo_body">
                                                     <input type="hidden" name="unique_id" value="<?= $dispData['unique_id'] ?>">
                                                     <button type='submit' name="btnImageEdit" value="1">編集</button>
-                                                    <div class="child_toggle photo_body">
                                                         <?php $life_image = empty($dispData['life_image']) ? '/common/image/sub/body_img.png' : $dispData['life_image']; ?>
                                                         <div class="hbody"><img src="<?= $life_image ?>" alt="人体"></div>
                                                     </div>
@@ -198,11 +205,11 @@
 
                                                                     <?php if (empty($dispData['receipt_img'])) : ?>
                                                                         <div class="btn upload up_view">
-                                                                            <img src="/common/image/icon_upload.png" alt="View Receipt">
+                                                                            <img src="/common/image/icon_upload.svg" alt="View Receipt">
                                                                         </div>
                                                                     <?php else : ?>
                                                                         <div class="btn view up_view">
-                                                                            <img src="/common/image/icon_photo.png" alt="View Receipt">
+                                                                            <img src="/common/image/icon_photo.svg" alt="View Receipt">
                                                                         </div>
                                                                     <?php endif; ?>
                                                                     <div class="view_box">
@@ -214,7 +221,7 @@
                                                                                 <input type="file" name="receipt_img" id="receipt_uploader" accept=".jpg,.png,.pdf,.xlsx,.xls,.xlsm,.csv,.doc,.docx,/docm" onchange="previewImage(this);" style="display:none;">
                                                                                 <div class="btn trash">
                                                                                     <button type="submit" name="btnDelReceiptImg" value="<?= $dispData['unique_id'] ?>">
-                                                                                        <img src="/common/image/icon_trash.png" alt="削除">
+                                                                                        <img src="/common/image/icon_trash.svg" alt="削除">
                                                                                     </button>
                                                                                 </div>
                                                                             </div>
@@ -225,7 +232,7 @@
                                                                             </div>
                                                                         </div>
                                                                     </div>
-                                                                    <!--<div class="btn trash trash_act"><img src="/common/image/icon_trash.png" alt="削除"></div>-->
+                                                                    <!--<div class="btn trash trash_act"><img src="/common/image/icon_trash.svg" alt="削除"></div>-->
                                                                     <div class="msg_box">
                                                                         <div class="msg_box-tit">画像削除</div>
                                                                         <div class="msg_box-cont">削除してよろしいですか？</div>
@@ -622,7 +629,7 @@
                                                             <?php if (!empty($dispData['breakfast_img'])) : ?>
                                                                 <td class="meal_btn">
                                                                     <div class="btn view">
-                                                                        <img src="/common/image/icon_photo.png" alt="View Meal">
+                                                                        <img src="/common/image/icon_photo.svg" alt="View Meal">
                                                                     </div>
                                                                     <div class="photo_box-meal">
                                                                         <div class="meal_img">
@@ -632,7 +639,7 @@
                                                                             <!-- アップロード -->
                                                                             <label for="meal_breakfast">
                                                                                 <span class="btn upload">
-                                                                                    <img src="/common/image/icon_upload.png" alt="Upload Meal">
+                                                                                    <img src="/common/image/icon_upload.svg" alt="Upload Meal">
                                                                                 </span>
                                                                             </label>
                                                                             <input type="file" name="breakfast_img" value="<?= $dispData['breakfast_img'] ?>" id="meal_breakfast">
@@ -640,7 +647,7 @@
                                                                             <!-- 削除 -->
                                                                             <button type="submit" name="btnDelBfImg" value="<?= $dispData['unique_id'] ?>">
                                                                                 <span class="btn trash">
-                                                                                    <img src="/common/image/icon_trash.png" alt="Delete Meal">
+                                                                                    <img src="/common/image/icon_trash.svg" alt="Delete Meal">
                                                                                 </span>
                                                                             </button>
                                                                         </div>
@@ -650,7 +657,7 @@
                                                                 <td>
                                                                     <label for="meal_breakfast_def">
                                                                         <div class="btn upload">
-                                                                            <img src="/common/image/icon_upload.png" alt="Upload Meal">
+                                                                            <img src="/common/image/icon_upload.svg" alt="Upload Meal">
                                                                         </div>
                                                                     </label>
                                                                     <input type="file" name="breakfast_img" value="" id="meal_breakfast_def">
@@ -673,7 +680,7 @@
                                                             <?php if (!empty($dispData['lunch_img'])) : ?>
                                                                 <td class="meal_btn">
                                                                     <div class="btn view">
-                                                                        <img src="/common/image/icon_photo.png" alt="View Meal">
+                                                                        <img src="/common/image/icon_photo.svg" alt="View Meal">
                                                                     </div>
                                                                     <div class="photo_box-meal">
                                                                         <div class="meal_img">
@@ -683,7 +690,7 @@
                                                                             <!-- アップロード -->
                                                                             <label for="meal_lunch">
                                                                                 <span class="btn upload">
-                                                                                    <img src="/common/image/icon_upload.png" alt="Upload Meal">
+                                                                                    <img src="/common/image/icon_upload.svg" alt="Upload Meal">
                                                                                 </span>
                                                                             </label>
                                                                             <input type="file" name="lunch_img" value="<?= $dispData['lunch_img'] ?>" id="meal_lunch">
@@ -691,7 +698,7 @@
                                                                             <!-- 削除 -->
                                                                             <button type="submit" name="btnDellcImg" value="<?= $dispData['unique_id'] ?>">
                                                                                 <span class="btn trash">
-                                                                                    <img src="/common/image/icon_trash.png" alt="Delete Meal">
+                                                                                    <img src="/common/image/icon_trash.svg" alt="Delete Meal">
                                                                                 </span>
                                                                             </button>
                                                                         </div>
@@ -701,7 +708,7 @@
                                                                 <td>
                                                                     <label for="meal_lunch_def">
                                                                         <div class="btn upload">
-                                                                            <img src="/common/image/icon_upload.png" alt="Upload Meal">
+                                                                            <img src="/common/image/icon_upload.svg" alt="Upload Meal">
                                                                         </div>
                                                                     </label>
                                                                     <input type="file" name="lunch_img" value="" id="meal_lunch_def">
@@ -719,7 +726,7 @@
                                                             <?php if (!empty($dispData['bite_img'])) : ?>
                                                                 <td class="meal_btn">
                                                                     <div class="btn view">
-                                                                        <img src="/common/image/icon_photo.png" alt="View Meal">
+                                                                        <img src="/common/image/icon_photo.svg" alt="View Meal">
                                                                     </div>
                                                                     <div class="photo_box-meal">
                                                                         <div class="meal_img">
@@ -729,7 +736,7 @@
                                                                             <!-- アップロード -->
                                                                             <label for="meal_bite">
                                                                                 <span class="btn upload">
-                                                                                    <img src="/common/image/icon_upload.png" alt="Upload Meal">
+                                                                                    <img src="/common/image/icon_upload.svg" alt="Upload Meal">
                                                                                 </span>
                                                                             </label>
                                                                             <input type="file" name="bite_img" value="<?= $dispData['bite_img'] ?>" id="meal_bite">
@@ -737,7 +744,7 @@
                                                                             <!-- 削除 -->
                                                                             <button type="submit" name="btnDelBtImg" value="<?= $dispData['unique_id'] ?>">
                                                                                 <span class="btn trash">
-                                                                                    <img src="/common/image/icon_trash.png" alt="Delete Meal">
+                                                                                    <img src="/common/image/icon_trash.svg" alt="Delete Meal">
                                                                                 </span>
                                                                             </button>
                                                                         </div>
@@ -747,7 +754,7 @@
                                                                 <td>
                                                                     <label for="meal_bite_def">
                                                                         <div class="btn upload">
-                                                                            <img src="/common/image/icon_upload.png" alt="Upload Meal">
+                                                                            <img src="/common/image/icon_upload.svg" alt="Upload Meal">
                                                                         </div>
                                                                     </label>
                                                                     <input type="file" name="bite_img" value="" id="meal_bite_def">
@@ -769,7 +776,7 @@
                                                             <?php if (!empty($dispData['dinner_img'])) : ?>
                                                                 <td class="meal_btn">
                                                                     <div class="btn view">
-                                                                        <img src="/common/image/icon_photo.png" alt="View Meal">
+                                                                        <img src="/common/image/icon_photo.svg" alt="View Meal">
                                                                     </div>
                                                                     <div class="photo_box-meal">
                                                                         <div class="meal_img">
@@ -779,7 +786,7 @@
                                                                             <!-- アップロード -->
                                                                             <label for="meal_dinner">
                                                                                 <span class="btn upload">
-                                                                                    <img src="/common/image/icon_upload.png" alt="Upload Meal">
+                                                                                    <img src="/common/image/icon_upload.svg" alt="Upload Meal">
                                                                                 </span>
                                                                             </label>
                                                                             <input type="file" name="dinner_img" value="<?= $dispData['dinner_img'] ?>" id="meal_dinner">
@@ -787,7 +794,7 @@
                                                                             <!-- 削除 -->
                                                                             <button type="submit" name="btnDelDnImg" value="<?= $dispData['unique_id'] ?>">
                                                                                 <span class="btn trash">
-                                                                                    <img src="/common/image/icon_trash.png" alt="Delete Meal">
+                                                                                    <img src="/common/image/icon_trash.svg" alt="Delete Meal">
                                                                                 </span>
                                                                             </button>
                                                                         </div>
@@ -797,7 +804,7 @@
                                                                 <td>
                                                                     <label for="meal_dinner_def">
                                                                         <div class="btn upload">
-                                                                            <img src="/common/image/icon_upload.png" alt="Upload Meal">
+                                                                            <img src="/common/image/icon_upload.svg" alt="Upload Meal">
                                                                         </div>
                                                                     </label>
                                                                     <input type="file" name="dinner_img" value="" id="meal_dinner_def">
@@ -819,15 +826,15 @@
                                                             <td>
                                                                 <span>
                                                                     <?php $checked = $dispData['drug_bb'] === "食前" ? ' checked' : NULL; ?>
-                                                                    <input type="checkbox" name="upAry[drug_bb]" id="" value="食前" <?= $checked ?>>
-                                                                    <label>食前</label>
+                                                                    <label><input type="checkbox" name="upAry[drug_bb]" id="" value="食前" <?= $checked ?>>
+                                                                    食前</label>
                                                                 </span>
                                                             </td>
                                                             <td>
                                                                 <span>
                                                                     <?php $checked = $dispData['drug_ab'] === "食後" ? ' checked' : NULL; ?>
-                                                                    <input type="checkbox" name="upAry[drug_ab]" id="" value="食後" <?= $checked ?>>
-                                                                    <label>食後</label>
+                                                                    <label><input type="checkbox" name="upAry[drug_ab]" id="" value="食後" <?= $checked ?>>
+                                                                    食後</label>
                                                                 </span>
                                                             </td>
                                                             <td>
@@ -839,15 +846,15 @@
                                                             <td>
                                                                 <span>
                                                                     <?php $checked = $dispData['drug_bl'] === "食前" ? ' checked' : NULL; ?>
-                                                                    <input type="checkbox" name="upAry[drug_bl]" id="" value="食前" <?= $checked ?>>
-                                                                    <label>食前</label>
+                                                                    <label><input type="checkbox" name="upAry[drug_bl]" id="" value="食前" <?= $checked ?>>
+                                                                    食前</label>
                                                                 </span>
                                                             </td>
                                                             <td>
                                                                 <span>
                                                                     <?php $checked = $dispData['drug_al'] === "食後" ? ' checked' : NULL; ?>
-                                                                    <input type="checkbox" name="upAry[drug_al]" id="" value="食後" <?= $checked ?>>
-                                                                    <label>食後</label>
+                                                                    <label><input type="checkbox" name="upAry[drug_al]" id="" value="食後" <?= $checked ?>>
+                                                                    食後</label>
                                                                 </span>
                                                             </td>
                                                             <td>
@@ -859,15 +866,15 @@
                                                             <td>
                                                                 <span>
                                                                     <?php $checked = $dispData['drug_bd'] === "食前" ? ' checked' : NULL; ?>
-                                                                    <input type="checkbox" name="upAry[drug_bd]" id="" value="食前" <?= $checked ?>>
-                                                                    <label>食前</label>
+                                                                    <label><input type="checkbox" name="upAry[drug_bd]" id="" value="食前" <?= $checked ?>>
+                                                                    食前</label>
                                                                 </span>
                                                             </td>
                                                             <td>
                                                                 <span>
                                                                     <?php $checked = $dispData['drug_ad'] === "食後" ? ' checked' : NULL; ?>
-                                                                    <input type="checkbox" name="upAry[drug_ad]" id="" value="食後" <?= $checked ?>>
-                                                                    <label>食後</label>
+                                                                    <label><input type="checkbox" name="upAry[drug_ad]" id="" value="食後" <?= $checked ?>>
+                                                                    食後</label>
                                                                 </span>
                                                             </td>
                                                             <td>
@@ -948,7 +955,7 @@
                                                             <td colspan="2">
                                                                 <?php foreach ($gnrList['1.寝返り'] as $key => $val): ?>
                                                                     <?php $check = $dispData['nurse_needs1'] === $val ? ' checked' : NULL; ?>
-                                                                    <p><input type="radio" name="upAry[nurse_needs1]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                                    <p><label><input type="radio" name="upAry[nurse_needs1]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                                 <?php endforeach; ?>
                                                             </td>
                                                             <?php $res1 = (empty($dispData['nurse_needs1']) || $dispData['nurse_needs1'] === 'できる') ? 0 : ($dispData['nurse_needs1'] === '何かにつかまればできる' ? 1 : 2); ?>
@@ -959,7 +966,7 @@
                                                             <td>
                                                                 <?php foreach ($gnrList['2.移乗'] as $key => $val): ?>
                                                                     <?php $check = $dispData['nurse_needs2'] === $val ? ' checked' : NULL; ?>
-                                                                    <p><input type="radio" name="upAry[nurse_needs2]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                                    <p><label><input type="radio" name="upAry[nurse_needs2]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                                 <?php endforeach; ?>
                                                             </td>
                                                             <td class="assistance_list">
@@ -975,7 +982,7 @@
                                                             <td>
                                                                 <?php foreach ($gnrList['3.口腔清潔'] as $key => $val): ?>
                                                                     <?php $check = $dispData['nurse_needs3'] === $val ? ' checked' : NULL; ?>
-                                                                    <p><input type="radio" name="upAry[nurse_needs3]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                                    <p><label><input type="radio" name="upAry[nurse_needs3]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                                 <?php endforeach; ?>
                                                             </td>
                                                             <td class="assistance_list">
@@ -991,7 +998,7 @@
                                                             <td>
                                                                 <?php foreach ($gnrList['4.食事摂取'] as $key => $val): ?>
                                                                     <?php $check = $dispData['nurse_needs4'] === $val ? ' checked' : NULL; ?>
-                                                                    <p><input type="radio" name="upAry[nurse_needs4]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                                    <p><label><input type="radio" name="upAry[nurse_needs4]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                                 <?php endforeach; ?>
                                                             </td>
                                                             <td class="assistance_list">
@@ -1011,7 +1018,7 @@
                                                             <td>
                                                                 <?php foreach ($gnrList['5.衣服の着脱'] as $key => $val): ?>
                                                                     <?php $check = $dispData['nurse_needs5'] === $val ? ' checked' : NULL; ?>
-                                                                    <p><input type="radio" name="upAry[nurse_needs5]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                                    <p><label><input type="radio" name="upAry[nurse_needs5]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                                 <?php endforeach; ?>
                                                             </td>
                                                             <td class="assistance_list">
@@ -1027,7 +1034,7 @@
                                                             <td colspan="2">
                                                                 <?php foreach ($gnrList['6.診察・療養上の指示が通じる'] as $key => $val): ?>
                                                                     <?php $check = $dispData['nurse_needs6'] === $val ? ' checked' : NULL; ?>
-                                                                    <p><input type="radio" name="upAry[nurse_needs6]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                                    <p><label><input type="radio" name="upAry[nurse_needs6]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                                 <?php endforeach; ?>
                                                             </td>
                                                             <?php $res6 = $dispData['nurse_needs6'] === 'いいえ' ? 1 : 0; ?>
@@ -1038,7 +1045,7 @@
                                                             <td colspan="2">
                                                                 <?php foreach ($gnrList['7.危険行動'] as $key => $val): ?>
                                                                     <?php $check = $dispData['nurse_needs7'] === $val ? ' checked' : NULL; ?>
-                                                                    <p><input type="radio" name="upAry[nurse_needs7]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                                    <p><label><input type="radio" name="upAry[nurse_needs7]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                                 <?php endforeach; ?>
                                                             </td>
                                                             <?php $res7 = $dispData['nurse_needs7'] === 'ある' ? 2 : 0; ?>
@@ -1056,11 +1063,11 @@
                                     <div class="nurse_record record8">
                                         <span class="label_t">作成状態</span>
                                         <?php $check = $dispData['status'] === '完成' ? ' checked' : NULL; ?>
-                                        <input type="radio" name="upAry[status]" value="完成"<?= $check ?>>
-                                        <label for="完成">完成</label>
+                                        <label for="完成"><input type="radio" name="upAry[status]" value="完成"<?= $check ?>>
+                                        完成</label>
                                         <?php $check = $dispData['status'] !== '完成' ? ' checked' : NULL; ?>
-                                        <input type="radio" name="upAry[status]" value="作成中"<?= $check ?>>
-                                        <label for="作成中">作成中</label>
+                                        <label for="作成中"><input type="radio" name="upAry[status]" value="作成中"<?= $check ?>>
+                                        作成中</label>
                                     </div>
                                     <div class="nurse_record record9">
                                         <div class="i_register">
@@ -1084,7 +1091,7 @@
                         <!--/// CONTENT_END ///-->
                         <div class="fixed_navi patient_navi">
                             <div class="box">
-                                <div class="btn back pc"><button type="submit" name="btnReturn" value="true">看多機記録一覧にもどる</button></div>
+                                <div class="btn back pc"><button type="submit" name="btnReturn" value="true">記録一覧にもどる</button></div>
                                 <div class="controls">
                                     <button type="submit" class="btn save" name="btnEntry" value="保存">保存</button>
                                 </div>

@@ -1,4 +1,5 @@
 <?php
+
 /*--共通ファイル呼び出し-------------------------------------*/
 require_once($_SERVER['DOCUMENT_ROOT'] . '/common/php/com_start.php');
 
@@ -21,14 +22,14 @@ $table = 'dat_staff_plan';
 
 // 更新配列作成
 $upData = array();
-if (!empty($stfPlanId)){
-  $upData['unique_id'] = $stfPlanId;
+if (!empty($stfPlanId)) {
+    $upData['unique_id'] = $stfPlanId;
 }
-$upData['staff_id']   = !empty($staffId) ? $staffId : NULL;
+$upData['staff_id']   = !empty($staffId) ? $staffId : null;
 $upData['target_day'] = !empty($day) ? $day : "";
 $upData['start_time'] = $startTime;
 $upData['end_time']   = $endTime;
-if(!empty($work)){
+if (!empty($work)) {
     $upData['work']   = $work;
 }
 $upData['root_name']  = !empty($rootName) ? $rootName : "未割当";
@@ -39,14 +40,14 @@ $upData['place_id']   = $placeId;
 $res = array();
 $res = upsert($loginUser, $table, $upData);
 if (isset($res['err'])) {
-  $response = 'システムエラーが発生しました';
-  throw new Exception();
-}else{
-  $response = $res;
+    $response = 'システムエラーが発生しました';
+    throw new Exception();
+} else {
+    $response = $res;
 
     // ログテーブルに登録する
-    setEntryLog($upData);  
+    setEntryLog($upData);
 }
 
 echo $response;
-exit();
+exit;

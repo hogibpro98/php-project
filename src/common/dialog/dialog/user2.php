@@ -25,7 +25,7 @@ $usrList = getUserList($placeId);
             <tr>
                 <td><button type="button" data-usr_id="<?= $tgtId ?>" data-usr_code="<?= $val['other_id'] ?>" data-usr_name="<?= $val['name'] ?>" data-usr_kana="<?= $val['kana'] ?>">選択</button></td>
                 <td class="tgtSearchVal"><?= $val['other_id'] ?></td>
-                <td class="tgtSearchVal"><?= $val['last_kana'].$val['first_kana'] ?></td>
+                <td class="tgtSearchVal"><?= $val['last_kana'] . $val['first_kana'] ?></td>
                 <td class="tgtSearchVal"><?= $val['name'] ?></td>
             </tr>
             <?php endforeach; ?>

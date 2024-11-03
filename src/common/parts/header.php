@@ -20,7 +20,7 @@
     </div>
     <?php unset($_SESSION['notice']['error']); ?>
     <?php unset($_SESSION['notice']['warning']); ?>
-<?php // endif; ?>
+<?php // endif;?>
 <!-- 警告メッセージ -->
 <?php elseif (!empty($notice['warning'])) : ?>
     <div class="system-modal-warning" id="system-modal">
@@ -140,10 +140,10 @@
 // 拠点情報の取得
 $placeList = isset($loginUser['place']) ? $loginUser['place'] : array();
 $placeId = filter_input(INPUT_GET, 'place');
-if ($placeId){
+if ($placeId) {
     $_SESSION['place'] = $placeId;
-}else{
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+} else {
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 $placeMst = getPlaceInfo($placeId);
 ?>
@@ -169,7 +169,7 @@ $placeMst = getPlaceInfo($placeId);
         <div class="head-l">
             <h1><a href="<?= TOP_PAGE ?>">KANTAKI-WIZ</a></h1>
             <div class="sm acct_icon">
-                <span class="display_switch"><img src="/common/image/icon_setting.png" alt=""><small>拠点</small></span>
+                <span class="display_switch"><img src="/common/image/icon_setting.svg" alt=""><small>拠点</small></span>
             </div>
         </div>
         <div class="head-r">
@@ -178,7 +178,7 @@ $placeMst = getPlaceInfo($placeId);
                     <select name="place">
                         <option value="">選択してください</option>
                         <?php foreach ($placeList as $tgtId => $val): ?>
-                        <?php $select = $placeId === $tgtId ? ' selected' : NULL; ?>
+                        <?php $select = $placeId === $tgtId ? ' selected' : null; ?>
                         <option value="<?= $tgtId ?>"<?= $select ?>><?= $val ?></option>
                         <?php endforeach; ?>
                     </select>
@@ -230,6 +230,12 @@ $placeMst = getPlaceInfo($placeId);
                         <div class="list2">各種帳票</div>
                         <ul class="nav-nest2">
                             <li>
+                                <div><a href="/report/list/">各種帳票</a></div>
+                            </li>
+                            <!-- <li>
+                                <div><a href="/report/print_list/index.php">各種帳票</a></div>
+                            </li> -->
+                            <li>
                                 <div><a href="/report/bedsore/index.php">褥瘡計画</a></div>
                             </li>
                             <li>
@@ -244,8 +250,11 @@ $placeMst = getPlaceInfo($placeId);
                         </ul>
                     </li>
                     <li>
-                        <div class="list2">各種記録</div>
+                        <div class="list2">記録一覧</div>
                         <ul class="nav-nest2">
+                            <li>
+                                <div><a href="/report/report_list/index.php">記録一覧</a></div>
+                            </li>
                             <li>
                                 <div><a href="/report/progress/index.php">経過記録</a></div>
                             </li>
@@ -257,38 +266,6 @@ $placeMst = getPlaceInfo($placeId);
                             </li>
                             <li>
                                 <div><a href="/report/visit2/index.php">訪問看護記録Ⅱ</a></div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="list2">帳票・記録一覧</div>
-                        <ul class="nav-nest2">
-                            <li>
-                                <div><a href="/report/list/index.php">帳票・記録一覧</a></div>
-                            </li>
-                            <li>
-                                <div><a href="/report/bedsore_list/index.php">褥瘡計画一覧</a></div>
-                            </li>
-                            <li>
-                                <div><a href="/report/instruct_list/index.php">指示書一覧</a></div>
-                            </li>
-                            <li>
-                                <div><a href="/report/plan_list/index.php">計画書一覧</a></div>
-                            </li>
-                            <li>
-                                <div><a href="/report/report_list2/index.php">報告書一覧</a></div>
-                            </li>
-                            <li>
-                                <div><a href="/report/progress_list/index.php">経過記録一覧</a></div>
-                            </li>
-                            <li>
-                                <div><a href="/report/kantaki_list/index.php">看多機記録一覧</a></div>
-                            </li>
-                            <li>
-                                <div><a href="/report/visit1_list/index.php">訪問看護記録Ⅰ一覧</a></div>
-                            </li>
-                            <li>
-                                <div><a href="/report/visit2_list/index.php">訪問看護記録Ⅱ一覧</a></div>
                             </li>
                         </ul>
                     </li>
@@ -349,6 +326,15 @@ $placeMst = getPlaceInfo($placeId);
                     <li>
                         <div><a href="/system/account/index.php">アカウント情報</a></div>
                     </li>
+                    <?php if (HTJ_FLG && $loginUser): ?>
+                    <?php $htjMenu = getHtjMenu($loginUser); ?>
+                    <?php if ($htjMenu): ?>
+                    <?php $htjCnt = $htjCnt ? '（' . getHtjUnread($loginUser) . '）' : null; ?>
+                    <li>
+                        <div><a href="<?= $htjMenu ?>">ひつじ連携<?= $htjCnt ?></a></div>
+                    </li>
+                    <?php endif; ?>
+                    <?php endif; ?>
                 </ul>
             </li>
         </ul>

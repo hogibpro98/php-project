@@ -5,7 +5,7 @@ $where = array();
 $where['delete_flg'] = 0;
 $orderBy = 'unique_id ASC';
 $temp = select('mst_place', 'unique_id,name', $where, $orderBy);
-foreach ($temp as $val){
+foreach ($temp as $val) {
     $plcList[$val['unique_id']] = $val['name'];
 }
 
@@ -15,10 +15,10 @@ $where = array();
 $where['delete_flg'] = 0;
 $orderBy = 'unique_id ASC';
 $temp = select('mst_office', 'unique_id,name,place_id', $where, $orderBy);
-foreach ($temp as $val){
+foreach ($temp as $val) {
     $val['place_name'] = isset($plcList[$val['place_id']])
             ? $plcList[$val['place_id']]
-            : NULL;
+            : null;
     $ofcList[$val['unique_id']] = $val;
 }
 ?>

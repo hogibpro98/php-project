@@ -1,4 +1,5 @@
 <?php
+
 /*--共通ファイル呼び出し-------------------------------------*/
 require_once($_SERVER['DOCUMENT_ROOT'] . '/common/php/com_start.php');
 
@@ -16,7 +17,7 @@ $table = 'dat_week_schedule_service';
 // 初期値
 $upData = array();
 if (!empty($uniqueId)) {
-  $upData['unique_id'] = $uniqueId;
+    $upData['unique_id'] = $uniqueId;
 }
 $upData['start_time'] = $startTime;
 $upData['end_time'] = $endTime;
@@ -25,15 +26,15 @@ $upData['end_time'] = $endTime;
 $res = array();
 $res = upsert($loginUser, $table, $upData);
 if (isset($res['err'])) {
-  $response = 'システムエラーが発生しました';
-  throw new Exception();
+    $response = 'システムエラーが発生しました';
+    throw new Exception();
 } else {
-  $response = $res;
+    $response = $res;
 }
 
-// $response = "正常"; 
+// $response = "正常";
 
 //$response = $staff_id;
 //echo json_encode($response);
 echo $response;
-exit();
+exit;

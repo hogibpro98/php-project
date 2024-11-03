@@ -106,7 +106,7 @@
                                                                 <select name="upAry[0][prefecture]" class="f-keyVal prefecture_name0">
                                                                     <option value=""></option>
                                                                     <?php foreach ($areaMst as $pref => $areaMst2): ?>
-                                                                        <?php $select = $pref === $dispData[0]['prefecture'] ? ' selected' : NULL; ?>
+                                                                        <?php $select = $pref === $dispData[0]['prefecture'] ? ' selected' : null; ?>
                                                                         <option value="<?= $pref ?>"<?= $select ?>><?= $pref ?></option>
                                                                     <?php endforeach; ?>
                                                                 </select>
@@ -117,7 +117,7 @@
                                                                     <option value=""></option>
                                                                     <?php foreach ($areaMst as $prefectureName => $areaMst2): ?>
                                                                         <?php foreach ($areaMst2 as $areaName => $dummy): ?>
-                                                                            <?php $select = $dispData[0]['area'] === $areaName ? ' selected' : NULL; ?>
+                                                                            <?php $select = $dispData[0]['area'] === $areaName ? ' selected' : null; ?>
                                                                             <option data-pref_name="<?= $prefectureName ?>" value="<?= $areaName ?>"<?= $select ?>><?= $areaName ?></option>
                                                                         <?php endforeach; ?>
                                                                     <?php endforeach; ?>
@@ -309,7 +309,7 @@
                                                                 <select name="upAry[1][prefecture]" class="f-keyVal prefecture_name1">
                                                                     <option value=""></option>
                                                                     <?php foreach ($areaMst as $pref => $areaMst2): ?>
-                                                                        <?php $select = $pref === $dispData[1]['prefecture'] ? ' selected' : NULL; ?>
+                                                                        <?php $select = $pref === $dispData[1]['prefecture'] ? ' selected' : null; ?>
                                                                         <option value="<?= $pref ?>"<?= $select ?>><?= $pref ?></option>
                                                                     <?php endforeach; ?>
                                                                 </select>
@@ -320,7 +320,7 @@
                                                                     <option value=""></option>
                                                                     <?php foreach ($areaMst as $prefectureName => $areaMst2): ?>
                                                                         <?php foreach ($areaMst2 as $areaName => $dummy): ?>
-                                                                            <?php $select = $dispData[1]['area'] === $areaName ? ' selected' : NULL; ?>
+                                                                            <?php $select = $dispData[1]['area'] === $areaName ? ' selected' : null; ?>
                                                                             <option data-pref_name="<?= $prefectureName ?>" value="<?= $areaName ?>"<?= $select ?>><?= $areaName ?></option>
                                                                         <?php endforeach; ?>
                                                                     <?php endforeach; ?>

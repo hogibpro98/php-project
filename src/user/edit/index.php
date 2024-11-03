@@ -170,37 +170,37 @@ ini_set('memory_limit', '512M');
                                     <div class="accor_box">
                                         <div class="accor_tab-s sm">入力タブ切替</div>
                                         <ul class="accor_tab">
-                                            <li class="<?= $tab == 1 ? 'active' : NULL ?>">
+                                            <li class="<?= $tab == 1 ? 'active' : null ?>">
                                                 <button type="submit" name="tab" value="1">基本情報</button>
                                                 <?php if (!empty($ngList['tab1'])): ?>
                                                     <span class="ng">NG</span>
                                                 <?php endif; ?>
                                             </li>
-                                            <li class="<?= $tab == 2 ? 'active' : NULL ?>">
+                                            <li class="<?= $tab == 2 ? 'active' : null ?>">
                                                 <button type="submit" name="tab" value="2">支払方法</button>
                                                 <?php if (!empty($ngList['tab2'])): ?>
                                                     <span class="ng">NG</span>
                                                 <?php endif; ?>
                                             </li>
-                                            <li class="<?= $tab == 3 ? 'active' : NULL ?>">
+                                            <li class="<?= $tab == 3 ? 'active' : null ?>">
                                                 <button type="submit" name="tab" value="3">保険証</button>
                                                 <?php if (!empty($ngList['tab3'])): ?>
                                                     <span class="ng">NG</span>
                                                 <?php endif; ?>
                                             </li>
-                                            <li class="<?= $tab == 4 ? 'active' : NULL ?>">
+                                            <li class="<?= $tab == 4 ? 'active' : null ?>">
                                                 <button type="submit" name="tab" value="4">医療情報</button>
                                                 <?php if (!empty($ngList['tab4'])): ?>
                                                     <span class="ng">NG</span>
                                                 <?php endif; ?>
                                             </li>
-                                            <li class="<?= $tab == 5 ? 'active' : NULL ?>">
+                                            <li class="<?= $tab == 5 ? 'active' : null ?>">
                                                 <button type="submit" name="tab" value="5">緊急連絡先</button>
                                                 <?php if (!empty($ngList['tab5'])): ?>
                                                     <span class="ng">NG</span>
                                                 <?php endif; ?>
                                             </li>
-                                            <li class="<?= $tab == 6 ? 'active' : NULL ?>">
+                                            <li class="<?= $tab == 6 ? 'active' : null ?>">
                                                 <button type="submit" name="tab" value="6">流入流出情報</button>
                                                 <?php if (!empty($ngList['tab6'])): ?>
                                                     <span class="ng">NG</span>
@@ -305,9 +305,9 @@ ini_set('memory_limit', '512M');
                                                             <tr class="tr5">
                                                                 <th><span class="label_t">性別</span><span class="req">*</span></th>
                                                                 <td>
-                                                                    <?php $check = !empty($dispData['standard']['sex']) && $dispData['standard']['sex'] == '女性' ? ' checked' : NULL; ?>
+                                                                    <?php $check = !empty($dispData['standard']['sex']) && $dispData['standard']['sex'] == '女性' ? ' checked' : null; ?>
                                                                     <span><input type="radio" name="upAry[sex]" id="mode1" value="女性"<?= $check ?>><label for="mode1">女性</label></span>
-                                                                    <?php $check = !empty($dispData['standard']['sex']) && $dispData['standard']['sex'] == '男性' ? ' checked' : NULL; ?>
+                                                                    <?php $check = !empty($dispData['standard']['sex']) && $dispData['standard']['sex'] == '男性' ? ' checked' : null; ?>
                                                                     <span><input type="radio" name="upAry[sex]" id="mode1" value="男性"<?= $check ?>><label for="mode1">男性</label></span>
                                                                 </td>
                                                             </tr>
@@ -316,15 +316,15 @@ ini_set('memory_limit', '512M');
                                                                 <td class="birthday">
                                                                     <select name="upDummy[std_nengo]" id="era_list">
                                                                         <option value=""></option>
-                                                                        <?php $select = $dispData['standard']['nengo'] === '明治' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['nengo'] === '明治' ? ' selected' : null; ?>
                                                                         <option value="明治"<?= $select ?>>明治</option>
-                                                                        <?php $select = $dispData['standard']['nengo'] === '大正' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['nengo'] === '大正' ? ' selected' : null; ?>
                                                                         <option value="大正"<?= $select ?>>大正</option>
-                                                                        <?php $select = $dispData['standard']['nengo'] === '昭和' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['nengo'] === '昭和' ? ' selected' : null; ?>
                                                                         <option value="昭和"<?= $select ?>>昭和</option>
-                                                                        <?php $select = $dispData['standard']['nengo'] === '平成' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['nengo'] === '平成' ? ' selected' : null; ?>
                                                                         <option value="平成"<?= $select ?>>平成</option>
-                                                                        <?php $select = $dispData['standard']['nengo'] === '令和' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['nengo'] === '令和' ? ' selected' : null; ?>
                                                                         <option value="令和"<?= $select ?>>令和</option>
                                                                     </select>
                                                                     <span><input type="text" name="upDummy[std_wareki]" maxlength="2" pattern="^[0-9]+$" value="<?= $dispData['standard']['wareki'] ?>" id="era_yr" class="b_ymd standard_wareki"><label for="era_yr">年</label></span>
@@ -332,7 +332,7 @@ ini_set('memory_limit', '512M');
                                                                     <span><input type="text" name="upDummy[std_month]" maxlength="2" pattern="^[0-9]+$" value="<?= $dispData['standard']['month'] ?>" id="birth_m" class="b_ymd standard_month"><label for="birth_m">月</label></span>
                                                                     <span><input type="text" name="upDummy[std_day]" maxlength="2" pattern="^[0-9]+$" value="<?= $dispData['standard']['day'] ?>" id="birth_d" class="b_ymd standard_day"><label for="birth_d">日</label></span>
                                                                     <span><input type="text" name="upDummy[std_age]" maxlength="3" pattern="^[0-9]+$" value="<?= $dispData['standard']['age'] ?>" id="birth_age" class="b_ymd standard_age" style="width:50px;" readonly><label for="birth_d">歳</label></span>
-                                                                    <!-- <span><?php //$dispData['standard']['age']                        ?>歳</span> -->
+                                                                    <!-- <span><?php //$dispData['standard']['age']?>歳</span> -->
                                                                     <?php if ($dplIcon['kana'] && $dplIcon['birthday']): ?>
                                                                         <span class="no_dup"><a href="javascript:openDupList();" class="no_dup">*既に登録済みです</a></span>
                                                                     <?php endif; ?>
@@ -346,7 +346,7 @@ ini_set('memory_limit', '512M');
                                                                             <select name="upAry[prefecture]" id="prefecture" class="f-keyVal">
                                                                                 <option value="">▼選択</option>
                                                                                 <?php foreach ($areaMst as $pref => $areaMst2): ?>
-                                                                                    <?php $select = $pref === $dispData['standard']['prefecture'] ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $pref === $dispData['standard']['prefecture'] ? ' selected' : null; ?>
                                                                                     <option value="<?= $pref ?>"<?= $select ?>><?= $pref ?></option>
                                                                                 <?php endforeach; ?>
                                                                                 <!-- ※クラス名で市区町村と連携 -->
@@ -358,7 +358,7 @@ ini_set('memory_limit', '512M');
                                                                                 <option value="">▼選択</option>
                                                                                 <?php foreach ($areaMst as $pref => $areaMst2): ?>
                                                                                     <?php foreach ($areaMst2 as $city => $areaMst3): ?>
-                                                                                        <?php $select = $city === $dispData['standard']['area'] ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $city === $dispData['standard']['area'] ? ' selected' : null; ?>
                                                                                         <option class="<?= $pref ?>" value="<?= $city ?>"<?= $select ?>><?= $city ?></option>
                                                                                     <?php endforeach; ?>
                                                                                 <?php endforeach; ?>
@@ -416,7 +416,7 @@ ini_set('memory_limit', '512M');
                                                                         <select name='upAry[household_type]' id="cat_list">
                                                                             <option value=""></option>
                                                                             <?php foreach ($codeList['利用者基本情報_基本情報']['世帯区分／メモ'] as $val): ?>
-                                                                                <?php $select = $dispData['standard']['household_type'] == $val ? ' selected' : NULL; ?>
+                                                                                <?php $select = $dispData['standard']['household_type'] == $val ? ' selected' : null; ?>
                                                                                 <option value="<?= $val ?>"<?= $select ?>><?= $val ?></option>
                                                                             <?php endforeach; ?>
                                                                         </select>
@@ -434,23 +434,23 @@ ini_set('memory_limit', '512M');
                                                         <tr class="tr13">
                                                             <th><span class="label_t">サービス利用区分</span><span class="req">*</span></th>
                                                             <td><div><ul>
-                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '医療保険訪問看護' ? ' checked' : NULL; ?>
+                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '医療保険訪問看護' ? ' checked' : null; ?>
                                                                         <li><input type="radio" name="upAry[service_type]" value="医療保険訪問看護"<?= $check ?> id="service_cat1"><label for="service_cat1">医療保険訪問看護</label></li>
-                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '看護小規模多機能' ? ' checked' : NULL; ?>
+                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '看護小規模多機能' ? ' checked' : null; ?>
                                                                         <li><input type="radio" name="upAry[service_type]" value="看護小規模多機能"<?= $check ?> id="service_cat2"><label for="service_cat2">看護小規模多機能</label></li>
-                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '指定訪問看護' ? ' checked' : NULL; ?>
+                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '指定訪問看護' ? ' checked' : null; ?>
                                                                         <li><input type="radio" name="upAry[service_type]" value="指定訪問看護"<?= $check ?> id="service_cat3"><label for="service_cat3">指定訪問看護</label></li>
-                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '定期巡回' ? ' checked' : NULL; ?>
+                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '定期巡回' ? ' checked' : null; ?>
                                                                         <li><input type="radio" name="upAry[service_type]" value="定期巡回"<?= $check ?> id="service_cat4"><label for="service_cat4">定期巡回</label></li>
-                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '医療保険訪問看護+看護小規模多機能' ? ' checked' : NULL; ?>
+                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '医療保険訪問看護+看護小規模多機能' ? ' checked' : null; ?>
                                                                         <li><input type="radio" name="upAry[service_type]" value="医療保険訪問看護+看護小規模多機能"<?= $check ?> id="service_cat5"><label for="service_cat5">医療保険訪問看護+看護小規模多機能</label></li>
-                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '医療保険訪問看護+指定訪問看護' ? ' checked' : NULL; ?>
+                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '医療保険訪問看護+指定訪問看護' ? ' checked' : null; ?>
                                                                         <li><input type="radio" name="upAry[service_type]" value="医療保険訪問看護+指定訪問看護"<?= $check ?> id="service_cat6"><label for="service_cat6">医療保険訪問看護+指定訪問看護</label></li>
-                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '医療保険訪問看護+定期巡回' ? ' checked' : NULL; ?>
+                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '医療保険訪問看護+定期巡回' ? ' checked' : null; ?>
                                                                         <li><input type="radio" name="upAry[service_type]" value="医療保険訪問看護+定期巡回"<?= $check ?> id="service_cat7"><label for="service_cat7">医療保険訪問看護+定期巡回</label></li>
-                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '医療訪看・指定訪看・看多機' ? ' checked' : NULL; ?>
+                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '医療訪看・指定訪看・看多機' ? ' checked' : null; ?>
                                                                         <li><input type="radio" name="upAry[service_type]" value="医療訪看・指定訪看・看多機"<?= $check ?> id="service_cat8"><label for="service_cat8">医療訪看・指定訪看・看多機</label></li>
-                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '指定訪看・看多機' ? ' checked' : NULL; ?>
+                                                                        <?php $check = !empty($dispData['standard']['service_type']) && $dispData['standard']['service_type'] == '指定訪看・看多機' ? ' checked' : null; ?>
                                                                         <li><input type="radio" name="upAry[service_type]" value="指定訪看・看多機"<?= $check ?> id="service_cat9"><label for="service_cat9">指定訪看・看多機</label></li>
                                                                     </ul></div></td>
                                                         </tr>
@@ -474,7 +474,7 @@ ini_set('memory_limit', '512M');
                                                                                 <select name="upImg[<?= $key ?>][tag]">
                                                                                     <option value="">▼タグ選択</option>
                                                                                     <?php foreach ($codeList['画像関連']['絞り込み'] as $dat): ?>
-                                                                                        <?php $select = $val['tag'] === $dat ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['tag'] === $dat ? ' selected' : null; ?>
                                                                                         <option value="<?= $dat ?>"<?= $select ?>><?= $dat ?></option>
                                                                                     <?php endforeach; ?>
                                                                                 </select>
@@ -508,11 +508,11 @@ ini_set('memory_limit', '512M');
                                                                 <div>
                                                                     <select name='upAry[bath_type]' id="cat_list">
                                                                         <option value=""></option>
-                                                                        <?php $select = $dispData['standard']['bath_type'] == '一般浴' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['bath_type'] == '一般浴' ? ' selected' : null; ?>
                                                                         <option value="一般浴"<?= $select ?>>一般浴</option>
-                                                                        <?php $select = $dispData['standard']['bath_type'] == 'チェアー浴' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['bath_type'] == 'チェアー浴' ? ' selected' : null; ?>
                                                                         <option value="チェアー浴"<?= $select ?>>チェアー浴</option>
-                                                                        <?php $select = $dispData['standard']['bath_type'] == 'ストレッチャー浴' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['bath_type'] == 'ストレッチャー浴' ? ' selected' : null; ?>
                                                                         <option value="ストレッチャー浴"<?= $select ?>>ストレッチャー浴</option>
                                                                     </select>
                                                                     <span>
@@ -527,11 +527,11 @@ ini_set('memory_limit', '512M');
                                                                 <div>
                                                                     <select name='upAry[excretion_type]' id="cat_list">
                                                                         <option value=""></option>
-                                                                        <?php $select = $dispData['standard']['excretion_type'] == 'バルーン' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['excretion_type'] == 'バルーン' ? ' selected' : null; ?>
                                                                         <option value="バルーン"<?= $select ?>>バルーン</option>
-                                                                        <?php $select = $dispData['standard']['excretion_type'] == 'おむつ' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['excretion_type'] == 'おむつ' ? ' selected' : null; ?>
                                                                         <option value="おむつ"<?= $select ?>>おむつ</option>
-                                                                        <?php $select = $dispData['standard']['excretion_type'] == '誘導' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['excretion_type'] == '誘導' ? ' selected' : null; ?>
                                                                         <option value="誘導"<?= $select ?>>誘導</option>
                                                                     </select>
                                                                     <span>
@@ -546,9 +546,9 @@ ini_set('memory_limit', '512M');
                                                                 <div>
                                                                     <select name='upAry[meal_type]' id="cat_list">
                                                                         <option value=""></option>
-                                                                        <?php $select = $dispData['standard']['meal_type'] == '介助' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['meal_type'] == '介助' ? ' selected' : null; ?>
                                                                         <option value="介助"<?= $select ?>>介助</option>
-                                                                        <?php $select = $dispData['standard']['meal_type'] == '経管栄養' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['standard']['meal_type'] == '経管栄養' ? ' selected' : null; ?>
                                                                         <option value="経管栄養"<?= $select ?>>経管栄養</option>
                                                                     </select>
                                                                     <span>
@@ -568,20 +568,20 @@ ini_set('memory_limit', '512M');
                                                 <dl class="mode_box">
                                                     <dt><span class="label_t">支払方法</span><span class="req">*</span></dt>
                                                     <dd>
-                                                        <?php $check = empty($dispData['pay']['unique_id']) || $dispData['pay']['method'] == '引き落とし' ? ' checked' : NULL; ?>
+                                                        <?php $check = empty($dispData['pay']['unique_id']) || $dispData['pay']['method'] == '引き落とし' ? ' checked' : null; ?>
                                                         <span><input type="radio" name="upPay[method]" id="mode1" value="引き落とし"<?= $check ?>><label for="mode1">引き落とし</label></span>
-                                                        <?php $check = !empty($dispData['pay']['method']) && $dispData['pay']['method'] == '振込' ? ' checked' : NULL; ?>
+                                                        <?php $check = !empty($dispData['pay']['method']) && $dispData['pay']['method'] == '振込' ? ' checked' : null; ?>
                                                         <span><input type="radio" name="upPay[method]" id="mode2" value="振込"<?= $check ?>><label for="mode2">振込</label></span>
-                                                        <?php $check = !empty($dispData['pay']['method']) && $dispData['pay']['method'] == '現金' ? ' checked' : NULL; ?>
+                                                        <?php $check = !empty($dispData['pay']['method']) && $dispData['pay']['method'] == '現金' ? ' checked' : null; ?>
                                                         <span><input type="radio" name="upPay[method]" id="mode3" value="現金"<?= $check ?>><label for="mode3">現金</label></span>
                                                     </dd>
                                                 </dl>
                                                 <dl class="financial_cat">
                                                     <dt><span class="label_t">金融機関区分</span><span class="req">*</span></dt>
                                                     <dd><select name="upPay[bank_type]" id="financial_cat">
-                                                            <?php $select = $dispData['pay']['bank_type'] !== 'ゆうちょ銀行' ? ' selected' : NULL; ?>
+                                                            <?php $select = $dispData['pay']['bank_type'] !== 'ゆうちょ銀行' ? ' selected' : null; ?>
                                                             <option value="銀行" <?= $select ?>>銀行</option>
-                                                            <?php $select = $dispData['pay']['bank_type'] == 'ゆうちょ銀行' ? ' selected' : NULL; ?>
+                                                            <?php $select = $dispData['pay']['bank_type'] == 'ゆうちょ銀行' ? ' selected' : null; ?>
                                                             <option value="ゆうちょ銀行" <?= $select ?>>ゆうちょ銀行</option>
                                                         </select>
                                                     </dd>
@@ -633,7 +633,7 @@ ini_set('memory_limit', '512M');
                                                                 <select name="upPay[deposit_type]" id="mode_deposit1">
                                                                     <option hidden disabled>&nbsp;</option>
                                                                     <?php foreach ($codeList['利用者基本情報_支払方法']['預金種別'] as $codeVal): ?>
-                                                                        <?php $select = $dispData['pay']['deposit_type'] == $codeVal ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['pay']['deposit_type'] == $codeVal ? ' selected' : null; ?>
                                                                         <option value="<?= $codeVal ?>"<?= $select ?>><?= $codeVal ?></option>
                                                                     <?php endforeach; ?>
                                                                 </select>
@@ -717,10 +717,10 @@ ini_set('memory_limit', '512M');
                                                                                                 data-ins1_insure_no    ="<?= $val['insure_no'] ?>"
                                                                                                 data-ins1_insured_no   ="<?= $val['insured_no'] ?>"
                                                                                                 data-ins1_care_rank    ="<?= $val['care_rank'] ?>"
-                                                                                                data-ins1_certif_nengo ="<?= $val['ins1_certif_nengo'] ?>"
-                                                                                                data-ins1_certif_year  ="<?= $val['certif_year'] ?>"
-                                                                                                data-ins1_certif_month ="<?= $val['certif_month'] ?>"
-                                                                                                data-ins1_certif_dt    ="<?= $val['certif_dt'] ?>"
+                                                                                                data-ins1_certif_nengo ="<?= @$val['ins1_certif_nengo'] ?>"
+                                                                                                data-ins1_certif_year  ="<?= @$val['certif_year'] ?>"
+                                                                                                data-ins1_certif_month ="<?= @$val['certif_month'] ?>"
+                                                                                                data-ins1_certif_dt    ="<?= @$val['certif_dt'] ?>"
                                                                                                 >
                                                                                             編集
                                                                                         </button>
@@ -748,11 +748,11 @@ ini_set('memory_limit', '512M');
                                                                                             <div>
                                                                                                 <select name="" id="era_list" class="bg-gray2" disabled="">
                                                                                                     <option value=""></option>
-                                                                                                    <?php $select = !empty($val['ins1_certif_nengo']) && $val['ins1_certif_nengo'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_certif_nengo']) && $val['ins1_certif_nengo'] === '昭和' ? ' selected' : null; ?>
                                                                                                     <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                                    <?php $select = !empty($val['ins1_certif_nengo']) && $val['ins1_certif_nengo'] === '平成' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_certif_nengo']) && $val['ins1_certif_nengo'] === '平成' ? ' selected' : null; ?>
                                                                                                     <option value="平成"<?= $select ?>>平成</option>
-                                                                                                    <?php $select = !empty($val['ins1_certif_nengo']) && $val['ins1_certif_nengo'] === '令和' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_certif_nengo']) && $val['ins1_certif_nengo'] === '令和' ? ' selected' : null; ?>
                                                                                                     <option value="令和"<?= $select ?>>令和</option>
                                                                                                 </select>
                                                                                                 <span><input type="text" name="" value="<?= $val['certif_year'] ?>" id="birth_yr" class="b_ymd ins1_start_year1 bg-gray2" readonly=""><label for="birth_yr">年</label></span>
@@ -767,11 +767,11 @@ ini_set('memory_limit', '512M');
                                                                                             <div>
                                                                                                 <select name="" id="era_list" class="bg-gray2" disabled="">
                                                                                                     <option value=""></option>
-                                                                                                    <?php $select = !empty($val['ins1_start_nengo']) && $val['ins1_start_nengo'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_start_nengo']) && $val['ins1_start_nengo'] === '昭和' ? ' selected' : null; ?>
                                                                                                     <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                                    <?php $select = !empty($val['ins1_start_nengo']) && $val['ins1_start_nengo'] === '平成' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_start_nengo']) && $val['ins1_start_nengo'] === '平成' ? ' selected' : null; ?>
                                                                                                     <option value="平成"<?= $select ?>>平成</option>
-                                                                                                    <?php $select = !empty($val['ins1_start_nengo']) && $val['ins1_start_nengo'] === '令和' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_start_nengo']) && $val['ins1_start_nengo'] === '令和' ? ' selected' : null; ?>
                                                                                                     <option value="令和"<?= $select ?>>令和</option>
                                                                                                 </select>
                                                                                                 <span><input type="text" name="" value="<?= $val['start_year1'] ?>" id="birth_yr" class="b_ymd ins1_start_year1 bg-gray2" readonly=""><label for="birth_yr">年</label></span>
@@ -782,11 +782,11 @@ ini_set('memory_limit', '512M');
                                                                                             <div>
                                                                                                 <select name="" id="era_list" class="tgt_en1 bg-gray2" disabled="">
                                                                                                     <option value=""></option>
-                                                                                                    <?php $select = !empty($val['ins1_end_nengo']) && $val['ins1_end_nengo'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_end_nengo']) && $val['ins1_end_nengo'] === '昭和' ? ' selected' : null; ?>
                                                                                                     <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                                    <?php $select = !empty($val['ins1_end_nengo']) && $val['ins1_end_nengo'] === '平成' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_end_nengo']) && $val['ins1_end_nengo'] === '平成' ? ' selected' : null; ?>
                                                                                                     <option value="平成"<?= $select ?>>平成</option>
-                                                                                                    <?php $select = !empty($val['ins1_end_nengo']) && $val['ins1_end_nengo'] === '令和' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_end_nengo']) && $val['ins1_end_nengo'] === '令和' ? ' selected' : null; ?>
                                                                                                     <option value="令和"<?= $select ?>>令和</option>
                                                                                                 </select>
                                                                                                 <span><input type="text" name="" value="<?= $val['end_year1'] ?>" id="birth_yr" class="b_ymd bg-gray2" readonly=""><label for="birth_yr">年</label></span>
@@ -801,11 +801,11 @@ ini_set('memory_limit', '512M');
                                                                                             <div>
                                                                                                 <select name="" id="era_list" class="bg-gray2" disabled="">
                                                                                                     <option value=""></option>
-                                                                                                    <?php $select = !empty($val['ins1_start_nengo2']) && $val['ins1_start_nengo2'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_start_nengo2']) && $val['ins1_start_nengo2'] === '昭和' ? ' selected' : null; ?>
                                                                                                     <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                                    <?php $select = !empty($val['ins1_start_nengo2']) && $val['ins1_start_nengo2'] === '平成' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_start_nengo2']) && $val['ins1_start_nengo2'] === '平成' ? ' selected' : null; ?>
                                                                                                     <option value="平成"<?= $select ?>>平成</option>
-                                                                                                    <?php $select = !empty($val['ins1_start_nengo2']) && $val['ins1_start_nengo2'] === '令和' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_start_nengo2']) && $val['ins1_start_nengo2'] === '令和' ? ' selected' : null; ?>
                                                                                                     <option value="令和"<?= $select ?>>令和</option>
                                                                                                 </select>
                                                                                                 <span><input type="text" name="" value="<?= $val['start_year2'] ?>" id="birth_yr" class="b_ymd bg-gray2" readonly=""><label for="birth_yr">年</label></span>
@@ -816,11 +816,11 @@ ini_set('memory_limit', '512M');
                                                                                             <div>
                                                                                                 <select name="" id="era_list" class="tgt_en2 bg-gray2" disabled="">
                                                                                                     <option value=""></option>
-                                                                                                    <?php $select = !empty($val['ins1_end_nengo2']) && $val['ins1_end_nengo2'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_end_nengo2']) && $val['ins1_end_nengo2'] === '昭和' ? ' selected' : null; ?>
                                                                                                     <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                                    <?php $select = !empty($val['ins1_end_nengo2']) && $val['ins1_end_nengo2'] === '平成' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_end_nengo2']) && $val['ins1_end_nengo2'] === '平成' ? ' selected' : null; ?>
                                                                                                     <option value="平成"<?= $select ?>>平成</option>
-                                                                                                    <?php $select = !empty($val['ins1_end_nengo2']) && $val['ins1_end_nengo2'] === '令和' ? ' selected' : NULL; ?>
+                                                                                                    <?php $select = !empty($val['ins1_end_nengo2']) && $val['ins1_end_nengo2'] === '令和' ? ' selected' : null; ?>
                                                                                                     <option value="令和"<?= $select ?>>令和</option>
                                                                                                 </select>
                                                                                                 <span><input type="text" name="" maxlength="2" pattern="^[0-9]+$" value="<?= $val['end_year2'] ?>" id="birth_yr" class="b_ymd bg-gray2" readonly=""><label for="birth_yr">年</label></span>
@@ -837,29 +837,29 @@ ini_set('memory_limit', '512M');
                                                                                     <dl>
                                                                                         <dt><span class="label_t label_y">要介護度</span></dt>
                                                                                         <dd><select name='' id="kaigo_do" class="bg-gray2" disabled="">
-                                                                                                <?php $select = empty($val['care_rank']) ? ' selected' : NULL; ?>
+                                                                                                <?php $select = empty($val['care_rank']) ? ' selected' : null; ?>
                                                                                                 <option value=""<?= $select ?>></option>
-                                                                                                <?php $select = $val['care_rank'] == '非該当' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '非該当' ? ' selected' : null; ?>
                                                                                                 <option value="非該当"<?= $select ?>>非該当</option>
-                                                                                                <?php $select = $val['care_rank'] == '自立' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '自立' ? ' selected' : null; ?>
                                                                                                 <option value="自立"<?= $select ?>>自立</option>
-                                                                                                <?php $select = $val['care_rank'] == '事業対象者' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '事業対象者' ? ' selected' : null; ?>
                                                                                                 <option value="事業対象者"<?= $select ?>>事業対象者</option>
-                                                                                                <?php $select = $val['care_rank'] == '要支援（経過的要介護）' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '要支援（経過的要介護）' ? ' selected' : null; ?>
                                                                                                 <option value="要支援（経過的要介護）"<?= $select ?>>要支援（経過的要介護）</option>
-                                                                                                <?php $select = $val['care_rank'] == '要支援1' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '要支援1' ? ' selected' : null; ?>
                                                                                                 <option value="要支援1"<?= $select ?>>要支援1</option>
-                                                                                                <?php $select = $val['care_rank'] == '要支援2' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '要支援2' ? ' selected' : null; ?>
                                                                                                 <option value="要支援2"<?= $select ?>>要支援2</option>
-                                                                                                <?php $select = $val['care_rank'] == '要介護1' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '要介護1' ? ' selected' : null; ?>
                                                                                                 <option value="要介護1"<?= $select ?>>要介護1</option>
-                                                                                                <?php $select = $val['care_rank'] == '要介護2' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '要介護2' ? ' selected' : null; ?>
                                                                                                 <option value="要介護2"<?= $select ?>>要介護2</option>
-                                                                                                <?php $select = $val['care_rank'] == '要介護3' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '要介護3' ? ' selected' : null; ?>
                                                                                                 <option value="要介護3"<?= $select ?>>要介護3</option>
-                                                                                                <?php $select = $val['care_rank'] == '要介護4' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '要介護4' ? ' selected' : null; ?>
                                                                                                 <option value="要介護4"<?= $select ?>>要介護4</option>
-                                                                                                <?php $select = $val['care_rank'] == '要介護5' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['care_rank'] == '要介護5' ? ' selected' : null; ?>
                                                                                                 <option value="要介護5"<?= $select ?>>要介護5</option>
                                                                                             </select></dd>
                                                                                     </dl>
@@ -1028,13 +1028,13 @@ ini_set('memory_limit', '512M');
                                                                                         <td>
                                                                                             <select name="" id="plan_div" class="bg-gray2" disabled="">
                                                                                                 <option value=""></option>
-                                                                                                <?php $select = $val['plan_type'] == '居宅支援作成' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['plan_type'] == '居宅支援作成' ? ' selected' : null; ?>
                                                                                                 <option value="居宅支援作成"<?= $select ?>>居宅支援作成</option>
-                                                                                                <?php $select = $val['plan_type'] == '居宅介護支援事業者作成' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['plan_type'] == '居宅介護支援事業者作成' ? ' selected' : null; ?>
                                                                                                 <option value="居宅介護支援事業者作成"<?= $select ?>>居宅介護支援事業者作成</option>
-                                                                                                <?php $select = $val['plan_type'] == '予防支援作成' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['plan_type'] == '予防支援作成' ? ' selected' : null; ?>
                                                                                                 <option value="予防支援作成"<?= $select ?>>予防支援作成</option>
-                                                                                                <?php $select = $val['plan_type'] == '自己作成' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['plan_type'] == '自己作成' ? ' selected' : null; ?>
                                                                                                 <option value="自己作成"<?= $select ?>>自己作成</option>
                                                                                             </select></td>
                                                                                     </tr>
@@ -1043,19 +1043,19 @@ ini_set('memory_limit', '512M');
                                                                                         <td>
                                                                                             <select name="" id="med_facility" class="bg-gray2" disabled="">
                                                                                                 <option value=""></option>
-                                                                                                <?php $select = $val['cancel_type'] == '非該当' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['cancel_type'] == '非該当' ? ' selected' : null; ?>
                                                                                                 <option value="非該当"<?= $select ?>>非該当</option>
-                                                                                                <?php $select = $val['cancel_type'] == '医療機関入金' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['cancel_type'] == '医療機関入金' ? ' selected' : null; ?>
                                                                                                 <option value="医療機関入金"<?= $select ?>>医療機関入金</option>
-                                                                                                <?php $select = $val['cancel_type'] == '死亡' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['cancel_type'] == '死亡' ? ' selected' : null; ?>
                                                                                                 <option value="死亡"<?= $select ?>>死亡</option>
-                                                                                                <?php $select = $val['cancel_type'] == 'その他' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['cancel_type'] == 'その他' ? ' selected' : null; ?>
                                                                                                 <option value="その他"<?= $select ?>>その他</option>
-                                                                                                <?php $select = $val['cancel_type'] == '介護老人福祉施設入所' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['cancel_type'] == '介護老人福祉施設入所' ? ' selected' : null; ?>
                                                                                                 <option value="介護老人福祉施設入所"<?= $select ?>>介護老人福祉施設入所</option>
-                                                                                                <?php $select = $val['cancel_type'] == '介護老人保健施設入所' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['cancel_type'] == '介護老人保健施設入所' ? ' selected' : null; ?>
                                                                                                 <option value="介護老人保健施設入所"<?= $select ?>>介護老人保健施設入所</option>
-                                                                                                <?php $select = $val['cancel_type'] == '介護療養型医療施設入所' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['cancel_type'] == '介護療養型医療施設入所' ? ' selected' : null; ?>
                                                                                                 <option value="介護療養型医療施設入所"<?= $select ?>>介護療養型医療施設入所</option>
                                                                                             </select>
                                                                                         </td>
@@ -1109,16 +1109,16 @@ ini_set('memory_limit', '512M');
                                                                                         <div>
                                                                                             <select class="era validate[required]" name="upDummy[ins2][<?= $key ?>][start_nengo]">
                                                                                                 <option value=""></option>
-                                                                                                <?php $select = $val['start_nengo'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['start_nengo'] === '昭和' ? ' selected' : null; ?>
                                                                                                 <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                                <?php $select = $val['start_nengo'] === '平成' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['start_nengo'] === '平成' ? ' selected' : null; ?>
                                                                                                 <option value="平成"<?= $select ?>>平成</option>
-                                                                                                <?php $select = $val['start_nengo'] === '令和' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['start_nengo'] === '令和' ? ' selected' : null; ?>
                                                                                                 <option value="令和"<?= $select ?>>令和</option>
                                                                                             </select>
-                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][start_year]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['start_year']) ? $val['start_year'] : NULL ?>" id="birth_yr" class="b_ymd validate[required,maxSize[3]]"><label for="birth_yr">年</label></span>
-                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][start_month]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['start_month']) ? $val['start_month'] : NULL ?>" id="birth_m" class="b_ymd validate[required,maxSize[2]]"><label for="birth_m">月</label></span>
-                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][start_dt]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['start_dt']) ? $val['start_dt'] : NULL ?>" id="birth_d" class="b_ymd validate[required,maxSize[2]]"><label for="birth_d">日</label></span>
+                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][start_year]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['start_year']) ? $val['start_year'] : null ?>" id="birth_yr" class="b_ymd validate[required,maxSize[3]]"><label for="birth_yr">年</label></span>
+                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][start_month]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['start_month']) ? $val['start_month'] : null ?>" id="birth_m" class="b_ymd validate[required,maxSize[2]]"><label for="birth_m">月</label></span>
+                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][start_dt]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['start_dt']) ? $val['start_dt'] : null ?>" id="birth_d" class="b_ymd validate[required,maxSize[2]]"><label for="birth_d">日</label></span>
                                                                                         </div>
                                                                                     </td>
                                                                                     <td><small>～</small></td>
@@ -1126,19 +1126,31 @@ ini_set('memory_limit', '512M');
                                                                                         <div>
                                                                                             <select class="era validate[required]" name="upDummy[ins2][<?= $key ?>][end_nengo]">
                                                                                                 <option value=""></option>
-                                                                                                <?php $select = $val['end_nengo'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['end_nengo'] === '昭和' ? ' selected' : null; ?>
                                                                                                 <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                                <?php $select = $val['end_nengo'] === '平成' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['end_nengo'] === '平成' ? ' selected' : null; ?>
                                                                                                 <option value="平成"<?= $select ?>>平成</option>
-                                                                                                <?php $select = $val['end_nengo'] === '令和' ? ' selected' : NULL; ?>
+                                                                                                <?php $select = $val['end_nengo'] === '令和' ? ' selected' : null; ?>
                                                                                                 <option value="令和"<?= $select ?>>令和</option>
                                                                                             </select>
-                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][end_year]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['end_year']) ? $val['end_year'] : NULL ?>" id="birth_yr" class="b_ymd validate[required,maxSize[3]]"><label for="birth_yr">年</label></span>
-                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][end_month]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['end_month']) ? $val['end_month'] : NULL ?>" id="birth_m" class="b_ymd validate[required,maxSize[2]]"><label for="birth_m">月</label></span>
-                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][end_dt]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['end_dt']) ? $val['end_dt'] : NULL ?>" id="birth_d" class="b_ymd validate[required,maxSize[2]]"><label for="birth_d">日</label></span>
+                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][end_year]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['end_year']) ? $val['end_year'] : null ?>" id="birth_yr" class="b_ymd validate[required,maxSize[3]]"><label for="birth_yr">年</label></span>
+                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][end_month]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['end_month']) ? $val['end_month'] : null ?>" id="birth_m" class="b_ymd validate[required,maxSize[2]]"><label for="birth_m">月</label></span>
+                                                                                            <span><input type="text" name="upDummy[ins2][<?= $key ?>][end_dt]" maxlength="2" pattern="^[0-9]+$" value="<?= !empty($val['end_dt']) ? $val['end_dt'] : null ?>" id="birth_d" class="b_ymd validate[required,maxSize[2]]"><label for="birth_d">日</label></span>
                                                                                         </div>
                                                                                     </td>
-                                                                                    <td><span><input type="text" name="upIns2[<?= $key ?>][rate]" id="rate1" maxlength="3" pattern="^[0-9]+$" class="validate[required,maxSize[3]]" value="<?= $val['rate'] ?>" style="width:50px;"></span></td>
+                                                                                    <td>
+                                                                                        <div>
+                                                                                            <select class="validate[required]" name="upIns2[<?= $key ?>][rate]" style="width:60px;">
+                                                                                                <option value=""></option>
+                                                                                                <?php $select = $val['rate'] == '90' ? ' selected' : null; ?>
+                                                                                                <option value="90"<?= $select ?>>90</option>
+                                                                                                <?php $select = $val['rate'] == '80' ? ' selected' : null; ?>
+                                                                                                <option value="80"<?= $select ?>>80</option>
+                                                                                                <?php $select = $val['rate'] == '70' ? ' selected' : null; ?>
+                                                                                                <option value="70"<?= $select ?>>70</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                    </td>
                                                                                     <td>
                                                                                         <button type="submit" class="btn-del" name="btnDelIns2" value="<?= $val['unique_id'] ?>" style="width:60px;">削除</button>
                                                                                     </td>
@@ -1233,11 +1245,11 @@ ini_set('memory_limit', '512M');
                                                                                 <div>
                                                                                     <select class="era bg-gray2" name="" disabled="">
                                                                                         <option value=""></option>
-                                                                                        <?php $select = $val['start_nengo'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['start_nengo'] === '昭和' ? ' selected' : null; ?>
                                                                                         <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                        <?php $select = $val['start_nengo'] === '平成' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['start_nengo'] === '平成' ? ' selected' : null; ?>
                                                                                         <option value="平成"<?= $select ?>>平成</option>
-                                                                                        <?php $select = $val['start_nengo'] === '令和' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['start_nengo'] === '令和' ? ' selected' : null; ?>
                                                                                         <option value="令和"<?= $select ?>>令和</option>
                                                                                     </select>
                                                                                     <span><input type="text" name="" value="<?= $val['start_year'] ?>" id="birth_yr" class="b_ymd bg-gray2" readonly=""><label for="birth_yr">年</label></span>
@@ -1248,11 +1260,11 @@ ini_set('memory_limit', '512M');
                                                                                 <div>
                                                                                     <select class="era bg-gray2" name="" disabled="">
                                                                                         <option value=""></option>
-                                                                                        <?php $select = $val['end_nengo'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['end_nengo'] === '昭和' ? ' selected' : null; ?>
                                                                                         <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                        <?php $select = $val['end_nengo'] === '平成' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['end_nengo'] === '平成' ? ' selected' : null; ?>
                                                                                         <option value="平成"<?= $select ?>>平成</option>
-                                                                                        <?php $select = $val['end_nengo'] === '令和' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['end_nengo'] === '令和' ? ' selected' : null; ?>
                                                                                         <option value="令和"<?= $select ?>>令和</option>
                                                                                     </select>
                                                                                     <span><input type="text" name="" value="<?= $val['end_year'] ?>" id="birth_yr" class="b_ymd bg-gray2" readonly=""><label for="birth_yr">年</label></span>
@@ -1264,15 +1276,15 @@ ini_set('memory_limit', '512M');
                                                                         <dl class="med_l2">
                                                                             <dt><span class="label_t">特定措置による<br/>経過措置</span></dt>
                                                                             <dd>
-                                                                                <?php $check = empty($val['select1']) ? ' checked' : NULL; ?>
+                                                                                <?php $check = empty($val['select1']) ? ' checked' : null; ?>
                                                                                 <span><input type="radio" name="" id="mode1" value=""<?= $check ?> class="bg-gray2" disabled=""><label for="mode1">無</label></span>
-                                                                                <?php $check = !empty($val['select1']) ? ' checked' : NULL; ?>
+                                                                                <?php $check = !empty($val['select1']) ? ' checked' : null; ?>
                                                                                 <span><input type="radio" name="" id="mode1" value=""<?= $check ?> class="bg-gray2" disabled=""><label for="mode1">有</label></span>
                                                                             </dd>
                                                                             <dd><span class="label_t">退職者医療<br/>制度区分</span>
-                                                                                <?php $check = empty($val['select2']) ? ' checked' : NULL; ?>
+                                                                                <?php $check = empty($val['select2']) ? ' checked' : null; ?>
                                                                                 <span><input type="radio" name="" id="mode1" value=""<?= $check ?> class="bg-gray2" disabled=""><label for="mode1">無</label></span>
-                                                                                <?php $check = !empty($val['select2']) ? ' checked' : NULL; ?>
+                                                                                <?php $check = !empty($val['select2']) ? ' checked' : null; ?>
                                                                                 <span><input type="radio" name="" id="mode1" value=""<?= $check ?> class="bg-gray2" disabled=""><label for="mode1">有</label></span>
                                                                             </dd>
                                                                         </dl>
@@ -1280,51 +1292,51 @@ ini_set('memory_limit', '512M');
                                                                             <dt><span class="label_t "><label for="health_cat">保健区分</label></span></dt>
                                                                             <dd><select name="" id="health_cat" class="bg-gray2" disabled="">
                                                                                     <option value=""></option>
-                                                                                    <?php $select = $val['type1'] == '国保' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type1'] == '国保' ? ' selected' : null; ?>
                                                                                     <option value="国保"<?= $select ?>>国保</option>
-                                                                                    <?php $select = $val['type1'] == '社保' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type1'] == '社保' ? ' selected' : null; ?>
                                                                                     <option value="社保"<?= $select ?>>社保</option>
-                                                                                    <?php $select = $val['type1'] == '後期高齢者' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type1'] == '後期高齢者' ? ' selected' : null; ?>
                                                                                     <option value="後期高齢者"<?= $select ?>>後期高齢者</option>
-                                                                                    <?php $select = $val['type1'] == '公費のみ' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type1'] == '公費のみ' ? ' selected' : null; ?>
                                                                                     <option value="公費のみ"<?= $select ?>>公費のみ</option>
-                                                                                    <?php $select = $val['type1'] == '労災' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type1'] == '労災' ? ' selected' : null; ?>
                                                                                     <option value="労災"<?= $select ?>>労災</option>
-                                                                                    <?php $select = $val['type1'] == '公害' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type1'] == '公害' ? ' selected' : null; ?>
                                                                                     <option value="公害"<?= $select ?>>公害</option>
-                                                                                    <?php $select = $val['type1'] == 'その他' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type1'] == 'その他' ? ' selected' : null; ?>
                                                                                     <option value="その他"<?= $select ?>>その他</option>
                                                                                 </select>
                                                                             </dd>
                                                                             <dd><span class="label_t "><label for="health_cat">本人区分</label></span>
                                                                                 <select name="" id="personal_cat" class="bg-gray2" disabled="">
                                                                                     <option value=""></option>
-                                                                                    <?php $select = $val['type2'] == '本人' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type2'] == '本人' ? ' selected' : null; ?>
                                                                                     <option value="本人"<?= $select ?>>本人</option>
-                                                                                    <?php $select = $val['type2'] == '被扶養者' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type2'] == '被扶養者' ? ' selected' : null; ?>
                                                                                     <option value="被扶養者"<?= $select ?>>被扶養者</option>
-                                                                                    <?php $select = $val['type2'] == '高齢者' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type2'] == '高齢者' ? ' selected' : null; ?>
                                                                                     <option value="高齢者"<?= $select ?>>高齢者</option>
-                                                                                    <?php $select = $val['type2'] == '義務教育就学前' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type2'] == '義務教育就学前' ? ' selected' : null; ?>
                                                                                     <option value="義務教育就学前"<?= $select ?>>義務教育就学前</option>
                                                                                 </select>
                                                                             </dd>
                                                                             <dd><span class="label_t "><label for="income_cat">所得区分</label></span>
                                                                                 <select name="" id="income_cat" class="bg-gray2" disabled="">
                                                                                     <option value=""></option>
-                                                                                    <?php $select = $val['type3'] == '現役並みⅢ' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type3'] == '現役並みⅢ' ? ' selected' : null; ?>
                                                                                     <option value="現役並みⅢ"<?= $select ?>>現役並みⅢ</option>
-                                                                                    <?php $select = $val['type3'] == '現役並みⅠ' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type3'] == '現役並みⅠ' ? ' selected' : null; ?>
                                                                                     <option value="現役並みⅠ"<?= $select ?>>現役並みⅠ</option>
-                                                                                    <?php $select = $val['type3'] == '現役並みⅠ' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type3'] == '現役並みⅠ' ? ' selected' : null; ?>
                                                                                     <option value="現役並みⅠ"<?= $select ?>>現役並みⅠ</option>
-                                                                                    <?php $select = $val['type3'] == '一般所得者' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type3'] == '一般所得者' ? ' selected' : null; ?>
                                                                                     <option value="一般所得者"<?= $select ?>>一般所得者</option>
-                                                                                    <?php $select = $val['type3'] == '低所得者Ⅱ' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type3'] == '低所得者Ⅱ' ? ' selected' : null; ?>
                                                                                     <option value="低所得者Ⅱ"<?= $select ?>>低所得者Ⅱ</option>
-                                                                                    <?php $select = $val['type3'] == '低所得者Ⅰ' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type3'] == '低所得者Ⅰ' ? ' selected' : null; ?>
                                                                                     <option value="低所得者Ⅰ"<?= $select ?>>低所得者Ⅰ</option>
-                                                                                    <?php $select = $val['type3'] == '不明' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type3'] == '不明' ? ' selected' : null; ?>
                                                                                     <option value="不明"<?= $select ?>>不明</option>
                                                                                 </select>
                                                                             </dd>
@@ -1359,74 +1371,74 @@ ini_set('memory_limit', '512M');
                                                                             <dd>
                                                                                 <select name="" id="insurance_name" class="bg-gray2" disabled="">
                                                                                     <option data-legal_no="" value=""<?= $select ?>></option>
-                                                                                    <?php $select = $val['name'] === "国保(30%)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "国保(30%)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="" value="国保(30%)"<?= $select ?>>国保(30%)</option>
-                                                                                    <?php $select = $val['name'] === "国保(2割)(20％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "国保(2割)(20％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="" value="国保(2割)(20％)"<?= $select ?>>国保(2割)(20％)</option>
-                                                                                    <?php $select = $val['name'] === "国保退職者(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "国保退職者(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="" value="国保退職者(30％)"<?= $select ?>>国保退職者(30％)</option>
-                                                                                    <?php $select = $val['name'] === "(退)警察特定共済組合(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "(退)警察特定共済組合(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="74" value="(退)警察特定共済組合(30％)"<?= $select ?>>(退)警察特定共済組合(30％)</option>
-                                                                                    <?php $select = $val['name'] === "(退)公立学校特定共済組合(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "(退)公立学校特定共済組合(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="75" value="(退)公立学校特定共済組合(30％)"<?= $select ?>>(退)公立学校特定共済組合(30％)</option>
-                                                                                    <?php $select = $val['name'] === "(退)国家公務員特定共済組合(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "(退)国家公務員特定共済組合(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="72" value="(退)国家公務員特定共済組合(30％)"<?= $select ?>>(退)国家公務員特定共済組合(30％)</option>
-                                                                                    <?php $select = $val['name'] === "(退)地方公務員特定共済組合(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "(退)地方公務員特定共済組合(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="73" value="(退)地方公務員特定共済組合(30％)"<?= $select ?>>(退)地方公務員特定共済組合(30％)</option>
-                                                                                    <?php $select = $val['name'] === "(退)特定健康保険組合(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "(退)特定健康保険組合(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="63" value="(退)特定健康保険組合(30％)"<?= $select ?>>(退)特定健康保険組合(30％)</option>
-                                                                                    <?php $select = $val['name'] === "(退)日本私立学校振興・共済事業団(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "(退)日本私立学校振興・共済事業団(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="34" value="(退)日本私立学校振興・共済事業団(30％)"<?= $select ?>>(退)日本私立学校振興・共済事業団(30％)</option>
-                                                                                    <?php $select = $val['name'] === "協会けんぽ(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "協会けんぽ(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="01" value="協会けんぽ(30％)"<?= $select ?>>協会けんぽ(30％)</option>
-                                                                                    <?php $select = $val['name'] === "協会けんぽ(1割)(10％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "協会けんぽ(1割)(10％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="01" value="協会けんぽ(1割)(10％)"<?= $select ?>>協会けんぽ(1割)(10％)</option>
-                                                                                    <?php $select = $val['name'] === "協会けんぽ(2割)(20％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "協会けんぽ(2割)(20％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="01" value="協会けんぽ(2割)(20％)"<?= $select ?>>協会けんぽ(2割)(20％)</option>
-                                                                                    <?php $select = $val['name'] === "警察共済組合(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "警察共済組合(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="33" value="警察共済組合(30％)"<?= $select ?>>警察共済組合(30％)</option>
-                                                                                    <?php $select = $val['name'] === "公立学校共済組合(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "公立学校共済組合(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="34" value="公立学校共済組合(30％)"<?= $select ?>>公立学校共済組合(30％)</option>
-                                                                                    <?php $select = $val['name'] === "国家公務員共済組合(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "国家公務員共済組合(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="31" value="国家公務員共済組合(30％)"<?= $select ?>>国家公務員共済組合(30％)</option>
-                                                                                    <?php $select = $val['name'] === "自衛官" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "自衛官" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="07" value="自衛官"<?= $select ?>>自衛官</option>
-                                                                                    <?php $select = $val['name'] === "船員(職務外)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "船員(職務外)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="02" value="船員(職務外)"<?= $select ?>>船員(職務外)</option>
-                                                                                    <?php $select = $val['name'] === "船員(職務上)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "船員(職務上)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="02" value="船員(職務上)"<?= $select ?>>船員(職務上)</option>
-                                                                                    <?php $select = $val['name'] === "組合管掌(30%）" ? ' selected' : NULL; ?>
-                                                                                    <option data-legal_no="06" value="組合管掌(30%）"<?= $select ?>>組合管掌(30%）</option>
-                                                                                    <?php $select = $val['name'] === "地方公務員等共済組合(30％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "組合管掌(30%)" ? ' selected' : null; ?>
+                                                                                    <option data-legal_no="06" value="組合管掌(30%)"<?= $select ?>>組合管掌(30%)</option>
+                                                                                    <?php $select = $val['name'] === "地方公務員等共済組合(30％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="32" value="地方公務員等共済組合(30％)"<?= $select ?>>地方公務員等共済組合(30％)</option>
-                                                                                    <?php $select = $val['name'] === "日雇い(一般)(20％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "日雇い(一般)(20％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="03" value="日雇い(一般)(20％)"<?= $select ?>>日雇い(一般)(20％)</option>
-                                                                                    <?php $select = $val['name'] === "日雇い(特別)(20％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "日雇い(特別)(20％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="04" value="日雇い(特別)(20％)"<?= $select ?>>日雇い(特別)(20％)</option>
-                                                                                    <?php $select = $val['name'] === "日本私立学校振興・共済事業団(30％）" ? ' selected' : NULL; ?>
-                                                                                    <option data-legal_no="34" value="日本私立学校振興・共済事業団(30％）"<?= $select ?>>日本私立学校振興・共済事業団(30％）</option>
-                                                                                    <?php $select = $val['name'] === "後期高齢者1割(10％）" ? ' selected' : NULL; ?>
-                                                                                    <option data-legal_no="39" value="後期高齢者1割(10％）"<?= $select ?>>後期高齢者1割(10％）</option>
-                                                                                    <?php $select = $val['name'] === "後期高齢者2割(20％）" ? ' selected' : NULL; ?>
-                                                                                    <option data-legal_no="39" value="後期高齢者2割(20％）"<?= $select ?>>後期高齢者2割(20％）</option>
-                                                                                    <?php $select = $val['name'] === "後期高齢者3割(30％）" ? ' selected' : NULL; ?>
-                                                                                    <option data-legal_no="39" value="後期高齢者3割(30％）"<?= $select ?>>後期高齢者3割(30％）</option>
-                                                                                    <?php $select = $val['name'] === "労災(0％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "日本私立学校振興・共済事業団(30％)" ? ' selected' : null; ?>
+                                                                                    <option data-legal_no="34" value="日本私立学校振興・共済事業団(30％)"<?= $select ?>>日本私立学校振興・共済事業団(30％)</option>
+                                                                                    <?php $select = $val['name'] === "後期高齢者1割(10％)" ? ' selected' : null; ?>
+                                                                                    <option data-legal_no="39" value="後期高齢者1割(10％)"<?= $select ?>>後期高齢者1割(10％)</option>
+                                                                                    <?php $select = $val['name'] === "後期高齢者2割(20％)" ? ' selected' : null; ?>
+                                                                                    <option data-legal_no="39" value="後期高齢者2割(20％)"<?= $select ?>>後期高齢者2割(20％)</option>
+                                                                                    <?php $select = $val['name'] === "後期高齢者3割(30％)" ? ' selected' : null; ?>
+                                                                                    <option data-legal_no="39" value="後期高齢者3割(30％)"<?= $select ?>>後期高齢者3割(30％)</option>
+                                                                                    <?php $select = $val['name'] === "労災(0％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="" value="労災(0％)"<?= $select ?>>労災(0％)</option>
-                                                                                    <?php $select = $val['name'] === "公害(0％)" ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['name'] === "公害(0％)" ? ' selected' : null; ?>
                                                                                     <option data-legal_no="" value="公害(0％)"<?= $select ?>>公害(0％)</option>
                                                                                 </select>
                                                                             </dd>
                                                                             <dd><span class="label_t "><label for="prof_jiyu">職務上の事由</label></span>
                                                                                 <select name="" id="prof_jiyu" class="bg-gray2" disabled="">
                                                                                     <option value=""></option>
-                                                                                    <?php $select = $val['type4'] == 'なし' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type4'] == 'なし' ? ' selected' : null; ?>
                                                                                     <option value="なし"<?= $select ?>>なし</option>
-                                                                                    <?php $select = $val['type4'] == '職務上' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type4'] == '職務上' ? ' selected' : null; ?>
                                                                                     <option value="職務上"<?= $select ?>>職務上</option>
-                                                                                    <?php $select = $val['type4'] == '下船後3カ月以内' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type4'] == '下船後3カ月以内' ? ' selected' : null; ?>
                                                                                     <option value="下船後3カ月以内"<?= $select ?>>下船後3カ月以内</option>
-                                                                                    <?php $select = $val['type4'] == '通勤災害' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['type4'] == '通勤災害' ? ' selected' : null; ?>
                                                                                     <option value="通勤災害"<?= $select ?>>通勤災害</option>
                                                                                 </select>
                                                                             </dd>
@@ -1514,11 +1526,11 @@ ini_set('memory_limit', '512M');
                                                                                 <div>
                                                                                     <select name="" class="era ins4_sn bg-gray2" disabled="">
                                                                                         <option value=""></option>
-                                                                                        <?php $select = $val['start_nengo'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['start_nengo'] === '昭和' ? ' selected' : null; ?>
                                                                                         <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                        <?php $select = $val['start_nengo'] === '平成' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['start_nengo'] === '平成' ? ' selected' : null; ?>
                                                                                         <option value="平成"<?= $select ?>>平成</option>
-                                                                                        <?php $select = $val['start_nengo'] === '令和' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['start_nengo'] === '令和' ? ' selected' : null; ?>
                                                                                         <option value="令和"<?= $select ?>>令和</option>
                                                                                     </select>
                                                                                     <span><input type="text" name="" value="<?= $val['start_year'] ?>" id="birth_yr" class="b_ymd bg-gray2 ins4_sy" readonly=""><label for="birth_yr">年</label></span>
@@ -1529,11 +1541,11 @@ ini_set('memory_limit', '512M');
                                                                                 <div>
                                                                                     <select name="" class="era ins4_en bg-gray2" disabled="">
                                                                                         <option value=""></option>
-                                                                                        <?php $select = $val['end_nengo'] === '昭和' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['end_nengo'] === '昭和' ? ' selected' : null; ?>
                                                                                         <option value="昭和"<?= $select ?>>昭和</option>
-                                                                                        <?php $select = $val['end_nengo'] === '平成' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['end_nengo'] === '平成' ? ' selected' : null; ?>
                                                                                         <option value="平成"<?= $select ?>>平成</option>
-                                                                                        <?php $select = $val['end_nengo'] === '令和' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['end_nengo'] === '令和' ? ' selected' : null; ?>
                                                                                         <option value="令和"<?= $select ?>>令和</option>
                                                                                     </select>
                                                                                     <span><input type="text" name="" value="<?= $val['end_year'] ?>" id="birth_yr" class="b_ymd bg-gray2 ins4_ey" readonly=""><label for="birth_yr">年</label></span>
@@ -1586,7 +1598,7 @@ ini_set('memory_limit', '512M');
                                                         <div class="tit no_bg tit_toggle"></div>
                                                         <div class="box-i child_toggle hsp-search">
                                                             <span class="chk_direct">
-                                                                <?php $check = $search['sijisyo'] ? ' checked' : NULL; ?>
+                                                                <?php $check = $search['sijisyo'] ? ' checked' : null; ?>
                                                                 <input type="checkbox" name="search[sijisyo]" value="1" id="direction" onchange="changeSijisyo(<?= $search['sijisyo'] ?>)"<?= $check ?>>
                                                                 <label for="direction">指示書</label>
                                                             </span>
@@ -1616,7 +1628,7 @@ ini_set('memory_limit', '512M');
                                                                                     </td>
                                                                                     <td><?= $val['name'] ?></td>
                                                                                     <td><?= $val['doctor'] ?></td>
-                                                                                    <td><?= $val['select1'] ? '〇' : NULL; ?></td>
+                                                                                    <td><?= $val['select1'] ? '〇' : null; ?></td>
                                                                                     <td><?= $val['type1'] ?></td>
                                                                                     <td>
                                                                                         <button type="button" class="btn-edit hsp-edit" name="btnEditHsp" value="<?= $val['unique_id'] ?>"
@@ -1665,7 +1677,7 @@ ini_set('memory_limit', '512M');
                                                                                     <input type="text" name="" class="bg-gray2" value="<?= $val['end_day'] ?>" readonly="">
                                                                                 </div><br class="sm" />
                                                                                 <div>
-                                                                                    <?php $checked = !empty($val['select1']) ? ' checked' : NULL; ?>
+                                                                                    <?php $checked = !empty($val['select1']) ? ' checked' : null; ?>
                                                                                     <input type="checkbox" name="" id="" <?= $checked ?> class="bg-gray2" disabled="">
                                                                                     <span class="label_t label_y"><label for="shijisho_hakko">指示書発行</label></span>
                                                                                 </div>
@@ -1673,9 +1685,9 @@ ini_set('memory_limit', '512M');
                                                                                     <span class="label_t"><label>病院/在宅</label></span>
                                                                                     <select name="" id="attend_cat" class="bg-gray2" disabled="">
                                                                                         <option value=""></option>
-                                                                                        <?php $select = $val['type1'] !== '在宅' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['type1'] !== '在宅' ? ' selected' : null; ?>
                                                                                         <option value="病院"<?= $select ?>>病院</option>
-                                                                                        <?php $select = $val['type1'] == '在宅' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['type1'] == '在宅' ? ' selected' : null; ?>
                                                                                         <option value="在宅"<?= $select ?>>在宅</option>
                                                                                     </select>
                                                                                 </div>
@@ -1750,7 +1762,7 @@ ini_set('memory_limit', '512M');
                                                     <div class="tit no_bg tit_toggle">薬情</div>
                                                     <div class="box-i child_toggle">
                                                         <span class="chk_direct">
-                                                            <?php $check = $search['drg_disp_flg'] ? ' checked' : NULL; ?>
+                                                            <?php $check = $search['drg_disp_flg'] ? ' checked' : null; ?>
                                                             <input type="checkbox" name="search[drg_disp_flg]" id="direction"  onchange="changeYakujo(<?= $search['drg_disp_flg'] ?>)"<?= $check ?>>
                                                             <label for="direction">終了分表示</label>
                                                         </span>
@@ -1799,7 +1811,7 @@ ini_set('memory_limit', '512M');
                                                                                 <td>
                                                                                     <input type="hidden" name="upDrg[<?= $key ?>][unique_id]" value="<?= $dispData['drug'][$key]['unique_id'] ?>">
                                                                                 </td>
-                                                                                <?php $class = $val['disable'] ? 'disabled' : NULL; ?>
+                                                                                <?php $class = $val['disable'] ? 'disabled' : null; ?>
                                                                                 <td class="<?= $class ?>">
                                                                                 </td>
                                                                             </tr>
@@ -1958,7 +1970,7 @@ ini_set('memory_limit', '512M');
                                                                         <dl>
                                                                             <dt><span class="label_t"><label>開始区分</label></span></dt>
                                                                             <dd><select name="" id="kaishi_kubun" class="bg-gray2" disabled="">
-                                                                                    <?php $select = $val['start_type'] == '訪問開始' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['start_type'] == '訪問開始' ? ' selected' : null; ?>
                                                                                     <option value=""></option>
                                                                                     <option value="訪問開始"<?= $select ?>>訪問開始</option>
                                                                                 </select>
@@ -1968,15 +1980,15 @@ ini_set('memory_limit', '512M');
                                                                             <dt><span class="label_t"><label>訪問終了の状況</label></span></dt>
                                                                             <dd><select name="" id="visit_stat" class="bg-gray2" disabled="">
                                                                                     <option value=""></option>
-                                                                                    <?php $select = $val['支店'] == '軽快' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['支店'] == '軽快' ? ' selected' : null; ?>
                                                                                     <option value="軽快"<?= $select ?>>1:軽快</option>
-                                                                                    <?php $select = $val['cancel_reason'] == '施設' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['cancel_reason'] == '施設' ? ' selected' : null; ?>
                                                                                     <option value="施設"<?= $select ?>>2:施設</option>
-                                                                                    <?php $select = $val['cancel_reason'] == '医療機関' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['cancel_reason'] == '医療機関' ? ' selected' : null; ?>
                                                                                     <option value="医療機関"<?= $select ?>>3:医療機関</option>
-                                                                                    <?php $select = $val['cancel_reason'] == '死亡' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['cancel_reason'] == '死亡' ? ' selected' : null; ?>
                                                                                     <option value="死亡"<?= $select ?>>4:死亡</option>
-                                                                                    <?php $select = $val['cancel_reason'] == 'その他' ? ' selected' : NULL; ?>
+                                                                                    <?php $select = $val['cancel_reason'] == 'その他' ? ' selected' : null; ?>
                                                                                     <option value="その他"<?= $select ?>>5:その他</option>
                                                                                 </select>
                                                                             </dd>
@@ -1988,15 +2000,15 @@ ini_set('memory_limit', '512M');
                                                                                 <div><span class="label_t">場所</span>
                                                                                     <select name="" class="place bg-gray2" disabled="">
                                                                                         <option value=""></option>
-                                                                                        <?php $select = $val['death_place'] == '自宅' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['death_place'] == '自宅' ? ' selected' : null; ?>
                                                                                         <option value="自宅"<?= $select ?>>1:軽快</option>
-                                                                                        <?php $select = $val['death_place'] == '施設' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['death_place'] == '施設' ? ' selected' : null; ?>
                                                                                         <option value="施設"<?= $select ?>>2:施設</option>
-                                                                                        <?php $select = $val['death_place'] == '病院' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['death_place'] == '病院' ? ' selected' : null; ?>
                                                                                         <option value="病院"<?= $select ?>>3:病院</option>
-                                                                                        <?php $select = $val['death_place'] == '診療所' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['death_place'] == '診療所' ? ' selected' : null; ?>
                                                                                         <option value="診療所"<?= $select ?>>4:診療所</option>
-                                                                                        <?php $select = $val['death_place'] == 'その他' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['death_place'] == 'その他' ? ' selected' : null; ?>
                                                                                         <option value="その他"<?= $select ?>>5:その他</option>
                                                                                     </select>
                                                                                 </div>
@@ -2049,13 +2061,13 @@ ini_set('memory_limit', '512M');
                                                                     </span>
                                                                     <select name="upEmg[0][together]" id="dokyo">
                                                                         <option value=""></option>
-                                                                        <?php $select = $dispData['emergency'][0]['together'] == '同居' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][0]['together'] == '同居' ? ' selected' : null; ?>
                                                                         <option value="同居"<?= $select ?>>同居</option>
-                                                                        <?php $select = $dispData['emergency'][0]['together'] == '別居(近隣)' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][0]['together'] == '別居(近隣)' ? ' selected' : null; ?>
                                                                         <option value="別居(近隣)"<?= $select ?>>別居(近隣)</option>
-                                                                        <?php $select = $dispData['emergency'][0]['together'] == '別居(遠方)' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][0]['together'] == '別居(遠方)' ? ' selected' : null; ?>
                                                                         <option value="別居(遠方)"<?= $select ?>>別居(遠方)</option>
-                                                                        <?php $select = $dispData['emergency'][0]['together'] == 'その他' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][0]['together'] == 'その他' ? ' selected' : null; ?>
                                                                         <option value="その他"<?= $select ?>>その他</option>
                                                                     </select>
                                                                 </td>
@@ -2065,15 +2077,15 @@ ini_set('memory_limit', '512M');
                                                                 <td>
                                                                     <select name="upEmg[0][relation_type]" id="relation" class="emg-relation_type-1">
                                                                         <option value=""></option>
-                                                                        <?php $select = $dispData['emergency'][0]['relation_type'] == '夫' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][0]['relation_type'] == '夫' ? ' selected' : null; ?>
                                                                         <option value="夫"<?= $select ?>>夫</option>
-                                                                        <?php $select = $dispData['emergency'][0]['relation_type'] == '妻' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][0]['relation_type'] == '妻' ? ' selected' : null; ?>
                                                                         <option value="妻"<?= $select ?>>妻</option>
-                                                                        <?php $select = $dispData['emergency'][0]['relation_type'] == '子' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][0]['relation_type'] == '子' ? ' selected' : null; ?>
                                                                         <option value="子"<?= $select ?>>子</option>
-                                                                        <?php $select = $dispData['emergency'][0]['relation_type'] == '兄弟' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][0]['relation_type'] == '兄弟' ? ' selected' : null; ?>
                                                                         <option value="兄弟"<?= $select ?>>兄弟</option>
-                                                                        <?php $select = $dispData['emergency'][0]['relation_type'] == 'その他' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][0]['relation_type'] == 'その他' ? ' selected' : null; ?>
                                                                         <option value="その他"<?= $select ?>>その他</option>
                                                                     </select>
                                                                     <span>
@@ -2113,7 +2125,7 @@ ini_set('memory_limit', '512M');
                                                                     <select name="upEmg[0][prefecture]" id="prefecture">
                                                                         <option value="">▼選択</option>
                                                                         <?php foreach ($areaMst as $pref => $areaMst2): ?>
-                                                                            <?php $select = $pref === $dispData['emergency'][0]['prefecture'] ? ' selected' : NULL; ?>
+                                                                            <?php $select = $pref === $dispData['emergency'][0]['prefecture'] ? ' selected' : null; ?>
                                                                             <option value="<?= $pref ?>"<?= $select ?>><?= $pref ?></option>
                                                                         <?php endforeach; ?>
                                                                         <!-- ※クラス名で市区町村と連携 -->
@@ -2127,7 +2139,7 @@ ini_set('memory_limit', '512M');
                                                                         <option value="">▼選択</option>
                                                                         <?php foreach ($areaMst as $pref => $areaMst2): ?>
                                                                             <?php foreach ($areaMst2 as $city => $areaMst3): ?>
-                                                                                <?php $select = $city === $dispData['emergency'][0]['area'] ? ' selected' : NULL; ?>
+                                                                                <?php $select = $city === $dispData['emergency'][0]['area'] ? ' selected' : null; ?>
                                                                                 <option class="<?= $pref ?>" value="<?= $city ?>"<?= $select ?>><?= $city ?></option>
                                                                             <?php endforeach; ?>
                                                                         <?php endforeach; ?>
@@ -2181,13 +2193,13 @@ ini_set('memory_limit', '512M');
                                                                     </span>
                                                                     <select name="upEmg[1][together]" id="dokyo">
                                                                         <option value=""></option>
-                                                                        <?php $select = $dispData['emergency'][1]['together'] == '同居' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][1]['together'] == '同居' ? ' selected' : null; ?>
                                                                         <option value="同居"<?= $select ?>>同居</option>
-                                                                        <?php $select = $dispData['emergency'][1]['together'] == '別居(近隣)' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][1]['together'] == '別居(近隣)' ? ' selected' : null; ?>
                                                                         <option value="別居(近隣)"<?= $select ?>>別居(近隣)</option>
-                                                                        <?php $select = $dispData['emergency'][1]['together'] == '別居(遠方)' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][1]['together'] == '別居(遠方)' ? ' selected' : null; ?>
                                                                         <option value="別居(遠方)"<?= $select ?>>別居(遠方)</option>
-                                                                        <?php $select = $dispData['emergency'][1]['together'] == 'その他' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][1]['together'] == 'その他' ? ' selected' : null; ?>
                                                                         <option value="その他"<?= $select ?>>その他</option>
                                                                     </select>
                                                                 </td>
@@ -2197,15 +2209,15 @@ ini_set('memory_limit', '512M');
                                                                 <td>
                                                                     <select name="upEmg[1][relation_type]" id="relation" class="emg-relation_type-2">
                                                                         <option value=""></option>
-                                                                        <?php $select = $dispData['emergency'][1]['relation_type'] == '夫' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][1]['relation_type'] == '夫' ? ' selected' : null; ?>
                                                                         <option value="夫"<?= $select ?>>夫</option>
-                                                                        <?php $select = $dispData['emergency'][1]['relation_type'] == '妻' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][1]['relation_type'] == '妻' ? ' selected' : null; ?>
                                                                         <option value="妻"<?= $select ?>>妻</option>
-                                                                        <?php $select = $dispData['emergency'][1]['relation_type'] == '子' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][1]['relation_type'] == '子' ? ' selected' : null; ?>
                                                                         <option value="子"<?= $select ?>>子</option>
-                                                                        <?php $select = $dispData['emergency'][1]['relation_type'] == '兄弟' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][1]['relation_type'] == '兄弟' ? ' selected' : null; ?>
                                                                         <option value="兄弟"<?= $select ?>>兄弟</option>
-                                                                        <?php $select = $dispData['emergency'][1]['relation_type'] == 'その他' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][1]['relation_type'] == 'その他' ? ' selected' : null; ?>
                                                                         <option value="その他"<?= $select ?>>その他</option>
                                                                     </select>
                                                                     <span>
@@ -2244,7 +2256,7 @@ ini_set('memory_limit', '512M');
                                                                     <select name="upEmg[1][prefecture]" id="prefecture2">
                                                                         <option value="">▼選択</option>
                                                                         <?php foreach ($areaMst as $pref => $areaMst2): ?>
-                                                                            <?php $select = $pref === $dispData['emergency'][1]['prefecture'] ? ' selected' : NULL; ?>
+                                                                            <?php $select = $pref === $dispData['emergency'][1]['prefecture'] ? ' selected' : null; ?>
                                                                             <option value="<?= $pref ?>"<?= $select ?>><?= $pref ?></option>
                                                                         <?php endforeach; ?>
                                                                         <!-- ※クラス名で市区町村と連携 -->
@@ -2259,7 +2271,7 @@ ini_set('memory_limit', '512M');
                                                                         <option value="">▼選択</option>
                                                                         <?php foreach ($areaMst as $pref => $areaMst2): ?>
                                                                             <?php foreach ($areaMst2 as $city => $areaMst3): ?>
-                                                                                <?php $select = $city === $dispData['emergency'][1]['area'] ? ' selected' : NULL; ?>
+                                                                                <?php $select = $city === $dispData['emergency'][1]['area'] ? ' selected' : null; ?>
                                                                                 <option class="<?= $pref ?>" value="<?= $city ?>"<?= $select ?>><?= $city ?></option>
                                                                             <?php endforeach; ?>
                                                                         <?php endforeach; ?>
@@ -2313,13 +2325,13 @@ ini_set('memory_limit', '512M');
                                                                     </span>
                                                                     <select name="upEmg[2][together]" id="dokyo">
                                                                         <option value=""></option>
-                                                                        <?php $select = $dispData['emergency'][2]['together'] == '同居' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][2]['together'] == '同居' ? ' selected' : null; ?>
                                                                         <option value="同居"<?= $select ?>>同居</option>
-                                                                        <?php $select = $dispData['emergency'][2]['together'] == '別居(近隣)' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][2]['together'] == '別居(近隣)' ? ' selected' : null; ?>
                                                                         <option value="別居(近隣)"<?= $select ?>>別居(近隣)</option>
-                                                                        <?php $select = $dispData['emergency'][2]['together'] == '別居(遠方)' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][2]['together'] == '別居(遠方)' ? ' selected' : null; ?>
                                                                         <option value="別居(遠方)"<?= $select ?>>別居(遠方)</option>
-                                                                        <?php $select = $dispData['emergency'][2]['together'] == 'その他' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][2]['together'] == 'その他' ? ' selected' : null; ?>
                                                                         <option value="その他"<?= $select ?>>その他</option>
                                                                     </select>
                                                                 </td>
@@ -2329,15 +2341,15 @@ ini_set('memory_limit', '512M');
                                                                 <td>
                                                                     <select name="upEmg[2][relation_type]" id="relation" class="emg-relation_type-3">
                                                                         <option value=""></option>
-                                                                        <?php $select = $dispData['emergency'][2]['relation_type'] == '夫' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][2]['relation_type'] == '夫' ? ' selected' : null; ?>
                                                                         <option value="夫"<?= $select ?>>夫</option>
-                                                                        <?php $select = $dispData['emergency'][2]['relation_type'] == '妻' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][2]['relation_type'] == '妻' ? ' selected' : null; ?>
                                                                         <option value="妻"<?= $select ?>>妻</option>
-                                                                        <?php $select = $dispData['emergency'][2]['relation_type'] == '子' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][2]['relation_type'] == '子' ? ' selected' : null; ?>
                                                                         <option value="子"<?= $select ?>>子</option>
-                                                                        <?php $select = $dispData['emergency'][2]['relation_type'] == '兄弟' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][2]['relation_type'] == '兄弟' ? ' selected' : null; ?>
                                                                         <option value="兄弟"<?= $select ?>>兄弟</option>
-                                                                        <?php $select = $dispData['emergency'][2]['relation_type'] == 'その他' ? ' selected' : NULL; ?>
+                                                                        <?php $select = $dispData['emergency'][2]['relation_type'] == 'その他' ? ' selected' : null; ?>
                                                                         <option value="その他"<?= $select ?>>その他</option>
                                                                     </select>
                                                                     <span>
@@ -2374,7 +2386,7 @@ ini_set('memory_limit', '512M');
                                                                     <select name="upEmg[2][prefecture]" id="prefecture3">
                                                                         <option value="">▼選択</option>
                                                                         <?php foreach ($areaMst as $pref => $areaMst2): ?>
-                                                                            <?php $select = $pref === $dispData['emergency'][2]['prefecture'] ? ' selected' : NULL; ?>
+                                                                            <?php $select = $pref === $dispData['emergency'][2]['prefecture'] ? ' selected' : null; ?>
                                                                             <option value="<?= $pref ?>"<?= $select ?>><?= $pref ?></option>
                                                                         <?php endforeach; ?>
                                                                         <!-- ※クラス名で市区町村と連携 -->
@@ -2389,7 +2401,7 @@ ini_set('memory_limit', '512M');
                                                                         <option value="">▼選択</option>
                                                                         <?php foreach ($areaMst as $pref => $areaMst2): ?>
                                                                             <?php foreach ($areaMst2 as $city => $areaMst3): ?>
-                                                                                <?php $select = $city === $dispData['emergency'][2]['area'] ? ' selected' : NULL; ?>
+                                                                                <?php $select = $city === $dispData['emergency'][2]['area'] ? ' selected' : null; ?>
                                                                                 <option class="<?= $pref ?>" value="<?= $city ?>"<?= $select ?>><?= $city ?></option>
                                                                             <?php endforeach; ?>
                                                                         <?php endforeach; ?>
@@ -2562,11 +2574,11 @@ ini_set('memory_limit', '512M');
                                                                                 <td style="width:200px;">
                                                                                     <select name="upFml[<?= $i ?>][type]" class="em_con-list2" data-key="<?= $key ?>" onchange="copyFamily(this)">
                                                                                         <option value="">▼反映元を選択</option>
-                                                                                        <?php $select = $val['type'] == '1' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['type'] == '1' ? ' selected' : null; ?>
                                                                                         <option value="1"<?= $select ?>>緊急連絡先①を反映</option>
-                                                                                        <?php $select = $val['type'] == '2' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['type'] == '2' ? ' selected' : null; ?>
                                                                                         <option value="2"<?= $select ?>>緊急連絡先②を反映</option>
-                                                                                        <?php $select = $val['type'] == '3' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['type'] == '3' ? ' selected' : null; ?>
                                                                                         <option value="3"<?= $select ?>>緊急連絡先③を反映</option>
                                                                                     </select>
                                                                                     <input type="hidden" name="btnFmlCopy" class="copyFml" value="">
@@ -2936,13 +2948,13 @@ ini_set('memory_limit', '512M');
                                                                                 <dd>
                                                                                     <select name="" class="">
                                                                                         <option value=""></option>
-                                                                                        <?php $select = $val['out_type'] == '逝去' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['out_type'] == '逝去' ? ' selected' : null; ?>
                                                                                         <option value="逝去"<?= $select ?>>逝去</option>
-                                                                                        <?php $select = $val['out_type'] == '入院' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['out_type'] == '入院' ? ' selected' : null; ?>
                                                                                         <option value="入院"<?= $select ?>>入院</option>
-                                                                                        <?php $select = $val['out_type'] == '施設入所' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['out_type'] == '施設入所' ? ' selected' : null; ?>
                                                                                         <option value="施設入所"<?= $select ?>>施設入所</option>
-                                                                                        <?php $select = $val['out_type'] == 'その他' ? ' selected' : NULL; ?>
+                                                                                        <?php $select = $val['out_type'] == 'その他' ? ' selected' : null; ?>
                                                                                         <option value="その他"<?= $select ?>>その他</option>
                                                                                     </select>
                                                                                 </dd>
@@ -2967,9 +2979,9 @@ ini_set('memory_limit', '512M');
                                     <?php endif; ?>
 
                                     <!--ダイアログ呼出し-->
-                                    <?php // require_once($_SERVER['DOCUMENT_ROOT'] . '/common/dialog/office.php'); ?>
+                                    <?php // require_once($_SERVER['DOCUMENT_ROOT'] . '/common/dialog/office.php');?>
                                     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/user/edit/dialog/office2.php'); ?>
-                                    <?php //require_once($_SERVER['DOCUMENT_ROOT'] . '/user/edit/dialog/office3.php'); ?>
+                                    <?php //require_once($_SERVER['DOCUMENT_ROOT'] . '/user/edit/dialog/office3.php');?>
                                     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/user/edit/dialog/insurance.php'); ?>
                                     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/user/edit/dialog/insurance3.php'); ?>
                                     <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/user/edit/dialog/insurance4.php'); ?>
@@ -2983,15 +2995,15 @@ ini_set('memory_limit', '512M');
                                     <div class="nurse_record record9">
                                         <div class="i_register">
                                             <span class="label_t">初回登録:</span>
-                                            <span class="label_t hidzuke"><?= isset($dispData['standard']['create_day']) ? $dispData['standard']['create_day'] : NULL ?></span>
-                                            <span class="label_t time"><?= isset($dispData['standard']['create_time']) ? $dispData['standard']['create_time'] : NULL ?></span>
-                                            <span class="label_t"><?= isset($dispData['standard']['create_name']) ? $dispData['standard']['create_name'] : NULL ?></span>
+                                            <span class="label_t hidzuke"><?= isset($dispData['standard']['create_day']) ? $dispData['standard']['create_day'] : null ?></span>
+                                            <span class="label_t time"><?= isset($dispData['standard']['create_time']) ? $dispData['standard']['create_time'] : null ?></span>
+                                            <span class="label_t"><?= isset($dispData['standard']['create_name']) ? $dispData['standard']['create_name'] : null ?></span>
                                         </div>
                                         <div class="l_update">
                                             <span class="label_t">最終更新:</span>
-                                            <span class="label_t hidzuke"><?= isset($dispData['standard']['update_day']) ? $dispData['standard']['update_day'] : NULL ?></span>
-                                            <span class="label_t time"><?= isset($dispData['standard']['update_time']) ? $dispData['standard']['update_time'] : NULL ?></span>
-                                            <span class="label_t"><?= isset($dispData['standard']['update_name']) ? $dispData['standard']['update_name'] : NULL ?></span>
+                                            <span class="label_t hidzuke"><?= isset($dispData['standard']['update_day']) ? $dispData['standard']['update_day'] : null ?></span>
+                                            <span class="label_t time"><?= isset($dispData['standard']['update_time']) ? $dispData['standard']['update_time'] : null ?></span>
+                                            <span class="label_t"><?= isset($dispData['standard']['update_name']) ? $dispData['standard']['update_name'] : null ?></span>
                                         </div>
                                     </div>
                                 </div>

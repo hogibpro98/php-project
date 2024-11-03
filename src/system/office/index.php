@@ -106,7 +106,7 @@
                                                                 <select name="upAry[0][prefecture]" class="f-keyVal prefecture_name0">
                                                                     <option value=""></option>
                                                                     <?php foreach ($areaMst as $pref => $areaMst2): ?>
-                                                                        <?php $select = $pref === $dispData[0]['prefecture'] ? ' selected' : NULL; ?>
+                                                                        <?php $select = $pref === $dispData[0]['prefecture'] ? ' selected' : null; ?>
                                                                         <option value="<?= $pref ?>"<?= $select ?>><?= $pref ?></option>
                                                                     <?php endforeach; ?>
                                                                 </select>
@@ -117,7 +117,7 @@
                                                                     <option value=""></option>
                                                                     <?php foreach ($areaMst as $prefectureName => $areaMst2): ?>
                                                                         <?php foreach ($areaMst2 as $areaName => $dummy): ?>
-                                                                            <?php $select = $dispData[0]['area'] === $areaName ? ' selected' : NULL; ?>
+                                                                            <?php $select = $dispData[0]['area'] === $areaName ? ' selected' : null; ?>
                                                                             <option data-pref_name="<?= $prefectureName ?>" value="<?= $areaName ?>"<?= $select ?>><?= $areaName ?></option>
                                                                         <?php endforeach; ?>
                                                                     <?php endforeach; ?>
@@ -205,43 +205,132 @@
                                         </div>
                                         <div class="box3">
                                             <dl>
-                                                <dt>看多機加算情報</dt>
+                                                <dt>看多機　訪問介護</dt>
                                                 <dd><ul>
-                                                        <li><div class="label_t">サービス提供体制強化加算Ⅰ・Ⅱ・Ⅲ</div>
+                                                        <li>
+                                                            <div class="label_t">看護小規模訪問看護体制減算</div>
                                                             <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['サービス提供体制強化加算Ⅰ・Ⅱ・Ⅲ'] as $id => $temp): ?>
-                                                                    <span><input type="radio" name="upAry[0][select1]" value="<?= $temp ?>" <?= $temp == $dispData[0]['select1'] ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
+                                                                <?php $check = empty($dispData[0]['add1_1_1']) ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="" <?= $check ?>><label>なし</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_1'] == '776021' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="776021" <?= $check ?>><label>1</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_1'] == '776022' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="776022" <?= $check ?>><label>1日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_1'] == '776023' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="776023" <?= $check ?>><label>2</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_1'] == '776024' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="776024" <?= $check ?>><label>2日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_1'] == '776025' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="776025" <?= $check ?>><label>3</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_1'] == '776026' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="776026" <?= $check ?>><label>3日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_1'] == '776027' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="776027" <?= $check ?>><label>4</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_1'] == '776028' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="776028" <?= $check ?>><label>4日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_1'] == '776029' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="776029" <?= $check ?>><label>5</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_1'] == '776030' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_1]" value="776030" <?= $check ?>><label>5日割</label></span>
                                                             </div>
                                                         </li>
-                                                        <li><div class="label_t">看護体制強化加算Ⅰ・Ⅱ</div>
+                                                </ul></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>看多機　訪問看護</dt>
+                                                <dd><ul>
+                                                        <li>
+                                                            <div class="label_t">看護小規模訪問看護体制減算</div>
                                                             <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['看護体制強化加算Ⅰ・Ⅱ'] as $id => $temp): ?>
-                                                                    <span><input type="radio" name="upAry[0][select2]" value="<?= $temp ?>" <?= ($temp == $dispData[0]['select2']) ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
+                                                                <?php $check = empty($dispData[0]['add1_1_2']) ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="" <?= $check ?>><label>なし</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_2'] == '776021' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="776021" <?= $check ?>><label>1</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_2'] == '776022' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="776022" <?= $check ?>><label>1日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_2'] == '776023' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="776023" <?= $check ?>><label>2</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_2'] == '776024' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="776024" <?= $check ?>><label>2日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_2'] == '776025' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="776025" <?= $check ?>><label>3</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_2'] == '776026' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="776026" <?= $check ?>><label>3日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_2'] == '776027' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="776027" <?= $check ?>><label>4</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_2'] == '776028' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="776028" <?= $check ?>><label>4日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_2'] == '776029' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="776029" <?= $check ?>><label>5</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_2'] == '776030' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_2]" value="776030" <?= $check ?>><label>5日割</label></span>
                                                             </div>
                                                         </li>
-                                                        <li><div class="label_t">総合マネジメント体制強化加算</div>
-                                                            <div class="opt_s"><span><input type="checkbox" name="upAry[0][select3]" value="1" <?= ($dispData[0]['select3'] == '1') ? 'checked' : '' ?>></span></div>
-                                                        </li>
-                                                        <li><div class="label_t">訪問体制強化加算</div>
-                                                            <div class="opt_s"><span><input type="checkbox" name="upAry[0][select4]" value="1" <?= ($dispData[0]['select4'] == '1') ? 'checked' : '' ?>></span></div>
-                                                        </li>
-                                                        <li><div class="label_t">介護職員処遇改善加算Ⅰ・Ⅱ・Ⅲ</div>
+                                                </ul></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>看多機　通い</dt>
+                                                <dd><ul>
+                                                        <li>
+                                                            <div class="label_t">看護小規模訪問看護体制減算</div>
                                                             <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['介護職員処遇改善加算Ⅰ・Ⅱ・Ⅲ'] as $id => $temp): ?>
-                                                                    <span><input type="radio" name="upAry[0][select5]" value="<?= $temp ?>" <?= $temp == $dispData[0]['select5'] ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
+                                                                <?php $check = empty($dispData[0]['add1_1_3']) ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="" <?= $check ?>><label>なし</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_3'] == '776021' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="776021" <?= $check ?>><label>1</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_3'] == '776022' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="776022" <?= $check ?>><label>1日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_3'] == '776023' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="776023" <?= $check ?>><label>2</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_3'] == '776024' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="776024" <?= $check ?>><label>2日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_3'] == '776025' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="776025" <?= $check ?>><label>3</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_3'] == '776026' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="776026" <?= $check ?>><label>3日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_3'] == '776027' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="776027" <?= $check ?>><label>4</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_3'] == '776028' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="776028" <?= $check ?>><label>4日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_3'] == '776029' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="776029" <?= $check ?>><label>5</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_3'] == '776030' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_3]" value="776030" <?= $check ?>><label>5日割</label></span>
                                                             </div>
                                                         </li>
-                                                        <li><div class="label_t">介護職員特定処遇改善加算Ⅰ・Ⅱ</div>
+                                                </ul></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>看多機　宿泊</dt>
+                                                <dd><ul>
+                                                        <li>
+                                                            <div class="label_t">看護小規模訪問看護体制減算</div>
                                                             <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['介護職員特定処遇改善加算Ⅰ・Ⅱ'] as $id => $temp): ?>
-                                                                    <span><input type="radio" name="upAry[0][select6]" value="<?= $temp ?>" <?= $temp == $dispData[0]['select6'] ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
+                                                                <?php $check = empty($dispData[0]['add1_1_4']) ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="" <?= $check ?>><label>なし</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_4'] == '776021' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="776021" <?= $check ?>><label>1</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_4'] == '776022' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="776022" <?= $check ?>><label>1日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_4'] == '776023' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="776023" <?= $check ?>><label>2</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_4'] == '776024' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="776024" <?= $check ?>><label>2日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_4'] == '776025' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="776025" <?= $check ?>><label>3</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_4'] == '776026' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="776026" <?= $check ?>><label>3日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_4'] == '776027' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="776027" <?= $check ?>><label>4</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_4'] == '776028' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="776028" <?= $check ?>><label>4日割</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_4'] == '776029' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="776029" <?= $check ?>><label>5</label></span>
+                                                                <?php $check = $dispData[0]['add1_1_4'] == '776030' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[0][add1_1_4]" value="776030" <?= $check ?>><label>5日割</label></span>
                                                             </div>
                                                         </li>
-                                                    </ul></dd>
+                                                </ul></dd>
                                             </dl>
                                             <dl>
                                                 <dt>同時可能件数</dt>
@@ -313,7 +402,7 @@
                                                                 <select name="upAry[1][prefecture]" class="f-keyVal prefecture_name1">
                                                                     <option value=""></option>
                                                                     <?php foreach ($areaMst as $pref => $areaMst2): ?>
-                                                                        <?php $select = $pref === $dispData[1]['prefecture'] ? ' selected' : NULL; ?>
+                                                                        <?php $select = $pref === $dispData[1]['prefecture'] ? ' selected' : null; ?>
                                                                         <option value="<?= $pref ?>"<?= $select ?>><?= $pref ?></option>
                                                                     <?php endforeach; ?>
                                                                 </select>
@@ -324,7 +413,7 @@
                                                                     <option value=""></option>
                                                                     <?php foreach ($areaMst as $prefectureName => $areaMst2): ?>
                                                                         <?php foreach ($areaMst2 as $areaName => $dummy): ?>
-                                                                            <?php $select = $dispData[1]['area'] === $areaName ? ' selected' : NULL; ?>
+                                                                            <?php $select = $dispData[1]['area'] === $areaName ? ' selected' : null; ?>
                                                                             <option data-pref_name="<?= $prefectureName ?>" value="<?= $areaName ?>"<?= $select ?>><?= $areaName ?></option>
                                                                         <?php endforeach; ?>
                                                                     <?php endforeach; ?>
@@ -415,75 +504,147 @@
                                                     <th><label class="label_t" for="diff_sys-code">別システムコード</label></th>
                                                     <td><input type="text" name="upAry[1][other_code]" id="diff_sys-code" value="<?= $dispData[1]['other_code'] ?>"></td>
                                                 </tr>
+                                                <tr>
+                                                    <th><label class="label_t" for="layer-code">階層コード</label></th>
+                                                    <td><input type="text" name="upAry[1][layer_code]" id="layer-code" value="<?= $dispData[1]['layer_code'] ?>"></td>
+                                                </tr>
                                             </table>
                                         </div>
                                         <div class="box3">
                                             <dl>
-                                                <dt>訪問看護加算（介護）</dt>
+                                                <dt>訪問介護　医療保険</dt>
                                                 <dd><ul>
-                                                        <li><div class="label_t">特別地域訪問看護加算１・２</div>
+                                                        <li>
+                                                            <div class="label_t">特別地域訪問看護加算</div>
                                                             <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['特別地域訪問看護加算１・２'] as $id => $temp): ?>
-                                                                    <span><input type="checkbox" name="upAry[1][select7][]" value="<?= $temp ?>" <?= mb_strpos($dispData[1]['select7'], $temp) !== false ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
+                                                                <?php $check = empty($dispData[1]['add2_1_1']) ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_1_1]" value="" <?= $check ?>><label>なし</label></span>
+                                                                <?php $check = $dispData[1]['add2_1_1'] == '138000' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_1_1]" value="138000" <?= $check ?>><label>1</label></span>
+                                                                <?php $check = $dispData[1]['add2_1_1'] == '138001' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_1_1]" value="138001" <?= $check ?>><label>2</label></span>
+                                                                <?php $check = $dispData[1]['add2_1_1'] == '138002' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_1_1]" value="138002" <?= $check ?>><label>2日割</label></span>
                                                             </div>
                                                         </li>
-                                                        <li><div class="label_t">訪問看護小規模事業所加算１・２</div>
+                                                        <li>
+                                                            <div class="label_t">訪問看護小規模事業所加算</div>
                                                             <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['訪問看護小規模事業所加算１・２'] as $id => $temp): ?>
-                                                                    <span><input type="checkbox" name="upAry[1][select8][]" value="<?= $temp ?>" <?= mb_strpos($dispData[1]['select8'], $temp) !== false ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
+                                                                <?php $check = empty($dispData[1]['add2_1_2']) ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_1_2]" value="" <?= $check ?>><label>なし</label></span>
+                                                                <?php $check = $dispData[1]['add2_1_2'] == '138100' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_1_2]" value="138100" <?= $check ?>><label>1</label></span>
+                                                                <?php $check = $dispData[1]['add2_1_2'] == '138101' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_1_2]" value="138101" <?= $check ?>><label>2</label></span>
+                                                                <?php $check = $dispData[1]['add2_1_2'] == '138102' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_1_2]" value="138102" <?= $check ?>><label>2日割</label></span>
                                                             </div>
                                                         </li>
-                                                        <li><div class="label_t">訪問看護中山間地域提供加算１・２</div>
+                                                        <li>
+                                                            <div class="label_t">予防特別地域訪問看護加算</div>
                                                             <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['訪問看護中山間地域提供加算１・２'] as $id => $temp): ?>
-                                                                    <span><input type="checkbox" name="upAry[1][select9][]" value="<?= $temp ?>" <?= mb_strpos($dispData[1]['select9'], $temp) !== false ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
+                                                                <?php $check = !empty($dispData[1]['add2_1_3']) ? ' checked' : null; ?>
+                                                                <span><input type="checkbox" name="upAry[1][add2_1_3]" value="638000" <?= $check ?>></span>
                                                             </div>
                                                         </li>
-                                                        <li><div class="label_t">訪問看護体制強化加算Ⅰ・Ⅱ</div>
+                                                        <li>
+                                                            <div class="label_t">予防訪問看護中山間地域等提供加算</div>
                                                             <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['訪問看護体制強化加算Ⅰ・Ⅱ'] as $id => $temp): ?>
-                                                                    <span><input type="radio" name="upAry[1][select10]" value="<?= $temp ?>" <?= mb_strpos($dispData[1]['select10'], $temp) !== false ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
+                                                                <?php $check = !empty($dispData[1]['add2_1_4']) ? ' checked' : null; ?>
+                                                                <span><input type="checkbox" name="upAry[1][add2_1_4]" value="638100" <?= $check ?>></span>
                                                             </div>
                                                         </li>
-                                                        <li><div class="label_t">訪問看護サービス提供体制加算Ⅰ１・Ⅱ１</div>
-                                                            <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['訪問看護サービス提供体制加算Ⅰ１・Ⅱ１'] as $id => $temp): ?>
-                                                                    <span><input type="radio" name="upAry[1][select11]" value="<?= $temp ?>" <?= mb_strpos($dispData[1]['select11'], $temp) !== false ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
-                                                            </div>
-                                                        </li>
-                                                        <li><div class="label_t">訪問看護サービス提供体制加算Ⅰ２・Ⅱ２</div>
-                                                            <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['訪問看護サービス提供体制加算Ⅰ２・Ⅱ２'] as $id => $temp): ?>
-                                                                    <span><input type="radio" name="upAry[1][select12]" value="<?= $temp ?>" <?= mb_strpos($dispData[1]['select12'], $temp) !== false ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
-                                                            </div>
-                                                        </li>
-                                                        <li><div class="label_t">緊急時訪問看護加算</div>
-                                                            <div class="opt_s"><span><input type="checkbox" name="upAry[1][select13]" value="1" <?= ($dispData[1]['select13'] == '1') ? 'checked' : '' ?>></span></div>
-                                                        </li>
-                                                    </ul></dd>
+                                                </ul></dd>
                                             </dl>
                                             <dl>
-                                                <dt>訪問看護加算（医療）</dt>
-                                                <dd>
-                                                    <ul>
-                                                        <li><div class="label_t"><label>24時間対応体制加算</label></div>
-                                                            <div><input type="checkbox" name="upAry[1][select14]" value="1" <?= ($dispData[1]['select14'] == '1') ? 'checked' : '' ?>></span></div>
-                                                        </li>
-                                                        <li><div class="label_t"><label>機能強化型訪問看護管理療養費1・２・３</label></div>
+                                                <dt>訪問介護　介護保険</dt>
+                                                <dd><ul>
+                                                        <li>
+                                                            <div class="label_t">特別地域訪問看護加算</div>
                                                             <div class="opt_s">
-                                                                <?php foreach ($gnrList['事業所管理']['機能強化型訪問看護管理療養費１・２・３'] as $id => $temp): ?>
-                                                                    <span><input type="radio" name="upAry[1][select15]" value="<?= $temp ?>" <?= mb_strpos($dispData[1]['select15'], $temp) !== false ? 'checked' : '' ?>><label><?= $temp ?></label></span>
-                                                                <?php endforeach; ?>
+                                                                <?php $check = empty($dispData[1]['add2_2_1']) ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_2_1]" value="" <?= $check ?>><label>なし</label></span>
+                                                                <?php $check = $dispData[1]['add2_2_1'] == '138000' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_2_1]" value="138000" <?= $check ?>><label>1</label></span>
+                                                                <?php $check = $dispData[1]['add2_2_1'] == '138001' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_2_1]" value="138001" <?= $check ?>><label>2</label></span>
+                                                                <?php $check = $dispData[1]['add2_2_1'] == '138002' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_2_1]" value="138002" <?= $check ?>><label>2日割</label></span>
                                                             </div>
                                                         </li>
-                                                    </ul>
-                                                </dd>
+                                                        <li>
+                                                            <div class="label_t">訪問看護小規模事業所加算</div>
+                                                            <div class="opt_s">
+                                                                <?php $check = empty($dispData[1]['add2_2_2']) ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_2_2]" value="" <?= $check ?>><label>なし</label></span>
+                                                                <?php $check = $dispData[1]['add2_2_2'] == '138100' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_2_2]" value="138100" <?= $check ?>><label>1</label></span>
+                                                                <?php $check = $dispData[1]['add2_2_2'] == '138101' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_2_2]" value="138101" <?= $check ?>><label>2</label></span>
+                                                                <?php $check = $dispData[1]['add2_2_2'] == '138102' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_2_2]" value="138102" <?= $check ?>><label>2日割</label></span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="label_t">予防特別地域訪問看護加算</div>
+                                                            <div class="opt_s">
+                                                                <?php $check = !empty($dispData[1]['add2_2_3']) ? ' checked' : null; ?>
+                                                                <span><input type="checkbox" name="upAry[1][add2_2_3]" value="638000" <?= $check ?>></span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="label_t">予防訪問看護中山間地域等提供加算</div>
+                                                            <div class="opt_s">
+                                                                <?php $check = !empty($dispData[1]['add2_2_4']) ? ' checked' : null; ?>
+                                                                <span><input type="checkbox" name="upAry[1][add2_2_4]" value="638100" <?= $check ?>></span>
+                                                            </div>
+                                                        </li>
+                                                </ul></dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>定期巡回</dt>
+                                                <dd><ul>
+                                                        <li>
+                                                            <div class="label_t">特別地域訪問看護加算</div>
+                                                            <div class="opt_s">
+                                                                <?php $check = empty($dispData[1]['add2_3_1']) ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_3_1]" value="" <?= $check ?>><label>なし</label></span>
+                                                                <?php $check = $dispData[1]['add2_3_1'] == '138000' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_3_1]" value="138000" <?= $check ?>><label>1</label></span>
+                                                                <?php $check = $dispData[1]['add2_3_1'] == '138001' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_3_1]" value="138001" <?= $check ?>><label>2</label></span>
+                                                                <?php $check = $dispData[1]['add2_3_1'] == '138002' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_3_1]" value="138002" <?= $check ?>><label>2日割</label></span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="label_t">訪問看護小規模事業所加算</div>
+                                                            <div class="opt_s">
+                                                                <?php $check = empty($dispData[1]['add2_3_2']) ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_3_2]" value="" <?= $check ?>><label>なし</label></span>
+                                                                <?php $check = $dispData[1]['add2_3_2'] == '138100' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_3_2]" value="138100" <?= $check ?>><label>1</label></span>
+                                                                <?php $check = $dispData[1]['add2_3_2'] == '138101' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_3_2]" value="138101" <?= $check ?>><label>2</label></span>
+                                                                <?php $check = $dispData[1]['add2_3_2'] == '138102' ? ' checked' : null; ?>
+                                                                <span><input type="radio" name="upAry[1][add2_3_2]" value="138102" <?= $check ?>><label>2日割</label></span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="label_t">予防特別地域訪問看護加算</div>
+                                                            <div class="opt_s">
+                                                                <?php $check = !empty($dispData[1]['add2_3_3']) ? ' checked' : null; ?>
+                                                                <span><input type="checkbox" name="upAry[1][add2_3_3]" value="638000" <?= $check ?>></span>
+                                                            </div>
+                                                        </li>
+                                                        <li>
+                                                            <div class="label_t">予防訪問看護中山間地域等提供加算</div>
+                                                            <div class="opt_s">
+                                                                <?php $check = !empty($dispData[1]['add2_3_4']) ? ' checked' : null; ?>
+                                                                <span><input type="checkbox" name="upAry[1][add2_3_4]" value="638100" <?= $check ?>></span>
+                                                            </div>
+                                                        </li>
+                                                </ul></dd>
                                             </dl>
                                         </div>
                                     </div>

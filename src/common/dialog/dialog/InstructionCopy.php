@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * スタッフ検索モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -28,13 +28,13 @@ $instList = array();
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // ユーザID
 $userId = filter_input(INPUT_GET, 'user');
 if (!$userId) {
-    $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : NULL;
+    $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : null;
 }
 
 // ユーザID
@@ -72,29 +72,29 @@ $orderBy             = "report_day ASC";
 $temp = select('doc_instruct', '*', $where, $orderBy);
 foreach ($temp as $val) {
     $keyId = $val['unique_id'];
-    if(empty($keyId)){
+    if(empty($keyId)) {
         continue;
     }
-    
+
     if (!empty($val['direction_end'])
         && $val['direction_end'] === "0000-00-00"
-        && $val['direction_end'] <= TODAY){
+        && $val['direction_end'] <= TODAY) {
         continue;
     }
-    
+
     $val['staff_name'] = !empty($val['staff_id']) ? getStaffName($val['staff_id']) : '';
-    $val['report_day'] = $val['report_day'] == "0000-00-00" ? NULL : $val['report_day'];
-    $val['direction_start'] = $val['direction_start'] == "0000-00-00" ? NULL : $val['direction_start'];
-    $val['direction_end'] = $val['direction_end'] == "0000-00-00" ? NULL : $val['direction_end'];
-    $val['plan_day'] = $val['plan_day'] == "0000-00-00" ? NULL : $val['plan_day'];
-    $val['judgement_day'] = $val['judgement_day'] == "0000-00-00" ? NULL : $val['judgement_day'];
+    $val['report_day'] = $val['report_day'] == "0000-00-00" ? null : $val['report_day'];
+    $val['direction_start'] = $val['direction_start'] == "0000-00-00" ? null : $val['direction_start'];
+    $val['direction_end'] = $val['direction_end'] == "0000-00-00" ? null : $val['direction_end'];
+    $val['plan_day'] = $val['plan_day'] == "0000-00-00" ? null : $val['plan_day'];
+    $val['judgement_day'] = $val['judgement_day'] == "0000-00-00" ? null : $val['judgement_day'];
     $val['tel1'] = !empty($val['tel1']) ? $val['tel1'] : '';
     $val['tel2'] = !empty($val['tel2']) ? $val['tel2'] : '';
-    $val['fax'] = !empty($val['fax']) ? $val['fax'] : NULL;
-    $val['address1'] = !empty($val['address1']) ? $val['address1'] : NULL;
-    $val['create_date'] = !empty($val['create_date']) ? formatDateTime($val['create_date'], "Y/m/d") : NULL;
-    $val['update_day'] = !empty($val['update_date']) ? formatDateTime($val['update_date'], "Y/m/d") : NULL;
-    
+    $val['fax'] = !empty($val['fax']) ? $val['fax'] : null;
+    $val['address1'] = !empty($val['address1']) ? $val['address1'] : null;
+    $val['create_date'] = !empty($val['create_date']) ? formatDateTime($val['create_date'], "Y/m/d") : null;
+    $val['update_day'] = !empty($val['update_date']) ? formatDateTime($val['update_date'], "Y/m/d") : null;
+
     $instList[$keyId] = $val;
 }
 

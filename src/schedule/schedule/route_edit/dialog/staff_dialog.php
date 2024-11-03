@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * スタッフ編集モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -33,13 +33,13 @@ $upAry    = array();
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // スケジュールID
 $schId = filter_input(INPUT_GET, 'scheduleId');
 if (!$schId) {
-    $schId = !empty($_SESSION['scheduleId']) ? $_SESSION['scheduleId'] : NULL;
+    $schId = !empty($_SESSION['scheduleId']) ? $_SESSION['scheduleId'] : null;
 }
 
 /*-- 更新用パラメータ ---------------------------------------*/
@@ -71,13 +71,13 @@ $where['unique_id']  = $schId;
 $temp = select('dat_staff_schedule', '*', $where);
 
 foreach ($temp as $val) {
-    
+
     // 曜日、開始・終了時刻、更新者名
     $val['week_name']   = $weekAry[$val['week']];
     $val['start_time']  = formatDateTime($val['start_time'], 'H:i');
     $val['end_time']    = formatDateTime($val['end_time'], 'H:i');
     $val['update_name'] = getStaffName($val['update_user']);
-    
+
     // 格納
     $tgtData = $val;
 }

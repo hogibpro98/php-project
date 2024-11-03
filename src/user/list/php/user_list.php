@@ -170,12 +170,20 @@ try {
 
     // 展開処理
     if ($btnMakePlan && $userAry) {
-        $res = makePlan($loginUser, $placeId, $userAry, $search['type'], $search['start_day'], $search['end_day']);
-        if (isset($res['err'])) {
-            $err[] = 'システムエラーが発生しました';
-            throw new Exception();
+
+        if (count($userAry) == 1) {
+            $url = "/schedule/week/index.php?user=" . $userAry[0] . '&type=' . $search['type'] . '&start_day=' . $search['start_day'] . '&end_day=' . $search['end_day'] . '&page=user_list';
+            header("location: " . $url);
+            exit;
+        } else {
+            $res = makePlan($loginUser, $placeId, $userAry, $search['type'], $search['start_day'], $search['end_day']);
+            if (isset($res['err'])) {
+                $err[] = 'システムエラーが発生しました';
+                throw new Exception();
+            }
+            $_SESSION['notice']['success'][] = '展開処理が正常に終了しました';
         }
-        $_SESSION['notice']['success'][] = '展開処理が正常に終了しました';
+
     }
 
     /* ===================================================
@@ -229,11 +237,11 @@ try {
         }
 
         // 契約状態判定
-        if (!                              empty($val        ['office1'])) {
-            $dat['status'] = ' ';
+        if (!empty($val['office1'])) {
+            $dat['status'] = '契約中';
             $dat['st_cls'] = 'status';
         } else {
-            $dat['status'] = ' ';
+            $dat['status'] = '停止中';
             $dat['st_cls'] = 'status2';
         }
 

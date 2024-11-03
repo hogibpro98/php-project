@@ -72,6 +72,18 @@ $userId = filter_input(INPUT_GET, 'user');
 if (!$userId) {
     $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : NULL;
 }
+if(!$userId && empty($_SESSION['user']))
+{
+    if ($keyId){
+        $where = array();
+        $where['delete_flg'] = 0;
+        $where['unique_id']  = $keyId;
+        $temp = select($table1, 'user_id', $where);
+        if (isset($temp[0])){
+            $userId = $temp[0]['user_id'];
+        }
+    }
+}
 
 /*-- 更新用パラメータ ---------------------------------------*/
 
@@ -277,15 +289,21 @@ if ($btnDel && $upData) {
 // 戻るボタン
 if ($btnReturn){
 
-    if(isset($_SESSION['return_url'])){
-        $nextPage = $_SESSION['return_url'];
-        unset($_SESSION['return_url']);
-        header("Location:". $nextPage);
-        exit();
-    }
-    $nextPage = '/report/visit2_list/index.php';
-    header("Location:". $nextPage);
+    // Redirect to the stored search URL or fallback page if not set
+    $fallbackPage = '/report/visit2_list/index.php';
+    $redirectUrl = isset($_SESSION['search_url']) ? $_SESSION['search_url'] : $fallbackPage;
+    header("Location: " . $redirectUrl);
     exit();
+
+    // if(isset($_SESSION['return_url'])){
+    //     $nextPage = $_SESSION['return_url'];
+    //     unset($_SESSION['return_url']);
+    //     header("Location:". $nextPage);
+    //     exit();
+    // }
+    // $nextPage = '/report/visit2_list/index.php';
+    // header("Location:". $nextPage);
+    // exit();
 }
 
 
@@ -378,8 +396,8 @@ if ($keyId){
 
         $tgtData['start_time'] = formatDateTime($tgtData['start_time'], 'H:i');
         $tgtData['end_time']   = formatDateTime($tgtData['end_time'], 'H:i');
-        $tgtData['next_start'] = formatDateTime($tgtData['next_start'], 'H:i');
-        $tgtData['next_end']   = formatDateTime($tgtData['next_end'], 'H:i');
+        // $tgtData['next_start'] = formatDateTime($tgtData['next_start'], 'H:i');
+        // $tgtData['next_end']   = formatDateTime($tgtData['next_end'], 'H:i');
 
         if (empty($tgtData['staff1_id'] ?? '')) {
             $tgtData['staff1_id'] = $loginUser['unique_id'];
@@ -390,6 +408,12 @@ if ($keyId){
         // 格納
         $dispData = array_merge($dispData,$tgtData);
     }
+}
+
+if (empty($tgtData)) {
+    $dispData['staff1_id']  = $loginUser['unique_id'];
+    $dispData['staff1_cd']  = $loginUser['staff_id'];
+    $dispData['staff1_name']  = $loginUser['name'];
 }
 
 /* -- 訪問看護（課題） -----------------------------*/

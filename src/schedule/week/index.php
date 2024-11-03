@@ -75,10 +75,10 @@
                                     <div class="category">
                                         <span class="label_t">展開条件</span>
                                         <span class="label_t">展開方法</span>
-                                        <?php $check = $search['type'] != 2 ? ' checked' : NULL; ?>
+                                        <?php $check = $search['type'] != 2 ? ' checked' : null; ?>
                                         <input type="radio" name="search[type]" value="1" id="差分のみ展開"<?= $check ?>>
                                         <label for="差分のみ展開">差分のみ展開</label>
-                                        <?php $check = $search['type'] == 2 ? ' checked' : NULL; ?>
+                                        <?php $check = $search['type'] == 2 ? ' checked' : null; ?>
                                         <input type="radio" name="search[type]" value="2" id="既存削除後に上書き"<?= $check ?>>
                                         <label for="既存削除後に上書き">既存削除後に上書き</label>
                                     </div>
@@ -148,7 +148,7 @@
                                                                             $startCnvMin = (int) $startSplit[0] * 60 + (int) $startSplit[1];
                                                                             $endCnvMin = (int) $endSplit[0] * 60 + (int) $endSplit[1];
                                                                             $top = $startCnvMin / 5 * 32;
-                                                                            $height = ($endCnvMin - $startCnvMin) / 5 * 31 -4;
+                                                                            $height = ($endCnvMin - $startCnvMin) / 5 * 31 - 4;
                                                                             ?>
                                                                             <div id="item" class="data data-grn" draggable="true" style="height: <?= $height ?>px; max-width: 152px; opacity: 0.6;" data-schedule-type="week" data-schedule-id="<?= $mainList['unique_id'] ?>" data-root-name="<?= $weekName ?>" data-start-time="<?= $startTime ?>" data-end-time="<?= $endTime ?>" title="<?= $startTime ?> - <?= $endTime ?>" data-hmtg-flg="<?= $mainList['hmtg_flg'] ?>" data-url="/schedule/week/dialog/edit_dialog.php?id=<?= $mainList['unique_id'] . "&user=" . $mainList['user_id'] ?>" data-dialog_name="modal">
                                                                                 <div>
@@ -174,7 +174,7 @@
                                                                                 $startCnvMin = (int) $startSplit[0] * 60 + (int) $startSplit[1];
                                                                                 $endCnvMin = (int) $endSplit[0] * 60 + (int) $endSplit[1];
                                                                                 $top = $startCnvMin / 5 * 32;
-                                                                                $height = ($endCnvMin - $startCnvMin) / 5 * 31-4;
+                                                                                $height = ($endCnvMin - $startCnvMin) / 5 * 31 - 4;
                                                                                 ?>
                                                                                 <div id="item" class="data data-grn2" draggable="true" style="height: <?= $height ?>px; max-width: 152px; opacity: 0.6;" data-schedule-type="service" data-schedule-id="<?= $mainList['unique_id'] ?>" data-service-id="<?= $val['unique_id'] ?>" data-root-name="<?= $weekName ?>" data-start-time="<?= $startTime ?>" data-end-time="<?= $endTime ?>" data-hmtg-flg="<?= $val['hmtg_flg'] ?>" title="<?= $startTime ?> - <?= $endTime ?>" data-url="/schedule/week/dialog/edit_dialog.php?id=<?= $mainList['unique_id'] . "&user=" . $mainList['user_id'] ?>" data-dialog_name="modal">
                                                                                     <div>

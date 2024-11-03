@@ -61,37 +61,37 @@ $res = array();
 $base_schedule = array();
 $res = customSQL($sql);
 foreach ($res as $val) {
-  $scheduleId = $val['unique_id'];
-  $scheduleAry[] = $scheduleId;
-  $base_schedule[$scheduleId]['unique_id'] = $val['unique_id'];
-  $base_schedule[$scheduleId]['delete_flg'] = $val['delete_flg'];
-  $base_schedule[$scheduleId]['create_date'] = $val['create_date'];
-  $base_schedule[$scheduleId]['create_user'] = $val['create_user'];
-  $base_schedule[$scheduleId]['update_date'] = $val['update_date'];
-  $base_schedule[$scheduleId]['update_user'] = $val['update_user'];
-  $base_schedule[$scheduleId]['user_id'] = $val['user_id'];
-  $base_schedule[$scheduleId]['start_time'] = empty($val['start_time']) ? NULL : formatDateTime($val['start_time'], 'H:i');
-  $base_schedule[$scheduleId]['end_time'] = empty($val['end_time']) ? NULL : formatDateTime($val['end_time'], 'H:i');
-  $base_schedule[$scheduleId]['week'] = $val['week'];
-  $base_schedule[$scheduleId]['week_num'] = $val['week_num'];
-  $base_schedule[$scheduleId]['office_id'] = $val['office_id'];
-  $base_schedule[$scheduleId]['service_name'] = $val['service_name'];
-  $base_schedule[$scheduleId]['service_id'] = $val['service_id'];
-  $base_schedule[$scheduleId]['jihi_flg'] = $val['jihi_flg'];
-  $base_schedule[$scheduleId]['jihi_price'] = $val['jihi_price'];
-  $base_schedule[$scheduleId]['jippi_flg'] = $val['jippi_flg'];
-  $base_schedule[$scheduleId]['other_id'] = $val['other_id'];
-  $base_schedule[$scheduleId]['last_name'] = $val['last_name'];
-  $base_schedule[$scheduleId]['first_name'] = $val['first_name'];
-  $base_schedule[$scheduleId]['last_kana'] = $val['last_kana'];
-  $base_schedule[$scheduleId]['first_kana'] = $val['first_kana'];
-  $base_schedule[$scheduleId]['office_name'] = $val['office_name'];
-  $base_schedule[$scheduleId]['office_no'] = $val['office_no'];
-  $base_schedule[$scheduleId]['stf_last_name'] = $val['stf_last_name'];
-  $base_schedule[$scheduleId]['stf_first_name'] = $val['stf_first_name'];
-  $base_schedule[$scheduleId]['stf_last_kana'] = $val['stf_last_kana'];
-  $base_schedule[$scheduleId]['stf_first_kana'] = $val['stf_first_kana'];
-  $base_schedule[$scheduleId]['staff_id'] = $val['staff_id'];
+    $scheduleId = $val['unique_id'];
+    $scheduleAry[] = $scheduleId;
+    $base_schedule[$scheduleId]['unique_id'] = $val['unique_id'];
+    $base_schedule[$scheduleId]['delete_flg'] = $val['delete_flg'];
+    $base_schedule[$scheduleId]['create_date'] = $val['create_date'];
+    $base_schedule[$scheduleId]['create_user'] = $val['create_user'];
+    $base_schedule[$scheduleId]['update_date'] = $val['update_date'];
+    $base_schedule[$scheduleId]['update_user'] = $val['update_user'];
+    $base_schedule[$scheduleId]['user_id'] = $val['user_id'];
+    $base_schedule[$scheduleId]['start_time'] = empty($val['start_time']) ? null : formatDateTime($val['start_time'], 'H:i');
+    $base_schedule[$scheduleId]['end_time'] = empty($val['end_time']) ? null : formatDateTime($val['end_time'], 'H:i');
+    $base_schedule[$scheduleId]['week'] = $val['week'];
+    $base_schedule[$scheduleId]['week_num'] = $val['week_num'];
+    $base_schedule[$scheduleId]['office_id'] = $val['office_id'];
+    $base_schedule[$scheduleId]['service_name'] = $val['service_name'];
+    $base_schedule[$scheduleId]['service_id'] = $val['service_id'];
+    $base_schedule[$scheduleId]['jihi_flg'] = $val['jihi_flg'];
+    $base_schedule[$scheduleId]['jihi_price'] = $val['jihi_price'];
+    $base_schedule[$scheduleId]['jippi_flg'] = $val['jippi_flg'];
+    $base_schedule[$scheduleId]['other_id'] = $val['other_id'];
+    $base_schedule[$scheduleId]['last_name'] = $val['last_name'];
+    $base_schedule[$scheduleId]['first_name'] = $val['first_name'];
+    $base_schedule[$scheduleId]['last_kana'] = $val['last_kana'];
+    $base_schedule[$scheduleId]['first_kana'] = $val['first_kana'];
+    $base_schedule[$scheduleId]['office_name'] = $val['office_name'];
+    $base_schedule[$scheduleId]['office_no'] = $val['office_no'];
+    $base_schedule[$scheduleId]['stf_last_name'] = $val['stf_last_name'];
+    $base_schedule[$scheduleId]['stf_first_name'] = $val['stf_first_name'];
+    $base_schedule[$scheduleId]['stf_last_kana'] = $val['stf_last_kana'];
+    $base_schedule[$scheduleId]['stf_first_kana'] = $val['stf_first_kana'];
+    $base_schedule[$scheduleId]['staff_id'] = $val['staff_id'];
 }
 
 //-------------------------------------
@@ -143,8 +143,8 @@ $sql .= "    ,msd.base_service_code ";
 $sql .= "  ;";
 $res = customSQL($sql);
 foreach ($res as $val) {
-  $schedule_id = $val['schedule_id'];
-  $schedules_service[$schedule_id][] = $val;
+    $schedule_id = $val['schedule_id'];
+    $schedules_service[$schedule_id][] = $val;
 }
 
 //-------------------------------------
@@ -178,8 +178,8 @@ $sql .= "    ,dwsa.schedule_id ";
 $sql .= "  ;";
 $res = customSQL($sql);
 foreach ($res as $val) {
-  $schedule_id = $val['schedule_id'];
-  $schedules_add[$schedule_id][] = $val;
+    $schedule_id = $val['schedule_id'];
+    $schedules_add[$schedule_id][] = $val;
 }
 
 //-------------------------------------
@@ -228,8 +228,8 @@ $sql .= "  ;";
 $res = array();
 $res = customSQL($sql);
 foreach ($res as $val) {
-  $schedule_id = $val['schedule_id'];
-  $schedules_jippi[] = $val;
+    $schedule_id = $val['schedule_id'];
+    $schedules_jippi[] = $val;
 }
 
 // 結果セットに設定
@@ -327,7 +327,7 @@ $scheduleData['schedules_jippi'] = $schedules_jippi;
           <select>
             <option disabled hidden>選択してください</option>
             <?php foreach ($addList as $addVal) : ?>
-              <?php $select = $addVal['name'] === $val['add_name'] ? ' selected' : NULL; ?>
+              <?php $select = $addVal['name'] === $val['add_name'] ? ' selected' : null; ?>
               <option name="upAry[dwsj_unique_id]" value="<?= $addVal['unique_id'] ?>" <?= $select ?>><?= $addVal['name'] ?></option>
             <?php endforeach; ?>
           </select>
@@ -376,7 +376,7 @@ $scheduleData['schedules_jippi'] = $schedules_jippi;
           <li>
             <select>
               <?php foreach ($serviceList as $svList) : ?>
-                <?php $select = $svList['name'] === $val['ms_name'] ? ' selected' : NULL; ?>
+                <?php $select = $svList['name'] === $val['ms_name'] ? ' selected' : null; ?>
                 <option name="upAry[ms_unique_id]" value="<?= $svList['ms_unique_id'] ?>" <?= $select ?>><?= $svList['name'] ?></option>
               <?php endforeach; ?>
             </select>
@@ -384,7 +384,7 @@ $scheduleData['schedules_jippi'] = $schedules_jippi;
           <li>
             <select>
               <?php foreach ($serviceDetailList as $svdList) : ?>
-                <?php $select = $svdList['name'] === $val['msd_name'] ? ' selected' : NULL; ?>
+                <?php $select = $svdList['name'] === $val['msd_name'] ? ' selected' : null; ?>
                 <option name="upAry[msd_unique_id]" value="<?= $svdList['msd_unique_id'] ?>" <?= $select ?>><?= $svdList['name'] ?></option>
               <?php endforeach; ?>
             </select>

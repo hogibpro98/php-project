@@ -33,4 +33,4 @@ if (isset($res['err'])) {
 
 // データ返却
 echo $response;
-exit();
+exit;

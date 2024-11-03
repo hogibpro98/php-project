@@ -1,62 +1,63 @@
 <?php
+
 //=======================================================================
 //   固定値定義ファイル　★★
 //=======================================================================
 
-//$execEnv = 'psn';
-$execEnv = 'dev';
+$execEnv = 'psn';
+//$execEnv = 'dev';
 //$execEnv = 'stg';
 //$execEnv = 'prd';
 
 /* DB関連 */
-switch ($execEnv){
-    
+switch ($execEnv) {
+
     // ローカル
     case 'psn':
         $dbClass  = "mysql";                  // ＤＢの種類
         $dbName   = "kantaki_dev";                // ＤＢ名称
         $dbServer = "db";              // サーバのＩＰアドレス
         $dbPort   = "3306";                   // ＤＢのポート番号
-        $dbInfo = $dbClass.":dbname=".$dbName.";host=".$dbServer.";port=".$dbPort.";charset=utf8mb4";
+        $dbInfo = $dbClass . ":dbname=" . $dbName . ";host=" . $dbServer . ";port=" . $dbPort . ";charset=utf8mb4";
         define("DB_INFO", $dbInfo);           // ＤＢ接続用 環境情報
         define("DB_USER", "kantaki");             // ＤＢ接続用 ユーザアカウント
         define("DB_PASS", "kantaki");          // ＤＢ接続用 パスワード
         break;
-    
-    // 開発環境
+
+        // 開発環境
     case 'dev':
         $dbClass  = 'mysql';                // ＤＢの種類
-        $dbName   = 'kantaki_dev';          // ＤＢ名称
-        $dbServer = 'db';// サーバのＩＰアドレス
+        $dbName   = '';          // ＤＢ名称
+        $dbServer = '';// サーバのＩＰアドレス
         $dbPort   = '3306';                 // ＤＢのポート番号
-        $dbInfo = $dbClass.':dbname='.$dbName.';host='.$dbServer.';port='.$dbPort.";charset=utf8mb4";
+        $dbInfo = $dbClass . ':dbname=' . $dbName . ';host=' . $dbServer . ';port=' . $dbPort . ";charset=utf8mb4";
         define('DB_INFO', $dbInfo);         // ＤＢ接続用 環境情報
-        define('DB_USER', 'kantaki'); // ＤＢ接続用 ユーザアカウント
-        define('DB_PASS', 'kantaki'); // ＤＢ接続用 パスワード
+        define('DB_USER', ''); // ＤＢ接続用 ユーザアカウント
+        define('DB_PASS', ''); // ＤＢ接続用 パスワード
         break;
-    
-    // ステージング環境用
+
+        // ステージング環境用
     case 'stg':
-        $dbClass  = 'mysql';                  // ＤＢの種類
-        $dbName   = 'kantaki_dev';            // ＤＢ名称
-        $dbServer = '127.0.0.1';              // サーバのＩＰアドレス
-        $dbPort   = '3306';                   // ＤＢのポート番号
-        $dbInfo = $dbClass.':dbname='.$dbName.';host='.$dbServer.';port='.$dbPort.";charset=utf8mb4";
+        $dbClass  = 'pgsql';             // ＤＢの種類
+        $dbName   = '';     // ＤＢ名称
+        $dbServer = '';         // サーバのＩＰアドレス
+        $dbPort   = '5432';              // ＤＢのポート番号
+        $dbInfo = $dbClass . ':dbname=' . $dbName . ';host=' . $dbServer . ';port=' . $dbPort;
         define('DB_INFO', $dbInfo);      // ＤＢ接続用 環境情報
-        define('DB_USER', 'yasashiite');      // ＤＢ接続用 ユーザアカウント
-        define('DB_PASS', 'P@ssw0rd');        // ＤＢ接続用 パスワード
+        define('DB_USER', '');      // ＤＢ接続用 ユーザアカウント
+        define('DB_PASS', '');   // ＤＢ接続用 パスワード
         break;
-    
-    // 本番環境
+
+        // 本番環境
     case 'prd':
-        $dbClass  = 'mysql';                  // ＤＢの種類
-        $dbName   = 'kantaki_dev';            // ＤＢ名称
-        $dbServer = '127.0.0.1';              // サーバのＩＰアドレス
-        $dbPort   = '3306';                   // ＤＢのポート番号
-        $dbInfo = $dbClass.':dbname='.$dbName.';host='.$dbServer.';port='.$dbPort.";charset=utf8mb4";
-        define('DB_INFO', $dbInfo);      // ＤＢ接続用 環境情報
-        define('DB_USER', 'yasashiite');      // ＤＢ接続用 ユーザアカウント
-        define('DB_PASS', 'P@ssw0rd');        // ＤＢ接続用 パスワード
+        $dbClass  = 'mysql';                // ＤＢの種類
+        $dbName   = '';          // ＤＢ名称
+        $dbServer = '';// サーバのＩＰアドレス
+        $dbPort   = '3306';                 // ＤＢのポート番号
+        $dbInfo = $dbClass . ':dbname=' . $dbName . ';host=' . $dbServer . ';port=' . $dbPort . ";charset=utf8mb4";
+        define('DB_INFO', $dbInfo);         // ＤＢ接続用 環境情報
+        define('DB_USER', ''); // ＤＢ接続用 ユーザアカウント
+        define('DB_PASS', ''); // ＤＢ接続用 パスワード
         break;
 }
 
@@ -71,7 +72,7 @@ define('D4', ' ');   // ( )
 define('D5', ',');   // (,)
 
 /* プロトコル定義 */
-define('SV_PROTOCOL','http://');    // httpプロトコルの設定(httpsとする場合には 'https://' }
+define('SV_PROTOCOL', 'http://');    // httpプロトコルの設定(httpsとする場合には 'https://' }
 define('SV_ROOT', $server['documentRoot']);   // ルートディレクトリ
 
 /* リンク先ページ情報 */
@@ -80,7 +81,7 @@ define('TOP_PAGE', '/place/news/index.php');
 define('ERROR_PAGE', '/err/');
 
 /* cookie 有効期限(90日) */
-define('COOKIE_LIMIT', time()+60*60*24*90);
+define('COOKIE_LIMIT', time() + 60 * 60 * 24 * 90);
 
 /* encode */
 mb_internal_encoding('UTF-8');
@@ -106,21 +107,21 @@ for ($i = 1; $i <= 12; $i++) {
 /*--以下、ファイル操作用定数群-----------------------------------------------*/
 
 // デフォルトのパーミッション(所有者のみ編集可、他は参照、実行可)
-define('FILE_DEFAULT_PERMISSION',2777);
-//define('FILE_DEFAULT_PERMISSION',0775);
+//define('FILE_DEFAULT_PERMISSION',2775);
+define('FILE_DEFAULT_PERMISSION', 0775);
 // アップロードファイル保存用ディレクトリの指定
-define('FILE_UPLOAD_DIR','upload');
+define('FILE_UPLOAD_DIR', 'upload');
 
 // ロケール・エンコード設定
 // Windowsの場合は Shift_JIS、Unix系は UTF-8で処理
 if (strpos(PHP_OS, 'WIN') === 0) {
     setlocale(LC_CTYPE, 'Japanese_Japan.932');
-    define('SERVER_ENCODE_TYPE','SJIS-win');
-    define('DEFAULT_ENCODE_TYPE','UTF-8');
+    define('SERVER_ENCODE_TYPE', 'SJIS-win');
+    define('DEFAULT_ENCODE_TYPE', 'UTF-8');
 } else {
     setlocale(LC_CTYPE, 'ja_JP.UTF-8');
-    define('SERVER_ENCODE_TYPE','UTF-8');
-    define('DEFAULT_ENCODE_TYPE','UTF-8');
+    define('SERVER_ENCODE_TYPE', 'UTF-8');
+    define('DEFAULT_ENCODE_TYPE', 'UTF-8');
 }
 
 //許可するファイル拡張子(MINEタイプ)の種類
@@ -148,15 +149,15 @@ $temp[] = 'webp';
 //$temp[] = 'text/csv';
 //$temp[] = 'text/plain';
 // 区切り文字列に変換
-define('FILE_ALLOW_EXTENSION',implode('^',$temp));
+define('FILE_ALLOW_EXTENSION', implode('^', $temp));
 
 //ファイル名チェック用の正規表現
 //ファイル名の長さを定義(DBのカラムサイズ、パスの文字数を考慮して設定)
 $min = 1;
 $max = 256;
-$temp = '/^.{'.$min.','.$max.'}$/u';
+$temp = '/^.{' . $min . ',' . $max . '}$/u';
 
-define('FILE_ALLOW_NAME',$temp);
+define('FILE_ALLOW_NAME', $temp);
 
 /*↓↓↓↓php.iniの設定よりも厳しい条件を設けたい場合書き換えて使用↓↓↓↓*/
 //上限を緩くしたい場合はphp.iniで直接条件を書き換え
@@ -168,21 +169,25 @@ $temp = ini_get('max_file_uploads');
 define('FILE_MAX_SELECT', $temp);
 
 /*バイト数変換(php.iniで取得できる)*/
-function getByte($val){
+function getByte($val)
+{
     //余分な空白がある場合取り除く
     $val = trim($val);
     //最後の文字を取得し、小文字に変換(ギガ、メガ、キロ)
-    $last = strtolower($val[strlen($val)-1]);
+    $last = strtolower($val[strlen($val) - 1]);
     //値に変換(1k=>1,8M=>8…)
     $val = (int)$val;
-    switch($last) {
+    switch ($last) {
         case 'g':
             $val *= 1024;
+            // no break
         case 'm':
             $val *= 1024;
+            // no break
         case 'k':
             $val *= 1024;
-        default :
+            // no break
+        default:
             break;
     }
     return $val;
@@ -204,3 +209,5 @@ define('FILE_MAX_DATASIZE', $temp);
 
 /*-- メール送信用環境パラメータ定義 -------------------------------------------------*/
 
+
+/*-- ひつじ連携パラメータ定義 -------------------------------------------------*/

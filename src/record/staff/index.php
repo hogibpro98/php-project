@@ -129,6 +129,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="sp_user_name">
+                                    <p><?= $loginUser['name'] ?></p>
+                                </div>
                                 <!--/// 検索エリア_END ///-->
                                 <!-- 予定実績エリア start -->
                                 <!-- ダイアログ流し込みエリア -->
@@ -187,13 +190,13 @@
                                                                         <div class="modified">
                                                                             <span><?= $mainPlan['update_date'] ?></span>
                                                                             <span><?= $mainPlan['update_name'] ?> </span>
-                                                                            <?php if (empty($mainPlan['protection_flg'])) : ?>
+                                                                            <?php //if (empty($mainPlan['protection_flg'])) :?>
                                                                                 <?php if (isset($mainPlan['status']) && $mainPlan['status'] === "キャンセル") : ?>
                                                                                     <span class="btn1 cancel_appt">予定キャンセル</span>
                                                                                 <?php else : ?>
                                                                                     <span class="btn1">&nbsp;</span>
                                                                                 <?php endif; ?>
-                                                                            <?php endif; ?>
+                                                                            <?php //endif;?>
                                                                         </div>
                                                                         <div class="btn_box">
                                                                             <p>
@@ -295,7 +298,7 @@
                                                                                 <input type="hidden" name="upKtk[<?= $planId ?>][end_time]" value="<?= $usrPlan['end_time'] ?>">
                                                                                 <?php if (!empty($usrPlan['disable'])) : ?>
                                                                                     <br />
-                                                                                    <?php if (mb_strpos($usrPlan['service_name'] , "訪問看護") !== false) : ?>
+                                                                                    <?php if (mb_strpos($usrPlan['service_name'], "訪問看護") !== false) : ?>
                                                                                         <span class="kiroku bg-gray2">訪看記録Ⅱ</span>
                                                                                     <?php else: ?>
                                                                                         <span class="kiroku bg-gray2">看多機記録</span>

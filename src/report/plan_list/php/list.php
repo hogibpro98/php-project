@@ -110,7 +110,8 @@ foreach($temp as $idx => $val){
     $dat                = $val;
     $dat['report_name'] = '計画書';
     $dat['edit_url']    = '/report/plan/index.php?id='.$val['unique_id'].'&user='.$val['user_id'];
-    $dat['copy_url']    = '/report/plan/index.php?copy='.$val['user_id'];
+    //$dat['copy_url']    = '/report/plan/index.php?copy='.$val['user_id'];
+    $dat['copy_url']    = '/report/plan/index.php?id='.$val['unique_id'].'&user='.$val['user_id'].'&btnCopy='.$val['user_id'];
     $userInfo           = isset($userList[$val['user_id']]) ? $userList[$val['user_id']] : array();
     $staffInfo          = isset($staffList[$val['staff_id']]) ? $staffList[$val['staff_id']] : array(); 
     $dat['user_name']   = !empty($userInfo) ? $userInfo['last_name'].' '.$userInfo['first_name'] : NULL;

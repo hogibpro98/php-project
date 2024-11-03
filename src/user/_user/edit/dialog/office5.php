@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * スタッフ検索モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -29,7 +29,7 @@ $tgtData = array();
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // 利用者(外部ID)取得
@@ -105,7 +105,7 @@ foreach ($temp as $val) {
         var officeNo5 = "";
         var officeName5 = "";
         var placeName5 = "";
-        var index = <?= empty($index) ? $index : NULL ?>;
+        var index = <?= empty($index) ? $index : null ?>;
         if(!index){
             index = "";
         }

@@ -98,6 +98,19 @@ $userId = filter_input(INPUT_GET, 'user');
 if (!$userId) {
     $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : NULL;
 }
+if(!$userId && empty($_SESSION['user']))
+{
+    if ($keyId){
+        $where = array();
+        $where['delete_flg'] = 0;
+        $where['unique_id']  = $keyId;
+        $temp = select($table1, 'user_id', $where);
+        if (isset($temp[0])){
+            $userId = $temp[0]['user_id'];
+        }
+    }
+}
+
 
 // プランID
 $planId = filter_input(INPUT_GET, 'plan');
@@ -639,16 +652,20 @@ if ($btnDel && $upData) {
 
 // 戻るボタン
 if ($btnReturn){
-
-    if(isset($_SESSION['return_url'])){
-        $nextPage = $_SESSION['return_url'];
-        unset($_SESSION['return_url']);
-        header("Location:". $nextPage);
-        exit();
-    }
-    $nextPage = '/report/kantaki_list/index.php';
-    header("Location:". $nextPage);
+    // Redirect to the stored search URL or fallback page if not set
+    $fallbackPage = '/report/kantaki_list/index.php';
+    $redirectUrl = isset($_SESSION['search_url']) ? $_SESSION['search_url'] : $fallbackPage;
+    header("Location: " . $redirectUrl);
     exit();
+    // if(isset($_SESSION['return_url'])){
+    //     $nextPage = $_SESSION['return_url'];
+    //     unset($_SESSION['return_url']);
+    //     header("Location:". $nextPage);
+    //     exit();
+    // }
+    // $nextPage = '/report/kantaki_list/index.php';
+    // header("Location:". $nextPage);
+    // exit();
 }
 
 /* ===================================================

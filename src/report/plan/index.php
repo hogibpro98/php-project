@@ -1,4 +1,6 @@
-<?php require_once(dirname(__FILE__) . "/php/plan.php"); ?>
+<?php require_once(dirname(__FILE__) . "/php/plan.php"); 
+//echo '<pre>';print_r($dispData);die();
+?>
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -105,7 +107,7 @@
                                             </div>
                                             <div class="create_d">
                                                 <span class="label_t">作成日</span>
-                                                <input type="date" name="upAry[report_day]" class="" style="width:130px;" value="<?= $dispData['report_day'] ?>">
+                                                <input type="date" pattern="\d{4}-\d{2}-\d{2}" name="upAry[report_day]" class="" style="width:130px;" value="<?= $dispData['report_day'] ?>">
                                             </div>
                                             <div class="i_period">
                                                 <span class="label_t">有効期間</span>

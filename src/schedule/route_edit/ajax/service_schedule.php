@@ -35,8 +35,8 @@ if (isset($res['err'])) {
     setEntryLog($upData);
 }
 
-// $response = "正常"; 
+// $response = "正常";
 //$response = $staff_id;
 //echo json_encode($response);
 echo $response;
-exit();
+exit;

@@ -75,10 +75,10 @@
                                     <div class="category">
                                         <span class="label_t">展開条件</span>
                                         <span class="label_t">展開方法</span>
-                                        <?php $check = $search['type'] != 2 ? ' checked' : NULL; ?>
+                                        <?php $check = $search['type'] != 2 ? ' checked' : null; ?>
                                         <input type="radio" name="search[type]" value="1" id="差分のみ展開"<?= $check ?>>
                                         <label for="差分のみ展開">差分のみ展開</label>
-                                        <?php $check = $search['type'] == 2 ? ' checked' : NULL; ?>
+                                        <?php $check = $search['type'] == 2 ? ' checked' : null; ?>
                                         <input type="radio" name="search[type]" value="2" id="既存削除後に上書き"<?= $check ?>>
                                         <label for="既存削除後に上書き">既存削除後に上書き</label>
                                     </div>

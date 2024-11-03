@@ -1,4 +1,5 @@
 <?php
+
 //=======================================================================
 //   テキストファイル操作関数
 //=======================================================================
@@ -6,22 +7,23 @@
 /* =======================================================================
  * テキストファイルの読込
  * =======================================================================
- * 
- *   [使用方法] 
+ *
+ *   [使用方法]
  *      $res = readText(①)
  *
  *   [引数]
  *      ① ファイルパス
- * 
+ *
  *   [戻り値] 文字列
  *      配列として返却
- * 
+ *
  * -----------------------------------------------------------------------
  */
-function readText($filePath){
+function readText($filePath)
+{
     $res     = array();
     $fileAry = file($filePath);
-    foreach ($fileAry as $key => $val){
+    foreach ($fileAry as $key => $val) {
         $val = mb_convert_encoding($val, 'utf-8', 'sjis-win');
         $res[$key] = $val;
     }
@@ -30,27 +32,28 @@ function readText($filePath){
 /* =======================================================================
  * テキストファイルの書込 ※全部消去して書込みなのでデータがある場合は注意
  * =======================================================================
- * 
- *   [使用方法] 
+ *
+ *   [使用方法]
  *      $res = readText(①,②)
  *
  *   [引数]
  *      ① ファイルパス
  *      ② 格納データ(配列)
- * 
+ *
  *   [戻り値] 文字列
  *      指定ファイルに出力
- * 
+ *
  * -----------------------------------------------------------------------
  */
-function writeText($filePath, $fileAry){
+function writeText($filePath, $fileAry)
+{
     $res = array();
-    foreach ($fileAry as $key => $val){
-        if ($val){
+    foreach ($fileAry as $key => $val) {
+        if ($val) {
             $val = mb_convert_encoding($val, 'sjis-win', 'utf-8');
             $res[$key] = $val;
         }
     }
-    file_put_contents($filePath,$res);
-    return NULL;
+    file_put_contents($filePath, $res);
+    return null;
 }

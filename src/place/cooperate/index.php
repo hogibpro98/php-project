@@ -33,10 +33,10 @@
                                             </div>
                                             <div class="service">
                                                 <span class="label_t text_blue">サービス利用区分</span>
-                                                <?php $check = $search['type1'] ? ' checked' : NULL; ?>
-                                                <p><input type="checkbox" name="search[type1]" value="true" id="kubun1" <?= $check ?>><label for="kubun1">看多機</label></p>
-                                                <?php $check = $search['type2'] ? ' checked' : NULL; ?>
-                                                <p><input type="checkbox" name="search[type2]" value="true" id="kubun2" <?= $check ?>><label for="kubun2">訪問看護</label></p>
+                                                <?php $check = $search['type'] != '訪問看護' ? ' checked' : null; ?>
+                                                <p><input type="radio" name="search[type]" value="看多機" id="kubun1" <?= $check ?>><label for="kubun1">看多機</label></p>
+                                                <?php $check = $search['type'] == '訪問看護' ? ' checked' : null; ?>
+                                                <p><input type="radio" name="search[type]" value="訪問看護" id="kubun2" <?= $check ?>><label for="kubun2">訪問看護</label></p>
                                             </div>
                                         </div>
                                         <div class="box1 rules">
@@ -50,14 +50,14 @@
                                                     <div>
                                                         <select class="year" name="search[year]">
                                                             <?php foreach ($slctYear as $val) : ?>
-                                                                <?php $select = $search['year'] == $val ? ' selected' : NULL; ?>
+                                                                <?php $select = $search['year'] == $val ? ' selected' : null; ?>
                                                                 <option value="<?= $val ?>" <?= $select ?>><?= $val ?></option>
                                                             <?php endforeach; ?>
                                                         </select>
                                                         <label>年</label>
                                                         <select class="month" name="search[month]">
                                                             <?php foreach ($slctMonth as $val) : ?>
-                                                                <?php $select = $search['month'] == $val ? ' selected' : NULL; ?>
+                                                                <?php $select = $search['month'] == $val ? ' selected' : null; ?>
                                                                 <option value="<?= $val ?>" <?= $select ?>><?= $val ?></option>
                                                             <?php endforeach; ?>
                                                         </select>
@@ -119,22 +119,22 @@
                                                             </td>
                                                             <td><?= $val['user_name'] ?></td>
                                                             <td><?= $val['code'] ?></td>
-                                                            <td><?= isset($val['f1']) ? $val['f1'] : NULL ?></td>
-                                                            <td><?= isset($val['f2']) ? $val['f2'] : NULL ?></td>
-                                                            <td><?= isset($val['f3']) ? $val['f3'] : NULL ?></td>
-                                                            <td><?= isset($val['f4']) ? $val['f4'] : NULL ?></td>
-                                                            <td><?= isset($val['f5']) ? $val['f5'] : NULL ?></td>
-                                                            <td><?= isset($val['f6']) ? $val['f6'] : NULL ?></td>
-                                                            <td><?= isset($val['f7']) ? $val['f7'] : NULL ?></td>
-                                                            <td><?= isset($val['f8']) ? $val['f8'] : NULL ?></td>
-                                                            <td><?= isset($val['f9']) ? $val['f9'] : NULL ?></td>
-                                                            <td><?= isset($val['f10']) ? $val['f10'] : NULL ?></td>
-                                                            <td><?= isset($val['f11']) ? $val['f11'] : NULL ?></td>
-                                                            <td><?= isset($val['f12']) ? $val['f12'] : NULL ?></td>
-                                                            <td><?= isset($val['f13']) ? $val['f13'] : NULL ?></td>
-                                                            <td><?= isset($val['f14']) ? $val['f14'] : NULL ?></td>
-                                                            <td><?= isset($val['f15']) ? $val['f15'] : NULL ?></td>
-                                                            <td><?= isset($val['f16']) ? $val['f16'] : NULL ?></td>
+                                                            <td><?= isset($val['f1']) ? $val['f1'] : null ?></td>
+                                                            <td><?= isset($val['f2']) ? $val['f2'] : null ?></td>
+                                                            <td><?= isset($val['f3']) ? $val['f3'] : null ?></td>
+                                                            <td><?= isset($val['f4']) ? $val['f4'] : null ?></td>
+                                                            <td><?= isset($val['f5']) ? $val['f5'] : null ?></td>
+                                                            <td><?= isset($val['f6']) ? $val['f6'] : null ?></td>
+                                                            <td><?= isset($val['f7']) ? $val['f7'] : null ?></td>
+                                                            <td><?= isset($val['f8']) ? $val['f8'] : null ?></td>
+                                                            <td><?= isset($val['f9']) ? $val['f9'] : null ?></td>
+                                                            <td><?= isset($val['f10']) ? $val['f10'] : null ?></td>
+                                                            <td><?= isset($val['f11']) ? $val['f11'] : null ?></td>
+                                                            <td><?= isset($val['f12']) ? $val['f12'] : null ?></td>
+                                                            <td><?= isset($val['f13']) ? $val['f13'] : null ?></td>
+                                                            <td><?= isset($val['f14']) ? $val['f14'] : null ?></td>
+                                                            <td><?= isset($val['f15']) ? $val['f15'] : null ?></td>
+                                                            <td><?= isset($val['f16']) ? $val['f16'] : null ?></td>
                                                         </tr>
                                                     <?php endforeach; ?>
                                                 </tbody>
@@ -210,21 +210,21 @@
                                         });
                                     </script>
                                     <?php
-                                        if ($btnMake && $csvFilePath){
+                                        if ($btnMake && $csvFilePath) {
                                             $data = readCsv($csvFilePath, true);
-                                            foreach ($data as $chkRow => $val){
-                                                foreach ($upRow as $idx => $dummy){
-                                                    if ($idx != $chkRow){
+                                            foreach ($data as $chkRow => $val) {
+                                                foreach ($upRow as $idx => $dummy) {
+                                                    if ($idx != $chkRow) {
                                                         continue;
                                                     }
                                                     $newData[$idx] = $val;
                                                 }
                                             }
-                                            if ($newData){
-                                               writeCsvLock($csvFilePath, $newData);
+                                            if ($newData) {
+                                                writeCsvLock($csvFilePath, $newData);
                                             }
                                         }
-                                    ?>
+?>
                                     <?php if ($btnMake && $csvFilePath): ?>
                                         <script>
                                             var csvFileName = "<?= $csvFileName ?>";

@@ -26,9 +26,6 @@
  *
  * -----------------------------------------------------------------------
  */
-
-require_once($_SERVER['DOCUMENT_ROOT'] . '/user/common/user_data.php');
-
 function getUser($keyId = null)
 {
 
@@ -65,23 +62,21 @@ function getUser($keyId = null)
     $ofcList = getData('mst_office');
 
     // 利用者基本情報
-    //    $where = array();
-    //    $where['unique_id']  = $keyId;
-    //    $where['delete_flg'] = 0;
-    //    $orderBy = 'unique_id DESC';
-    //    $temp = select('mst_user', '*', $where, $orderBy);
-    $temp = getMstUser($keyId);
+    $where = array();
+    $where['unique_id']  = $keyId;
+    $where['delete_flg'] = 0;
+    $orderBy = 'unique_id DESC';
+    $temp = select('mst_user', '*', $where, $orderBy);
     $res['standard'] = isset($temp[0])
             ? $temp[0]
             : array();
 
     // 所属事業所
-    //    $where = array();
-    //    $where['user_id']     = $keyId;
-    //    $where['delete_flg']  = 0;
-    //    $orderBy = 'unique_id DESC';
-    //    $temp = select('mst_user_office1', '*', $where, $orderBy);
-    $temp = getContractBusinessHistory($keyId, true);
+    $where = array();
+    $where['user_id']     = $keyId;
+    $where['delete_flg']  = 0;
+    $orderBy = 'unique_id DESC';
+    $temp = select('mst_user_office1', '*', $where, $orderBy);
     foreach ($temp as $val) {
         $tgtId = $val['unique_id'];
         $ofcId = $val['office_id'];
@@ -91,23 +86,21 @@ function getUser($keyId = null)
 
     // 居宅支援事業所
     $where = array();
-    //    $where['user_id']     = $keyId;
-    //    $where['delete_flg']  = 0;
-    //    $orderBy = 'unique_id DESC';
-    //    $temp = select('mst_user_office2', '*', $where, $orderBy);
-    $temp = getHomeSupportOffices($keyId, true);
+    $where['user_id']     = $keyId;
+    $where['delete_flg']  = 0;
+    $orderBy = 'unique_id DESC';
+    $temp = select('mst_user_office2', '*', $where, $orderBy);
     foreach ($temp as $val) {
         $tgtId = $val['unique_id'];
         $res['office2'][$tgtId] = $val;
     }
 
     // 支払方法
-    //    $where = array();
-    //    $where['user_id']     = $keyId;
-    //    $where['delete_flg']  = 0;
-    //    $orderBy = 'unique_id DESC';
-    //    $temp = select('mst_user_pay', '*', $where, $orderBy);
-    $temp = getMstUserPay($keyId, true);
+    $where = array();
+    $where['user_id']     = $keyId;
+    $where['delete_flg']  = 0;
+    $orderBy = 'unique_id DESC';
+    $temp = select('mst_user_pay', '*', $where, $orderBy);
     $res['pay'] = isset($temp[0])
             ? $temp[0]
             : array();
@@ -276,20 +269,24 @@ function getUser($keyId = null)
  */
 function checkUser($userInfo)
 {
-
-    /* -- 初期処理 --------------------------------------------*/
-
-    // 初期化
+    // Initialize error array
     $err = array();
 
-    // パラメータチェック(新規の場合想定)
+    // If no user info, return empty error array
     if (!$userInfo) {
         return $err;
     }
 
-    /* -- データ判定 ------------------------------------------*/
-
-    // 基本情報タブ
+    // Basic information tab ( )
+    // $err['tab1'] is set to true if any of the following information is missing
+    // 1. Other ID
+    // 2. First name
+    // 3. Last name
+    // 4. Prefecture
+    // 5. Area
+    // 6. Address 1
+    // 7. Address 2
+    // 8. Post code
     if (empty($userInfo['standard']['other_id'])
             || empty($userInfo['standard']['first_name'])
             || empty($userInfo['standard']['last_name'])
@@ -301,7 +298,17 @@ function checkUser($userInfo)
         $err['tab1'] = true;
     }
 
-    // 支払方法タブ
+    // Payment method tab (支払方法)
+    // $err['tab2'] is set to true if payment method is not selected,
+    // or if payment method is "引き落とし" (bank transfer) and any of the following information is missing:
+    // 1. Bank type
+    // 2. Bank code
+    // 3. Bank name
+    // 4. Branch code
+    // 5. Branch name
+    // 6. Deposit type
+    // 7. Deposit code
+    // 8. Deposit name
     if (empty($userInfo['pay']['method'])) {
         $err['tab2'] = true;
     } else {
@@ -318,21 +325,23 @@ function checkUser($userInfo)
         }
     }
 
-    // 保険証(Health insurance card tab=3)
+    // Health insurance card tab(保険証)
+    // Check if any of the required fields in the 介護保険証 tab is empty
+    // If any field is empty, set $err['tab3'] to true
     if (empty($userInfo['insure1'])
-            || empty($userInfo['insure2'])
+        || empty($userInfo['insure2'])
 //            || empty($userInfo['insure3'])
 //            || empty($userInfo['insure4'])
-            || empty($userInfo['office2'])) {
+        || empty($userInfo['office2'])) {
         $err['tab3'] = true;
     }
-    // 介護保険証(Nursing care insurance card)
-    $unExpired = false;
+    // $hasValidInsurance  is set to true if any insurance has not expired
+    $hasValidInsurance = false;
     foreach ($userInfo['insure1'] as $val) {
-        $isExpired = checkExpiryDate($val['start_day1'], $val['end_day1']);
-        // $unExpired is set to true if any insurance has not expired
-        if ($isExpired && !$unExpired) {
-            $unExpired = true;
+        $isValidItem = checkExpiryDate($val['start_day1'], $val['end_day1']);
+        // $hasValidInsurance is set to true if any insurance has not expired
+        if ($isValidItem && !$hasValidInsurance) {
+            $hasValidInsurance = true;
         }
         // Check if any required field is empty
         $hasEmptyFields = empty($val['insure_no']) ||
@@ -343,64 +352,66 @@ function checkUser($userInfo)
         // Set tab3 error if any required field is missing
         if ($hasEmptyFields) {
             $err['tab3'] = true;
-        }
-        // Set specific insurance error if expired or required fields are missing
-        if (!$isExpired || $hasEmptyFields) {
             $err['insure1'][$val['unique_id']] = true;
         }
     }
-    $err['tab3'] = $err['tab3'] || !$unExpired;
-    //給付情報（負担割合、高所得者情報(Benefit information (burden ratio, high income earner information))
+    // Set tab3 error if any insurance has expired
+    $err['tab3'] = $err['tab3'] || !$hasValidInsurance;
+    // Benefit information (burden ratio, high income earner information)(給付情報（負担割合、高所得者情報))
+    // Check if any required field is empty in the 給付情報 tab
+    // If any field is empty, set $err['tab3'] to true
     foreach ($userInfo['insure2'] as $val) {
         if (empty($val['start_day'])
-                || empty($val['rate'])) {
+            || empty($val['rate'])) {
             $err['tab3'] = true;
             $err['insure2'][$val['unique_id']] = true;
         }
     }
-    //居宅支援事業所履歴(In-home support office history)
+    //In-home support office history(居宅支援事業所履歴)
+    // Check if any required field is empty in the 居宅支援事業所履歴 tab
+    // If any field is empty, set $err['tab3'] to true
     foreach ($userInfo['office2'] as $val) {
         if (empty($val['start_day'])
-                || empty($val['office_code'])
-                || empty($val['office_name'])
-                || empty($val['tel'])
-                || empty($val['fax'])
-                || empty($val['person_name'])
-                || empty($val['plan_type'])) {
+            || empty($val['office_code'])
+            || empty($val['office_name'])
+            || empty($val['tel'])
+            || empty($val['fax'])
+            || empty($val['person_name'])
+            || empty($val['plan_type'])) {
+            // Set tab3 error if any required field is missing
             $err['tab3'] = true;
+            // Set specific office2 error if required fields are missing
             $err['office2'][$val['unique_id']] = true;
         }
     }
-
-    // 医療情報タブ
+    // Medical information(医療情報)
+    // Check if any required field is empty in the 医療情報 tab
+    // If any field is empty, set $err['tab4'] to true
     if (empty($userInfo['hospital'])) {
+        // Set tab4 error if no hospital is listed
         $err['tab4'] = true;
     }
     foreach ($userInfo['hospital'] as $val) {
         if (empty($val['start_day'])
-                || empty($val['name'])
-                || empty($val['doctor'])
-                || empty($val['select1'])) {
+            || empty($val['name'])
+            || empty($val['doctor'])
+            || empty($val['select1'])) {
+            // Set tab4 error if any required field is missing
             $err['tab4'] = true;
+            // Set specific hospital error if required fields are missing
             $err['hospital'][$val['unique_id']] = true;
         }
     }
-
+    // emergency contact(緊急連絡先)
+    // Check if any required field is empty in the 緊急連絡先タブ
+    // If any field is empty, set $err['tab5'] to true
+    // Required fields: kana, tel1
     if (empty($userInfo['emergency'][0]['kana'])
         || empty($userInfo['emergency'][0]['tel1'])) {
         $err['tab5'] = true;
     }
 
-    // 流入流出情報タブ
-    // チェックしない
-
-    /* -- データ返却 ------------------------------------------*/
     return $err;
-}
-
-function checkExpiryDate($start, $end): bool
-{
-    return $start <= TODAY && $end >= TODAY;
 }
 /* =======================================================================
  * 空データ削除関数
@@ -503,4 +514,9 @@ function getNgAry()
     $ngAry['mst_user_image']['user_id']           = true;
 
     return $ngAry;
+}
+
+function checkExpiryDate($start, $end): bool
+{
+    return $start <= TODAY && $end >= TODAY;
 }

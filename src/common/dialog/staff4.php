@@ -7,7 +7,7 @@ $orderBy = 'unique_id ASC';
 $temp = select('mst_staff', '*', $where, $orderBy);
 foreach ($temp as $val) {
     $stfId = $val['unique_id'];
-    $val['driving_license'] = $val['driving_license'] ? '〇' : NULL;
+    $val['driving_license'] = $val['driving_license'] ? '〇' : null;
     $stfList[$stfId] = $val;
 }
 ?>

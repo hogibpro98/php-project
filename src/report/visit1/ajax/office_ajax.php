@@ -52,18 +52,20 @@ if ($type === 'office'){
     $upAry['fax2']      = NULL;
     
     // 入力内容がある時に検索実行
-    if (!empty($upAry['user_id']) || !empty($upAry['first_day'])){
-                
-        // マスタ取得
-        $tgtDay = str_replace(array('年','月','日'), array('-','-',''), $upAry['first_day']);
+    if (!empty($upAry['common']['user_id']) || !empty($upAry['first_day'])){
 
         $where = array();
+        if(@$upAry['first_day'])
+        {
+            // マスタ取得
+            $tgtDay = str_replace(array('年','月','日'), array('-','-',''), $upAry['first_day']);
+            $where['start_day <='] = $tgtDay;
+            $where['end_day >=']   = $tgtDay;
+        }
         $where['delete_flg']   = 0;
-        $where['user_id']      = $upAry['user_id'];
-        $where['start_day <='] = $tgtDay;
-        $where['end_day >=']   = $tgtDay;
+        $where['user_id']      = $upAry['common']['user_id'];
         $temp = select('mst_user_office2', '*', $where);
-
+       
         // 居宅情報を補完
         if (isset($temp[0])){
             
@@ -93,7 +95,7 @@ if ($type === 'office'){
 /* -- データ送信 ----------------------------------------*/
 $sendData = array();
 foreach ($upAry as $key => $val){
-    $sendData['upAry['.$key.']'] = $val;
+    $sendData['upAry[common]['.$key.']'] = $val;
 }
 foreach ($upDummy as $key => $val){
     $sendData['upDummy['.$key.']'] = $val;

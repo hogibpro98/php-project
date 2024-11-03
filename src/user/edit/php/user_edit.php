@@ -883,7 +883,20 @@ try {
      */
 
     // 基本情報
-    if ($btnEntry && $upAry && $tab == 1) {
+    if ($btnEntry && $upAry && $tab == 1) { 
+
+        $userSvType = getUserServiceType($userId);
+        if ($userSvType !== $upAry['service_type']) {
+            $pdo = connect();
+            $upAryService = array(
+                'office_id' => '',
+            );
+            $where = array(
+                'user_id' => $userId,
+            );
+        
+            $resService = update($pdo, 'dat_week_schedule', $upAryService, $where);
+        }
         $res = upsert($loginUser, 'mst_user', $upAry);
         if (isset($res['err'])) {
             $err[] = 'システムエラーが発生しました';
@@ -967,8 +980,27 @@ try {
         // ログテーブルに登録する
         setMultiEntryLog($upIns2);
     }
+    if ($btnEntry && $upIns3 && $tab == 3) {
+        //check for empty record
+        if ($btnEntry == "保存") {
+            $allBlank = 1;
+            if (!empty($upIns3)) {
+                foreach ($upIns3 as $k => $v) {
+                    if ($v != "") {
+                        $allBlank = 2;
+                        continue;
+                    }
+                }
+                if ($allBlank == 1) {
+                    $upIns3 = array();
+                }
+            }
+        }
+    }
     // 医療保険証
     if ($btnEntry && $upIns3 && $tab == 3) {
+        //echo $btnEntry;
+        //echo '<pre>';print_r($upIns3);print_r($_POST);die("3");
         $upIns3['user_id'] = $userId;
         $res = upsert($loginUser, 'mst_user_insure3', $upIns3);
         if (isset($res['err'])) {
@@ -1362,7 +1394,7 @@ try {
                     $tgtData['standard']['status'] = '停止中';
                     $tgtData['standard']['st_cls'] = 'status2';
                     foreach ($userData[$key] as $dat) {
-                        if (empty($dat['end_day'])) {
+                        if (empty($dat['end_day']) || $dat['end_day'] == "0000-00-00") {
                             $dat['end_day'] = '';
                         }
                         if (!empty($dat['start_day']) && !empty($dat['end_day'])) {

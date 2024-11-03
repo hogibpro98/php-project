@@ -1,0 +1,205 @@
+<?php
+//=======================================================================
+//   固定値定義ファイル　★★
+//=======================================================================
+
+//$execEnv = 'psn';
+$execEnv = 'dev';
+//$execEnv = 'stg';
+//$execEnv = 'prd';
+
+/* DB関連 */
+switch ($execEnv){
+    
+    // ローカル
+    case 'psn':
+        $dbClass  = "mysql";                  // ＤＢの種類
+        $dbName   = "";                // ＤＢ名称
+        $dbServer = "";              // サーバのＩＰアドレス
+        $dbPort   = "3306";                   // ＤＢのポート番号
+        $dbInfo = $dbClass.":dbname=".$dbName.";host=".$dbServer.";port=".$dbPort.";charset=utf8mb4";
+        define("DB_INFO", $dbInfo);           // ＤＢ接続用 環境情報
+        define("DB_USER", "");             // ＤＢ接続用 ユーザアカウント
+        define("DB_PASS", "");          // ＤＢ接続用 パスワード
+        break;
+    
+    // 開発環境
+    case 'dev':
+        $dbClass  = 'mysql';                // ＤＢの種類
+        $dbName   = '';          // ＤＢ名称
+        $dbServer = '';// サーバのＩＰアドレス
+        $dbPort   = '3306';                 // ＤＢのポート番号
+        $dbInfo = $dbClass.':dbname='.$dbName.';host='.$dbServer.';port='.$dbPort.";charset=utf8mb4";
+        define('DB_INFO', $dbInfo);         // ＤＢ接続用 環境情報
+        define('DB_USER', ''); // ＤＢ接続用 ユーザアカウント
+        define('DB_PASS', ''); // ＤＢ接続用 パスワード
+        break;
+    
+    // ステージング環境用
+    case 'stg':
+        $dbClass  = 'pgsql';             // ＤＢの種類
+        $dbName   = '';     // ＤＢ名称
+        $dbServer = '';         // サーバのＩＰアドレス
+        $dbPort   = '5432';              // ＤＢのポート番号
+        $dbInfo = $dbClass.':dbname='.$dbName.';host='.$dbServer.';port='.$dbPort;
+        define('DB_INFO', $dbInfo);      // ＤＢ接続用 環境情報
+        define('DB_USER', '');      // ＤＢ接続用 ユーザアカウント
+        define('DB_PASS', '');   // ＤＢ接続用 パスワード
+        break;
+    
+    // 本番環境
+    case 'prd':
+        $dbClass  = 'pgsql';             // ＤＢの種類
+        $dbName   = '';           // ＤＢ名称
+        $dbServer = '';         // サーバのＩＰアドレス
+        $dbPort   = '5432';              // ＤＢのポート番号
+        $dbInfo = $dbClass.':dbname='.$dbName.';host='.$dbServer.';port='.$dbPort;
+        define('DB_INFO', $dbInfo);      // ＤＢ接続用 環境情報
+        define('DB_USER', '');      // ＤＢ接続用 ユーザアカウント
+        define('DB_PASS', '');   // ＤＢ接続用 パスワード
+        break;
+}
+
+/* CSS JSクリア用*/
+define('CACHEKEYQUERY', '20220121');
+
+/* デリミタ定義 */
+define('D1', '|');   // (|)
+define('D2', '^');   // (^)
+define('D3', '~');   // (~)
+define('D4', ' ');   // ( )
+define('D5', ',');   // (,)
+
+/* プロトコル定義 */
+define('SV_PROTOCOL','http://');    // httpプロトコルの設定(httpsとする場合には 'https://' }
+define('SV_ROOT', $server['documentRoot']);   // ルートディレクトリ
+
+/* リンク先ページ情報 */
+define('LOGIN_PAGE', '/');
+define('TOP_PAGE', '/');
+define('ERROR_PAGE', '/err/');
+
+/* cookie 有効期限(90日) */
+define('COOKIE_LIMIT', time()+60*60*24*90);
+
+/* encode */
+mb_internal_encoding('UTF-8');
+
+/* NO IMAGE画像 */
+$noImage['small']  = '/common/images/no_image_small.jpg';
+$noImage['middle'] = '/common/images/no_image_middle.jpg';
+$noImage['laarge'] = '/common/images/no_image_large.jpg';
+$noImage['icon']   = '/common/images/no_image_icon.jpg';
+
+/* 選択肢（年） */
+$selectYear[] = '';
+for ($i = 2020; $i < 2026; $i++) {
+    $selectYear[] = $i;
+}
+// 選択肢（月）
+$selectMonth[] = '';
+for ($i = 1; $i <= 12; $i++) {
+    $selectMonth[] = sprintf('%02d', $i);
+}
+
+
+/*--以下、ファイル操作用定数群-----------------------------------------------*/
+
+// デフォルトのパーミッション(所有者のみ編集可、他は参照、実行可)
+define('FILE_DEFAULT_PERMISSION',02775);
+//define('FILE_DEFAULT_PERMISSION',0775);
+// アップロードファイル保存用ディレクトリの指定
+define('FILE_UPLOAD_DIR','upload');
+
+// ロケール・エンコード設定
+// Windowsの場合は Shift_JIS、Unix系は UTF-8で処理
+if (strpos(PHP_OS, 'WIN') === 0) {
+    setlocale(LC_CTYPE, 'Japanese_Japan.932');
+    define('SERVER_ENCODE_TYPE','SJIS-win');
+    define('DEFAULT_ENCODE_TYPE','UTF-8');
+} else {
+    setlocale(LC_CTYPE, 'ja_JP.UTF-8');
+    define('SERVER_ENCODE_TYPE','UTF-8');
+    define('DEFAULT_ENCODE_TYPE','UTF-8');
+}
+
+//許可するファイル拡張子(MINEタイプ)の種類
+$temp = array();
+//(php.ini拡張不可の場合)
+$temp[] = 'gif';
+$temp[] = 'jpg';
+$temp[] = 'jpeg';
+$temp[] = 'png';
+$temp[] = 'txt';
+$temp[] = 'csv';
+$temp[] = 'xls';
+$temp[] = 'xlsx';
+$temp[] = 'ppt';
+$temp[] = 'pptx';
+$temp[] = 'doc';
+$temp[] = 'docx';
+$temp[] = 'pdf';
+$temp[] = 'webp';
+
+//(php.ini拡張可の場合)
+//$temp[] = 'image/gif';
+//$temp[] = 'image/jpeg';
+//$temp[] = 'image/png';
+//$temp[] = 'text/csv';
+//$temp[] = 'text/plain';
+// 区切り文字列に変換
+define('FILE_ALLOW_EXTENSION',implode('^',$temp));
+
+//ファイル名チェック用の正規表現
+//ファイル名の長さを定義(DBのカラムサイズ、パスの文字数を考慮して設定)
+$min = 1;
+$max = 256;
+$temp = '/^.{'.$min.','.$max.'}$/u';
+
+define('FILE_ALLOW_NAME',$temp);
+
+/*↓↓↓↓php.iniの設定よりも厳しい条件を設けたい場合書き換えて使用↓↓↓↓*/
+//上限を緩くしたい場合はphp.iniで直接条件を書き換え
+//もしくは、set権限を書き換えて、ini_setで変更値を指定すること
+
+//一度に選択できるファイル数
+$temp = null;
+$temp = ini_get('max_file_uploads');
+define('FILE_MAX_SELECT', $temp);
+
+/*バイト数変換(php.iniで取得できる)*/
+function getByte($val){
+    //余分な空白がある場合取り除く
+    $val = trim($val);
+    //最後の文字を取得し、小文字に変換(ギガ、メガ、キロ)
+    $last = strtolower($val[strlen($val)-1]);
+    //値に変換(1k=>1,8M=>8…)
+    $val = (int)$val;
+    switch($last) {
+        case 'g':
+            $val *= 1024;
+        case 'm':
+            $val *= 1024;
+        case 'k':
+            $val *= 1024;
+        default :
+            break;
+    }
+    return $val;
+}
+
+// php.iniの書き換え
+ini_set("post_max_size", "20M");
+ini_set("upload_max_filesize", "20M");
+
+//1回で持ってこれる最大のデータサイズ(全ファイル合計)
+$temp = null;
+$temp = getByte(ini_get('post_max_size'));
+define('POST_MAX_DATASIZE', $temp);
+
+//アップロード出来る上限のサイズ
+$temp = null;
+$temp = getByte(ini_get('upload_max_filesize'));
+define('FILE_MAX_DATASIZE', $temp);
+
+/*-- メール送信用環境パラメータ定義 -------------------------------------------------*/

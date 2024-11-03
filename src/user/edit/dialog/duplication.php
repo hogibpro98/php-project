@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * スタッフ検索モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -29,7 +29,7 @@ $tgtData = array();
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // 利用者(外部ID)取得
@@ -75,7 +75,7 @@ if (!empty($userId)) {
     $temp = select('mst_user', '*', $where);
     $cnkCnt = !empty($dispData['standard']['unique_id']) ? 1 : 0;
     if (count($temp) > $cnkCnt) {
-        $dplIcon['other_id'] = TRUE;
+        $dplIcon['other_id'] = true;
         foreach ($temp as $val) {
             $tgtId = $val['unique_id'];
             $tgtData[$tgtId] = $val;
@@ -92,7 +92,7 @@ if (!empty($lastKana) || !empty($firstKana) || !empty($birthday)) {
     $temp = select('mst_user', '*', $where);
     $cnkCnt = !empty($dispData['standard']['unique_id']) ? 1 : 0;
     if (count($temp) > $cnkCnt) {
-        $dplIcon['birthday'] = TRUE;
+        $dplIcon['birthday'] = true;
         foreach ($temp as $val) {
             $tgtId = $val['unique_id'];
             $val['kana_name'] = $val['last_kana'] . ' ' . $val['first_kana'];

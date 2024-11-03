@@ -7,7 +7,7 @@ $where['user_id'] = $userId;
 $orderBy = 'unique_id DESC';
 $limit = 1;
 $temp = select('doc_instruct', '*', $where, $orderBy, $limit);
-foreach ($temp as $val){
+foreach ($temp as $val) {
     $instructId = $val['unique_id'];
     // 傷病名１を主たる傷病名にセット
     $val['main_sickness'] = $val['sickness1'];

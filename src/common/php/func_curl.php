@@ -1,34 +1,45 @@
 <?php
+
 // =======================================================================
-// GMO API 操作関数
+// API 操作関数
 // =======================================================================
-/*   0. responseLog               [レスポンスログ出力用関数]
- *   1. phpCurl                   [php curl 関数]
- *   2. phpCurlJson               [php curl 関数(json渡し)]
- *   3. sample                    [サンプル]
- * 
- * 
+/*   1. responseLog               [レスポンスログ出力用関数]
+ *   2. phpCurl                   [php curl 関数]
+ *   3. phpCurlJson               [php curl 関数(json渡し)]
+ *
  * -----------------------------------------------------------------------
  */
 
-// 決済サービスの場合 検証用カード番号
-//    Visa  :4111111111111111
-//    Master:5555555555554444
-//    JCB   :3530111333300000
+/* -- 定数定義 ----------------------------------------------------*/
 
-/* ============================================================================= 
+// ひつじメニューのON,OFF
+define("HTJ_FLG", true);
+
+// 法人番号
+define("HTJ_CMP_NO", "0001000");
+
+// メニュー表示用URL
+define("HTJ_URL_MENU", "https://test.h2-platform.com/Login/KantakiLogin/");
+//define("HTJ_URL_MENU", "https://h2-platform.com/Login/KantakiLogin/");
+
+// 未読件数API用URL
+define("HTJ_URL_UNREAD", "https://test.day-web.com/hitsujiapi-hq/api/notReadCommentCnt/send-comment-count/");
+//define("HTJ_URL_UNREAD", "https://www.accountability-web.com/hitsujiapi-hq/api/notReadCommentCnt/send-comment-count/");
+
+/* =============================================================================
  * レスポンスログ出力用関数
  * =============================================================================
  */
-function responseLog($ary){
-    
+function responseLog($ary)
+{
+
     $output = array();
 
-     // ディレクトリ生成
-    $dir = $_SERVER['DOCUMENT_ROOT'].'/csv/orico/';
-    if (!is_dir($dir)){
+    // ディレクトリ生成
+    $dir = $_SERVER['DOCUMENT_ROOT'] . '/csv/orico/';
+    if (!is_dir($dir)) {
         umask(0);
-        if (!mkdir($dir,0777)){
+        if (!mkdir($dir, 0777)) {
             $err[] = 'CSV出力フォルダ作成に失敗しました。';
             throw new Exception();
         }
@@ -39,70 +50,72 @@ function responseLog($ary){
     $filepath = $dir . '/' . $filename;
     $output[][] = jsonEncode($ary);
     writeCsv($filepath, $output);
-    
-    return TRUE;
+
+    return true;
 }
-/* ============================================================================= 
+/* =============================================================================
  * php curl 関数
  * =============================================================================
  */
-function phpCurl($url, $param){
-    
+function phpCurl($url, $param)
+{
+
     // 初期化
     $res = array();
-    
+
     // リクエストコネクションの設定
     $curl = curl_init();
-    curl_setopt( $curl, CURLOPT_POST, true );
-    curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true );
-    curl_setopt( $curl, CURLOPT_URL, $url );
-    
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_URL, $url);
+
     // セキュリティ例外(テストモード)
-    curl_setopt( $curl, CURLOPT_SSL_VERIFYHOST, 0 );
-    curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, false );
-    
+    curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+
     // リクエストボディの生成
-    curl_setopt( $curl, CURLOPT_POSTFIELDS, $param );
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $param);
 
     // リクエスト送信
-    $response = curl_exec( $curl );
-    $curlinfo = curl_getinfo( $curl );
-    curl_close( $curl );
-    
+    $response = curl_exec($curl);
+    $curlinfo = curl_getinfo($curl);
+    curl_close($curl);
+
     $res['response'] = $response;
     $res['curlinfo'] = $curlinfo;
-    
+
     return $res;
 }
-/* ============================================================================= 
+/* =============================================================================
  * php curl 関数(json渡し)
  * =============================================================================
  */
-function phpCurlJson($url, $param){
-    
+function phpCurlJson($url, $param)
+{
+
     $res = array();
 
     $jsonParam = json_encode($param);
-    
+
     // リクエストコネクションの設定
-    $curl=curl_init();
-    curl_setopt( $curl, CURLOPT_POST, true);            // POST指定
-    curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-type: application/json;charset=UTF-8'));// HTTPヘッダー指定
-    curl_setopt( $curl, CURLOPT_URL, $url);             // 取得するURLを指定
-    curl_setopt( $curl, CURLOPT_RETURNTRANSFER, true);  // 実行結果を文字列で返す
-    curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER, false); // サーバー証明書の検証を行わない
-    
+    $curl = curl_init();
+    curl_setopt($curl, CURLOPT_POST, true);            // POST指定
+    curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-type: application/json;charset=UTF-8'));// HTTPヘッダー指定
+    curl_setopt($curl, CURLOPT_URL, $url);             // 取得するURLを指定
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);  // 実行結果を文字列で返す
+    curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // サーバー証明書の検証を行わない
+
     // リクエストボディの生成
-    curl_setopt( $curl, CURLOPT_POSTFIELDS, $jsonParam);// 入力パラメータ指定
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $jsonParam);// 入力パラメータ指定
 
     // リクエスト送信
-    $response = curl_exec( $curl );
-    $curlinfo = curl_getinfo( $curl );
-    curl_close( $curl );
-    
+    $response = curl_exec($curl);
+    $curlinfo = curl_getinfo($curl);
+    curl_close($curl);
+
     $res['response'] = $response;
     $res['curlinfo'] = $curlinfo;
-    
+
     return $res;
 }
 
@@ -110,50 +123,115 @@ function phpCurlJson($url, $param){
 /* -- 固有関数 ---------------------------------------------*/
 
 
-/* ============================================================================= 
- * 暗号鍵取得
+/* =============================================================================
+ * ひつじ：メニュー取得
  * =============================================================================
  */
-function getKeyCurl($ordData = array()){
-    
+function getHtjMenu($loginUser)
+{
+
     // 初期化
-    $res = array();
-    
-    // マーチャントシード、マーチャントID、決済タイプ、取引ID、金額
-    $mctSd   = 'aaa';
-    $mctId   = 'bbb';
-    $mctType = '01';
-    $orderId = $ordData['id'];
-    $price   = $ordData['total_price'];
-    $hashOrg = $mctSd.','.$mctId.','.$mctType.','.$orderId.','.$price;
-    $hash    = hash('sha512', $hashOrg);
-    
-    // param作成
-    $url = 'https://pay.veritrans.co.jp/web1/commodityRegist.action';
-    $param = array();
-    $param['MERCHANT_ID']          = $mctId;
-    $param["ORDER_ID"]             = $orderId;
-    $param["MERCHANTHASH"]         = $hash;
-    $param["SESSION_ID"]           = 'testSessionID';
-    $param["AMOUNT"]               = $price;
-    $param["SETTLEMENT_TYPE"]      = $mctType;
-    $param["CARD_INSTALLMENT_JPO"] = '10';
-    $param["CARD_CAPTURE_FLAG"]    = '0';
-    $param["DDD_ENABLE_FLAG"]      = '0';
-    $param["AUTO_RETURN_FLAG"]     = '1';
-    
-    // テスト用パラメータ(本番時はコメントアウト)
-    $param["DUMMY_PAYMENT_FLAG"]   = '1';
+    $res   = null;
+    $ofcId = null;
+    $ofcNo = null;
+
+    // ログイン情報チェック
+    if (!$loginUser) {
+        return $res;
+    }
+    // 従業員ID
+    $stfId = $loginUser['unique_id'];
+
+    // 事業所マスタ
+    $where = array();
+    $where['staff_id'] = $stfId;
+    $temp = getData('mst_staff_office', $where);
+    foreach ($temp as $val) {
+        $ofcId = $val['office1_id'];
+    }
+    $where = array();
+    $where['unique_id'] = $ofcId;
+    $ofcVal = getData('mst_office', $where);
+    $ofcNo = $ofcVal['other_code'];
+
+    // 法人番号,メールアドレス,利用者番号
+    $cmpNo = HTJ_CMP_NO;
+    $mail = $loginUser['mail'];
+    $usrNo = $loginUser['staff_id'];
+
+    // 送信パラメータチェック
+    if (!$cmpNo || !$ofcNo || !$mail || !$usrNo) {
+        return $res;
+    }
+
+    // メニューURL作成
+    $res = HTJ_URL_MENU;
+    $res .= '?hojin_no=' . $cmpNo;
+    $res .= '&jigyo_no=' . $ofcNo;
+    $res .= '&mail_address=' . $mail;
+    $res .= '&user_id=' . $usrNo;
+
+    // データ返却
+    return $res;
+}
+/* =============================================================================
+ * ひつじ：未読件数取得
+ * =============================================================================
+ */
+function getHtjUnread($loginUser)
+{
+
+    // 初期化
+    $res   = 0;
+    $ofcId = null;
+
+    // ログイン情報チェック
+    if (!$loginUser) {
+        return $res;
+    }
+
+    // 従業員ID
+    $stfId = $loginUser['unique_id'];
+
+    // 事業所マスタ
+    $where = array();
+    $where['staff_id'] = $stfId;
+    $temp = getData('mst_staff_office', $where);
+    foreach ($temp as $val) {
+        $ofcId = $val['office1_id'];
+    }
+    $where = array();
+    $where['unique_id'] = $ofcId;
+    $ofcVal = getData('mst_office', $where);
+    $ofcNo = $ofcVal['other_code'];
+
+    // 法人番号,メールアドレス,利用者番号
+    $cmpNo = HTJ_CMP_NO;
+    $mail  = $loginUser['mail'];
+    $usrNo = $loginUser['staff_id'];
+
+    // 送信パラメータチェック
+    if (!$cmpNo || !$ofcNo || !$mail || !$usrNo) {
+        return $res;
+    }
+
+    // API URL作成
+    $url = HTJ_URL_UNREAD;
+
+    // パラメータ作成
+    $param['hojin_no'] = $cmpNo;
+    $param['jigyo_no'] = $mail;
+    $param['mail_address'] = $mail;
+    $param['user_id'] = $usrNo;
 
     // 通信実行
-    $result = phpCurl($url, $param);
+    $result = phpCurlJson($url, $param);
 
-    // ログ出力
-    responseLog($result);
+    // レスポンス取得
+    if (isset($result['response'])) {
+        $res = $result['response'];
+    }
 
-    // 結果param解析
-    parse_str($result['response'], $res);
-    
-    // データ返却
+    // 返却
     return $res;
 }

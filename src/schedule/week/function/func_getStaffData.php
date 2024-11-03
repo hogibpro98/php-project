@@ -1,13 +1,14 @@
 <?php
-/* ============================================================================= 
+/* =============================================================================
  * 従業員データ取得関数（基本情報）
  * =============================================================================
  */
-function getStaffDataStd(){
+function getStaffDataStd()
+{
     $res = array();
     $staffMst = array();
-    $temp = select('mst_staff','*');
-    foreach ($temp as $val){
+    $temp = select('mst_staff', '*');
+    foreach ($temp as $val) {
         $tgtId    = $val['unique_id'];
         $tgtStaffId = $val['staff_id'];
         $tgtLastName = $val['last_name'];
@@ -81,19 +82,20 @@ function getStaffDataStd(){
     return $staffMst;
 }
 
-/* ============================================================================= 
+/* =============================================================================
  * 従業員データ取得関数(基本情報＋所属情報)
  * =============================================================================
  */
-function getStaffDataDtl(){
+function getStaffDataDtl()
+{
     $res = array();
     $condition = array();
     $joinconditions = array();
 
     // ToDp : Join句の指定方法
     $joinconditions = "mst_staff.staff_id = mst_staff_office.staff_id";
-    $temp = getMultiData('mst_staff', 'mst_staff_office', '*' );
-    foreach ($temp as $val){
+    $temp = getMultiData('mst_staff', 'mst_staff_office', '*');
+    foreach ($temp as $val) {
         $tgtId    = $val['unique_id'];
         $tgtStaffId = $val['staff_id'];
         $tgtLastName = $val['last_name'];
@@ -166,5 +168,3 @@ function getStaffDataDtl(){
     }
     return $staffMst;
 }
-
-?>

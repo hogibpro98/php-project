@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * スタッフ検索モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -29,7 +29,7 @@ $tgtData = array();
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // 利用者(外部ID)取得
@@ -74,9 +74,9 @@ $where['delete_flg']  = 0;
 $target = "office_code, office_name, address, tel, fax";
 $orderBy = 'unique_id ASC';
 $temp = select('mst_user_office2', '*', $where, $orderBy);
-foreach ($temp as $val){
+foreach ($temp as $val) {
     $ofcCode = $val['office_code'];
-    $val['found_day'] = $val['found_day'] == '0000-00-00' ? NULL : $val['found_day']; 
+    $val['found_day'] = $val['found_day'] == '0000-00-00' ? null : $val['found_day'];
     $ofc2Data[$ofcCode] = $val;
 }
 

@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * スタッフ複製モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -62,7 +62,7 @@ $temp = select('dat_staff_schedule', '*', $where);
 foreach ($temp as $val) {
 
     // 曜日、開始・終了時刻、更新者名
-    $val['week_name'] = !empty($val['week']) ? $weekAry[$val['week']] : NULL;
+    $val['week_name'] = !empty($val['week']) ? $weekAry[$val['week']] : null;
     $val['start_time'] = formatDateTime($val['start_time'], 'H:i');
     $val['end_time'] = formatDateTime($val['end_time'], 'H:i');
     $val['update_name'] = getStaffName($val['update_user']);

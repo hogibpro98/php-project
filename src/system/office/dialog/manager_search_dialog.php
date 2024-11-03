@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * スタッフ検索モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -28,7 +28,7 @@ $dispData = array();
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // 反映先ID取得
@@ -64,19 +64,19 @@ $tgtSetName = filter_input(INPUT_GET, 'tgt_set_name');
 // スタッフ
 $stfList = getStaffList($placeId);
 foreach ($stfList as $stfId => $val) {
-    
+
     $license = $val['license2'];
     if (mb_strpos($license, '普通自動車免許')) {
         $val['drive']  = '〇';
     }
     if (
-        mb_strpos($license, '正看護師') !== FALSE
-        || mb_strpos($license, '准看護師') !== FALSE
-        || mb_strpos($license, '保健師') !== FALSE
-        || mb_strpos($license, '助産師') !== FALSE
-        || mb_strpos($license, '喀痰吸引等研修(第1号研修)') !== FALSE
-        || mb_strpos($license, '喀痰吸引等研修(第2号研修)') !== FALSE
-        || mb_strpos($license, '喀痰吸引等研修(第3号研修)') !== FALSE
+        mb_strpos($license, '正看護師') !== false
+        || mb_strpos($license, '准看護師') !== false
+        || mb_strpos($license, '保健師') !== false
+        || mb_strpos($license, '助産師') !== false
+        || mb_strpos($license, '喀痰吸引等研修(第1号研修)') !== false
+        || mb_strpos($license, '喀痰吸引等研修(第2号研修)') !== false
+        || mb_strpos($license, '喀痰吸引等研修(第3号研修)') !== false
     ) {
         $val['action'] = '〇';
     }

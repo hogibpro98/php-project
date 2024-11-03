@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * スタッフ検索モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -28,7 +28,7 @@ $dispData = array();
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // 反映先ID取得
@@ -70,13 +70,13 @@ foreach ($stfList as $stfId => $val) {
         $val['drive']  = '〇';
     }
     if (
-        mb_strpos($license, '正看護師') !== FALSE
-        || mb_strpos($license, '准看護師') !== FALSE
-        || mb_strpos($license, '保健師') !== FALSE
-        || mb_strpos($license, '助産師') !== FALSE
-        || mb_strpos($license, '喀痰吸引等研修(第1号研修)') !== FALSE
-        || mb_strpos($license, '喀痰吸引等研修(第2号研修)') !== FALSE
-        || mb_strpos($license, '喀痰吸引等研修(第3号研修)') !== FALSE
+        mb_strpos($license, '正看護師') !== false
+        || mb_strpos($license, '准看護師') !== false
+        || mb_strpos($license, '保健師') !== false
+        || mb_strpos($license, '助産師') !== false
+        || mb_strpos($license, '喀痰吸引等研修(第1号研修)') !== false
+        || mb_strpos($license, '喀痰吸引等研修(第2号研修)') !== false
+        || mb_strpos($license, '喀痰吸引等研修(第3号研修)') !== false
     ) {
         $val['action'] = '〇';
     }
@@ -125,9 +125,9 @@ $dispData = $stfList;
                                 >選択</button></td>
                     <td><?= $val['name'] ?></td>
                     <td><?= $val['license1'] ?></td>
-                    <td><?php isset($val['drive'] ) ? $val['drive']  : NULL; ?></td>
-                    <td><?php isset($val['action']) ? $val['action'] : NULL; ?></td>
-                    <td><?php isset($val['mental']) ? $val['mental'] : NULL; ?></td>
+                    <td><?php isset($val['drive']) ? $val['drive'] : null; ?></td>
+                    <td><?php isset($val['action']) ? $val['action'] : null; ?></td>
+                    <td><?php isset($val['mental']) ? $val['mental'] : null; ?></td>
                     <td><?= $val['remarks'] ?></td>
                 </tr>
             <?php endforeach; ?>

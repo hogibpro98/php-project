@@ -1,4 +1,5 @@
 <?php
+
 /*--共通ファイル呼び出し-------------------------------------*/
 require_once($_SERVER['DOCUMENT_ROOT'] . '/common/php/com_start.php');
 
@@ -11,7 +12,7 @@ $loginUser = $_SESSION['login'];
 
 // 更新配列(サービス)
 $upSvc = array();
-if ($svcId){
+if ($svcId) {
     $upSvc['unique_id']  = $svcId;
 }
 $upSvc['start_time'] = $startTime;
@@ -21,12 +22,12 @@ $upSvc['week'] = !empty($week) ? array_search($week, $weekAry) : "";
 // データ更新(サービス)
 $res = upsert($loginUser, 'dat_week_schedule', $upSvc);
 if (isset($res['err'])) {
-  $response = 'システムエラーが発生しました';
-  throw new Exception();
+    $response = 'システムエラーが発生しました';
+    throw new Exception();
 } else {
-  $response = $res;
+    $response = $res;
 }
 
 // データ返却
 echo $response;
-exit();
+exit;

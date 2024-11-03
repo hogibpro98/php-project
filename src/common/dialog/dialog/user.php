@@ -15,15 +15,15 @@ foreach ($temp as $key => $val) {
     $val['kana'] = $val['last_kana'] . ' ' . $val['first_kana'];
 
     // 年号
-    $nengo = !empty($val['birthday']) ? chgAdToJpNengo($val['birthday']) : NULL;
+    $nengo = !empty($val['birthday']) ? chgAdToJpNengo($val['birthday']) : null;
     // 和暦
-    $wareki = !empty($val['birthday']) ? chgAdToJpYear($val['birthday']) . '年' : NULL;
+    $wareki = !empty($val['birthday']) ? chgAdToJpYear($val['birthday']) . '年' : null;
     // 生年月日
     //$val['birthday_disp'] = $nengo.$wareki.$val['birthday'];
-    $val['birthday_disp'] = !empty($val['birthday']) ? chgAdToJpDate($val['birthday']) : NULL;
+    $val['birthday_disp'] = !empty($val['birthday']) ? chgAdToJpDate($val['birthday']) : null;
 
     // 年齢
-    $val['age'] = !empty($val['birthday']) ? getAge($val['birthday']) . '歳' : NULL;
+    $val['age'] = !empty($val['birthday']) ? getAge($val['birthday']) . '歳' : null;
     // 住所
     $val['address'] = $val['prefecture'] . $val['area'] . $val['address1'] . $val['address2'] . $val['address3'];
 

@@ -1,11 +1,11 @@
 <?php
 
-/* =================================================== 
+/* ===================================================
  * スタッフ検索モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -30,13 +30,13 @@ $notice   = array();
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // ユーザID
 $userId = filter_input(INPUT_GET, 'user');
 if (!$userId) {
-    $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : NULL;
+    $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : null;
 }
 
 /* -- 更新用パラメータ --------------------------------------- */
@@ -81,30 +81,28 @@ foreach ($temp as $val) {
 
 }
 
-if($userFmlList){
+if ($userFmlList) {
     $where['delete_flg'] = 0;
-    
+
 }
 /* -- データ送信 ----------------------------------------*/
 $sendData = array();
 $i = 0;
-foreach ($userFmlList as $ary){
-    foreach ($ary as $key => $val){
-        $sendData['upFml['.$i.']['.$key.']'] = $val;
+foreach ($userFmlList as $ary) {
+    foreach ($ary as $key => $val) {
+        $sendData['upFml[' . $i . '][' . $key . ']'] = $val;
     }
     $i++;
 }
 
 // -----------------------------------------------------------
 
-if ($sendData){
-    echo sprintf("setMultiValue(%s);",jsonEncode($sendData));
+if ($sendData) {
+    echo sprintf("setMultiValue(%s);", jsonEncode($sendData));
 }
 
 // メッセージ送信
-if ($notice){
-    echo sprintf("noticeModal(%s);",jsonEncode($notice));
+if ($notice) {
+    echo sprintf("noticeModal(%s);", jsonEncode($notice));
 }
-exit();
-
-?>
+exit;

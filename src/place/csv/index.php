@@ -26,7 +26,7 @@
                                                 <input type="radio" name="upSearch[type]" value="利用者情報" id="" class="select" <?= $dispSearch['type'] === "利用者情報" ? " checked" : "" ?>><label for="target1">利用者情報</label>
                                             </dt>
                                             <dd>
-                                                <p><input type="checkbox" name="upSearch[target][standard]" value="基本情報" <?= mb_strpos($dispSearch['target']['standard'], "基本情報") !== false  ? " checked" : '' ?> id="info1"><label for="info1">基本情報</label></p>
+                                                <p><input type="checkbox" name="upSearch[target][standard]" value="基本情報" <?= mb_strpos($dispSearch['target']['standard'], "基本情報") !== false ? " checked" : '' ?> id="info1"><label for="info1">基本情報</label></p>
                                                 <p><input type="checkbox" name="upSearch[target][insure1]" value="介護保険証情報" <?= mb_strpos($dispSearch['target']['insure1'], "介護保険証情報") !== false ? " checked" : '' ?> id="info2"><label for="info2">介護保険証情報</label></p>
                                                 <p><input type="checkbox" name="upSearch[target][insure3]" value="医療保険証情報" <?= mb_strpos($dispSearch['target']['insure3'], "医療保険証情報") !== false ? " checked" : '' ?> id="info3"><label for="info3">医療保険証情報</label></p>
                                                 <p><input type="checkbox" name="upSearch[target][introduct]" value="流入流出情報" <?= mb_strpos($dispSearch['target']['introduct'], "流入流出情報") !== false ? " checked" : '' ?> id="info4"><label for="info4">流入流出情報</label></p>

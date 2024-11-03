@@ -1,7 +1,9 @@
 <?php
+
 // 展開更新用 配列作成(ルート予定) from makePlan()
-function makeRoot($upRootPlan,$placeId,$day,$rootCfg){
-    foreach ($rootCfg as $tgtId => $val){
+function makeRoot($upRootPlan, $placeId, $day, $rootCfg)
+{
+    foreach ($rootCfg as $tgtId => $val) {
         $dat = array();
         $dat['place_id']   = $placeId;
         $dat['root_id']    = $tgtId;
@@ -12,7 +14,8 @@ function makeRoot($upRootPlan,$placeId,$day,$rootCfg){
     return $upRootPlan;
 }
 // 展開更新用 配列作成(利用者予定) from makePlan()
-function makePlanUser($schData){
+function makePlanUser($schData)
+{
     $res = array();
     $res['schedule_id']  = $schData['unique_id'];
     $res['use_day']      = $schData['day'];
@@ -24,12 +27,13 @@ function makePlanUser($schData){
     $res['service_name'] = $schData['service_name'];
     $res['jihi_flg']     = $schData['jihi_flg'];
     $res['jihi_price']   = $schData['jihi_price'];
-//    $res['root_name']    = $schData['root_name'];
+    //    $res['root_name']    = $schData['root_name'];
     $res['root_name']    = !empty($schData['root_name']) ? $schData['root_name'] : '未割当' ;
     return $res;
 }
 // 展開更新用 配列作成(加減算) from makePlan()
-function makePlanAdd($schData){
+function makePlanAdd($schData)
+{
     $res = array();
     $res['add_id']    = $schData['add_id'];
     $res['add_name']  = $schData['add_name'];
@@ -38,7 +42,8 @@ function makePlanAdd($schData){
     return $res;
 }
 // 展開更新用 配列作成(実費) from makePlan()
-function makePlanJpi($schData){
+function makePlanJpi($schData)
+{
     $res = array();
     $res['uninsure_id'] = $schData['uninsure_id'];
     $res['type']        = $schData['type'];
@@ -50,7 +55,8 @@ function makePlanJpi($schData){
     return $res;
 }
 // 展開更新用 配列作成(サービス) from makePlan()
-function makePlanSvc($schData){
+function makePlanSvc($schData)
+{
     $res = array();
     $res['start_time']   = $schData['start_time'];
     $res['end_time']     = $schData['end_time'];
@@ -58,14 +64,15 @@ function makePlanSvc($schData){
     $res['service_name'] = $schData['service_name'];
     $res['service_detail_id'] = $schData['service_detail_id'];
     $res['type']         = $schData['type'];
-    if(empty($res['root_name']) || $res['root_name'] !== '未割当'){
+    if (empty($res['root_name']) || $res['root_name'] !== '未割当') {
         $res['root_name']    = !empty($schData['root_name']) ? $schData['root_name'] : '未割当' ;
     }
     // name,staff_id
     return $res;
 }
 // 展開更新用 配列作成(スタッフ予定) from makePlan()
-function makePlanStf($schData){
+function makePlanStf($schData)
+{
     $res = array();
     $res['schedule_id']  = $schData['unique_id'];
     $res['target_day']   = $schData['day'];
@@ -80,19 +87,20 @@ function makePlanStf($schData){
     return $res;
 }
 // 週数判定 from makePlan()
-function checkWeek($monthCld, $day, $data){
-    $qt = NULL;
-    foreach ($monthCld as $weekNum => $tgtWeek){
-        foreach ($tgtWeek as $week => $checkDay){
-            if ($checkDay === $day){
+function checkWeek($monthCld, $day, $data)
+{
+    $qt = null;
+    foreach ($monthCld as $weekNum => $tgtWeek) {
+        foreach ($tgtWeek as $week => $checkDay) {
+            if ($checkDay === $day) {
                 $qt = $weekNum;
             }
         }
     }
-    if (!$qt || mb_strpos($data, $qt) === FALSE){
-        return TRUE;
+    if (!$qt || mb_strpos($data, $qt) === false) {
+        return true;
     }
-    return FALSE;
+    return false;
 }
 
 /* =======================================================================
@@ -105,86 +113,87 @@ function checkWeek($monthCld, $day, $data){
  *     ④ 処理タイプ 1:差分のみ,2:削除新規
  *     ⑤ 展開開始日 yyyy-mm-dd
  *     ⑥ 展開終了日 yyyy-mm-dd
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *     NULL
- * 
+ *
  * -----------------------------------------------------------------------
  */
-function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
-    
+function makePlan($loginUser, $placeId, $userAry, $type, $start, $end)
+{
+
     /* -- 初期処理 --------------------------------------------*/
-    $debug        = FALSE;
-    
+    $debug        = false;
+
     $res          = array();
     $calendar     = array();
     $monthCld     = array();
     $stfAry       = array();
     $rootIds      = array();
-    
+
     $tgtSch       = array();
     $tgtPlan      = array();
-    
+
     $userSchPlan  = array();
     $stfSchPlan   = array();
-    
+
     $rootCfg      = array();
     $userSch      = array();
     $userSchAdd   = array();
     $userSchJpi   = array();
     $userSchSvc   = array();
     $stfSch       = array();
-    
+
     $rootPlan     = array();
     $userPlan     = array();
     $userPlanAdd  = array();
     $userPlanJpi  = array();
     $userPlanSvc  = array();
     $stfPlan      = array();
-    
+
     $upRootPlan   = array();
     $upUserPlan   = array();
     $upUserAdd    = array();
     $upUserJpi    = array();
     $upUserSvc    = array();
     $upStfPlan    = array();
-    
+
     /* -- パラメータチェック ----------------------------------*/
-    
+
     // 処理タイプ
-    if ($type != 1 && $type != 2){
+    if ($type != 1 && $type != 2) {
         $res['err'] = '処理タイプの指定が不正です';
         return $res;
     }
     // 日付不正
-    if ($end < $start){
+    if ($end < $start) {
         $res['err'] = '日付の指定が不正です';
         return $res;
     }
-    
+
     /* -- マスタ取得 ------------------------------------------*/
-    
+
     // カレンダー
     $calendar = getCalendar($start, $end);
-    
+
     // スタッフ
     $stfList = getStaffList($placeId);
-    foreach ($stfList as $val){
+    foreach ($stfList as $val) {
         $tgtId = $val['unique_id'];
         $stfAry[] = $tgtId;
     }
 
     /* -- 登録済みデータ取得 ----------------------------------*/
-    
+
     /* -- ルート設定 -----------------------------*/
     $where = array();
     $where['delete_flg'] = 0;
     $where['place_id']   = $placeId;
     $temp = select('dat_root_config', '*', $where);
-    foreach ($temp as $val){
+    foreach ($temp as $val) {
         $tgtId = $val['unique_id'];
         $rootCfg[$tgtId] = $val;
-        $rootIds[] = $tgtId; 
+        $rootIds[] = $tgtId;
     }
     /* -- スケジュール ---------------------------*/
 
@@ -193,7 +202,7 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
     $where['delete_flg'] = 0;
     $where['user_id'] = $userAry;
     $temp = select('dat_week_schedule', '*', $where);
-    foreach ($temp as $val){
+    foreach ($temp as $val) {
         $week  = $val['week'];
         $tgtId = $val['unique_id'];
         $tgtSch[] = $tgtId;
@@ -201,36 +210,36 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
         $userSch[$week][$tgtId] = $val;
     }
     //  加減算
-    if ($tgtSch){
+    if ($tgtSch) {
         $where = array();
         $where['delete_flg']  = 0;
         $where['schedule_id'] = $tgtSch;
         $temp = select('dat_week_schedule_add', '*', $where);
-        foreach ($temp as $val){
+        foreach ($temp as $val) {
             $schId  = $val['schedule_id'];
             $tgtId  = $val['unique_id'];
             $userSchAdd[$schId][$tgtId] = $val;
         }
     }
     //  実費
-    if ($tgtSch){
+    if ($tgtSch) {
         $where = array();
         $where['delete_flg']  = 0;
         $where['schedule_id'] = $tgtSch;
         $temp = select('dat_week_schedule_jippi', '*', $where);
-        foreach ($temp as $val){
+        foreach ($temp as $val) {
             $schId  = $val['schedule_id'];
             $tgtId  = $val['unique_id'];
             $userSchJpi[$schId][$tgtId] = $val;
         }
     }
     //  サービス
-    if ($tgtSch){
+    if ($tgtSch) {
         $where = array();
         $where['delete_flg']  = 0;
         $where['schedule_id'] = $tgtSch;
         $temp = select('dat_week_schedule_service', '*', $where);
-        foreach ($temp as $val){
+        foreach ($temp as $val) {
             $schId  = $val['schedule_id'];
             $tgtId  = $val['unique_id'];
             $userSchSvc[$schId][$tgtId] = $val;
@@ -241,14 +250,14 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
     $where['delete_flg'] = 0;
     $where['root_id']   = $rootIds;
     $temp = select('dat_staff_schedule', '*', $where);
-    foreach ($temp as $val){
+    foreach ($temp as $val) {
         $week  = $val['week'];
         $tgtId  = $val['unique_id'];
         $stfSch[$week][$tgtId] = $val;
     }
 
     /* -- 展開済み予定 ---------------------------*/
-    
+
     // ルート予定
     $where = array();
     $where['delete_flg'] = 0;
@@ -256,12 +265,12 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
     $where['target_day <='] = $end;
     $where['place_id']      = $placeId;
     $temp = select('dat_root_plan', '*', $where);
-    foreach ($temp as $val){
+    foreach ($temp as $val) {
         $tgtDay   = $val['target_day'];
         $tgtId    = $val['unique_id'];
         $rootPlan[$tgtDay][$tgtId] = $val;
     }
-    
+
     // 利用者予定
     $where = array();
     $where['delete_flg'] = 0;
@@ -269,7 +278,7 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
     $where['use_day >='] = $start;
     $where['use_day <='] = $end;
     $temp = select('dat_user_plan', '*', $where);
-    foreach ($temp as $val){
+    foreach ($temp as $val) {
         $day    = $val['use_day'];
         $schId  = $val['schedule_id'];
         $tgtId  = $val['unique_id'];
@@ -278,35 +287,35 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
         $userSchPlan[$day][$schId] = $tgtId;
     }
     //  加減算
-    if ($tgtPlan){
+    if ($tgtPlan) {
         $where = array();
         $where['delete_flg']  = 0;
         $where['user_plan_id'] = $tgtPlan;
         $temp = select('dat_user_plan_add', '*', $where);
-        foreach ($temp as $val){
+        foreach ($temp as $val) {
             $planId = $val['user_plan_id'];
             $tgtId  = $val['unique_id'];
             $userPlanAdd[$tgtId] = $val;
         }
     }
     //  実費
-    if ($tgtPlan){
+    if ($tgtPlan) {
         $where = array();
         $where['delete_flg']   = 0;
         $where['user_plan_id'] = $tgtPlan;
         $temp = select('dat_user_plan_jippi', '*', $where);
-        foreach ($temp as $val){
+        foreach ($temp as $val) {
             $tgtId = $val['unique_id'];
             $userPlanJpi[$tgtId] = $val;
         }
     }
     //  サービス
-    if ($tgtPlan){
+    if ($tgtPlan) {
         $where = array();
         $where['delete_flg']   = 0;
         $where['user_plan_id'] = $tgtPlan;
         $temp = select('dat_user_plan_service', '*', $where);
-        foreach ($temp as $val){
+        foreach ($temp as $val) {
             $tgtId = $val['unique_id'];
             $userPlanSvc[$tgtId] = $val;
         }
@@ -318,7 +327,7 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
     $where['target_day >='] = $start;
     $where['target_day <='] = $end;
     $temp = select('dat_staff_plan', '*', $where);
-    foreach ($temp as $val){
+    foreach ($temp as $val) {
         $day    = $val['target_day'];
         $schId  = $val['schedule_id'];
         $tgtId  = $val['unique_id'];
@@ -327,107 +336,107 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
     }
 
     /* -- 更新配列 --------------------------------------------*/
-    
+
     /* -- 展開済みデータの削除 ----------------------*/
-    if ($type == 2){
-        
+    if ($type == 2) {
+
         // ルート予定
-        foreach ($rootPlan as $tgtDay => $rootPlan2){
-            foreach ($rootPlan2 as $tgtId => $val){
+        foreach ($rootPlan as $tgtDay => $rootPlan2) {
+            foreach ($rootPlan2 as $tgtId => $val) {
                 $dat = array();
                 $dat['unique_id']  = $tgtId;
                 $dat['delete_flg'] = 1;
                 $upRootPlan[$tgtId] = $dat;
             }
         }
-        
+
         // 利用者予定
-        foreach ($userPlan as $tgtId =>$val){
+        foreach ($userPlan as $tgtId => $val) {
             $dat = array();
             $dat['unique_id']  = $tgtId;
             $dat['delete_flg'] = 1;
-            if (empty($val['protection_flg'])){
+            if (empty($val['protection_flg'])) {
                 $upUserPlan[$tgtId] = $dat;
             }
         }
         //  加減算
-        foreach ($userPlanAdd as $tgtId =>$val){
+        foreach ($userPlanAdd as $tgtId => $val) {
             $dat = array();
-            if(!isset($val['schedule_id'])){
+            if (!isset($val['schedule_id'])) {
                 continue;
             }
             $schId = $val['schedule_id'];
             $dat['unique_id']  = $tgtId;
             $dat['delete_flg'] = 1;
-            if (isset($upUserPlan[$schId]) && empty($val['status'])){
+            if (isset($upUserPlan[$schId]) && empty($val['status'])) {
                 $upUserAdd[$tgtId] = $dat;
             }
         }
         //  実費
-        foreach ($userPlanJpi as $tgtId =>$val){
+        foreach ($userPlanJpi as $tgtId => $val) {
             $dat = array();
-            if(!isset($val['schedule_id'])){
+            if (!isset($val['schedule_id'])) {
                 continue;
             }
             $schId = $val['schedule_id'];
             $dat['unique_id']  = $tgtId;
             $dat['delete_flg'] = 1;
-            if (isset($upUserPlan[$schId]) && empty($val['status'])){
+            if (isset($upUserPlan[$schId]) && empty($val['status'])) {
                 $upUserJpi[$tgtId] = $dat;
             }
         }
         //  サービス
-        foreach ($userPlanSvc as $tgtId =>$val){
+        foreach ($userPlanSvc as $tgtId => $val) {
             $dat = array();
-            if(!isset($val['schedule_id'])){
+            if (!isset($val['schedule_id'])) {
                 continue;
             }
             $schId = $val['schedule_id'];
             $dat['unique_id']  = $tgtId;
             $dat['delete_flg'] = 1;
-            if (isset($upUserPlan[$schId]) && empty($val['status'])){
+            if (isset($upUserPlan[$schId]) && empty($val['status'])) {
                 $upUserSvc[$tgtId] = $dat;
             }
         }
         // スタッフ予定
-        foreach ($stfPlan as $tgtId =>$val){
+        foreach ($stfPlan as $tgtId => $val) {
             $dat = array();
             $dat['unique_id']  = $tgtId;
             $dat['delete_flg'] = 1;
-            if (empty($val['protection_flg'])){
+            if (empty($val['protection_flg'])) {
                 $upStfPlan[$tgtId] = $dat;
             }
         }
     }
-    
+
     /* -- 日別展開予定 ------------------------------*/
     $idx = 0;
     foreach ($calendar as $day => $val) {
-        
+
         // 曜日、月数
         $week  = $val['week'];
         $month = formatDateTime($day, 'Y-m');
-        
+
         // 月間カレンダー作成
-        if (!isset($monthCld[$month])){
+        if (!isset($monthCld[$month])) {
             $monthCld[$month] = getMonthCalender($month);
         }
 
         // 展開処理(ルート)
-        if ($type == 2 || ($type == 1 && !isset($rootPlan[$day]))){
-            $upRootPlan = makeRoot($upRootPlan,$placeId,$day,$rootCfg);
+        if ($type == 2 || ($type == 1 && !isset($rootPlan[$day]))) {
+            $upRootPlan = makeRoot($upRootPlan, $placeId, $day, $rootCfg);
         }
 
         // 展開処理(利用者)
-        if (isset($userSch[$week])){
-            foreach ($userSch[$week] as $schId => $val){
-                
+        if (isset($userSch[$week])) {
+            foreach ($userSch[$week] as $schId => $val) {
+
                 // 差分のみ更新でデータありは対象外
-                if ($type == 1 && isset($userSchPlan[$day][$schId])){
+                if ($type == 1 && isset($userSchPlan[$day][$schId])) {
                     continue;
                 }
                 // 週数判定
-                if (checkWeek($monthCld[$month],$day,$val['week_num'])){
+                if (checkWeek($monthCld[$month], $day, $val['week_num'])) {
                     continue;
                 }
 
@@ -437,24 +446,24 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
                 // 利用者予定
                 $val['day'] = $day;
                 $upUserPlan[$idx] = makePlanUser($val);
-                
+
                 //  加減算
-                if (isset($userSchAdd[$schId])){
-                    foreach ($userSchAdd[$schId] as $tgtId => $val){
+                if (isset($userSchAdd[$schId])) {
+                    foreach ($userSchAdd[$schId] as $tgtId => $val) {
                         $val['day']  = $day;
                         $upUserAdd[$idx][] = makePlanAdd($val);
                     }
                 }
                 //  実費
-                if (isset($userSchJpi[$schId])){
-                    foreach ($userSchJpi[$schId] as $tgtId => $val){
+                if (isset($userSchJpi[$schId])) {
+                    foreach ($userSchJpi[$schId] as $tgtId => $val) {
                         $val['day']  = $day;
                         $upUserJpi[$idx][] = makePlanJpi($val);
                     }
                 }
                 //  サービス
-                if (isset($userSchSvc[$schId])){
-                    foreach ($userSchSvc[$schId] as $tgtId => $val){
+                if (isset($userSchSvc[$schId])) {
+                    foreach ($userSchSvc[$schId] as $tgtId => $val) {
                         $val['day']  = $day;
                         $upUserSvc[$idx][] = makePlanSvc($val);
                     }
@@ -462,19 +471,19 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
             }
         }
         // 展開処理(スタッフ)
-        if (isset($stfSch[$week])){
-            foreach ($stfSch[$week] as $schId => $val){
-                
+        if (isset($stfSch[$week])) {
+            foreach ($stfSch[$week] as $schId => $val) {
+
                 // 差分のみ更新でデータありは対象外
-                if ($type == 1 && isset($stfSchPlan[$day][$schId])){
+                if ($type == 1 && isset($stfSchPlan[$day][$schId])) {
                     continue;
                 }
-                
+
                 // 週数判定
-                if (checkWeek($monthCld[$month],$day,$val['week_num'])){
+                if (checkWeek($monthCld[$month], $day, $val['week_num'])) {
                     continue;
                 }
-                
+
                 // スタッフ予定
                 $val['day']  = $day;
                 $upStfPlan[] = makePlanStf($val);
@@ -482,12 +491,12 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
         }
     }
     /* -- 更新処理 --------------------------------------------*/
-//    debug($upStfPlan);exit;
+    //    debug($upStfPlan);exit;
     // ルート
-    if ($upRootPlan){
-        if ($debug){
+    if ($upRootPlan) {
+        if ($debug) {
             debug($upRootPlan);
-        }else{
+        } else {
             $res = multiUpsert($loginUser, 'dat_root_plan', $upRootPlan);
             if (isset($res['err'])) {
                 $res['err'] = 'システムエラーが発生しました';
@@ -499,13 +508,13 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
     }
 
     // 利用者
-    foreach ($upUserPlan as $idx => $upUserPlanData){
-        
+    foreach ($upUserPlan as $idx => $upUserPlanData) {
+
         // 利用者予定
-        $planId = NULL;
-        if ($debug){
+        $planId = null;
+        if ($debug) {
             debug($upUserPlanData);
-        }else{
+        } else {
             $res = upsert($loginUser, 'dat_user_plan', $upUserPlanData);
             if (isset($res['err'])) {
                 $res['err'] = 'システムエラーが発生しました';
@@ -517,15 +526,15 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
             setEntryLog($upUserPlanData);
         }
         //  加減算
-        if (isset($upUserAdd[$idx])){
+        if (isset($upUserAdd[$idx])) {
             $upUserAddData = $upUserAdd[$idx];
-            foreach ($upUserAddData as $seq => $val){
+            foreach ($upUserAddData as $seq => $val) {
                 $val['user_plan_id'] = $planId;
                 $upUserAddData[$seq] = $val;
             }
-            if ($debug){
+            if ($debug) {
                 debug($upUserAddData);
-            }else{
+            } else {
                 $res = multiUpsert($loginUser, 'dat_user_plan_add', $upUserAddData);
                 if (isset($res['err'])) {
                     $res['err'] = 'システムエラーが発生しました';
@@ -536,15 +545,15 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
             }
         }
         //  実費
-        if (isset($upUserJpi[$idx])){
+        if (isset($upUserJpi[$idx])) {
             $upUserJpiData = $upUserJpi[$idx];
-            foreach ($upUserJpiData as $seq => $val){
+            foreach ($upUserJpiData as $seq => $val) {
                 $val['user_plan_id'] = $planId;
                 $upUserJpiData[$seq] = $val;
             }
-            if ($debug){
+            if ($debug) {
                 debug($upUserJpiData);
-            }else{
+            } else {
                 $res = multiUpsert($loginUser, 'dat_user_plan_jippi', $upUserJpiData);
                 if (isset($res['err'])) {
                     $res['err'] = 'システムエラーが発生しました';
@@ -554,16 +563,16 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
                 setMultiEntryLog($upUserJpiData);
             }
         }
-        //  サービス        
-        if (isset($upUserSvc[$idx])){
+        //  サービス
+        if (isset($upUserSvc[$idx])) {
             $upUserSvcData = $upUserSvc[$idx];
-            foreach ($upUserSvcData as $seq => $val){
+            foreach ($upUserSvcData as $seq => $val) {
                 $val['user_plan_id'] = $planId;
                 $upUserSvcData[$seq] = $val;
             }
-            if ($debug){
+            if ($debug) {
                 debug($upUserSvcData);
-            }else{
+            } else {
                 $res = multiUpsert($loginUser, 'dat_user_plan_service', $upUserSvcData);
                 if (isset($res['err'])) {
                     $res['err'] = 'システムエラーが発生しました';
@@ -575,24 +584,23 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
         }
     }
     // スタッフ
-    if ($upStfPlan){
-        if ($debug){
+    if ($upStfPlan) {
+        if ($debug) {
             debug($upStfPlan);
-        }else{
+        } else {
             $res = multiUpsert($loginUser, 'dat_staff_plan', $upStfPlan);
             if (isset($res['err'])) {
                 $res['err'] = 'システムエラーが発生しました';
                 return $res;
             }
-            
+
             // ログテーブルに登録する
             setMultiEntryLog($upStfPlan);
         }
     }
-    
+
     /* -- データ返却 ------------------------------------------*/
-    $res = array();
-    return $res;
+    return array();
 }
 
 /* =======================================================================
@@ -601,30 +609,31 @@ function makePlan($loginUser, $placeId, $userAry, $type, $start, $end){
  *   [引数]
  *     ① ログインユーザー配列
  *     ② 拠点ID
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *     更新したKeyId
- * 
+ *
  * -----------------------------------------------------------------------
  */
-function cnvSvcName($loginUser,$planId){
-    
+function cnvSvcName($loginUser, $planId)
+{
+
     $upData = array();
-    
+
     // 予定情報取得
     $where =  array();
     $where['unique_id'] = $planId;
     $planData = getData('dat_user_plan', $where);
-    $typeName = isset($planData['service_name']) ? $planData['service_name'] : NULL;
-    
+    $typeName = isset($planData['service_name']) ? $planData['service_name'] : null;
+
     // 予定(サービス詳細)
     $where = array();
     $where['user_plan_id'] = $planId;
     $svcList = getData('dat_user_plan_service', $where);
-    
+
     // 更新配列作成
-    foreach ($svcList as $val){
-        if (!empty($typeName) && $typeName !== $val['service_name']){
+    foreach ($svcList as $val) {
+        if (!empty($typeName) && $typeName !== $val['service_name']) {
             $dat = array();
             $dat['unique_id']    = $val['unique_id'];
             $dat['service_name'] = $typeName;
@@ -632,9 +641,9 @@ function cnvSvcName($loginUser,$planId){
         }
     }
     // 更新処理
-    if ($upData){
+    if ($upData) {
         $res = multiUpsert($loginUser, 'dat_user_plan_service', $upData);
-        
+
         // ログテーブルに登録する
         setMultiEntryLog($upData);
     }
@@ -645,19 +654,20 @@ function cnvSvcName($loginUser,$planId){
  * =======================================================================
  *   [引数]
  *     ① 更新配列
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *     なし
- * 
+ *
  * -----------------------------------------------------------------------
  */
-function setEntryLog($upData){
-    
+function setEntryLog($upData)
+{
+
     /*-- 初期化 ------------------------------------*/
     $res   = array();
     $retry = 1;
     $table = 'log_entry';
-    
+
     /*-- 更新配列作成 ------------------------------*/
     $setData = array();
     $setData['delete_flg']  = 0;
@@ -667,29 +677,29 @@ function setEntryLog($upData){
     $setData['update_user'] = !empty($upData['update_user']) ? $upData['update_user'] : 'logger';
     $setData['user_id']     = isset($upData['user_id']) ? $upData['user_id'] : null;
     $setData['screen']      = getScreen($_SERVER['SCRIPT_NAME']);
-    foreach ($upData as $key => $val){
+    foreach ($upData as $key => $val) {
         if ($key === 'unique_id'
             || $key === 'delete_flg'
             || $key === 'create_user'
             || $key === 'create_date'
             || $key === 'update_user'
-            || $key === 'update_date'){
+            || $key === 'update_date') {
             continue;
         }
-        
+
         $setData['entry_data'] = !empty($setData['entry_data'])
-                ? $setData['entry_data'] .','.$key.':'.$val
-                : $key.':'.$val;
+                ? $setData['entry_data'] . ',' . $key . ':' . $val
+                : $key . ':' . $val;
     }
-    
-    
-    
+
+
+
     /*-- DB接続 ------------------------------------*/
     $pdo = connect();
     $pdo->beginTransaction();
-    
+
     /*-- 更新処理 ------------------------------------*/
-    
+
     // 新規ID取得
     $newAry = getNewId($table);
     $keyId = $newAry['newId'];
@@ -697,22 +707,22 @@ function setEntryLog($upData){
 
     // レコード追加
     $res = insert($pdo, $table, $setData);
-    
+
     // 発番管理テーブル更新
     $res = setNewId($pdo, $table, $newAry['last'] + 1);
 
     // 返却用ID
     $res = $newAry['newId'];
-    
+
     // 結果反映処理繰り返し
-    for ($i = 0; $i < $retry; $i++){
+    for ($i = 0; $i < $retry; $i++) {
         $result = $pdo->commit();
-        if ($result){
+        if ($result) {
             break;
         }
         usleep($wait);
-    }    
-    $pdo = null;    
+    }
+    $pdo = null;
 }
 
 /* =======================================================================
@@ -720,23 +730,25 @@ function setEntryLog($upData){
  * =======================================================================
  *   [引数]
  *     ① 更新配列
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *     なし
- * 
+ *
  * -----------------------------------------------------------------------
  */
-function setMultiEntryLog($upDataArry){
-    foreach($upDataArry as $idx => $logData){
+function setMultiEntryLog($upDataArry)
+{
+    foreach ($upDataArry as $idx => $logData) {
         setEntryLog($logData);
     }
 }
 
-function getScreen($scriptName){
-    
-    $res         = NULL;
+function getScreen($scriptName)
+{
+
+    $res         = null;
     $screenNames = array();
-    
+
     // 画面一覧
     $screenNames['/index.php']                                           = 'ログイン';
     $screenNames['/image/detail/index.php']                              = '画像関連詳細';
@@ -910,7 +922,5 @@ function getScreen($scriptName){
     $screenNames['/user/list/function/func_user.php']                    = '利用者一覧';
     $screenNames['/user/list/php/user_list.php']                         = '利用者一覧';
 
-    $res = isset($screenNames[$scriptName]) ? $screenNames[$scriptName] : $scriptName; 
-    
-    return $res;    
+    return isset($screenNames[$scriptName]) ? $screenNames[$scriptName] : $scriptName;
 }

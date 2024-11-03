@@ -5,7 +5,7 @@ $where = array();
 $where['delete_flg'] = 0;
 $orderBy = 'unique_id ASC';
 $temp = select('mst_place', 'unique_id,name', $where, $orderBy);
-foreach ($temp as $val){
+foreach ($temp as $val) {
     $plcList[$val['unique_id']] = $val['name'];
 }
 ?>

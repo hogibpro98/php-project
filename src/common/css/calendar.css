@@ -421,3 +421,92 @@
 .calendar_data .c_wrap .grp3 table.calendar_tab tbody td .data .kantaki { background:#2F78E6; }
 .calendar_data .c_wrap .grp3 table.calendar_tab tbody td .data .patrol { background:#B7830B; line-height:40px!important; padding:0!important; }
 .calendar_data .c_wrap .grp3 table.calendar_tab tbody td .data .hoken { background:#0BB7A6; }
+
+/* Added 2024.July  */
+.calendar_data .cont_head .sched_blue{
+	background: #e1eaf3;
+}
+.calendar_data button.btn_charge{
+	width: 180px;
+	height: 42px;
+	background: #188F9D;
+}
+@media only screen and (max-width: 700px) {
+	body{
+		margin: 0 !important;
+	}
+	#root-table{
+
+	}
+	.skeduler-container{
+		max-width: 100vw;
+		overflow-x: hidden;
+		overflow-y: scroll;
+	}
+	.calendar_data .cont_head .sched_blue.sc1{
+		background: #F35523;
+	}
+	.calendar_data .cont_head .sched_blue.sc1 span.label_t{
+		background-color: transparent;
+        color: #fff;
+	}
+	.calendar_data .cont_head .sched_blue.sc1 .sched_box table tr td{
+		color: #F35523;
+	}
+	.calendar_data button.btn_charge{
+		margin-top: 20px;
+		width: auto;
+	}
+	.skeduler-headers .schedule-header{
+		padding-left: 10px;
+	}
+	.skeduler-main{
+		position: relative;
+	}
+	.skeduler-main-timeline{
+		position: absolute;
+		top: 0;
+	}
+	.skeduler-main-body {
+		position: relative;
+		left: 102px;
+		overflow: scroll;
+	}
+}
+@media only screen and (min-width: 701px) {
+	.calendar_data .cont_head .search_wrap{
+		display: flex;
+	}
+	.calendar_data .cont_head{
+		display: flex;
+		align-items: center;
+		padding-left: 35px;
+        width: 100%;
+	}
+	.nursing .search_wrap .btn.search{
+		height: 42px;
+        padding-left: 45px;
+		background-size: 20px;
+		margin-right: 0;
+	}
+	.calendar_data button.btn_charge{
+		margin-left: 50px;
+	}
+	.skeduler-container{
+		overflow: visible !important;
+	}
+	.display_dets.schedule-header{
+		background-color: transparent;
+		padding-left: 9px;
+	}
+}
+.current_time{
+    background: #f00;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    height: calc(tan(60deg)* 8px / 2);
+    width: 4px;
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+	border: none;
+}

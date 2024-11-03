@@ -1,9 +1,9 @@
-<?php require_once(dirname(__FILE__)."/php/uninsure_edit.php"); ?>
+<?php require_once(dirname(__FILE__) . "/php/uninsure_edit.php"); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <!--COMMON-->
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/common/parts/common.php'); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/common/parts/common.php'); ?>
 <!--CONTENT-->
 <title>保険外マスタ詳細</title>
 </head>
@@ -11,7 +11,7 @@
 <body>
 <div id="wrapper"><div id="base">
 <!--HEADER-->
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/common/parts/header.php'); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/common/parts/header.php'); ?>
 <!--CONTENT-->
 <form action="" class="p-form-validate" method="post">
 <article id="content">

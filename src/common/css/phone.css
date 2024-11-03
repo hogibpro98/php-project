@@ -29,26 +29,25 @@ body { min-width:375px; font-size:100%;}
 ====================================================================================================*/
 
 #header {}
-#header .head { padding: 10px; }
-#header .head .head-l { width: 40%; display: block; border-right: 1px solid #A5A4BF; }
+#header .head { padding: 10px;height: 50px; }
+#header .head .head-l { width: 50px; display: block; border-right: 1px solid #A5A4BF;margin-left: 40px; }
 #header .head .head-l h1 { display: none; }
-#header .head .head-r { width: 60%; justify-content: center; padding-top: 0; }
+#header .head .head-r { width: calc(100% - 100px); justify-content: center; padding-top: 0; }
 #header .head .head-r .box1 { display: none; }
 #header .head .head-r .box2 { position: absolute; left: 0; right: 0; margin: auto; }
 #header .head .head-r .box3 { 
 	display: block;
 	line-height: 100%;
-	width: 185px; 
-	background: url(../image/arrow_down2.png) no-repeat 160px center;	
+	width: 185px;
 	height: auto;
 }
-#header .head .head-r .box3 .num2 { border-right: none; }
+#header .head .head-r .box3 .num2 { border-right: none;padding: 0;}
 #header .head .head-r .box3 .acct_log { background: none; }
 #header .head .head-r .box3 .acct_box { right: 5px; top: 42px; }
 #header .head .head-r .box3 .acct_box ul li { padding: 10px 0; }
 #header .head .head-r .box4 { border-left: none; margin-left: 0; }
 
-#header .head .acct_icon { text-align: center; line-height: 100%; }
+#header .head .acct_icon { text-align: center; line-height: 100%;}
 #header .head .acct_icon span { display: inline-block; margin: 0 5%; }
 #header .head .acct_icon small { font-size: 50%; color: #A5A4BF; font-weight: 500; display: block; }
 
@@ -106,13 +105,27 @@ input.openNav[type="checkbox"]:checked ~ .navIconToggle.orn { background: #E8832
 #content .staff-navi .box .controls .cancel a { color:#000; background:#fff; border-radius: 5px; }
 
 #content .patient_navi .box { display: block; }
+#content .fixed_navi.patient_navi .box{display: flex;}
 #content .patient_navi .box .controls { justify-content: space-between; }
 #content .patient_navi .box .controls .save { padding: 10px 0; width: 111px; color: #000; background: #fff; }
 #content .patient_navi .box .controls .cancel { padding: 0; width: 129px; }
 #content .patient_navi .box .controls .cancel a { background: #FFF; color: #000; padding: 10px 0; border-radius: 5px; }
 #content .patient_navi .box .back { width: fit-content; height: auto; margin: auto; background: none; }
 #content .patient_navi .box .back a { text-decoration: underline; color: #fff; }
-
+#content .patient_navi .box .back.sm{
+	background: #FFF;
+	width: 42px;
+        height: 42px;
+        margin: 0;
+        padding: 0;
+        border-radius: 5px !important;
+}
+#content .fixed_navi .box .controls .save {
+    width: 111px;
+    background: #E8832E;
+    color: #FFF;
+    font-weight: 700;
+}
 
 #content .staff-d-navi .box { display:inherit!important; }
 
@@ -193,15 +206,16 @@ h2.tit_sm { font-size: 112.5%; }
 .nursing .user-details p span.summary { display: none; }
 
 .nursing .nurse_record { border-bottom:none; }
-.nursing .nurse_record .tit { background:#F1F8FF url(../image/arrow_up.png) no-repeat 96%; }
-.nursing .nurse_record .tit.inactive { background:#F1F8FF url(../image/arrow_down2.png) no-repeat 96%; }
+.nursing .nurse_record .tit { background:#F1F8FF /*url(../image/arrow_up.svg) no-repeat 96%*/;position: relative;}
+.nursing .nurse_record .tit:after{content:'';display: inline-flex;width: 11px;height: 7px;background:url(../image/arrow_up.svg) no-repeat 96%;position: absolute;right: 20px;top: 0;bottom: 0;margin: auto;transform: rotate(180deg);}
+.nursing .nurse_record .tit.inactive:after { transform: rotate(0deg);/*background:#F1F8FF url(../image/arrow_down2.svg) no-repeat 96%;*/ }
 .nursing .nurse_record .no_bg {
 	margin:15px 0;
 	border:1px #BEBEBE;
 	border-style:dashed none;
-	background:url(../image/arrow_up.png) no-repeat 96%;
+	background:url(../image/arrow_up.svg) no-repeat 96%;
 }
-.nursing .nurse_record .no_bg.inactive { background:url(../image/arrow_down2.png) no-repeat 96%; }
+.nursing .nurse_record .no_bg.inactive { background:url(../image/arrow_down2.svg) no-repeat 96%; }
 .nursing .nurse_record span.label_t { margin:0; width:100px; }
 .nursing .nurse_record .line { margin-left:0; }
 .nursing .nurse_record .profile div { margin:5px 0; }
@@ -308,14 +322,14 @@ h2.tit_sm { font-size: 112.5%; }
 ====================================================================================================*/
 
 .user_info { width: 97%; margin: auto; overflow: hidden; }
-.user_info .tit { background:#F1F8FF url(../image/arrow_up.png) no-repeat 96%; font-weight: 700!important; }
-.user_info .tit.inactive { background:#F1F8FF url(../image/arrow_down2.png) no-repeat 96%; }
+.user_info .tit { background:#F1F8FF url(../image/arrow_up.svg) no-repeat 96%; font-weight: 700!important; }
+.user_info .tit.inactive { background:#F1F8FF url(../image/arrow_down2.svg) no-repeat 96%; }
 .user_info .no_bg {
 	border:1px #BEBEBE;
 	border-style:dashed none;
-	background:url(../image/arrow_up.png) no-repeat 96%;
+	background:url(../image/arrow_up.svg) no-repeat 96%;
 }
-.user_info .no_bg.inactive { background:url(../image/arrow_down2.png) no-repeat 96%; }
+.user_info .no_bg.inactive { background:url(../image/arrow_down2.svg) no-repeat 96%; }
 .user_info .user-details > div { justify-content: start; }
 .user_info .user-details span.map { right: 0; position: initial; top: 0; margin-top: 5px; }
 .user_info .user-details .map_hov { top: -10px; left: 87px; width: 65%; }
@@ -761,7 +775,7 @@ h2.tit_sm { font-size: 112.5%; }
 
 .user_info .em_contact .em_box1 { border-bottom: none; }
 .user_info .em_contact .em_box1 .box-i { padding: 10px; }
-.user_info .em_contact .em_box1 table tr:nth-child(1) td select { font-weight: 700; background: #F1F8FF url(../image/arrow_down2.png) no-repeat 95% center; }
+.user_info .em_contact .em_box1 table tr:nth-child(1) td select { font-weight: 700; background: #F1F8FF url(../image/arrow_down2.svg) no-repeat 95% center; }
 .user_info .em_contact .em_box1 table tr:nth-child(3) th span:nth-child(1) { width: 69%; display: inline-block; }
 .user_info .em_contact .em_box1 table tr:nth-child(3) td span { width: 66.5%; }
 .user_info .em_contact .em_box1 table tr:nth-child(4) th span:nth-child(1) { width: 27%; display: inline-block; }
@@ -969,9 +983,9 @@ h2.tit_sm { font-size: 112.5%; }
 	margin-bottom:15px;
 	border:1px #BEBEBE;
 	border-style:dashed none;
-	background:url(../image/arrow_up.png) no-repeat 96%;
+	/*background:url(../image/arrow_up.svg) no-repeat 96%;*/
 }
-.nursing .record5 .tit.inactive { background:url(../image/arrow_down2.png) no-repeat 96%; }
+.nursing .record5 .tit.inactive { background-color:#fff;/*background:url(../image/arrow_down2.svg) no-repeat 96%;*/ }
 .nursing .record5 .copy_btn { margin-bottom:15px; }
 .nursing .record5 .family_list { width:100%; overflow-x:scroll; }
 .nursing .record5 table { table-layout: fixed; }
@@ -985,8 +999,8 @@ h2.tit_sm { font-size: 112.5%; }
 .nursing .record5 .note { margin:55px 0 10px; }
 
 .nursing .record6 { overflow:hidden; padding:0 0 20px; }
-.nursing .record6 .tit { border:1px #BEBEBE; border-style:dashed none; background:url(../image/arrow_up.png) no-repeat 96%; }
-.nursing .record6 .tit.inactive { background:url(../image/arrow_down2.png) no-repeat 96%; }
+.nursing .record6 .tit { border:1px #BEBEBE; border-style:dashed none;background-color:#fff; /*background:url(../image/arrow_up.svg) no-repeat 96%;*/ }
+.nursing .record6 .tit.inactive { /*background:url(../image/arrow_down2.svg) no-repeat 96%;*/ }
 .nursing .record6 .add { position:relative; float:right; margin:15px 0; top:0; }
 .nursing .record6 .facilities { width:100%; overflow-x:scroll; }
 .nursing .record6 table {}
@@ -1115,9 +1129,9 @@ h2.tit_sm { font-size: 112.5%; }
 	text-align:left;
 	padding:7px 10px;
 	letter-spacing:0;
-	background:#C8E3FE url(../image/arrow_down2.png) no-repeat 96%;
+	background:#C8E3FE url(../image/arrow_down2.svg) no-repeat 96%;
 }
-#bedsore .assess_risk .tit.inactive { background:#C8E3FE url(../image/arrow_up.png) no-repeat 96%; }
+#bedsore .assess_risk .tit.inactive { background:#C8E3FE url(../image/arrow_up.svg) no-repeat 96%; }
 #bedsore .assess_risk .mid { position:initial; padding:15px 0; }
 #bedsore .assess_risk table tr th { border:none; display:block; padding:15px 0 0; font-size:93.8%; font-weight:700; }
 #bedsore .assess_risk table tr td { border:none; display:block; padding:15px 0; }
@@ -1171,9 +1185,9 @@ h2.tit_sm { font-size: 112.5%; }
 #bedsore .n_plan .tit {
 	margin:0 0 10px;
 	padding:12px;
-	background:url(../image/arrow_up.png) no-repeat 96%;
+	background:url(../image/arrow_up.svg) no-repeat 96%;
 }
-#bedsore .n_plan .tit.inactive { background:url(../image/arrow_down2.png) no-repeat 96%; }
+#bedsore .n_plan .tit.inactive { background:url(../image/arrow_down2.svg) no-repeat 96%; }
 #bedsore .n_plan .mid { width:100%; left:0; top:85px; }
 #bedsore .n_plan .mid small { font-size:75%; }
 #bedsore .n_plan table tr {}
@@ -1240,8 +1254,8 @@ h2.tit_sm { font-size: 112.5%; }
 #plan .goals .treatment .quest span.label_t { display:block; width:auto; }
 #plan .goals .treatment .treatment_guide { display:block; }
 #plan .goals .treatment .treatment_guide > * { width:100%; margin:10px 0; }
-#plan .goals .treatment .treatment_guide .mid { background:#F1F8FF url(../image/arrow_up.png) no-repeat 96%; }
-#plan .goals .treatment .treatment_guide .mid.inactive { background:#F1F8FF url(../image/arrow_down2.png) no-repeat 96%; }
+#plan .goals .treatment .treatment_guide .mid { background:#F1F8FF url(../image/arrow_up.svg) no-repeat 96%; }
+#plan .goals .treatment .treatment_guide .mid.inactive { background:#F1F8FF url(../image/arrow_down2.svg) no-repeat 96%; }
 
 #plan .goals .occupation { display:block; }
 #plan .goals .occupation .visit { width:100%; }
@@ -1252,7 +1266,7 @@ h2.tit_sm { font-size: 112.5%; }
 	line-height:100%;
 	margin-bottom:15px;
 }
-#plan .goals .occupation .visit p.inactive { background:url(../image/arrow_down2.png) no-repeat 96%; }
+#plan .goals .occupation .visit p.inactive { background:url(../image/arrow_down2.svg) no-repeat 96%; }
 #plan .goals .occupation .visit p small { display:none; }
 #plan .goals .occupation .visit small { color:#174A84; }
 #plan .goals .occupation .remarks { width:100%; margin-top:20px; }
@@ -1285,8 +1299,8 @@ h2.tit_sm { font-size: 112.5%; }
 #report .stat_box table tr th { display:block; width:100%; table-layout:auto; line-height:130%; }
 #report .stat_box table tr td { display:block; width:100%; table-layout:auto; }
 
-#report .app_month .stat_box table tr th { background:#F1F8FF url(../image/arrow_up.png) no-repeat 96%; }
-#report .app_month .stat_box table tr th.inactive { background:#F1F8FF url(../image/arrow_down2.png) no-repeat 96%; }
+#report .app_month .stat_box table tr th { background:#F1F8FF url(../image/arrow_up.svg) no-repeat 96%; }
+#report .app_month .stat_box table tr th.inactive { background:#F1F8FF url(../image/arrow_down2.svg) no-repeat 96%; }
 #report .app_month .stat_box textarea { height:162px; }
 
 #report .provision .stat_box { display:block; }
@@ -1299,8 +1313,8 @@ h2.tit_sm { font-size: 112.5%; }
 
 #report .record_info.disnon { display:block; }
 #report .info2 .personnel .gaf { margin-bottom:25px; }
-#report .info2 .personnel .gaf .tit { background:url(../image/arrow_up.png) no-repeat 96%; }
-#report .info2 .personnel .gaf .tit.inactive { background:url(../image/arrow_down2.png) no-repeat 96%; }
+#report .info2 .personnel .gaf .tit { background:url(../image/arrow_up.svg) no-repeat 96%; }
+#report .info2 .personnel .gaf .tit.inactive { background:url(../image/arrow_down2.svg) no-repeat 96%; }
 #report .info2 .personnel .gaf .copy_btn { margin:0 0 0 auto; }
 #report .info2 .personnel .gaf .point_summary { justify-content:space-between; border-top:none; }
 #report .info2 .personnel .gaf .point_summary [class^="box"] { display:block; width:49%; }
@@ -1398,9 +1412,9 @@ h2.tit_sm { font-size: 112.5%; }
 	padding:10px;
 	font-size:87.5%;
 	font-weight:500;
-	background:#F1F8FF url(../image/arrow_up.png) no-repeat 96%;
+	background:#F1F8FF url(../image/arrow_up.svg) no-repeat 96%;
 }
-#record .wrap .wrap-r .tit.inactive { background:#F1F8FF url(../image/arrow_down2.png) no-repeat 96%; }
+#record .wrap .wrap-r .tit.inactive { background:#F1F8FF url(../image/arrow_down2.svg) no-repeat 96%; }
 #record .wrap .wrap-r table td {
 	padding:0 15px 15px;
 	display:block;
@@ -1519,6 +1533,8 @@ h2.tit_sm { font-size: 112.5%; }
 	background: #FFF;
 	box-shadow:0 2px 6px rgba(0, 0, 0, 0.1);
 }
+.btn_box{margin: 15px 0;}
+.schedule_info.nursing .btn.add-op{margin-left: auto;}
 .schedule_info .cont_head span.label_t { width:50px; }
 .schedule_info .cont_head .profile > * { display:block; margin:10px 0!important; }
 .schedule_info .cont_head .profile .n_name { display:inline-block; margin-left:0; width:150px; }
@@ -1527,7 +1543,7 @@ h2.tit_sm { font-size: 112.5%; }
 .schedule_info .cont_head .profile .add_rules p+p { margin-left:0; }
 .schedule_info .cont_head .box2 { display:block; }
 .schedule_info .cont_head [class^="condition"] { width:100%!important; }
-.schedule_info .cont_head [class^="condition"] div {}
+
 .schedule_info .cont_head .condition2 ul { width:80%; justify-content:space-between; }
 .schedule_info .cont_head .condition2 ul li { flex-basis:40%; position:relative; margin:10px 0; line-height:120%; }
 .schedule_info .cont_head .condition2 ul li input { position:absolute; left:0; top:3px; }
@@ -1541,9 +1557,13 @@ h2.tit_sm { font-size: 112.5%; }
 .schedule_info .tit_box { display:none; }
 
 .schedule_info .sched1 { padding:8px 4px; }
-.schedule_info .sched1 .record_cont { display:none; }
+.schedule_info .sched1 .record_cont { display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    margin: 0 0 0 auto; }
+.schedule_info .sched1 .record_cont br{ display: none;}
 .schedule_info .sched1 .wr_head { margin:0 10px 10px; flex-basis:100%; display:flex; justify-content:space-between; }
-.schedule_info .sched1 .mid_date { padding:5px 0; background:#F2F6F9; }
+.schedule_info .sched1 .mid_date { padding:10px 0; background:#F2F6F9; }
 .schedule_info .sched2 .mid_date { display:none; }
 .schedule_info .sched1 .mid_detail { display:block; margin-bottom:10px; }
 .schedule_info .sched1 .temp_txt { color:rgba(0, 0, 0, 0.44); font-size:87.5%; }
@@ -1793,9 +1813,9 @@ h2 span.n_rec2 { display:none; }
 	border-bottom: 1px dashed #BEBEBE;
 	padding: 10px 5px!important;
 	margin: 0!important;
-	background: url(../image/close.png) no-repeat 98% center;
+	background: url(../image/close.svg) no-repeat 98% center;
 }
-#kantaki .tit-i.inactive { background: url(../image/icon_plus3.png) no-repeat 98% center; border-bottom: none; }
+#kantaki .tit-i.inactive { background: url(../image/icon_plus3.svg) no-repeat 98% center; border-bottom: none; }
 #kantaki .user-details { padding-bottom: 0; margin-bottom: 0; }
 #kantaki .user-details .box { padding: 20px 0 10px; border-bottom: 1px dashed #BEBEBE; margin-bottom: 30px; display: block; }
 #kantaki .user-details input[type="text"] { padding: 8px 10px; margin-right: 0!important; }
@@ -1858,7 +1878,7 @@ h2 span.n_rec2 { display:none; }
 #kantaki .record2 .box-r .tbox textarea { height: 205px; }
 
 #kantaki .record5 { padding-bottom: 0; }
-#kantaki .record5 .tit { background: #F1F8FF url(../image/arrow_up.png) no-repeat 96%; border: none; }
+#kantaki .record5 .tit { background: #F1F8FF url(../image/arrow_up.svg) no-repeat 96%; border: none; }
 #kantaki .record5 .tit-i { line-height: 100%; }
 #kantaki .record5 .box-i { padding-right: 0; }
 #kantaki .record5 .box-i > div { flex-basis: 100%; }
@@ -1941,8 +1961,8 @@ h2 span.n_rec2 { display:none; }
 #kantaki .patient_comment { padding: 0; }
 #kantaki .patient_comment .comm_box { width: 100%; margin: auto; }
 #kantaki .patient_comment .comm_box .box-i { margin: 5px auto 30px; }
-#kantaki .patient_comment .comm_box .tit-i { line-height: 130%; background: url(../image/arrow_up.png) no-repeat 96%; }
-#kantaki .patient_comment .comm_box .tit-i.inactive { background: url(../image/arrow_down2.png) no-repeat 96%; }
+#kantaki .patient_comment .comm_box .tit-i { line-height: 130%; background: url(../image/arrow_up.svg) no-repeat 96%; }
+#kantaki .patient_comment .comm_box .tit-i.inactive { background: url(../image/arrow_down2.svg) no-repeat 96%; }
 #kantaki .patient_comment .comm_box .txt_note { text-align: right; line-height: 250%; }
 #kantaki .patient_comment .comm_box:nth-child(4) .txt_note { padding-bottom: 30px; }
 #kantaki .patient_comment .comm_box .txt_note span { bottom: 0; }
@@ -1954,10 +1974,10 @@ h2 span.n_rec2 { display:none; }
 	border-radius: 8px 8px 0 0; 
 	border: 1px solid #A5C9FF; 
 	border-bottom: none; 
-	background: #F1F8FF url(../image/arrow_up.png) no-repeat 96%;
+	background: #F1F8FF url(../image/arrow_up.svg) no-repeat 96%;
 }
 #kantaki .nursing_need-b dl dt.tit_toggle.inactive {
-	background: #F1F8FF url(../image/arrow_down2.png) no-repeat 96%;
+	background: #F1F8FF url(../image/arrow_down2.svg) no-repeat 96%;
 	border-radius: 0;
 	border: none;
 }
@@ -1982,15 +2002,15 @@ h2 span.n_rec2 { display:none; }
   SEARCH DROP
 ====================================================================================================*/
 .search_drop { 
-	background: #F1F8FF url(../image/arrow_down2.png) no-repeat 97% center; 
+	background: #F1F8FF url(../image/arrow_down2.svg) no-repeat 97% center; 
 	border: 1px solid #F1F8FF;
 	color: #174A84; 
 	font-size: 93.8%; 
 	font-weight: 500; 
-	padding: 15px 10px; 
+	padding: 12px 10px; 
 	line-height: 100%;
 }
-.search_drop.active { background: #F1F8FF url(../image/arrow_up.png) no-repeat 97% center;  }
+.search_drop.active { background: #F1F8FF url(../image/arrow_up.svg) no-repeat 97% center;  }
 
 
 
@@ -2361,7 +2381,6 @@ h2 span.n_rec2 { display:none; }
 
 
 /* report.html モダール_30.報告書 訪問看護記録Ⅱ */
-.gaf_inst {}
 .gaf_inst table tr th:nth-child(3),
 .gaf_inst table tr td:nth-child(3) { width:34%; }
 .gaf_inst table tr th:nth-child(4),
@@ -2390,4 +2409,1097 @@ h2 span.n_rec2 { display:none; }
 
 .popup { overflow:unset; width:90%; }
 
+}
+
+/* Added 2024.July */
+.box_noinsurance{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-flow: wrap;
+	margin-top: 10px;
+}
+.noins_checkbox{
+	margin-right: 20px;
+}
+.noins_inputprice input{
+	margin-right: 5px;
+}
+.cancel_appt{
+	background-color: #dfe0e9;
+    font-size: 11px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+	align-self: center;
+    justify-content: center;
+    padding: 5px;
+}
+#kantaki .record2 .box-l .photo_body [name="btnImageEdit"]{
+	display:inline-block;
+	font-size:87.5%;
+	color:#FFF;
+	line-height:100%;
+	padding:5px 10px;
+	border-radius:5px;
+	cursor:pointer;
+	user-select:none;
+	border:1px solid transparent;
+	text-decoration: none;
+	background: #53A9EB;
+	width: 58px;
+}
+#nurse-record1.nursing .copy_btn{
+	border:none;
+	line-height: 2;
+}
+#nurse-record2 .care dl dd label{
+	margin-left: 0;
+}
+#nurse-record2 .care dl dd label input[type="checkbox"]{
+	margin-right: 5px;
+}
+
+@media only screen and (max-width: 700px) {
+	#subpage .wrap ul.user-tab,
+	#header .head .head-r .p-form-validate{
+		display: none;
+	}
+	#header .head .head-r .p-form-validate.is_open{
+		display: block;
+		position: absolute;
+		top:50px;
+		left: 40px;
+		padding: 20px;
+		background-color: #fff;
+		box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .15);
+	}
+	.sp_user_name{
+		position: fixed;
+		top:70px;
+		right: 0;
+		width: 100px;
+		height: 34px;
+		background-color: #F3F3F3;
+		border-radius: 8px 0 0 8px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 9999;
+	}
+	.sp_user_name p{
+		font-weight: 500;
+		font-size: 12px;
+		color: #174a84;
+	}
+	.search_drop.active{
+		width: calc(100% - 10px);
+        margin: 0 auto;
+	}
+	.schedule_info .p-form-validate{
+		display: none;
+	}
+	.schedule_info .p-form-validate.is_open{
+		display: block;
+		padding: 0 5px;
+	}
+	.schedule_info .cont_head.is_open,
+	.schedule_info .is_open .cont_head{
+		display: block;
+		position: static;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	}
+	.schedule_info .cont_head .box2{
+		margin: 20px 0;
+	}
+	
+	.schedule_info .cont_head [class^="condition"]{
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		margin-bottom: 20px;
+	}
+	.schedule_info .cont_head .user .label_t{
+		width: 50px;
+		margin-right: 10px;
+	}
+	.schedule_info .cont_head [class^="condition"] .label_t{
+		height: 30px;
+		margin-right: 30px;
+		display: flex;
+        align-items: center;
+        justify-content: center;
+		line-height: 1;
+	}
+	.schedule_info .cont_head .condition2 ul{
+		width: calc(100% - 80px);
+	}
+	.schedule_info .cont_head .condition1 ul li,
+	.schedule_info .cont_head .condition2 ul li{
+		margin: 0 0 15px;
+	}
+	.schedule_info .cont_head .btn.search{
+		margin: 5px auto 0;
+		display: flex;
+	}
+	.schedule_info .layout-3col{
+		flex-flow: wrap;
+	}
+	.schedule_info .sched1 .row{
+		width: 100%;
+	}
+	.schedule_info .sched1 .record_cont{
+		display: flex;
+		flex-flow: wrap;
+        align-items: center;
+		justify-content: flex-end;
+		width: 100%;
+	}
+	.schedule_info .sched1 .record_cont br{
+		display: none;
+	}
+	.schedule_info.nursing .p-form-validate .btn_box{
+		margin-top: 10px;
+		display: flex;
+	}
+	.schedule_info.nursing .btn.add-op{
+		margin-left: auto;
+        width: auto !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+	}
+	.schedule_info .sched1 .temp_txt{
+		line-height: 1.4;
+		padding-top: 10px;
+	}
+	div[id^=upln]{
+		width: 100%;
+	}
+	.schedule_info .cont_head .condition2 ul li label{
+		text-align: justify;
+	}
+	.modal_setting .new_default{
+		max-width: 95%;
+		max-width: 320px !important;
+	}
+	.new_default .box1{
+		width: 100%;
+	}
+	.new_default .box1.col-wrap{
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-flow: wrap;
+		margin-top: 0;
+	}
+	.modal_setting .new_default .box_datetime{
+		display: flex;
+		margin-bottom: 0;
+	}
+	.modal_setting .new_default .box1.col-wrap p.mid{
+		max-width: 90px;
+        margin-top: 12px;
+	}
+	.modal_setting .new_default .box1.box_datetime p.mid{
+		max-width: 80px;
+        margin-top: 12px;
+	}
+	.new_default .s_detail{
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-flow: wrap;
+	}
+	.new_default .s_detail .box1 input[type="date"]{
+		display: block;
+		min-height: 40px;
+	}
+	.schedule_info .sched1 .row:not(.e_row) > .btn_box{
+		z-index: 9999;
+	}
+	.new_default .box1 datalist + p{
+		display: flex;
+		margin: 15px 0 20px !important;
+	}
+	.new_default .dynamic_modal .box1 select,
+	.new_default .dynamic_modal .box1 .datalist {
+		max-width: 94%;
+	}
+	.nursing .new_default .add_sub ol,
+	.nursing .dynamic_modal input[type="text"] {
+		max-width: 100%;
+		width: 100%;
+	}
+	.nursing .new_default .add_sub ol{
+		padding-bottom: 40px;
+	}
+	.nursing .dynamic_modal input[type="text"] {
+		margin-bottom: 5px;
+	}
+	.new_default .add_sub ol li{
+		margin-bottom: 20px;
+	}
+	.new_default .close{
+		position: absolute;
+        right: 10px;
+        top: 10px;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        line-height: 1;
+	}
+	.new_default .box1 select{
+		width: 40px;
+		max-width: 100%;
+		padding: 5px 8px;
+		background-size: 8px auto;
+		background-position: 98% center;
+	}
+	.new_default .box1 .datalist{
+		background-size: 8px auto;
+		background-position: 98% center;
+		max-width: 100%;
+	}
+	.new_default .box1 select + small{
+		font-size: 10px;
+	}
+	.new_default .box1:not(.col-wrap) .staff{
+		max-width: 100%;
+	}
+	.new_default .box1.col-wrap .staff{
+		max-width: calc(100% - 90px);
+	}
+	
+	.content_jippi{
+		overflow-x: scroll;
+		max-width: 100%;
+	}
+	.content_jippi thead{
+		display: none;
+	}
+	.content_jippi tbody tr{
+		display: flex;
+		flex-flow: wrap;
+	}
+	.content_jippi tbody tr:not(:last-child){
+		border-bottom:1px solid #81a8e9;
+		margin-bottom: 15px;
+	}
+	.content_jippi tbody td{
+		display: flex;
+		flex-flow: wrap;
+		align-items: center;
+        justify-content: flex-start;
+		padding-bottom: 10px;
+	}
+	.content_jippi tbody td.type,
+	.content_jippi tbody td.item,
+	.content_jippi tbody td.price{
+		width: 100%;
+	}
+	.content_jippi tbody td.tax{
+		width: 60%;
+	}
+	.content_jippi tbody td.sales_tax{
+		width: 40%;
+	}
+	.content_jippi tbody td:nth-child(9){
+		width: 20%;
+	}	
+	.content_jippi tbody td.d_cate{
+		width: 60%;
+	}
+	.content_jippi tbody .sm{
+		font-size: 87.5%;
+		font-weight: 500;
+		color: #174A84;
+		margin-right: 5px;
+	}
+	.content_jippi tbody td.tax .sm{
+		line-height: 1;
+	}
+	.content_jippi tbody td.tax .sm br{
+		display: none;
+	}
+	.nursing .content_jippi select{
+		width: 100%;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.nursing .content_jippi .type select,
+	.nursing .content_jippi .tax select,
+	.nursing .content_jippi .d_cate select{
+		width: auto;
+		padding-left: 8px;
+        margin-bottom: 0;
+	}
+	.content_jippi tbody td .row_delete{
+		margin-left: 30px;
+	}
+	.nursing .dynamic_modal .content_jippi .uis_rate{
+		max-width: 40px;
+	}
+	.schedule_info .sched1 .row:not(.e_row):hover > .btn_box{
+		justify-content: center;
+	}
+	.schedule_info .cont_head .profile .add_rules{
+		padding-left: 0;
+	}
+	.schedule_info .cont_head .btn.search{
+		margin: 20px auto !important;
+	}
+	.add_rules ul{
+		margin: 20px 0 0;
+	}
+	.schedule_info .cont_head{
+		transition: max-height 0.3s, padding 0.3s 
+	}
+	.schedule_info .cont_head.is_open{
+		margin: 0 5px;
+		max-height:100%
+	}
+	#staff-schedule .search_drop{
+		width: calc(100% - 10px);
+		margin: 0 auto;
+	}
+	#staff-schedule .sched1 .y_row,
+	#staff-schedule .sched1 .j_row{
+		width: 98%;
+	}
+	#staff-schedule .sched1 .layout-3col-box{
+		width: calc(50% - 10px);
+	}
+	#staff-schedule .sched1 .layout-3col-box:first-child{
+		margin-right: 20px;
+	}
+	#staff-schedule .sched1 .layout-3col-box:first-child .row.y_row:first-child{
+		padding-top: 0;
+	}
+	#staff-schedule .sched1 .layout-3col-box:first-child .row.y_row:last-child{
+		border-bottom: none;
+	}
+	#staff-schedule.schedule_info .sched1 .box_wrap{
+		background-color:#fff;
+		margin-bottom: 15px;
+	}
+	.schedule_info .sched1 .row > .modified{
+		display: flex;
+		align-items: center;
+		flex-flow: wrap;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	#user-schedule.schedule_info .sched1 .row > .modified{
+		position: static;
+	}
+	.schedule_info .cont_head .profile .add_rules [type="checkbox"]{
+		margin-right: 5px;
+	}
+	#staff-schedule.schedule_info .sched1{
+		background-color: rgba(202, 206, 213, 0.1);
+	}
+	#staff-schedule .sched_details{
+		left: 5px !important;
+		width: 97% !important;
+		padding: 15px;
+		box-shadow: 0px 2px 12px rgba(0, 0, 0, .15);
+	}
+	#staff-schedule .sched1 .mid_date.inactive{
+		margin-bottom: 15px;
+	}
+	#staff-schedule .sched_details .sched_tit{
+		margin-bottom: 10px;
+	}
+	#staff-schedule .sched_details p.mid{
+		width: 70px;
+	}
+	#staff-schedule .sched_details .box1 p.m_time{
+		margin-top: 5px;
+		margin-left: 73px;
+	}
+	#staff-schedule .sched_details .box1 p.m_time small{
+		font-size: 10px;
+	}
+	#staff-schedule .sched_details .box1 .m_time select{
+		width: 45px;
+		margin-left: -3px;
+		padding: 5px;
+	}
+	#staff-schedule .sched_details .box1{
+		margin-top: 0;
+		line-height: 1.5;
+		display: flex;
+        flex-flow: wrap;
+        align-items: center;
+        justify-content: flex-start;
+	}
+	#staff-schedule .dynamic_modal input[type="text"]{
+		width: calc(100% - 70px) !important;
+	}
+	#staff-schedule .sched_details .box1 textarea{
+		margin-top: 5px;
+		width: 100% !important;
+	}
+	#staff-schedule .sched_details .box1:last-child{
+		flex-flow: column;
+        align-items: flex-start;
+	}
+	#staff-schedule .sched_details .box1:last-child p:last-child{
+		width: 100%;
+	}
+	#staff-schedule.schedule_info .sched1 .row:not(.e_row) > .btn_box{
+		position: relative;
+		min-width: 300px;
+		top:0;
+		margin-top: 0;
+		opacity: 0;
+	}
+	#staff-schedule.schedule_info .sched1 .row:not(.e_row):hover > .btn_box{
+		opacity: 1;
+	}
+	#staff-schedule.schedule_info .sched1 .row > .modified{
+		position: static;
+	}
+	.nursing .cont_user{
+		max-width: 94vw;
+		height: auto;
+        padding-bottom: 20px;
+		top:30%;
+	}
+	.nursing .cont_user .tit + div{
+		margin-bottom: 10px;
+	}
+	.nursing input[type="text"].searchKana{
+		width: calc(100% - 180px);
+	}
+	.nursing .cont_user .btnDlgSearch{
+		background-color: #43425d;
+		color: #fff;
+		border: none;
+		border-radius: 7px;
+		padding: 8px 12px;
+	}
+	.nursing .cont_user table tr th:first-child,
+	.nursing .cont_user table tr td:first-child{
+		width: 55px;
+		text-align: left;
+	}
+	.nursing .cont_user table tr th:nth-child(2),
+	.nursing .cont_user table tr td:nth-child(2){
+		width: 70px;
+	}
+	.nursing .cont_user table tr th:nth-child(3),
+	.nursing .cont_user table tr th:nth-child(4),
+	.nursing .cont_user table tr td:nth-child(3),
+	.nursing .cont_user table tr td:nth-child(4){
+		width: calc((100% - 125px)/2);
+	}
+	.nursing .cont_user table tr td button{
+		width: 45px;
+		padding: 8px 5px;
+		color: #43425d;
+        font-weight: bold;
+	}
+	#kantaki .user-details .name span.label_t.pc::before{
+		content: '';
+		display: block;
+		margin-top: 10px;
+	}
+	#kantaki .user-details span{
+		display: inline-flex;
+	}
+	#kantaki .user-details .name span.label_t{
+		width: 70px;
+        display: inline-flex;
+	}
+	#kantaki .user-details .name span.label_t.pc{
+		width: 80px;
+		}
+	#kantaki .user-details .box.child_toggle{
+		padding-top: 10px;
+	}
+	#kantaki .user-details .box.child_toggle .name{
+		display: none;
+	}
+	#kantaki .user-details .service_date,
+	#kantaki .user-details .staff_inch,
+	#kantaki .user-details .staff_inch .staff_wrap .service_inch1{
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-flow: wrap;
+	}
+	#kantaki .user-details span.label_t{
+		margin-right: 10px;
+		width: 70px;
+		padding: 5px;
+	}
+	#kantaki .user-details .service_date .time{
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 80px;
+	}
+	#kantaki .user-details .service_date .time::after{
+		content: '';
+		display: block;
+		margin-top: 10px;
+	}
+	#kantaki .user-details span.time + input[type="checkbox"]::before{
+		content: '';
+		display: block;
+		margin-top: 10px;
+	}
+	#kantaki .user-details span.time select{
+		max-width: 50px;
+        padding-right: 15px;
+		padding-left: 8px;
+	}
+	.mark_important{
+		display: inline-flex;
+		margin-bottom: 20px;
+		margin-left: 90px;
+	}
+	#kantaki .user-details .mark_important .label_t{
+		padding: 5px 3px;
+	}
+	#kantaki .user-details .label_t{
+		font-size: 14px;
+	}
+	#kantaki .user-details .staff_inch span.label_t{
+		margin-right: 10px;
+        width: 70px;
+        padding: 5px;
+	}
+	#kantaki .user-details .staff_inch .n_search{
+		background-size: 18px;
+	}
+	#kantaki .user-details .staff_inch .staff_wrap input{
+		padding: 10px;
+		margin-right: 5px !important;
+	}
+	#kantaki .user-details .staff_inch .sline .care_worker select{
+		padding: 10px 30px 10px 10px;
+		margin-bottom: 0;
+		width: auto;
+	}
+	#kantaki .user-details .staff_inch span.add{
+		bottom: 0;
+	}
+	.box_username{
+		margin-top: 10px;
+	}
+	#kantaki .user-details .name{
+		margin-bottom: 20px;
+	}
+	#kantaki .record2 .box-r ul.receipt_box .view_box-i .view_btn{
+		display: flex;
+	}
+	#kantaki .record5 .meal_box table tr td.meal_btn .photo_box-meal{
+		left: 10px;
+	}
+	#kantaki .record5 .meal_box table tr td.meal_btn:hover .photo_box-meal{
+		left: 10px;
+		width: 96vw;
+		position: fixed;
+	}
+	#kantaki .record2 .box-l .photo_body{
+		padding-top: 0;
+	}
+	#kantaki .record2 .box-l .photo_body .hbody{
+		padding-top: 0;
+	}
+	#kantaki #canvas-container{
+		max-width: 98%;
+	}
+	#kantaki .record5 .excretion_box table tr td{
+		vertical-align: middle;
+	}
+	#kantaki .record5 .excretion_box table tr td:nth-child(1){
+		width: calc(100% - (27% + 30% + 13%));
+	}
+	#kantaki .record5 .excretion_box table tr td:nth-child(4){
+		width: 13%;
+    	padding: 0;
+	}
+	#kantaki .record5 .excretion_box table tr td:nth-child(2) input[type="text"]{
+		width: calc(100% - 30px);
+	}
+	#kantaki .record5 .excretion_box table tr td:not(:first-child) input[type="text"]{
+		padding: 5px;
+	}
+	#kantaki .record5 .excretion_box table tr td input[type="checkbox"]{
+		width: 20px;
+		height: 20px;
+		margin-right: 0;
+	}
+	#kantaki .record5 .table_box .add::after{
+		left: 3px;
+    	font-size: 18px;
+	}
+	#kantaki .record5 .excretion_box table tr td:nth-child(3) input[type="text"]{
+		width: calc(100% - 30px);
+	}
+	#kantaki .record5 .excretion_box table tr td input[type="time"]{
+		position: relative;
+		padding-right: 18px;
+	}
+	  
+	#kantaki .record5 .excretion_box table tr td input[type="time"]::-webkit-calendar-picker-indicator {
+		  position: absolute;
+		  /*opacity: 0;*/
+		  right: 0;
+	}
+	#nurse-record2 .user-details span.label_t{
+		font-size: 13px;
+	}
+	#nurse-record2 .user-details .visit span.label_t,
+	#nurse-record2 .user-details span.label_t{
+		display: inline-flex;
+		width: 90px;
+		margin-right: 5px;
+	}
+	#nurse-record2 .user-details .profile .n_name{
+		padding: 5px;
+	}
+	#nurse-record2 .user-details .visit span.time{
+		display: flex;
+		align-items:center;
+		justify-content: flex-start;
+		margin-left: 95px;
+	}
+	#nurse-record2 .user-details .wrap1 .time select{
+		margin-left: 0;
+		padding-right: 5px;
+        width: 45px !important;
+	}
+	#nurse-record2 .user-details .visit span.time small{
+		font-size: 10px;
+		margin-right: -1px;
+        margin-left: -1px;
+	}
+	#nurse-record2 .user_id .n_search,
+	#nurse-record2 .user-details .wrap1 .n_search{
+		background-size: 16px auto;
+	}
+	#nurse-record2 .user-details  .user_id,
+	#nurse-record2 .user-details .n_name{
+		margin-bottom: 10px;
+	}
+	#nurse-record2 .user_id .n_search{
+		width: 33px;
+		margin-left: 5px;
+	}
+	#nurse-record2 .user-details .n_num{
+		width: 70px;
+        padding: 5px;
+        text-align: left;
+	}
+	#nurse-record2 .user-details .wrap1 .n_name{
+		padding: 5px;
+	}
+	#nurse-record1 .user-details dl{
+		margin-bottom: 10px;
+	}
+	#nurse-record1 .user-details dl+dl{
+		margin-left: 0;
+	}
+	#nurse-record1 .user-details dl:first-child dt,
+	#nurse-record1 .user-details dl dt{
+		width: 90px;
+	}
+	#nurse-record1 .n_search{
+		background-size: 16px auto;
+	}
+	#nurse-record1 .user-details dl dd{
+		margin-left: 0;
+	}
+	#nurse-record1 .user-details dl dd select{
+		margin: 0;
+		padding: 5px 10px;
+		font-size: 15px;
+	}
+	#nurse-record1 .nurse_record .line{
+		margin-top: 0;
+	}
+	#nurse-record1.nursing .copy_btn{
+		border:none;
+	}
+	#nurse-record1 .nurse_record .category p{
+		margin-right: 15px;
+	}
+	#nurse-record1 .nurse_record .line.category p + p{
+		margin-right: 0;
+	}
+	#nurse-record1 .nurse_record .line > div,
+	#nurse-record1 .nurse_record .line.visit{
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-flow: wrap;
+	}
+	#nurse-record1 .nurse_record .label_t{
+		padding: 3px 5px;
+		display: inline-flex;
+	}
+	#nurse-record1 .user-details .label_t{
+		width: 90px;
+		padding: 3px 5px;
+		display: inline-flex;
+        margin-right: 10px;
+	}
+	#nurse-record1 .occu_list{
+		width: calc(100% - 110px);
+	}
+	#nurse-record1 .occu_list select{
+		width: 100%;
+	}
+	#nurse-record1 .nurse_record .profile .n_name{
+		margin-left: 100px;
+	}
+	#nurse-record1 .nurse_record .profile input.tgt-stf_cd{
+		margin-left: 10px;
+	}
+	#nurse-record1 .nurse_record .visit span.time{
+		margin-left: 100px;
+	}
+	#nurse-record1 .nurse_record input[type="radio"]{
+		margin-left: 0;
+	}
+	#nurse-record1 .nurse_record .visit span.time select{
+		padding: 10px 5px;
+        max-width: 50px;
+        font-size: 16px;
+	}
+	#nurse-record1 .nurse_record .visit span.time small{
+		margin: 0 -3px;
+	}
+	#nurse-record1 .record_info .nurse_record .label_t{
+		width: auto;
+	}
+	#nurse-record1 [type="checkbox"], 
+	#nurse-record1 [type="radio"]{
+		margin-right: 5px;
+	}
+	#nurse-record1 .nursing .record8 > *,
+	#nurse-record1 .nursing .record9 > *{
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+	#nurse-record1 .record8 .label_t{
+		width: auto;
+		margin-right: 10px;
+		padding: 5px 10px;
+	}
+	#nurse-record1.nursing .record9 span.label_t.hidzuke,
+	#nurse-record1.nursing .record9 span.label_t.time,
+	#nurse-record1.nursing .record9 span.label_t:last-child{
+		background-color: transparent;
+		padding: 0;
+		margin-left: 10px;
+	}
+	#nurse-record1.nursing .record9 span.label_t.time{
+		margin-right: 5px;
+	}
+	#nurse-record1.nursing .modal_setting table{
+		width: 100%;
+		font-size: 12px;
+		margin-top: 15px;
+		border-top: 1px solid #acabb8;
+		border-right: 1px solid #acabb8;
+	}
+	#nurse-record1.nursing .modal_setting table th{
+		background-color: #E0EAF3;
+		color: #43425D;
+		font-size: 12px;
+		min-width: 80px;
+		border-left: 1px solid #acabb8;
+		line-height: 1.2;
+		padding: 5px;
+	}
+	#nurse-record1.nursing .modal_setting table td{
+		border-left: 1px solid #acabb8;
+		border-bottom: 1px solid #acabb8;
+		line-height: 1.2;
+		padding: 5px;
+	}
+	#nurse-record1.nursing .modal_setting table th:nth-child(1),
+	#nurse-record1.nursing .modal_setting table td:nth-child(1){
+		min-width: 55px;
+		text-align: center;
+	}
+	#nurse-record1.nursing .modal_setting table th:nth-child(2),
+	#nurse-record1.nursing .modal_setting table td:nth-child(2){
+		min-width: 75px;
+	}
+	#nurse-record1.nursing .modal_setting table th:nth-child(4),
+	#nurse-record1.nursing .modal_setting table td:nth-child(4){
+		min-width: 120px;
+	}
+	#nurse-record1.nursing .modal_setting table th:nth-child(5),
+	#nurse-record1.nursing .modal_setting table td:nth-child(5){
+		min-width: 100px;
+	}
+	#nurse-record1.nursing .modal_setting table td{
+		min-width: 90px;
+	}
+	#nurse-record1.nursing .modal_setting .new_default{
+		top:50% !important;
+	}
+	#nurse-record1.nursing .modal_setting table td button{ 
+		border-radius: 4px;
+		width: 45px;
+        padding: 8px 5px;
+        color: #43425d;
+        font-weight: bold;
+		background: #F9F9F9;
+		border: 1px solid #E8E9EC;
+	}
+	#directions .patient_info .box-l ul.pdf_controls{
+		display: flex;
+	}
+	#directions .patient_info .box-l ul.pdf_controls li.delete{
+		background-position: 10px center !important;
+        margin-left: auto;
+        margin-right: 0;
+        width: 90px !important;
+        padding-left: 25px !important;
+        padding-right: 5px !important;
+	}
+	#directions .user_stat .m_injury ol{
+		width: 90%;
+	}
+	#directions .user_stat .m_injury ol li{
+		display: flex;
+		margin-bottom: 10px;
+	}
+	#directions.nursing .n_search{
+		margin-right: 5px;
+	}
+	#directions.nursing .nurse_record .profile .n_adr{
+		max-width: 100%;
+	}
+	#directions .user_stat .box_wrap > .j_date{
+        margin-bottom: 30px;
+	}
+	#directions .nurse_record .profile .i_period span.label_t{
+		width: 80px;
+        padding: 3px 5px;
+	}
+	#directions .nurse_record .profile .i_period .direction_months{
+		width: 80px;
+	}
+	#directions .nurse_record .profile .pl_date span.label_t, 
+	#directions .nurse_record .profile .rep_date span.label_t{
+		display: inline-block;
+		padding: 3px 5px;
+	}
+	
+	#directions .nurse_record input[type="text"].disease{
+		width: calc(100% - 50px);
+	}
+	#directions .user_stat .box_wrap > div.special:nth-child(2){
+		margin-top: 20px !important;
+		margin-left: 30px !important;
+	}
+	#directions .user_stat .special li{
+		display: flex;
+		align-items: flex-start;
+		margin-bottom: 10px;
+	}
+	#directions .user_stat .special input.appendix8Dtl{
+		width: 20px;
+		height: 20px;
+		margin-top: 2px;
+	}
+	#directions .user_stat .special li label{
+		line-height: 1.2;
+		width: calc(100% - 35px);
+	}
+	#nurse-record2 .user-details .visit span.label_t,
+	#nurse-record2 .user-details span.label_t{
+		width: 80px;
+	}
+	#nurse-record2.nursing  .btn.print{
+		display: none;
+	}
+	#nurse-record2 .vitals .d_left table th{
+        width: 40px;
+		vertical-align: top;
+	}
+	#nurse-record2 .vitals .d_left table tr:nth-child(6) th{
+		width: 50px;
+	}
+	#nurse-record2 .vitals .d_left span.label_t{
+		line-height: 1.2;
+		display: inline-block;
+	}
+	#nurse-record2 .vitals .d_left table td{
+        width: calc(100% - 50px);
+	}
+	#nurse-record2.nursing select{
+		padding-left: 5px;
+		width: auto;
+	}
+	#nurse-record2 .cont_staff,
+	#nurse-record2 .cont_staff2{
+		width: 98vw;
+	}
+	.cont_staff table :is(thead, tbody tr),
+	.cont_staff2 table :is(thead, tbody tr){
+		table-layout:auto;
+	}
+	.cont_staff table tr th,
+	.cont_staff table tr td,
+	.cont_staff2 table tr th,
+	.cont_staff2 table tr td{
+		width: 100px;
+	}
+	.cont_staff table tr th:nth-child(1),
+	.cont_staff2 table tr th:nth-child(1){
+		width: 55px;
+	}
+	.cont_staff table tr td:nth-child(1),
+	.cont_staff2 table tr td:nth-child(1){
+		width: 50px;
+	}
+	.cont_staff table tr td:nth-child(3),
+	.cont_staff table tr th:nth-child(3),
+	.cont_staff2 table tr td:nth-child(3),
+	.cont_staff2 table tr th:nth-child(3){
+		width: 120px;
+		padding: 5px;
+	}
+	.cont_staff table tr td:nth-child(5),
+	.cont_staff table tr th:nth-child(5),
+	.cont_staff2 table tr td:nth-child(5),
+	.cont_staff2 table tr th:nth-child(5){
+		width: 100px;
+	}
+	.cont_staff table tr td button,
+	.cont_staff2 table tr td button{
+		width: 40px;
+		height: 40px;
+	}
+	.gaf_scale{
+		max-width: 90vw;
+	}
+	#record-detail .user-details span.label_t{
+		display: inline-flex;
+		padding: 5px 2px;
+		width: 80px !important;
+		font-size: 14px;
+	}
+	#record-detail .user-details [class^="box"] > *{
+		margin-bottom: 10px;
+        margin-top: 0;
+	}
+	#record-detail .user-details span.juuyou{
+		margin-left: 85px;
+	}
+	#record-detail .user-details .n_search{
+		background-size: 14px auto;
+	}
+	#record-detail .user-details .div1 select,
+	#record-detail .user-details .div2 select{
+		margin: 0;
+		width: auto;
+		padding-right: 50px;
+		background-position: right 8px center;
+	}
+	#record-detail .btn.print{
+		display: none;
+	}
+	#record-detail .cont_staff{
+		max-width: 95vw;
+	}
+	.btnDlgSearchSt1{
+		margin-bottom: 10px;
+		background-color: #43425D;
+		border: none;
+        color: #fff;
+        -webkit-appearance: none;
+        height: 36px;
+        padding: 0 10px;
+        border-radius: 5px;
+	}
+	#kantaki .record5 .fukuyaku_box table tr input[type="checkbox"]{
+		width: 20px;
+		height: 20px;
+		margin-right: 3px;
+	}
+	#kantaki .record5 .fukuyaku_box table tr td:not(.mf_tit) label{
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		color: #333;
+		font-weight: 400;
+	}
+	#kantaki .record5 .fukuyaku_box table tr:nth-child(5) td span.label_t{
+		display: inline-flex;
+		margin-right: 0;
+		margin-bottom: 10px;
+		
+		padding: 3px;
+	}
+	#kantaki .record5 .fukuyaku_box table tr:nth-child(5) td span.label_t label{
+		color: #174A84;
+	}
+	
+}
+
+@media only screen and (min-width: 701px) {
+	.sp_user_name{
+		display: none;
+	}
+	.nursing .btn_box .btn.add2{
+		max-width: 100px;
+	}
+	.schedule_info .cont_head [class^="condition"] .label_t{
+		height: 30px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0 5px;
+	}
+	.schedule_info .cont_head [class^="condition"] ul{
+		width: calc(100% - 55px);
+	}
+	.schedule_info .cont_head [class^="condition"] ul li{
+		margin-bottom: 10px;
+	}
+	.schedule_info .cont_head .box2{
+		margin-bottom: 20px;
+	}
+	.schedule_info .cont_head .schedule{
+		position: static;
+	}
+	.schedule_info .tit_box .mid{
+		min-height: 35px;
+	}
+	.noins_checkbox{
+		margin-left: 200px;
+	}
+	.content_jippi thead th{
+		text-align: left;
+		font-size: 87.5%;
+		font-weight: 500;
+		color: #174A84;
+	}
+	.content_jippi thead th br{
+		display: none;
+	}
+	.new_default .add_sub .btn_append_jippi.add_btn{
+		bottom: 20px;
+	}
+	.mark_important{
+		display: inline-flex;
+	}
+	.nursing .record7 .status ul li input[type="checkbox"]{
+		margin-right: 5px;
+	}
+	
 }

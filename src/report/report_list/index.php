@@ -4,6 +4,15 @@
 <head>
 <!--COMMON-->
 <?php require_once($_SERVER['DOCUMENT_ROOT'].'/common/parts/common.php'); ?>
+<style>
+    #loading {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000; /* Ensure it's above other content */
+}
+</style>
 <!--CONTENT-->
 <title>記録一覧</title>
 </head>
@@ -15,43 +24,94 @@
 <!--CONTENT-->
 <article id="content">
 <!--/// CONTENT_START ///-->
-<form action="" method="post" class="p-form-validate" enctype="multipart/form-data" accept-charset="UTF-8">
+<form name="searchForm" id="searchForm" action="" method="get" class="p-form-validate" enctype="multipart/form-data" accept-charset="UTF-8">
+<input type="hidden" id="branchType_search" name="branchType_search" value="">
 <h2 class="tit_sm">記録一覧</h2>
 <div id="subpage"><div id="record" class="nursing">
 
 
 <div class="cont_head">
+    <!-- Add this within your HTML where it makes sense, like inside the body tag or a container div -->
+    <div id="loading" style="display:none;">
+        <img src="/common/image/loading.gif" alt="Loading...">
+    </div>
     <div class="box1">
         <div class="name_box">
             <input type="text" name="search[kana]" class="" value="<?= $search['kana'] ?>" placeholder="氏名(カナ)">
         </div>
         <div class="state">
-            <select>
+            <select name="search[status_user]"  id="status_user">
                 <?php foreach ($gnrList['絞り込み_サービス状態'] as $key => $val): ?>
-                    <?php $select = $dispData['status'] == $val ? ' selected' : NULL; ?>
+                    <?php $select = @$search['status_user'] == @$val ? ' selected' : NULL; ?>
                     <option value="<?= $val ?>"<?= $select ?>><?= $val ?></option>
                 <?php endforeach; ?>
             </select>
-            <p><input type="checkbox" name="search[importance]" id="importance" checked><label for="importance">重要</label></p>
+            <?php $select_imp = @$search['importance'] == 1 ? ' checked' : NULL; ?>
+            <p><input type="checkbox" name="search[importance]" id="importance" value="1" <?= $select_imp?>><label for="importance">重要</label></p>
             <p>
+                <?php   $select_imp1 = @$search['status1'] == "完成" ? ' checked' : NULL;
+                        $select_imp2 = @$search['status2'] == "作成中" ? ' checked' : NULL; 
+                ?>
                 <span class="label_t text_blue">作成状態</span>
-                <span><input type="checkbox" name="search[status]" id="state1" checked><label for="state1">完成</label></span>
-                <span><input type="checkbox" name="search[status]" id="state2" checked><label for="state2">作成中</label></span>
+                <span><input type="checkbox" name="search[status1]" value="完成" id="state1" <?= $select_imp1?>><label for="state1">完成</label></span>
+                <span><input type="checkbox" name="search[status2]" value="作成中" id="state2" <?= $select_imp2?>><label for="state2">作成中</label></span>
             </p>
         </div>
     </div>
     <div class="box2">
         <div class="i_period">
             <p>
-                <input type="text" name="search[start_day]" class="" value="<?= $search['start_day'] ?>">
+                <input type="date" name="search[start_day]" id="start_day" class="" value="<?= $search['start_day']?>">
                 <small>～</small>
-                <input type="text" name="search[end_day]" class="" value="<?= $search['end_day'] ?>">
+                <input type="date" name="search[end_day]" id="end_day" class="" value="<?= $search['end_day']?>">
             </p>
-            <p><span class="disp_month prev_month">前月</span><span class="disp_month this_month">当月</span></p>
+            <p>
+                <span class="disp_month prev_month">前月</span>
+                <span class="disp_month this_month">当月</span>
+            </p>
         </div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const prevMonthButton = document.querySelector('.prev_month');
+                const thisMonthButton = document.querySelector('.this_month');
+                const startDayInput = document.getElementById('start_day');
+                const endDayInput = document.getElementById('end_day');
+
+                function formatDate(date) {
+                    let month = '' + (date.getMonth() + 1);
+                    let day = '' + date.getDate();
+                    const year = date.getFullYear();
+
+                    if (month.length < 2) month = '0' + month;
+                    if (day.length < 2) day = '0' + day;
+
+                    return [year, month, day].join('-');
+                }
+
+                prevMonthButton.addEventListener('click', function() {
+                    const today = new Date();
+                    const prevMonth = new Date(today.getFullYear(), today.getMonth() - 1, 1);
+                    const prevMonthStart = new Date(prevMonth.getFullYear(), prevMonth.getMonth(), 1);
+                    const prevMonthEnd = new Date(prevMonth.getFullYear(), prevMonth.getMonth() + 1, 0);
+
+                    startDayInput.value = formatDate(prevMonthStart);
+                    endDayInput.value = formatDate(prevMonthEnd);
+                });
+
+                thisMonthButton.addEventListener('click', function() {
+                    const today = new Date();
+                    const thisMonthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+                    const thisMonthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0);
+
+                    startDayInput.value = formatDate(thisMonthStart);
+                    endDayInput.value = formatDate(thisMonthEnd);
+                });
+            });
+        </script>
         <div class="progress">
             <p>
-                <select class="p_rec">
+                <select class="p_rec" name="search[care_kb]">
                     <?php foreach ($gnrList['絞り込み_経過記録'] as $key => $val): ?>
                         <?php $select = $search['care_kb'] == $val ? ' selected' : NULL; ?>
                         <option value="<?= $val ?>"<?= $select ?>><?= $val ?></option>
@@ -59,24 +119,27 @@
                 </select>
             </p>
             <p>
-                <select class="cate1">
+                <select class="cate1" name="search[care_kb_type1]">
+                    <option value="">全て</option>
                     <?php foreach ($gnrList['絞り込み_内容区分1'] as $key => $val): ?>
-                        <?php $select = $search['care_kb'] == $val ? ' selected' : NULL; ?>
+                        <?php $select = $search['care_kb_type1'] == $val ? ' selected' : NULL; ?>
                         <option value="<?= $val ?>"<?= $select ?>><?= $val ?></option>
                     <?php endforeach; ?>
                 </select>
-                <select class="cate2">
+                <select class="cate2" name="search[care_kb_type2]">
+                    <option value="">全て</option>
                     <?php foreach ($gnrList['絞り込み_内容区分2'] as $key => $val): ?>
-                        <?php $select = $search['care_kb'] == $val ? ' selected' : NULL; ?>
+                        <?php $select = $search['care_kb_type2'] == $val ? ' selected' : NULL; ?>
                         <option value="<?= $val ?>"<?= $select ?>><?= $val ?></option>
                     <?php endforeach; ?>
                 </select>
             </p>
         </div>
         <div class="btn_box">
-            <span class="btn search s1">絞り込み</span>
-            <span class="btn search s2">絞り込む(全拠点)</span>
-            <span class="btn add"><a href="/report/progress/index.php">経過記録作成</a></span>
+            <span class=""><button type="submit" name="btnSearch" id="btnSearchBranch" value="true" class="btn search s1">絞り込み</button></span>
+            <!-- <span class="btn search s1">絞り込み</span> -->
+            <span class=""><button type="submit" name="btnSearch_all" value="true" id="btnSearchAllBranches" class="btn search s2">絞り込む(全拠点)</button></span>
+             <span class="btn add"><a href="/report/progress/index.php">経過記録作成</a></span>
         </div>
     </div>
 </div>
@@ -138,25 +201,29 @@
                             <div class="mid">身体状況</div>
                             <div class="come">
                                 <!--<textarea name="upDummy[condition]" value="<?= $val['condition'] ?>" readonly><?= $val['condition'] ?></textarea>-->
-                                <textarea name="upDummy[condition]" value="<?= $val['condition'] ?>" readonly></textarea>
+                                <!-- <textarea value="<?= @$val['condition'] ?>" readonly></textarea> -->
+                                <?= @$val['condition'] ?>
                             </div>
                         </td>
                         <td>
                             <div class="mid">処置内容</div>
                             <div class="come">
-                                <textarea name="upDummy[measures_contents]" value="<?= $val['measures_contents'] ?>" readonly><?= $val['measures_contents'] ?></textarea>
+                                <!-- <textarea value="<?= $val['measures_contents'] ?>" readonly><?= $val['measures_contents'] ?></textarea> -->
+                                <?= $val['measures_contents'] ?>
                             </div>
                         </td>
                         <td>
                             <div class="mid"><ご利用中の様子>(介護)</div>
                             <div class="come">
-                                <textarea name="upDummy[state_care]" value="<?= $val['state_care'] ?>" readonly><?= $val['state_care'] ?></textarea>
+                                <!-- <textarea value="<?= $val['state_care'] ?>" readonly><?= $val['state_care'] ?></textarea> -->
+                                <?= $val['state_care'] ?>
                             </div>
                         </td>
                         <td>
                             <div class="mid"><ご家族への連絡></div>
                             <div class="come">
-                                <textarea name="upDummy[family_contact]" value="<?= $val['family_contact'] ?>" readonly><?= $val['family_contact'] ?></textarea>
+                                <!-- <textarea value="<?= $val['family_contact'] ?>" readonly><?= $val['family_contact'] ?></textarea> -->
+                                <?= $val['family_contact'] ?>
                             </div>
                         </td>
                     </tr>
@@ -164,19 +231,22 @@
                         <td>
                             <div class="mid">その他</div>
                             <div class="come">
-                                <textarea name="upDummy[other]" value="<?= $val['other'] ?>" readonly><?= $val['other'] ?></textarea>
+                                <!-- <textarea value="<?= $val['other'] ?>" readonly><?= $val['other'] ?></textarea> -->
+                                <?= $val['other'] ?>
                             </div>
                         </td>
                         <td>
                             <div class="mid"><ご利用中の様子>(看護)</div>
                             <div class="come">
-                                <textarea name="upDummy[state_nurse]" value="<?= $val['state_nurse'] ?>" readonly><?= $val['state_nurse'] ?></textarea>
+                                <!-- <textarea value="<?= $val['state_nurse'] ?>" readonly><?= $val['state_nurse'] ?></textarea> -->
+                                <?= $val['state_nurse'] ?>
                             </div>
                         </td>
                         <td>
                             <div class="mid"><特記事項></div>
                             <div class="come">
-                                <textarea name="upDummy[staff_message]" value="<?= $val['staff_message'] ?>" readonly><?= $val['staff_message'] ?></textarea>
+                                <!-- <textarea value="<?= $val['staff_message'] ?>" readonly><?= $val['staff_message'] ?></textarea> -->
+                                <?= $val['staff_message'] ?>
                             </div>
                         </td>
                     </tr>
@@ -233,13 +303,15 @@
                         <td>
                             <div class="mid">状況課題</div>
                             <div class="come">
-                                <textarea name="upDummy[problem]" value="<?= $val['problem'] ?>" readonly><?= $val['problem'] ?></textarea>
+                                <!-- <textarea value="<?= $val['problem'] ?>" readonly><?= $val['problem'] ?></textarea> -->
+                                <?= $val['problem'] ?>
                             </div>
                         </td>
                         <td>
                             <div class="mid">指示事項</div>
                             <div class="come">
-                                <textarea name="upDummy[direction]" value="<?= $val['direction'] ?>" readonly><?= $val['direction'] ?></textarea>
+                                <!-- <textarea value="<?= $val['direction'] ?>" readonly><?= $val['direction'] ?></textarea> -->
+                                <?= $val['direction'] ?>
                             </div>
                         </td>
                     </tr>
@@ -267,7 +339,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <?php if (!empty($val['status'])): ?>
+                    <?php if ($val['status'] == '完成'): ?>
                         <span class="l_stat complete">完成</span>
                         <?php else: ?>
                         <span class="l_stat ongoing">作成中</span>
@@ -286,43 +358,50 @@
                         <td class="w10" rowspan="2">
                             <div class="mid">主たる傷病名</div>
                             <div class="come">
-                                <textarea class="w100" name="upDummy[main_sickness]" value="<?= $val['main_sickness'] ?>" readonly><?= $val['main_sickness'] ?></textarea>
+                                <!-- <textarea class="w100" value="<?= $val['main_sickness'] ?>" readonly><?= $val['main_sickness'] ?></textarea> -->
+                                <?= $val['main_sickness'] ?>
                             </div>
                         </td>
                         <td class="w15">
                             <div class="mid">現病名</div>
                             <div class="come">
-                                <textarea class="w100" name="upDummy[medical_record]" value="<?= $val['medical_record'] ?>" readonly><?= $val['medical_record'] ?></textarea>
+                                <!-- <textarea class="w100" value="<?= $val['medical_record'] ?>" readonly><?= $val['medical_record'] ?></textarea> -->
+                                <?= $val['medical_record'] ?>
                             </div>
                         </td>
                         <td class="w15" rowspan="2">
                             <div class="mid">依頼目的</div>
                             <div class="come">
-                                <textarea class="w100" name="upDummy[purpose]" value="<?= $val['purpose'] ?>" readonly><?= $val['purpose'] ?></textarea>
+                                <!-- <textarea class="w100" value="<?= $val['purpose'] ?>" readonly><?= $val['purpose'] ?></textarea> -->
+                                <?= $val['purpose'] ?>
                             </div>
                         </td>
                         <td class="w15" rowspan="2">
                             <div class="mid">療養状況</div>
                             <div class="come">
-                                <textarea class="w100" name="upDummy[treatment]" value="<?= $val['treatment'] ?>" readonly><?= $val['treatment'] ?></textarea>
+                                <!-- <textarea class="w100" value="<?= $val['treatment'] ?>" readonly><?= $val['treatment'] ?></textarea> -->
+                                <?= $val['treatment'] ?>
                             </div>
                         </td>
                         <td class="w15" rowspan="2">
                             <div class="mid">介護状況</div>
                             <div class="come">
-                                <textarea class="w100" name="upDummy[care]" value="<?= $val['care'] ?>" readonly><?= $val['care'] ?></textarea>
+                                <!-- <textarea class="w100" value="<?= $val['care'] ?>" readonly><?= $val['care'] ?></textarea> -->
+                                <?= $val['care'] ?>
                             </div>
                         </td>
                         <td class="w15" rowspan="2">
                             <div class="mid">生活歴</div>
                             <div class="come">
-                                <textarea class="w100" name="upDummy[life]" value="<?= $val['life'] ?>" readonly><?= $val['life'] ?></textarea>
+                                <!-- <textarea class="w100" value="<?= $val['life'] ?>" readonly><?= $val['life'] ?></textarea> -->
+                                <?= $val['life'] ?>
                             </div>
                         </td>
                         <td class="w15" rowspan="2">
                             <div class="mid">主な介護者</div>
                             <div class="come">
-                                <textarea class="w100" name="upDummy[main_caregiver]" value="<?= $val['main_caregiver'] ?>" readonly><?= $val['main_caregiver'] ?></textarea>
+                                <!-- <textarea class="w100" value="<?= $val['main_caregiver'] ?>" readonly><?= $val['main_caregiver'] ?></textarea> -->
+                                <?= $val['main_caregiver'] ?>
                             </div>
                         </td>
                     </tr>
@@ -330,7 +409,8 @@
                         <td class="w15">
                             <div class="mid">既往歴</div>
                             <div class="come">
-                                <textarea class="w100" name="upDummy[past_history]" value="<?= $val['past_history'] ?>" readonly><?= $val['past_history'] ?></textarea>
+                                <!-- <textarea class="w100" value="<?= $val['past_history'] ?>" readonly><?= $val['past_history'] ?></textarea> -->
+                                <?= $val['past_history'] ?>
                             </div>
                         </td>
                     </tr>
@@ -378,13 +458,15 @@
                         <td>
                             <div class="mid">身体状況</div>
                             <div class="come">
-                                <textarea name="upDummy[condition]" value="<?= $val['condition'] ?>" readonly><?= $val['condition'] ?></textarea>
+                                <!-- <textarea value="<?= $val['condition'] ?>" readonly><?= $val['condition'] ?></textarea> -->
+                                <?= $val['condition'] ?>
                             </div>
                         </td>
                         <td>
                             <div class="come">
                                 <?php if (isset($vst2PrbList[$tgtId]['problem'])): ?>
-                                    <textarea name="upDummy[problem]" value="<?= $vst2PrbList[$tgtId]['problem'] ?>" readonly><?= $vst2PrbList[$tgtId]['problem'] ?></textarea>
+                                    <!-- <textarea value="<?= $vst2PrbList[$tgtId]['problem'] ?>" readonly><?= $vst2PrbList[$tgtId]['problem'] ?></textarea> -->
+                                    <?= $vst2PrbList[$tgtId]['problem'] ?>
                                 <?php endif; ?>
                             </div>
                         </td>
@@ -402,7 +484,9 @@
     </div>-->
     <!-- ページャー -->
     <?php // dispPager($tgtData, $page, $line, $server['requestUri']) ?>
+    <?php if($cnt >= 1) { ?>
     <?php dispPager($dispData, $page, $line, $server['requestUri']) ?>
+    <?php } ?>
 </div>
 
 
@@ -413,5 +497,27 @@
 <!--CONTENT-->
 </div></div>
 <p id="page"><a href="#wrapper">PAGE TOP</a></p>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    function showLoading() {
+        $('#loading').show(); // Show the loading image
+    }
+
+    $('#btnSearchBranch').click(function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        showLoading(); // Show loading image
+        $('#branchType_search').val('branch'); // Set hidden input value
+        $('#searchForm').submit(); // Submit the form
+    });
+
+    $('#btnSearchAllBranches').click(function(e) {
+        e.preventDefault(); // Prevent the default form submission
+        showLoading(); // Show loading image
+        $('#branchType_search').val('all'); // Set hidden input value
+        $('#searchForm').submit(); // Submit the form
+    });
+});
+</script>
 </body>
 </html>

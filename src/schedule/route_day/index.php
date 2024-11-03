@@ -89,10 +89,12 @@
                                             <p><input type="checkbox" name="search[miwariate]" id="check3"  <?= $search['kango'] === '未割当' ? ' checked' : '' ?>><label for="check3" value="未割当">未割当</label></p>
                                         </div>
                                         <button name="btnSearch" class="btn search" value="true">絞り込み</button>
-                                        <!-- 担当者を保存する -->
-                                        <button name="btnRootEntry" type="submit" class="btn" value="true" style="margin-left:100px;width:200px;background: #188F9D;">担当者を保存する</button>
+                                        </div>
                                     </div>
-                                </div>
+                                        <!-- 担当者を保存する -->
+                                        <button name="btnRootEntry" type="submit" class="btn btn_charge" value="true">担当者を保存する</button>
+                                    
+                                
                             </div>
                             <div class="c_wrap">
                                 <!-- スケジュール追加追従メニュー(start) -->
@@ -148,7 +150,7 @@
                                 <?php if(!empty($rootMst)) : ?>
                                 
                                 <!-- タイムスケジューラエリア -->
-                                <div id="skeduler-container" class="skeduler-container" style="overflow:visible !important;">
+                                <div id="skeduler-container" class="skeduler-container">
                                     <div class="skeduler-headers" style="user-select:none; <?php /* position:sticky; */ ?>">
                                         <?php $i = 1; ?>
                                         <?php foreach ($rootMst as $tgtId => $val) : ?>
@@ -234,7 +236,7 @@
                                                                                 $startCnvMin = (int) $startSplit[0] * 60 + (int) $startSplit[1];
                                                                                 $endCnvMin = (int) $endSplit[0] * 60 + (int) $endSplit[1];
                                                                                 $top = $startCnvMin / 5 * 32;
-                                                                                $height = abs($endCnvMin - $startCnvMin) / 5 * 31-4;
+                                                                                $height = abs($endCnvMin - $startCnvMin) / 5 * 31 - 4;
                                                                                 ?>
                                                                                 <div id="item" class="data data-grn"
                                                                                      draggable="true"
@@ -276,7 +278,7 @@
                                                                                     $startCnvMin = (int) $startSplit[0] * 60 + (int) $startSplit[1];
                                                                                     $endCnvMin = (int) $endSplit[0] * 60 + (int) $endSplit[1];
                                                                                     $top = $startCnvMin / 5 * 32;
-                                                                                    $height = abs($endCnvMin - $startCnvMin) / 5 * 31-4;
+                                                                                    $height = abs($endCnvMin - $startCnvMin) / 5 * 31 - 4;
                                                                                     ?>
                                                                                     <div id="item" class="data data-grn" 
                                                                                          draggable="true" 

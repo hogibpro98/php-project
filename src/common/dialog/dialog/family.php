@@ -7,7 +7,7 @@ $where['user_id'] = $userId;
 $orderBy = 'unique_id DESC';
 $limit = 3;
 $temp = select('mst_user_family', '*', $where, $orderBy, $limit);
-foreach ($temp as $val){
+foreach ($temp as $val) {
     $familyList[] = $val;
 }
 ?>

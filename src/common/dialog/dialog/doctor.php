@@ -7,7 +7,7 @@ $where['user_id'] = $userId;
 $orderBy = 'unique_id DESC';
 $limit = 1;
 $temp = select('doc_instruct', '*', $where, $orderBy, $limit);
-foreach ($temp as $val){
+foreach ($temp as $val) {
     $docList[] = $val;
 }
 ?>

@@ -42,9 +42,9 @@
                     var date = new Date();
                     // コンボボックス値を元にオフセット値を設定する
                     if (cmbVal === "1週間") {
-                        offsetDay = 7;
+                        offsetDay = 6;
                     } else if (cmbVal === "2週間") {
-                        offsetDay = 14;
+                        offsetDay = 13;
                     }
                     if (cmbVal === "1か月") {
                         offsetMonth = 1;

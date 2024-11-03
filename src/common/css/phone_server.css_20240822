@@ -1,0 +1,3540 @@
+@media only screen and (max-width:700px){
+
+body { min-width:375px; font-size:100%;}
+/*#header { display:none;}*/
+#content{ width:100%;}
+#footer { width:100%;}
+
+#wrapper { background:#FFF; border-top:none; }
+#base { width:auto; margin:0 !important;}
+
+.pc { display:none;}
+.sm { display:block;}
+
+.wrap_bg::after {
+	position: absolute;
+  content: "";
+  background: rgba(0, 0, 0, .50);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  z-index:965;
+}
+
+
+/*====================================================================================================
+  HEADER
+====================================================================================================*/
+
+#header {}
+#header .head { padding: 10px;height: 50px; }
+#header .head .head-l { width: 50px; display: block; border-right: 1px solid #A5A4BF;margin-left: 40px; }
+#header .head .head-l h1 { display: none; }
+#header .head .head-r { width: calc(100% - 100px); justify-content: center; padding-top: 0; }
+#header .head .head-r .box1 { display: none; }
+#header .head .head-r .box2 { position: absolute; left: 0; right: 0; margin: auto; }
+#header .head .head-r .box3 { 
+	display: block;
+	line-height: 100%;
+	width: 185px;
+	height: auto;
+}
+#header .head .head-r .box3 .num2 { border-right: none;padding: 0;}
+#header .head .head-r .box3 .acct_log { background: none; }
+#header .head .head-r .box3 .acct_box { right: 5px; top: 42px; }
+#header .head .head-r .box3 .acct_box ul li { padding: 10px 0; }
+#header .head .head-r .box4 { border-left: none; margin-left: 0; }
+
+#header .head .acct_icon { text-align: center; line-height: 100%;}
+#header .head .acct_icon span { display: inline-block; margin: 0 5%; }
+#header .head .acct_icon small { font-size: 50%; color: #A5A4BF; font-weight: 500; display: block; }
+
+#header .header_search { 
+	display: none; 
+	position: absolute!important;
+	top: 50px;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 80%;
+	padding: 10px;
+	z-index: 99;
+	border-radius: 4px;
+}
+#header .head .search_box input.search { width: 100%!important; }
+#header .head .head-l .search_box ul.search_list { top: 53px; width: 94%!important; right: 0; margin: auto; }
+#header .head .head-l .search_box ul.search_list::before { right: unset; left: 5px; }
+
+#header .head .head-r .box2 .switch_btn { display: none; }
+#header .head .head-r .box2 .switch_box {
+	left: 0;
+	top: 45px;
+	margin: auto;
+	background: #fff;
+	box-shadow: 0px 2px 12px rgba(0, 0, 0, .15);
+	border-radius: 3px;
+	width: 80%;
+}
+#header .head .head-r .box2 .switch_box::after { border-bottom: 7px solid #fff; right: unset; left: 18%; }
+#header .head .head-r .box2 .switch_box .temp_box1 { font-size: 75%; font-weight: 400; padding: 0 5px; border-bottom: 1px solid #EBEBF2; }
+#header .head .head-r .box2 .switch_box .label_s { font-size: 87.5%; font-weight: 400; padding: 5px 0; }
+
+.menu_btn { line-height: 130%; height: 110px; }
+.menu_btn.orn,
+input.openNav[type="checkbox"]:checked ~ .navIconToggle.orn { background: #E8832E; }
+
+/*====================================================================================================
+  CONTENT
+====================================================================================================*/
+
+#content { position:relative; }
+
+#content .fixed_navi .box .back { width:42px; height:42px; margin:0; padding: 0; border-radius: 5px!important; }
+#content .fixed_navi .box .back.pc { display:none; }
+#content .fixed_navi .box .back.sm { display:block; }
+#content .fixed_navi .box .back a { border-radius:5px; padding: 7px 0; }
+#content .fixed_navi .box .cancel-blksm { background: #3E3E3E; padding: 0; }
+#content .fixed_navi .box .cancel-blksm a { padding: 15px 0; border-radius: 5px; }
+#content .fixed_navi .box .controls .cancel { width:104px; }
+#content .fixed_navi .box .controls .save { width:69px; }
+#content .fixed_navi .box .controls .btn a { font-size:93.8%; }
+#content .fixed_navi .box .controls .cancel a { color:#FFF; background:#3E3E3E; }
+
+#content .staff-navi .box .controls .cancel a { color:#000; background:#fff; border-radius: 5px; }
+
+#content .patient_navi .box { display: block; }
+#content .fixed_navi.patient_navi .box{display: flex;}
+#content .patient_navi .box .controls { justify-content: space-between; }
+#content .patient_navi .box .controls .save { padding: 10px 0; width: 111px; color: #000; background: #fff; }
+#content .patient_navi .box .controls .cancel { padding: 0; width: 129px; }
+#content .patient_navi .box .controls .cancel a { background: #FFF; color: #000; padding: 10px 0; border-radius: 5px; }
+#content .patient_navi .box .back { width: fit-content; height: auto; margin: auto; background: none; }
+#content .patient_navi .box .back a { text-decoration: underline; color: #fff; }
+#content .patient_navi .box .back.sm{
+	background: #FFF;
+	width: 42px;
+        height: 42px;
+        margin: 0;
+        padding: 0;
+        border-radius: 5px !important;
+}
+#content .fixed_navi .box .controls .save {
+    width: 111px;
+    background: #E8832E;
+    color: #FFF;
+    font-weight: 700;
+}
+
+#content .staff-d-navi .box { display:inherit!important; }
+
+#content .record2-navi .box .controls .cancel { padding:10px 0; }
+
+#pager { margin-bottom:45px; }
+
+
+
+/*====================================================================================================
+  FOOTER
+====================================================================================================*/
+#footer {}
+
+
+/*====================================================================================================
+  TOP PAGE
+====================================================================================================*/
+#toppage h2.notice_tit {
+	font-size: 112.5%; 
+	background: url(../image/new_info-orn.png) no-repeat left center; 
+	text-align: left; 
+	padding-left: 55px; 
+	margin: 0 15% 12px; 
+	color: #174A84;
+}
+#toppage .notice { margin: 0 3% 30px; }
+#toppage .notice_list dl dt { padding: 20px 52px 20px 15px; background-position: 95% 13%!important; }
+#toppage .notice_list dl dt.open { background-position: 95% 18%!important; }
+#toppage .notice_list dl dd { padding: 20px; }
+
+#toppage .latest_notice .notice_list dl dt { background-position: 95% 18%!important; }
+#toppage .latest_notice .notice_list dl dt.open { background-position: 95% 13%!important; }
+
+#toppage .box1 { margin: 20px 6.2%; }
+#toppage .box1 .search_box { width: 57%; }
+#toppage .box1 .search_box input { width: 100%; }
+
+#toppage .no_unread_box { position: initial; font-size: 93.8%; margin: 0 6.2%; width: auto; padding: 13px 20px; text-align: left; border-radius: 0; }
+
+
+/*====================================================================================================
+  SUB PAGE: COMMON PARTS
+====================================================================================================*/
+h2 { text-align:center; padding:20px 0; }
+h2.tit_sm { font-size: 112.5%; }
+#patient {
+	position:fixed;
+	right:0;
+	top:60px;
+	z-index:99;
+	width:100px;
+	color: #174A84;
+	font-size:75%;
+	font-weight:500;
+	line-height:120%;
+	padding:13px 15px;
+	background:#F3F3F3;
+	border-radius:8px 0 0 8px;
+}
+#subpage { margin:0 2%; }
+#subpage .wrap { border:none; box-shadow:none; padding:0; }
+#subpage .wrap ul.tab { display:none; }
+
+.nursing {}
+.nursing textarea { display:block; width:100%; }
+.nursing select { margin:5px 0; }
+
+.nursing .btn.trash { padding:10px; }
+.nursing .copy_btn { display:block; position:initial; margin:0 0 0 auto; }
+.nursing span.ng { background: #FF592E; }
+
+.nursing .user-details {}
+.nursing .user-details dl+dl { margin-left:15px; }
+.nursing .user-details dl:first-child dd { margin:0; }
+.nursing .user-details .d_right { top:0; right:0; display: block; }
+.nursing .user-details p span.print,
+.nursing .user-details p span.summary { display: none; }
+
+.nursing .nurse_record { border-bottom:none; }
+.nursing .nurse_record .tit { background:#F1F8FF /*url(../image/arrow_up.svg) no-repeat 96%*/;position: relative;}
+.nursing .nurse_record .tit:after{content:'';display: inline-flex;width: 11px;height: 7px;background:url(../image/arrow_up.svg) no-repeat 96%;position: absolute;right: 20px;top: 0;bottom: 0;margin: auto;transform: rotate(180deg);}
+.nursing .nurse_record .tit.inactive:after { transform: rotate(0deg);/*background:#F1F8FF url(../image/arrow_down2.svg) no-repeat 96%;*/ }
+.nursing .nurse_record .no_bg {
+	margin:15px 0;
+	border:1px #BEBEBE;
+	border-style:dashed none;
+	background:url(../image/arrow_up.svg) no-repeat 96%;
+}
+.nursing .nurse_record .no_bg.inactive { background:url(../image/arrow_down2.svg) no-repeat 96%; }
+.nursing .nurse_record span.label_t { margin:0; width:100px; }
+.nursing .nurse_record .line { margin-left:0; }
+.nursing .nurse_record .profile div { margin:5px 0; }
+.nursing .nurse_record .profile div:not(:first-child) { margin-left:0; }
+.nursing .nurse_record .profile .create_d span.label_t { width:100px; }
+.nursing .nurse_record .profile .n_name { margin-left:104px; display:block; }
+.nursing .nurse_record .visit span.label_t { width:100px; }
+.nursing .nurse_record .visit span.time { display:block; margin:5px 0 0 104px; }
+
+/* REPORT DETAILS */
+.nursing.rep_details .nurse_record .d_right { display:block; }
+.nursing.rep_details .nurse_record .profile > div { margin:5px 0; }
+.nursing.rep_details .nurse_record .profile span.label_t:not(.category span.label_t) { width:65px; }
+.nursing.rep_details .nurse_record .profile .name span.label_t { width:65px; }
+.nursing.rep_details .nurse_record .profile .n_name { margin-left:0; display:inline-block; }
+.nursing.rep_details .nurse_record .profile .i_period { margin-left:0; }
+.nursing.rep_details .nurse_record .profile .line3 { display:block; }
+.nursing.rep_details .nurse_record .profile .line3 div { margin:3px 0; }
+.nursing.rep_details .nurse_record .profile .line3 span.label_t { width:65px; }
+.nursing.rep_details .personnel { display:block; }
+.nursing.rep_details .personnel div { margin:15px 0; }
+.nursing.rep_details .personnel span.label_t { width:auto; display:block; margin-bottom:5px; }
+.nursing.rep_details .personnel input { width:145px; }
+.nursing.rep_details .personnel .choice { width:147px; margin:0; }
+.nursing.rep_details .personnel .creator { display:flex; justify-content:space-between; }
+.nursing.rep_details .personnel .creator p input {}
+.nursing.rep_details .doctor_info { margin-top:25px; }
+.nursing.rep_details .doctor_info .box_wrap { display:block; }
+.nursing.rep_details .doctor_info .box_wrap > * { width:100%; }
+.nursing.rep_details .doctor_info .copy_btn { width:150px; }
+.nursing.rep_details .doctor_info .box-r p { width:49%; }
+
+
+/*====================================================================================================
+  0.ログイン
+====================================================================================================*/
+#login .login_box { padding: 0 5%; width: 100%; }
+#login .login_box .logo { width: 350px; margin: auto; }
+#login .login_box .logo img { width: 100%; }
+#login .login_box .username { margin-bottom: 35px; }
+#login .login_box label { display: block; width: 100%; }
+#login .login_box input { width: 100%; padding: 10px 15px; }
+
+
+/*====================================================================================================
+  2. 利用者一覧(基本情報)
+====================================================================================================*/
+#user-list {}
+#user-list .box { display: block; }
+#user-list .search_box { margin-bottom: 25px; }
+#user-list .search_box .filter_box { width: 100%; flex-wrap: wrap; }
+#user-list .search_box .filter_box > div { flex-basis: 48%; }
+#user-list .search_box .filter_box select { width: 100%!important; }
+#user-list .search_box .filter_box .fil_cat { flex-basis: 100%; }
+#user-list .search_box .filter_box .fil_cat select { background-position: 95% center; }
+#user-list .search_box .name_box.sm { display: flex; justify-content: space-between; flex-wrap: wrap; }
+#user-list .search_box .name_box input[type="text"] { flex-basis: 61%; width: 100%; }
+#user-list .search_box .name_box .search { width: 100%; flex-basis: 36%; background-position: 12% center; }
+#user-list .add { display: block; margin-left: 0; width: 120px; }
+#user-list .add a { padding: 12px 25px 14px 35px; }
+
+#user-list .dis_num { margin: 20px 0 10px 2.1%; }
+#user-list .dis_box { overflow-x: scroll; }
+#user-list select#id_sort { position: absolute; right: 1.65%; }
+#user-list table.dis_result { overflow-y: scroll; margin-top: 10px; }
+#user-list table.dis_result :is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+#user-list table.dis_result :-webkit-is(thead, tbody tr) { display:table; width:100%; table-layout:fixed; }
+#user-list table.dis_result tbody { height: 300px; display: block; overflow-y: overlay; }
+#user-list table.dis_result th { border-top: none; }
+#user-list table.dis_result td { border-bottom: none; text-overflow: unset;  }
+#user-list table.dis_result span.ng { background: #FF592E; }
+
+#user-list table.dis_result th.th_check, 
+#user-list table.dis_result td:nth-child(1) { width: 32px; }
+#user-list table.dis_result th.th_ng, 
+#user-list table.dis_result td:nth-child(2) { width: 44px; }
+#user-list table.dis_result th.th_date,
+#user-list table.dis_result td:nth-child(3) { width: 90px; }
+#user-list table.dis_result th.th_id,
+#user-list table.dis_result td:nth-child(4) { width: 80px; }
+#user-list table.dis_result th.th_kananame { width: 120px; background-position: 80% center; }
+#user-list table.dis_result td:nth-child(5) { width: 120px; }
+#user-list table.dis_result th.th_fullname,
+#user-list table.dis_result td:nth-child(6) { width: 90px; }
+#user-list table.dis_result th.th_age, #user-list table.dis_result th.th_gender, 
+#user-list table.dis_result td:nth-child(7), #user-list table.dis_result td:nth-child(8) { width: 50px; }
+#user-list table.dis_result th.th_degree,
+#user-list table.dis_result td:nth-child(9) { width: 80px; }
+#user-list table.dis_result th.th_add,
+#user-list table.dis_result td:nth-child(10) { width: 190px; text-overflow: ellipsis; }
+#user-list table.dis_result th.th_num,
+#user-list table.dis_result td:nth-child(11) { width: 110px; text-overflow: ellipsis; }
+#user-list table.dis_result th.th_cat,
+#user-list table.dis_result td:nth-child(12) { width: 280px; }
+#user-list table.dis_result th.th_status,
+#user-list table.dis_result td:nth-child(13) { width: 60px; }
+
+#user-list .no_data-in { width: 235px; font-size: 75%; padding: 14px 14px 40px; }
+
+
+
+/*====================================================================================================
+  USER NEW && USER DETAIL
+====================================================================================================*/
+
+.user_info { width: 97%; margin: auto; overflow: hidden; }
+.user_info .tit { background:#F1F8FF url(../image/arrow_up.svg) no-repeat 96%; font-weight: 700!important; }
+.user_info .tit.inactive { background:#F1F8FF url(../image/arrow_down2.svg) no-repeat 96%; }
+.user_info .no_bg {
+	border:1px #BEBEBE;
+	border-style:dashed none;
+	background:url(../image/arrow_up.svg) no-repeat 96%;
+}
+.user_info .no_bg.inactive { background:url(../image/arrow_down2.svg) no-repeat 96%; }
+.user_info .user-details > div { justify-content: start; }
+.user_info .user-details span.map { right: 0; position: initial; top: 0; margin-top: 5px; }
+.user_info .user-details .map_hov { top: -10px; left: 87px; width: 65%; }
+.user_info .user-details .d_left { width: 100%; }
+.user_info .user-details .d_left .con_num { position: relative; top: 0; width: 100%; }
+.user_info .user-details .d_left dl.col1 { flex-basis: unset; }
+.user_info .user-details .d_left dl.col2 { flex-basis: unset; }
+.user_info .user-details .d_left dl.sm { display: inline-block!important; }
+.user_info .user-details .d_left dl.pc { display: none; }
+.user_info .user-details .d_left dl.col1 dt { width: 83px; }
+.user_info .user-details .d_left dl.col2 dd { width: 100%; }
+.user_info .user-details .d_left dl dt span.label_t { font-weight: 400; }
+
+.user_info .user-details .d_left dl:first-child dt { margin-right: 10px; }
+.user_info .user-details .d_left dl:not(dl.sm, dl.note, dl.map_b) dt { display: none; }
+
+.user_info .user-details .d_left dl.name_u { flex-basis: 100%; }
+.user_info .user-details .d_left dl.name_u dd { width: 100%; }
+.user_info .user-details .d_left dl.name_u dd span.name { width: 83px; display: inline-block; margin-right: 0; }
+.user_info .user-details .d_left dl.status_u { position: absolute; right: 7%; top: 28px; }
+.user_info .user-details .d_left dl.status_u dd { width: 100%; }
+.user_info .user-details .d_left dl.gender_u { margin-top: 15px; width: 83px; }
+.user_info .user-details .d_left dl.d_birth { margin-top: 15px; }
+.user_info .user-details .d_left dl.map_b { flex-basis: 100%; }
+.user_info .user-details .d_left dl.map_b dt { width: 77px; }
+.user_info .user-details .d_left dl.map_b dd:nth-child(3) { display: block; margin-left: 80px; }
+.user_info .user-details .d_left dl.note dt { margin-bottom: 7px; }
+.user_info .user-details .d_left dl.note dd { width: 100%; }
+.user_info .user-details .d_left dl.note dd textarea { font-size: 87.5%; height: 112px; }
+.user_info .user-details .d_left .con_num dl dt { width: auto; margin-right: 36px; }
+.user_info .user-details .d_left .con_num dl dd { width: auto; }
+
+.user_info .user-details .d_right { width: 100%; position: relative; }
+.user_info .user-details .d_right span.label_t.sm { display: inline-block; }
+.user_info .user-details .d_right dl dt { display: none; }
+.user_info .user-details .d_right table { width: 100%; flex-basis: 100%; margin-bottom: 20px!important; }
+.user_info .user-details .d_right table.em_contact td { height: auto; }
+.user_info .user-details .d_right table.em_contact thead { display: table-header-group; }
+.user_info .user-details .d_right table.em_contact thead th { margin: 5px 0 0; }
+.user_info .user-details .d_right table.em_contact thead td { display: none; }
+.user_info .user-details .d_right table.em_contact tbody tr { width: 100%; }
+.user_info .user-details .d_right table.em_contact tbody th { display: inline-block; width: 25px; text-align: left; margin: 0; }
+.user_info .user-details .d_right table.em_contact tbody td { display: inline-block; width: fit-content; margin: 0; }	
+.user_info .user-details .d_right table.em_contact tbody td input { display: none; background: #F9BF8C; }
+
+.user_info .user-details .d_right table:not(.em_contact) tbody tr:last-child { display: none; }
+.user_info .user-details .d_right table td { display: inline-block; vertical-align: inherit; }
+.user_info .user-details .d_right table td:nth-child(1) { margin-right: 20px; }
+.user_info .user-details .d_right table td span.sm { display: inline-block; }
+
+.user_info .accor_box { position: relative; }
+.user_info .accor_tab-s { 
+	width: 80%; 
+	margin: auto; 
+	text-align: center;
+	color: #fff; 
+	font-size: 87.5%;
+	font-weight: 700; 
+	background: #0CD65D url(../image/arrow_down5.png) no-repeat 30% 55%;  
+	padding: 12px 0;
+	line-height: 100%;
+	border-radius: 8px;
+}
+.user_info .accor_show { background: #0CD65D url(../image/arrow_up3.png) no-repeat 30% 55%; border-radius: 8px 8px 0 0; }
+.user_info ul.accor_tab { width: 80%; display: none; border-radius: 0 0 8px 8px; position: absolute; top: 36px; left: 0; right: 0; }
+.user_info ul.accor_tab li { display: block; text-align: left; font-size: 93.8%; color: #404040; font-weight: 400; padding: 10px 10px 10px 35px; border-width: 1.8px 3px; }
+.user_info ul.accor_tab li.active { color: #0CD65D; font-weight: 700; background: #fff url(../image/arrow_right3.png) no-repeat 12px center; }
+.user_info ul.accor_tab li.active::after { display: none; }
+.user_info ul.accor_tab li:first-child { border-radius: 0; }
+.user_info ul.accor_tab li:last-child { border-radius: 0 0 8px 8px; border-bottom-width: 3px; }
+.user_info ul.accor_tab li span.ng { 
+	display: none; 
+	width: 22px; 
+	height: 16px; 
+	border-radius: 7px; 
+	padding: 0; 
+	top: 50%; 
+	transform: translateY(-50%); 
+	left: 32%;
+	right: unset; 
+}
+.user_info ul.accor_tab li:nth-child(4) span.ng { left: 37%; }
+.user_info ul.accor_tab li.active span.ng { display: inline-block; }
+
+.user_info .content_box { margin: 30px auto; }
+.user_info .con_box > div { flex-basis: 100%; }
+.user_info .con_box select { padding: 8px 20px 8px 10px; }
+.user_info .con_box span.req { display: none; }
+.user_info .list_scroll-x { overflow-x: scroll; width: 100%; }
+
+.user_info .basic_info { padding: 0; }
+.user_info .basic_info .box-l { padding-right: 0; border-right: none; margin-bottom: 10px; }
+.user_info .basic_info table input#user_ID { width: 90px; }
+.user_info .basic_info table input#office { width: 95%; display: block; }
+.user_info .basic_info table input#office_no { width: 101px; }
+.user_info .basic_info table input#post-code { width: 100px; }
+.user_info .basic_info table input#bango1 { width: 130px; }
+.user_info .basic_info table input#bango2 { width: 130px; }
+.user_info .basic_info table input#fax { width: 130px; }
+.user_info .basic_info table input.name { width: 47.2%; }
+
+.user_info .basic_info table tr.category th { vertical-align: top; padding-top: 12px; }
+.user_info .basic_info table tr.category td { padding-right: 0; }
+.user_info .basic_info table tr.category td div > * { display: block; }
+.user_info .basic_info table tr.category td span { width: 195px; }
+.user_info .basic_info table tr.category td select#cat_list { width: 165px; }
+
+.user_info .basic_info .box-l table th { display: inline-block; }
+.user_info .basic_info .box-l table td { display: inline-block; }
+
+.user_info .basic_info .box-l table tr.tr1 th { width: 71px; }
+.user_info .basic_info .box-l table tr.tr2 td > div { padding-right: 0!important; }
+.user_info .basic_info .box-l table tr.tr2 td > div:nth-child(1) > * { margin: 3px 0; }
+.user_info .basic_info .box-l table tr.tr2 td .hist_box .hist_list { padding: 0; }
+.user_info .basic_info .box-l table tr.tr2 td .hist_box .hist_list ul li { vertical-align: top; padding-left: 10px; font-size: 81.3%; }
+.user_info .basic_info .box-l table tr.d_birth td label[for="birth_m"] { margin-right: 8px; }
+
+.user_info .basic_info .box-l table :is(.tr3, .tr4, .tr5, .tr8, .tr9, .tr10, .category) th { width: 85px; }
+.user_info .basic_info .box-l table :-webkit-is(.tr3, .tr4, .tr5, .tr8, .tr9, .tr10, .category) th { width: 80px; }
+
+.user_info .basic_info .box-l table tr.fax th, .user_info .basic_info .box-l table tr.d_birth th { width: 81px; }
+.user_info .basic_info .box-l table tr.tr3 td, .user_info .basic_info .box-l table tr.tr4 td { padding-right: 25px; width: 77%; }
+
+.user_info .basic_info .box-l table tr.tr7 td .box-i1 { padding-right: 50px; }
+.user_info .basic_info .box-l table tr.tr7 td .box-i1 div { width: 33%; }
+.user_info .basic_info .box-l table tr.tr7 td .box-i1 div:nth-child(1) { width: 28%; }
+.user_info .basic_info .box-l table tr.tr7 td .box-i2 { padding-right: 0; }
+.user_info .basic_info .box-l table tr.tr7 td .box-i2 div { width: 48.5%; }
+
+.user_info .basic_info .box-l table tr.bango_l td div:first-child { width: 100%; margin-right: 0; }
+.user_info .basic_info .box-l table tr.bango_l td div:last-child { display: none; }
+.user_info .basic_info .box-l table tr.tr10 td div { width: 100%; }
+
+.user_info .basic_info .box-l table tr.bango_l td, .user_info .basic_info .box-l table tr.tr10 td { padding-right: 0; }
+.user_info .basic_info .box-l table tr.tr11 th, .user_info .basic_info .box-l table tr.tr11 td { width: 100%; }
+
+.user_info .basic_info .box-r { padding-left: 0; }
+.user_info .basic_info .box-r table { display: block; }
+.user_info .basic_info .box-r table tbody { width: 100%; display: block; }
+.user_info .basic_info .box-r table tr { display: block; }
+.user_info .basic_info .box-r table tr th,
+.user_info .basic_info .box-r table tr td { display: block; table-layout: auto; }
+.user_info .basic_info .box-r table tr.tr13 { border-bottom: 1px dashed #BEBEBE; padding-bottom: 20px; }
+.user_info .basic_info .box-r table tr.tr13 th { width: 100%; }
+.user_info .basic_info .box-r table tr.category th { width: 77px; display: inline-block; }
+.user_info .basic_info .box-r table tr.category td { display: inline-block; }
+.user_info .basic_info .box-r table tr.category td span { width: 226px; }
+
+.user_info .basic_info .box-r dl.img_tit-box dt { padding: 15px 20px 15px 22px; }
+.user_info .basic_info .box-r dl.img_tit-box dt span.add { right: 10px; top: 5px; }
+.user_info .basic_info .box-r dl.img_tit-box dd span.num { margin-left: 0; width: 20px; }
+.user_info .basic_info .box-r dl.img_tit-box dd input[type="text"] { width: 94%; }
+.user_info .basic_info .box-r dl.img_tit-box dd .hov_box p { padding: 9px 10px; }
+
+.user_info .payment_mode { padding-left: 0; }
+.user_info .payment_mode .clear-bg { top: 85px; padding: 8px 20px; }
+.user_info .payment_mode dl { width: 100%; }
+.user_info .payment_mode dl dt { width: 107px; }
+.user_info .payment_mode dl dt span.label_t { margin-right: 0; }
+.user_info .payment_mode dl.mode_box { margin-bottom: 25px; line-height: 150%; }
+.user_info .payment_mode dl.mode_box dt { font-weight: 700; display: block; }
+.user_info .payment_mode dl.financial_cat { margin: 8px 0 0; }
+.user_info .payment_mode [class^="opt_list"] dl { margin: 4px 0; }
+
+.user_info .payment_mode .isOpt1 .opt_list1 dl:nth-child(1) dt { vertical-align: top; }
+.user_info .payment_mode .isOpt1 .opt_list1 dl:nth-child(1) dd span { display: block; margin-bottom: 5px; }
+
+.user_info .payment_mode .opt_list2 dl:nth-child(2) { margin-right: 0; }
+.user_info .payment_mode .opt_list2 dl:not(:first-child) dt { margin-right: 0; width: 107px; }
+
+.user_info .insurance_card .add { top: 10px; }	
+.user_info .insurance_card .tit { padding: 10px!important; }
+.user_info .insurance_card :not(.pub_exp) .tit.inactive { border-bottom: none; }
+.user_info .insurance_card select.era { width: 55px; padding: 8px 15px 8px 5px; }
+.user_info .insurance_card > div { border-bottom: none; display: initial; }
+.user_info .insurance_card .insurance_box > * { flex-basis: 100%; }
+
+.user_info .insurance_card .ncare_card { padding: 0; }
+.user_info .insurance_card .ncare_card .box-i { padding-top: 55px; }
+.user_info .insurance_card .ncare_card table td { font-size: 93.8%; }
+.user_info .insurance_card .ncare_card table tbody { height: 210px; }
+
+.user_info .insurance_card .ncare_card table th:nth-child(1), .user_info .insurance_card .ncare_card table td:nth-child(1) { width: 37px; }
+.user_info .insurance_card .ncare_card table th:nth-child(7), .user_info .insurance_card .ncare_card table td:nth-child(7) { width: 60px; }
+
+.user_info .insurance_card .ncare_card table :is(th:nth-child(2), td:nth-child(2), th:nth-child(6), td:nth-child(6)) { width: 300px; }
+.user_info .insurance_card .ncare_card table :-webkit-is(th:nth-child(2), td:nth-child(2), th:nth-child(6), td:nth-child(6)) { width: 300px; }
+
+.user_info .insurance_card .ncare_card table :is(th:nth-child(3), td:nth-child(3), th:nth-child(4), td:nth-child(4), th:nth-child(5), td:nth-child(5)) { width: 115px; }
+.user_info .insurance_card .ncare_card table :-webkit-is(th:nth-child(3), td:nth-child(3), th:nth-child(4), td:nth-child(4), th:nth-child(5), td:nth-child(5)) { width: 115px; }
+
+.user_info .insurance_card .ncare_card dl { margin: 10px 0; }
+.user_info .insurance_card .ncare_card dl dt { width: 96px; vertical-align: top; padding-top: 10px; }
+
+.user_info .insurance_card .ncare_card .box-i { display: block; flex-basis: 100%; width: 100%; padding-bottom: 30px; }
+.user_info .insurance_card .ncare_card .box-i2 dl dd div:nth-child(3) { display: block; }
+.user_info .insurance_card .ncare_card .box-i2 dl dd:nth-child(3) { display: block; margin-left: 100px; }
+.user_info .insurance_card .ncare_card .box-i2 dl dd .valid_copy { background: #E8E8E8 url(../image/icon_reset2.png) no-repeat 10px center; border: none; }
+
+.user_info .insurance_card .ncare_card .box-i3 { position: initial; width: 100%; }
+.user_info .insurance_card .ncare_card .box-i3 dl dt { width: 96px; }
+.user_info .insurance_card .ncare_card .box-i4 { flex-basis: 100%; display: initial; }
+.user_info .insurance_card .ncare_card .box-i4 dl:nth-child(1) { margin-right: 0; }
+
+.user_info .insurance_card .inhome-sup_list .child_toggle { display: initial; }
+.user_info .insurance_card .sup_list { margin-bottom: 30px; flex-basis: 100%; padding-top: 55px; }
+.user_info .insurance_card .sup_list .hist_box table tbody { height: 160px; }
+.user_info .insurance_card .sup_list table th:nth-child(1), .user_info .insurance_card .sup_list table td:nth-child(1) { width: 39px; }
+.user_info .insurance_card .sup_list table th:nth-child(2), .user_info .insurance_card .sup_list table td:nth-child(2) { width: 195px; }
+.user_info .insurance_card .sup_list table th:nth-child(3), .user_info .insurance_card .sup_list table td:nth-child(3) { width: 210px; }
+.user_info .insurance_card .sup_list table th:nth-child(4), .user_info .insurance_card .sup_list table td:nth-child(4) { width: 150px; }
+.user_info .insurance_card .sup_list table th:nth-child(5), .user_info .insurance_card .sup_list table td:nth-child(5) { width: 60px; }
+
+.user_info .insurance_card .sup_info { position: relative; top: unset; flex-basis: 100%; }
+.user_info .insurance_card .sup_info .tit { border: none; background: none; }
+.user_info .insurance_card .sup_info .clear-bg { padding: 8px 15px; top: 5px; }
+.user_info .insurance_card .sup_info .box-i { padding-top: 10px; }
+.user_info .insurance_card .sup_info table th { width: 25%; }
+.user_info .insurance_card .sup_info table th:nth-child(-n+3) { vertical-align: top; padding-top: 10px; }
+.user_info .insurance_card .sup_info table td { width: 75%; padding: 3px 0!important; }
+.user_info .insurance_card .sup_info table tr.sm { display: table-row; }
+.user_info .insurance_card .sup_info table tr td div.pc { display: none; }
+.user_info .insurance_card .sup_info table tr td > * { margin: 5px 0; }
+.user_info .insurance_card .sup_info table tr:nth-child(1) td input:nth-child(3) { display: block; }
+.user_info .insurance_card .sup_info table tr:nth-child(2) td span:nth-child(1) { width: 120px; }
+.user_info .insurance_card .sup_info table tr:nth-child(5) td div:nth-child(1) { width: 150px; }
+.user_info .insurance_card .sup_info table tr:nth-child(8) td div:nth-child(1) { width: 180px; }
+
+.user_info .insurance_card .sup_info input#address { width: 100%; }
+.user_info .insurance_card .sup_info input#fax { width: 150px; }
+.user_info .insurance_card .sup_info input#manager-k { width: 180px; }
+.user_info .insurance_card .sup_info input#cancel_riyu { width: 90%; }
+.user_info .insurance_card .sup_info input.business_name { width: 100%; }
+
+.user_info .insurance_card .benefit_info .box-i { width: 100%; }
+.user_info .insurance_card .benefit_info .child_toggle { padding: 55px 0 35px; }
+.user_info .insurance_card .benefit_info table tbody { height: 210px; }
+.user_info .insurance_card .benefit_info table th:nth-child(3), .user_info .insurance_card .benefit_info table td:nth-child(3) { width: 15px; }
+.user_info .insurance_card .benefit_info table th:nth-child(5), .user_info .insurance_card .benefit_info table td:nth-child(5) { width: 80px; }
+.user_info .insurance_card .benefit_info table th:nth-child(6), .user_info .insurance_card .benefit_info table td:nth-child(6) { width: 70px; }
+
+.user_info .insurance_card .benefit_info table :is(th:nth-child(2), td:nth-child(2), th:nth-child(4), td:nth-child(4)) { width: 255px; }
+.user_info .insurance_card .benefit_info table :-webkit-is(th:nth-child(2), td:nth-child(2), th:nth-child(4), td:nth-child(4)) { width: 255px; }
+
+.user_info .insurance_card .med_insurance { padding: 0; }
+.user_info .insurance_card .med_insurance .add { padding-left: 25px; top: 4px; right: 10px; }
+.user_info .insurance_card .med_insurance .box-i { padding: 15px 0 30px; }
+.user_info .insurance_card .med_insurance .list_scroll-x { position: relative; }
+.user_info .insurance_card .med_insurance .hist_box { flex-basis: 100%; margin-bottom: 15px; }
+.user_info .insurance_card .med_insurance .hist_box table tbody { height: 155px; }
+.user_info .insurance_card .med_insurance .med_info { flex-basis: 100%; }
+
+.user_info .insurance_card .med_insurance table td:nth-child(2) { font-size: 87.5%; }
+.user_info .insurance_card .med_insurance table th:nth-child(2), .user_info .insurance_card .med_insurance table td:nth-child(2) { width: 235px	; padding: 12px 0; }
+
+.user_info .insurance_card .med_insurance dl br.sm { display: none; }
+.user_info .insurance_card .med_insurance dl { padding: 5px 0; }
+.user_info .insurance_card .med_insurance dl dt { width: 90px; vertical-align: top; padding-top: 10px; }
+.user_info .insurance_card .med_insurance dl dd span.label_t { margin-right: 0!important; vertical-align: top; padding-top: 15px; }
+.user_info .insurance_card .med_insurance dl dd:nth-child(3) { display: block; padding-bottom: 0; }
+
+.user_info .insurance_card .med_insurance dl.med_l1 dd { width: 70%; }
+.user_info .insurance_card .med_insurance dl.med_l2 { padding: 0; }
+.user_info .insurance_card .med_insurance dl.med_l2 dt { width: 140px; }
+.user_info .insurance_card .med_insurance dl.med_l2 dd { padding: 15px 0; }
+.user_info .insurance_card .med_insurance dl.med_l2 dd:nth-child(2) { margin-right: 0; }
+.user_info .insurance_card .med_insurance dl.med_l2 dd span.label_t { width: 140px; }
+.user_info .insurance_card .med_insurance dl.med_l3 { padding: 0; }
+.user_info .insurance_card .med_insurance dl.med_l3 dd+dd { margin-left: 0; }
+.user_info .insurance_card .med_insurance dl.med_l3 dd span.label_t { width: 90px; }
+.user_info .insurance_card .med_insurance dl.med_l4 { padding: 0; }
+.user_info .insurance_card .med_insurance dl.med_l4 dt { padding-top: 0; }
+.user_info .insurance_card .med_insurance dl.med_l4 dd { margin: 5px 0; display: inline-block; }
+.user_info .insurance_card .med_insurance dl.med_l4 dd:nth-child(2) span.label_t { width: 90px; }
+.user_info .insurance_card .med_insurance dl.med_l4 dd:nth-child(3) span.label_t { padding-top: 10px; }
+.user_info .insurance_card .med_insurance dl.med_l5 dt { width: 100%; padding-bottom: 10px; }
+.user_info .insurance_card .med_insurance dl.med_l6 dt { width: 100%; }
+.user_info .insurance_card .med_insurance div.sm dl > * { display: block; }
+.user_info .insurance_card .med_insurance div.sm dl dt { 
+	width: 100%; 
+	font-size: 93.8%; 
+	font-weight: 500;
+	padding-bottom: 5px;
+	line-height: 100%; 
+	color: #43425D; 
+}
+.user_info .insurance_card .med_insurance div.sm dl dt span.text_blue  { font-size: 75%; display: inline-block;	margin-left: 5px; }
+.user_info .insurance_card .med_insurance div.sm dl dd textarea { width: 100%; }
+.user_info .insurance_card .med_insurance div.sm dl:nth-child(2) dd textarea { height: 160px; padding: 15px 10px; }
+
+.user_info .insurance_card .med_insurance select#insurance_name { font-size: 93.8%; }
+.user_info .insurance_card .med_insurance select#prof_jiyu { font-size: 93.8%; }
+.user_info .insurance_card .med_insurance input#insurer_num { margin-right: 10px; }
+
+.user_info .insurance_card .pub_exp .exp_list { flex-basis: 100%; width: 100%; margin-bottom: 10px; }
+.user_info .insurance_card .pub_exp .box-i { padding-top: 55px; }
+.user_info .insurance_card .pub_exp .add { top: -40px; }
+.user_info .insurance_card .pub_exp table tbody { height: 155px; }
+.user_info .insurance_card .pub_exp table th:nth-child(1), .user_info .insurance_card .pub_exp table td:nth-child(1) { width: 310px; }
+.user_info .insurance_card .pub_exp table th:nth-child(2), .user_info .insurance_card .pub_exp table td:nth-child(2) { width: 50px; }
+.user_info .insurance_card .pub_exp table th:nth-child(3), .user_info .insurance_card .pub_exp table td:nth-child(3) { width: 110px; }
+.user_info .insurance_card .pub_exp table th:nth-child(4), .user_info .insurance_card .pub_exp table td:nth-child(4) { width: 110px; }
+.user_info .insurance_card .pub_exp table th:nth-child(5), .user_info .insurance_card .pub_exp table td:nth-child(5) { width: 80px; }
+
+.user_info .insurance_card .pub_exp .exp_info { flex-basis: 100%; }
+.user_info .insurance_card .pub_exp dl dt { width: 80px; }
+.user_info .insurance_card .pub_exp dl.exp_l1 dd:nth-child(2) { width: 240px; }
+.user_info .insurance_card .pub_exp dl.exp_l1 dd:nth-child(2) div:nth-child(1) { margin-bottom: 0; }
+.user_info .insurance_card .pub_exp dl.exp_l1 dd:nth-child(3) { margin: 5px 0 0 84px; }
+.user_info .insurance_card .pub_exp input#legal_num2 { width: 50px; }
+.user_info .insurance_card .pub_exp input#bearer_num { width: 100px; }
+.user_info .insurance_card .pub_exp input#max_am { width: 90px; margin-right: 5px; }
+
+.user_info .med_information { padding: 0; }
+.user_info .med_information .tit.inactive { border-bottom: none; }
+.user_info .med_information [class^="med_box"] { padding: 0; border-bottom: none; }
+.user_info .med_information .med_table { overflow-x: scroll; margin-bottom: 20px; }
+.user_info .med_information select#attend_cat { width: 100px; }
+
+.user_info .med_information :is(.med_box1, .med_box2) .chk_direct { position: relative; top: 0; left: 0; margin: 20px 0 15px; }
+.user_info .med_information :-webkit-is(.med_box1, .med_box2) .chk_direct { position: relative; top: 0; left: 0; margin: 20px 0 15px; }
+
+.user_info .med_information :is(.med_box1, .med_box2) .add { top: 15px; }
+.user_info .med_information :-webkit-is(.med_box1, .med_box2) .add { top: 15px; }
+
+.user_info .med_information .med_box1 table :is(thead, tbody tr) { display: table; width: 100%;	table-layout: fixed; }
+.user_info .med_information .med_box1 table :-webkit-is(thead, tbody tr) { display: table; width: 100%; table-layout: fixed; }
+
+.user_info .med_information .med_box1 table th:nth-child(1), .user_info .med_information .med_box1 table td:nth-child(1) { width: 210px; }
+.user_info .med_information .med_box1 table th:nth-child(2), .user_info .med_information .med_box1 table td:nth-child(2) { width: 340px; }
+.user_info .med_information .med_box1 table th:nth-child(3), .user_info .med_information .med_box1 table td:nth-child(3) { width: 160px; }
+.user_info .med_information .med_box1 table th:nth-child(4), .user_info .med_information .med_box1 table td:nth-child(4) { width: 65px; }
+.user_info .med_information .med_box1 table th:nth-child(5), .user_info .med_information .med_box1 table td:nth-child(5) { width: 125px; }
+
+.user_info .med_information .med_box1 .box-i1 { padding: 10px 5px }
+.user_info .med_information .med_box1 .box-i1 span.label_t { display: block; margin: 0 0 8px; position: relative; }
+.user_info .med_information .med_box1 .box-i1 div { margin: 5px 0; }
+.user_info .med_information .med_box1 .box-i1 div:nth-child(2) span.text_blue { position: absolute; right: 0; top: 0; }
+.user_info .med_information .med_box1 .box-i1 div:nth-child(4) { margin-left: 0; }
+.user_info .med_information .med_box1 .box-i1 div:nth-child(4) input[type="checkbox"] { top: -2px; }
+.user_info .med_information .med_box1 .box-i1 div:nth-child(4) span.label_t,
+.user_info .med_information .med_box1 .box-i1 div:nth-child(5) span.label_t { display: inline-block; margin-right: 5px; }
+
+.user_info .med_information .med_box1 [class^="note"] { margin-top: 3px; }
+.user_info .med_information .med_box1 [class^="box-i"] { flex-basis: 100%; }
+.user_info .med_information .med_box1 [class^="box-i"] dl dt,
+.user_info .med_information .med_box1 [class^="box-i"] dl dd { width: 100%!important; }
+.user_info .med_information .med_box1 .box-i1 dl dt { padding: 5px 0 0; }
+.user_info .med_information .med_box1 .box-i1 textarea { height: 55px; }
+
+.user_info .med_information .med_box1 .box-i2 dl dt span.text_blue { display: inline-block; margin-left: 5px; }
+.user_info .med_information .med_box1 .box-i2 .quest_box { padding: 10px 10px 15px; width: 48%; }
+.user_info .med_information .med_box1 .box-i2 dl dd input#receipt_name { width: 85%; }
+
+.user_info .med_information .med_box1 .box-i2 dl dt,
+.user_info .med_information .med_box1 .box-i3 dl dt { padding-top: 0; }
+
+.user_info .med_information .med_box1 .box-i3 { padding: 0 0 20px; justify-content: start; }
+.user_info .med_information .med_box1 .box-i3 dl { flex-basis: unset; margin: 5px 0; }
+.user_info .med_information .med_box1 .box-i3 dl:nth-child(1) { margin-top: 0; }
+.user_info .med_information .med_box1 .box-i3 dl:nth-child(2) { display: inline-block; width: 140px; margin-right: 10px; }
+.user_info .med_information .med_box1 .box-i3 dl:nth-child(3) { display: inline-block; width: 140px; }
+.user_info .med_information .med_box1 .box-i3 dl:nth-child(4) { padding-right: 0; display: block; }
+.user_info .med_information .med_box1 .box-i3 dl:not(:nth-child(1)) input { width: 140px; }
+
+.user_info .med_information .med_box2 { padding-top: 0; }
+.user_info .med_information .med_box2 .box-i { padding-bottom: 10px; }
+.user_info .med_information .med_box2 table td { padding: 0 3px; }
+.user_info .med_information .med_box2 table th:nth-child(2), .user_info .med_information .med_box2 table td:nth-child(2) { width: 25px; }
+.user_info .med_information .med_box2 table th:nth-child(6), .user_info .med_information .med_box2 table td:nth-child(6) { width: 70px; }
+.user_info .med_information .med_box2 table th:nth-child(9), .user_info .med_information .med_box2 table td:nth-child(9) { width: 230px; }
+.user_info .med_information .med_box2 table th:nth-child(10), .user_info .med_information .med_box2 table td:nth-child(10) { width: 65px; }
+
+.user_info .med_information .med_box2 table :is(th:nth-child(1), th:nth-child(3), th:nth-child(4), th:nth-child(5)) { width: 130px; }
+.user_info .med_information .med_box2 table :-webkit-is(th:nth-child(1), th:nth-child(3), th:nth-child(4), th:nth-child(5)) { width: 130px; }
+
+.user_info .med_information .med_box2 table :is(td:nth-child(1), td:nth-child(3), td:nth-child(4), td:nth-child(5)) { width: 130px; }
+.user_info .med_information .med_box2 table :-webkit-is(td:nth-child(1), td:nth-child(3), td:nth-child(4), td:nth-child(5)) { width: 130px; }
+
+.user_info .med_information .med_box2 table :is(th:nth-child(7), th:nth-child(8)) { width: 150px; }
+.user_info .med_information .med_box2 table :-webkit-is(th:nth-child(7), th:nth-child(8)) { width: 150px; }
+
+.user_info .med_information .med_box2 table :is(td:nth-child(7), td:nth-child(8)) { width: 150px; }
+.user_info .med_information .med_box2 table :-webkit-is(td:nth-child(7), td:nth-child(8)) { width: 150px; }
+
+.user_info .med_information .med_box3 { display: block; }
+.user_info .med_information .med_box3 .box-i { padding: 5px 0 30px; }
+.user_info .med_information .med_box3 dl { margin: 0; }
+.user_info .med_information .med_box3 dl.med_l4 { right: unset; left: 130px; bottom: 30px; }
+.user_info .med_information .med_box3 dl.med_l4 dt { display: block; }
+
+.user_info .med_information .med_box3 dl:is(.med_l1, .med_l2, .med_l3) dt { width: 100%; }
+.user_info .med_information .med_box3 dl:-webkit-is(.med_l1, .med_l2, .med_l3) dt { width: 100%; }
+
+.user_info .med_information .med_box3 dl:is(.med_l1, .med_l2) dd { width: 100%; }
+.user_info .med_information .med_box3 dl:-webkit-is(.med_l1, .med_l2) dd { width: 100%; }
+
+.user_info .med_information .med_box4 .box-i { padding: 10px 0 30px; }
+.user_info .med_information .med_box4 .box-i span { position: relative; top: 0; padding-bottom: 5px; }
+
+.user_info .med_information .med_box5 .tit { border-bottom: 1px dashed #BEBEBE; }
+.user_info .med_information .med_box5 .box-i { padding: 15px 0 0; }
+.user_info .med_information .med_box5 .hist_box { flex-basis: 100%; }
+.user_info .med_information .med_box5 .hist_box .tit { display: none; }
+.user_info .med_information .med_box5 dl dd input#cancel_riyu { width: 100%; }
+
+.user_info .med_information .med_box5 table :is(thead, tbody tr) { display: table; width: 100%;	table-layout: fixed; }
+.user_info .med_information .med_box5 table :-webkit-is(thead, tbody tr) { display: table; width: 100%; table-layout: fixed; }
+
+.user_info .med_information .med_box5 table th { padding: 2px 0 2px 10px; }
+.user_info .med_information .med_box5 table th:nth-child(4) { padding: 0; }
+.user_info .med_information .med_box5 table th:nth-child(4) span.add { padding-left: 20px; font-size: 75%; }
+.user_info .med_information .med_box5 table td { padding: 12px 0 12px 10px; }
+.user_info .med_information .med_box5 table td:not(:last-child) { font-size: 87.5%; }
+.user_info .med_information .med_box5 table td span.trash { font-size: 75%; padding: 8px; }
+
+.user_info .med_information .med_box5 table th:nth-child(1), .user_info .med_information .med_box5 table td:nth-child(1) { width: 32px; }
+.user_info .med_information .med_box5 table th:nth-child(2), .user_info .med_information .med_box5 table td:nth-child(2) { width: 180px; }
+.user_info .med_information .med_box5 table th:nth-child(3), .user_info .med_information .med_box5 table td:nth-child(3) { width: 75px; }
+.user_info .med_information .med_box5 table th:nth-child(4), .user_info .med_information .med_box5 table td:nth-child(4) { width: 64px; }
+
+.user_info .med_information .med_box5 .service_info { flex-basis: 100%; }
+.user_info .med_information .med_box5 dl { margin: 5px 0; }
+.user_info .med_information .med_box5 dl dt,
+.user_info .med_information .med_box5 dl dd { width: 100%; display: block; }
+.user_info .med_information .med_box5 dl dd div+div { margin-left: 5px; }
+.user_info .med_information .med_box5 dl dd div span.label_t { display: block; margin: 8px 0; }
+.user_info .med_information .med_box5 dl dd select { margin: 0; }
+.user_info .med_information .med_box5 dl:nth-child(4) input { font-size: 93.8%; }
+.user_info .med_information .med_box5 dl:nth-child(4) select { font-size: 87.5%; }
+
+.user_info .em_contact { padding: 0; }
+.user_info .em_contact .tit { padding: 10px; }
+.user_info .em_contact :not(.em_list) .tit.inactive { border-bottom: none; }
+.user_info .em_contact > div { padding: 0!important; }
+.user_info .em_contact table th span.pc { display: none; }
+.user_info .em_contact table th span.sm { display: inline-block; }
+.user_info .em_contact table td select { margin: 0; }
+.user_info .em_contact [class^="em_box"] table { margin-bottom: 20px; flex-basis: 100%!important; table-layout: auto; }
+.user_info .em_contact [class^="em_box"] table th { padding: 0; width: 100%; table-layout: auto; display: block!important; }
+.user_info .em_contact [class^="em_box"] table td { padding-top: 0; table-layout: auto; display: block; }
+.user_info .em_contact [class^="em_box"] table tr:nth-child(1) td { line-height: 100%; }
+
+.user_info .em_contact .em_box1 { border-bottom: none; }
+.user_info .em_contact .em_box1 .box-i { padding: 10px; }
+.user_info .em_contact .em_box1 table tr:nth-child(1) td select { font-weight: 700; background: #F1F8FF url(../image/arrow_down2.svg) no-repeat 95% center; }
+.user_info .em_contact .em_box1 table tr:nth-child(3) th span:nth-child(1) { width: 69%; display: inline-block; }
+.user_info .em_contact .em_box1 table tr:nth-child(3) td span { width: 66.5%; }
+.user_info .em_contact .em_box1 table tr:nth-child(4) th span:nth-child(1) { width: 27%; display: inline-block; }
+.user_info .em_contact .em_box1 table tr:nth-child(4) td span { width: 63%; }
+.user_info .em_contact .em_box1 table tr:nth-child(6) td span { width: 140px; margin-right: 20px; }
+.user_info .em_contact .em_box1 table tr:nth-child(6) th span:nth-child(1) { width: 165px; display: inline-block; }
+.user_info .em_contact .em_box1 table tr:nth-child(10) th span:nth-child(1) { width: 50%; display: inline-block; }
+
+.user_info .em_contact .em_box2 .box-i { padding: 10px 0; }
+.user_info .em_contact .em_box2 table tr th span:nth-child(1) { width: 50%; display: inline-block; }
+
+.user_info .em_contact .em_list .add { top: 15px; }
+.user_info .em_contact .em_list .box-i { padding-top: 60px; }
+/*.user_info .em_contact .em_list table tbody { height: 180px; }*/
+.user_info .em_contact .em_list table :is(thead, tbody tr) { display: table; width: 100%;	table-layout: fixed; }
+.user_info .em_contact .em_list table :-webkit-is(thead, tbody tr) { display: table; width: 100%; table-layout: fixed; }
+
+.user_info .em_contact .em_list table th:nth-child(1), .user_info .em_contact .em_list table td:nth-child(1) { width: 65px; }
+.user_info .em_contact .em_list table th:nth-child(2), .user_info .em_contact .em_list table td:nth-child(2) { width: 175px; }
+.user_info .em_contact .em_list table th:nth-child(3), .user_info .em_contact .em_list table td:nth-child(3) { width: 130px; }
+.user_info .em_contact .em_list table th:nth-child(4), .user_info .em_contact .em_list table td:nth-child(4) { width: 60px; }
+.user_info .em_contact .em_list table th:nth-child(5), .user_info .em_contact .em_list table td:nth-child(5) { width: 150px; }
+.user_info .em_contact .em_list table th:nth-child(6), .user_info .em_contact .em_list table td:nth-child(6) { width: 120px; }
+.user_info .em_contact .em_list table th:nth-child(7), .user_info .em_contact .em_list table td:nth-child(7) { width: 570px; }
+.user_info .em_contact .em_list .note { line-height: 100%; display: block; padding: 10px 5px 0; }
+
+.user_info .em_contact input#em_name { width: 66.5%; }
+.user_info .em_contact input#fax { width: 140px; }
+.user_info .em_contact input#key_num { width: 140px; }
+
+.user_info .flow_info { padding: 0; }
+.user_info .flow_info :not(.box-r) .tit.inactive { border-bottom: none; }
+.user_info .flow_info .flow_list { margin-bottom: 15px; width: 100%; }
+.user_info .flow_info .flow_list .add { position: absolute; top: 0; right: 0; }
+.user_info .flow_info .flow_res { overflow-x: scroll; width: 100%; }
+.user_info .flow_info table { margin-top: 45px; }
+
+.user_info .flow_info table :is(th:nth-child(1), td:nth-child(1), th:nth-child(4), td:nth-child(4)) { width: 265px; }
+.user_info .flow_info table :-webkit-is(th:nth-child(1), td:nth-child(1), th:nth-child(4), td:nth-child(4)) { width: 265px; }
+
+.user_info .flow_info table th:nth-child(2), .user_info .flow_info table td:nth-child(2) { width: 110px; }
+.user_info .flow_info table th:nth-child(3), .user_info .flow_info table td:nth-child(3) { width: 125px; }
+.user_info .flow_info table th:nth-child(5), .user_info .flow_info table td:nth-child(5) { width: 130px; }
+
+.user_info .flow_info .box-l { flex-basis: 100%; padding: 0; border-right: none; }
+.user_info .flow_info .box-l .box-i { border-bottom: none; padding: 0 10px; }
+.user_info .flow_info .box-l .add { position: relative; bottom: unset; margin: 20px 0; }
+
+.user_info .flow_info dl { padding: 5px 0; }
+.user_info .flow_info dl dt { width: 100%; padding: 0 0 12px; line-height: 100%; }
+.user_info .flow_info dl dt span.sm { display: inline-block; }
+.user_info .flow_info dl dt span.pc { display: none; }
+.user_info .flow_info dl dd span.pc { display: none; }
+
+.user_info .flow_info dl.flow_l1 > * { display: block; }
+.user_info .flow_info dl.flow_l1 dd { width: 100%; }
+.user_info .flow_info dl.flow_l1 dd span { width: 100%; }
+.user_info .flow_info dl.flow_l2 dt { width: 63px; }
+.user_info .flow_info dl.flow_l2 dd { width: 79.7%; }
+.user_info .flow_info dl.flow_l2 dd span:nth-child(1) { width: 100%; }
+.user_info .flow_info dl.flow_l3 { padding-right: 20px; }
+.user_info .flow_info dl.flow_l3 dt span:nth-child(1) { width: 51%; }
+.user_info .flow_info dl.flow_l3 dd { width: 48.6%!important; }
+.user_info .flow_info dl.flow_l3 dd:nth-child(2) { margin-right: 5px; }
+.user_info .flow_info dl.flow_l3 dd:nth-child(3) { }
+.user_info .flow_info dl.flow_l3 dd:nth-child(3) span:nth-child(2) { width: 100%; }
+.user_info .flow_info dl.flow_l4 dd { width: 100%; }
+.user_info .flow_info dl.flow_l5 dt { font-weight: 500; }
+.user_info .flow_info dl.flow_l6 dd { width: 100%; }
+.user_info .flow_info input#institution_add-num1 { width: 85px; }
+
+.user_info .flow_info .incharge { position: relative; top: unset; width: 100%; }
+.user_info .flow_info .incharge dl dt { width: 63px; }
+.user_info .flow_info .incharge dl dd { width: 63%; }
+
+.user_info .flow_info .box-r { flex-basis: 100%; padding-left: 0; }
+.user_info .flow_info .box-r .tit { padding: 10px; }
+.user_info .flow_info .box-r .tit.inactive { padding: 10px 0; }
+.user_info .flow_info .box-r .box-i { padding: 15px 10px 0; }
+.user_info .flow_info .box-r dl dt { width: 83px; }
+.user_info .flow_info .box-r dl dd { width: 65%; }
+.user_info .flow_info .box-r dl:last-child dt { vertical-align: top; padding-top: 10px; }
+
+
+/*====================================================================================================
+  3. 基本情報–利用者新規登録
+====================================================================================================*/
+#user-new .cont_user-dup { max-height: 100%; position: fixed; padding: 10px 15px 0 10px; width: 90%; }
+#user-new .cont_user-dup .tit { background: none; }
+#user-new .cont_user-dup .cont_list { overflow-x: scroll; width: 100%;  }
+
+
+/*====================================================================================================
+  16. 各種帳票（旧看護計画）
+====================================================================================================*/
+#register { margin:0; }
+#register .box { display:block; }
+#register .box :is(.box-l, .table1, .table2, .table4) { width:100%; }
+#register .box :-webkit-is(.box-l, .table1, .table2, .table4) { width:100%; }
+#register .box-l { display:block; }
+#register .table-box p.tit { background:none; }
+#register .table-box { margin-bottom:20px; }
+#register .table1,
+#register .table2 { width:85%!important; margin:0 auto 20px; }
+
+#register .table3 { margin-top:20px; }
+#register .table3 .t_wrap { overflow-x:scroll; }
+#register .table3 table tr th:nth-child(1),
+#register .table3 table tr td:nth-child(1) { width:30px; }
+#register .table3 table tr th:nth-child(2),
+#register .table3 table tr td:nth-child(2) { width:115px; }
+#register .table3 table tr th:nth-child(3),
+#register .table3 table tr td:nth-child(3) { width:85px; }
+#register .table3 table tr th:nth-child(4),
+#register .table3 table tr td:nth-child(4) { width:90px; }
+#register .table3 table tr th:nth-child(5),
+#register .table3 table tr td:nth-child(5) { width:95px; }
+#register .table3 table tr th:nth-child(6),
+#register .table3 table tr td:nth-child(6) { width:40px; text-align:center; }
+#register .table3 table tr th:nth-child(7),
+#register .table3 table tr td:nth-child(7) { width:168px; }
+
+#register .table4 .tit_box { margin-bottom:50px; }
+#register .table4 .tit_box p.btn_box { transform:none; top:auto; bottom:-40px; right:0; }
+#register .table4 .tit_box p.btn_box span.add:last-child { margin-right:0; }
+#register .table4 .t_wrap { overflow-x:scroll; }
+#register .table4 table tr th:nth-child(1),
+#register .table4 table tr td:nth-child(1) { width:30px; }
+#register .table4 table tr th:nth-child(2),
+#register .table4 table tr td:nth-child(2) { width:60px; }
+#register .table4 table tr th:nth-child(3),
+#register .table4 table tr td:nth-child(3) { width:115px; }
+#register .table4 table tr th:nth-child(4),
+#register .table4 table tr td:nth-child(4) { width:90px; }
+#register .table4 table tr th:nth-child(5),
+#register .table4 table tr td:nth-child(5) { width:95px; }
+
+/*====================================================================================================
+  17.訪問看護記録Ⅰ-区分：訪問看護
+====================================================================================================*/
+#nurse-record1 { width:98%; margin:0 auto; }
+#nurse-record1 .wrap { padding-top:60px; }
+
+#nurse-record1 .user-details {}
+#nurse-record1 .user-details dl:first-child dt { width:107px; }
+
+#nurse-record1 .nurse_record .profile input:not(.n_name) { margin:5px 0; }
+#nurse-record1 .nurse_record .profile .name { margin-right:0; }
+#nurse-record1 .nurse_record .profile .name .n_search { position:initial; }
+#nurse-record1 .nurse_record .profile .care { position:absolute; bottom:0; left:0; }
+
+.nursing .nurse_record .box_wrap::after { display:block; clear:both; content:""; }
+
+.nursing .record1 { padding-bottom:55px; position:relative; margin-bottom:25px; }
+
+.nursing .record2 { padding-bottom:0; }
+.nursing .record2 .tit { display:block; font-size:93.8%; color:#43425D; padding:12px; margin:0; }
+.nursing .record2 .copy_btn { float:right; margin-top:-5px; }
+.nursing .record2 .box_wrap { display:block; padding-bottom:0; }
+.nursing .record2 .box_wrap > * { width:100%; }
+.nursing .record2 input { display:block; width:100%!important; margin:5px 0!important; }
+.nursing .record2 .box-l .injury { padding:0; }
+.nursing .record2 .box-l .injury .shou { width:100%; }
+.nursing .record2 .box-l .injury .shou ul { display:none; }
+.nursing .record2 .box-r { margin:0; }
+
+.nursing .record3 { display:block; background:none; padding:20px 0; }
+.nursing .record3 span.label_t { width:100%!important; }
+.nursing .record3 input[type="radio"] { margin-left:0; }
+.nursing .record3 textarea { width:100%; }
+.nursing .record3 > * { width:100%; }
+.nursing .record3 .box-l { margin-bottom:30px; }
+.nursing .record3 .box-l .box_wrap > * { display:flex; flex-wrap: wrap; margin:15px 0; }
+.nursing .record3 .box-l p { flex-basis:33.3%; }
+.nursing .record3 .box-l :is(.transfer, .walk) p { flex-basis:50%; }
+.nursing .record3 .box-l :-webkit-is(.transfer, .walk) p { flex-basis:50%; }
+.nursing .record3 .box-r .opinion label { margin-right:20px; }
+.nursing .record3 .box-r .none { display:flex; flex-wrap:wrap; width:70%; }
+.nursing .record3 .box-r .none p { flex-basis:20%; }
+
+.nursing .record4 { display:block; padding:0 0 20px; }
+.nursing .record4 > * { width:100%; margin:10px 0; }
+.nursing .record4 p { width:49%; margin:10px 0; }
+.nursing .record4 input[type="text"] { width:100%!important; }
+.nursing .record4 .number span.label_t { display:block; width:100%!important; margin-bottom:5px; }
+.nursing .record4 .copy_btn { margin:15px 0 10px auto!important; }
+.nursing .record4 .box-l span.label_t { width:100%; }
+.nursing .record4 .box-l span.label_t .qm { margin:0 5px 0 0; }
+.nursing .record4 .box-l span.label_t .sm_txt {
+	display: inline-block;
+	color:#2E5C8A;
+	font-size:80%;
+	font-weight:700;
+	margin-left:5px;
+}
+.nursing .record4 .box-l .txt_orn { font-size:80%; color:#FF8000; }
+.nursing .record4 .box-l .txt_blu { font-size:80%; font-weight:500; color:#5362EB; }
+.nursing .record4 .box-l input[name^="num"],
+.nursing .record4 .box-l input[name="fax"] { width: 100%!important; }
+.nursing .record4 .box-r input[name^="num"],
+.nursing .record4 .box-r input[name="fax"] { width: 100%!important; }
+
+.nursing .record5 { overflow:hidden; padding:0 0 20px; }
+.nursing .record5 .tit {
+	margin-bottom:15px;
+	border:1px #BEBEBE;
+	border-style:dashed none;
+	/*background:url(../image/arrow_up.svg) no-repeat 96%;*/
+}
+.nursing .record5 .tit.inactive { background-color:#fff;/*background:url(../image/arrow_down2.svg) no-repeat 96%;*/ }
+.nursing .record5 .copy_btn { margin-bottom:15px; }
+.nursing .record5 .family_list { width:100%; overflow-x:scroll; }
+.nursing .record5 table { table-layout: fixed; }
+.nursing .record5 table th:nth-child(1) { width:52px; }
+.nursing .record5 table th:nth-child(2) { width:110px; }
+.nursing .record5 table th:nth-child(3) { width:50px; }
+.nursing .record5 table th:nth-child(4) { width:50px; }
+.nursing .record5 table th:nth-child(5) { width:132px; }
+.nursing .record5 table th:nth-child(6) { width:102px; }
+.nursing .record5 table th:nth-child(7) { width:686px; }
+.nursing .record5 .note { margin:55px 0 10px; }
+
+.nursing .record6 { overflow:hidden; padding:0 0 20px; }
+.nursing .record6 .tit { border:1px #BEBEBE; border-style:dashed none;background-color:#fff; /*background:url(../image/arrow_up.svg) no-repeat 96%;*/ }
+.nursing .record6 .tit.inactive { /*background:url(../image/arrow_down2.svg) no-repeat 96%;*/ }
+.nursing .record6 .add { position:relative; float:right; margin:15px 0; top:0; }
+.nursing .record6 .facilities { width:100%; overflow-x:scroll; }
+.nursing .record6 table {}
+.nursing .record6 table tr th:nth-child(1),
+.nursing .record6 table tr td:nth-child(1) { width:46px; }
+.nursing .record6 table tr th:nth-child(2),
+.nursing .record6 table tr td:nth-child(2) { width:315px; }
+.nursing .record6 table tr th:nth-child(3),
+.nursing .record6 table tr td:nth-child(3) { width:200px; }
+.nursing .record6 table tr th:nth-child(4),
+.nursing .record6 table tr td:nth-child(4) { width:565px; }
+.nursing .record6 table tr th:nth-child(5),
+.nursing .record6 table tr td:nth-child(5) { width:75px; }
+.nursing .record6 table tr td:nth-child(5) { text-align:right; }
+.nursing .record6 table tr td .btn.trash { padding:7px 10px; }
+
+.nursing .record7 { border-bottom:1px solid #DEDEDE; }
+.nursing .record7 .status { display:block; }
+
+.nursing .record8 { border-bottom:1px dashed #BEBEBE; }
+
+.nursing .record9 > * { display:block; margin-right:0; }
+.nursing .record9 span.label_t { width:auto; }
+.nursing .record9 span.label_t.hidzuke { margin-left:20px; }
+.nursing .record9 span.label_t.time { margin-right:20px; }
+
+/* on category click */
+#nurse-record1 .info2 .record3 {}
+#nurse-record1 .info2 .record3 .box_wrap { display:block; }
+#nurse-record1 .info2 .record3 .box_wrap > * { width:100%; }
+#nurse-record1 .info2 .record3 .box-l { display:block; width:100%; }
+#nurse-record1 .info2 .record3 .box-l > * { display:block; width:100%; }
+#nurse-record1 .info2 .record3 .box-l span.label_t { width:105px!important; }
+#nurse-record1 .info2 .record3 .box-r { width:100%; }
+#nurse-record1 .info2 .record3 .box-r input[type="text"] { width:100%; }
+#nurse-record1 .info2 .record3 .box-r textarea { width:100%; }
+
+
+/*====================================================================================================
+  30.指示書
+====================================================================================================*/
+#directions { width:98%; margin:0 auto; }
+#directions .wrap { padding-top:50px; }
+#directions .patient_info { display:block; }
+#directions .patient_info .box-l { max-width:100%; position:relative; margin-bottom:15px; }
+#directions .patient_info .box-l ul.pdf_controls li { text-indent:-9999px; padding:10px 20px; background-position:center!important; }
+#directions .patient_info .box-l ul.pdf_controls li:last-child { float:none; }
+#directions .patient_info .box-l .pdf_view { padding-bottom:75px; }
+#directions .patient_info .box-l .filename { position:absolute; left:0; bottom:20px; }
+#directions .patient_info .box-r { width:100%; }
+
+#directions .nurse_record .profile > div { margin:3px 0; }
+#directions .nurse_record .profile span.label_t { width:69px; }
+#directions .nurse_record .profile .n_name { display:inline-block; margin:0; }
+#directions .nurse_record .profile .care { margin-left:0!important; }
+#directions .nurse_record .profile .care span.label_t { width:69px; }
+#directions .nurse_record .profile .d_period { width:69px; padding:8px 20px 8px 10px; }
+#directions .nurse_record .profile .i_period { margin-top:20px; }
+#directions .nurse_record .profile .pl_date { width:48%; }
+#directions .nurse_record .profile .rep_date { width:48%; margin-left:2%!important; }
+#directions .nurse_record .profile .i_period span.label_t,
+#directions .nurse_record .profile .pl_date span.label_t,
+#directions .nurse_record .profile .rep_date span.label_t { display:block; margin-bottom:5px; width:auto; }
+#directions .nurse_record .profile .class { margin-left:0!important; }
+#directions .nurse_record .profile .n_cate span.label_t,
+#directions .nurse_record .profile .class span.label_t { width:70px; }
+
+#directions .pdf_info { padding-bottom:10px; }
+
+#directions .user_stat { padding-bottom:5px; }
+#directions .user_stat .mid { margin:20px 0 15px; }
+#directions .user_stat .column { display:block; }
+#directions .user_stat .column p { margin:5px 0 7px; }
+#directions .user_stat .column p small { display:inline-block; margin-left:10px; }
+#directions .user_stat .m_injury { display:block; margin-top:25px; }
+#directions .user_stat .m_injury ol { width:70%; margin-left:7%; }
+#directions .user_stat .special { display:block; }
+#directions .user_stat .special div { margin-left:0; }
+#directions .user_stat .special input[type="radio"] { margin-left:0; }
+
+#directions .n_stations { display:block; padding-bottom:0; }
+#directions .n_stations span.label_t { width:100%; }
+#directions .n_stations input[type="text"] { width:100%; }
+#directions .n_stations .station { width:100%; margin:20px 0; }
+
+#directions .phys_inst { border-bottom:1px solid #DEDEDE; padding-bottom:0; }
+#directions .phys_inst .box_wrap { display:block; }
+#directions .phys_inst .box_wrap > * { width:100%; }
+#directions .phys_inst .copy_btn { width:188px!important; }
+#directions .phys_inst span.label_t { width:100%; }
+#directions .phys_inst small.inst { display:inline-block; }
+#directions .phys_inst .box-r p { width:49%; }
+#directions .phys_inst .box-r .number span.label_t { margin-bottom:5px; }
+#directions .phys_inst .box-r .number p:not(:first-child) span.label_t { margin-left:0; }
+
+/*====================================================================================================
+  30.褥瘡計画
+====================================================================================================*/
+#bedsore { width:98%; margin:0 auto; }
+#bedsore .wrap { padding-top:55px; }
+
+#bedsore .nurse_record span.label_t { width:69px; }
+#bedsore .nurse_record .profile dl { margin-right:25px; }
+#bedsore .user-details .profile div:not(:first-child) { margin-right:0; }
+#bedsore .nurse_record .profile .n_name { margin-left:0; display: inline-block; }
+#bedsore .nurse_record .profile .address { display:block; }
+#bedsore .nurse_record .profile .address span.label_t { text-align:right; padding-right:10px; }
+#bedsore .nurse_record .profile .line3 { margin:20px 0!important; }
+#bedsore .nurse_record .profile .rep_date { margin-left:15px!important; }
+#bedsore .nurse_record .profile .pl_date span.label_t,
+#bedsore .nurse_record .profile .rep_date span.label_t,
+#bedsore .nurse_record .profile .nurse span.label_t { display:block; width:100%; margin-bottom:5px; }
+
+#bedsore .u_existence input[type="text"] { display:block; margin:15px 0 0; }
+#bedsore .u_existence p { margin:0 10px 0 0; }
+#bedsore .u_existence .current { margin-left:0; }
+#bedsore .u_existence .past { margin-left:0; }
+
+#bedsore .assess_risk { padding:0; margin:0; background:none; border:none; }
+#bedsore .assess_risk > *:not(:first-child) { width:98%; margin:0 auto; }
+#bedsore .assess_risk .tit {
+	position:initial;
+	writing-mode: horizontal-tb;
+	width:100%;
+	transform:none;
+	text-align:left;
+	padding:7px 10px;
+	letter-spacing:0;
+	background:#C8E3FE url(../image/arrow_down2.svg) no-repeat 96%;
+}
+#bedsore .assess_risk .tit.inactive { background:#C8E3FE url(../image/arrow_up.svg) no-repeat 96%; }
+#bedsore .assess_risk .mid { position:initial; padding:15px 0; }
+#bedsore .assess_risk table tr th { border:none; display:block; padding:15px 0 0; font-size:93.8%; font-weight:700; }
+#bedsore .assess_risk table tr td { border:none; display:block; padding:15px 0; }
+#bedsore .assess_risk .row1 tr td { justify-content:normal; flex-wrap:wrap; width:80%; }
+#bedsore .assess_risk .row1 tr td p { flex-basis:20%; }
+#bedsore .assess_risk .row2 { border-bottom:1px solid #A5C9FF; }
+#bedsore .assess_risk .row2 > * { float:none; width:100%; }
+#bedsore .assess_risk .row2 tr { border-bottom:3px solid #FFF; }
+#bedsore .assess_risk .row2 tr th,
+#bedsore .assess_risk .row2 tr td { display:table-cell; width:50%; padding:15px 0 15px 10px; }
+#bedsore .assess_risk .row2 tr th { text-align:left!important; background:#F1F8FF; }
+#bedsore .assess_risk .row2 .r2_left tr:nth-child(1) th { padding:15px 0 15px 10px; font-weight:700; }
+#bedsore .assess_risk .row2 .r2_left tr:nth-child(2) th { font-weight:700; }
+#bedsore .assess_risk .row2 .r2_left tr:nth-child(1) td p,
+#bedsore .assess_risk .row2 .r2_left tr:nth-child(2) td p { margin-left:5px; }
+
+#bedsore .assess_stat .tit_box { margin:0 0 30px 0; }
+#bedsore .assess_stat .tit_box .cont_tit { font-size:93.8%; }
+#bedsore .assess_stat .tit_box .points { width:115px; right:0; }
+#bedsore .assess_stat .tit_box .points small { font-size:87.5%; }
+#bedsore .assess_stat .tit { margin-bottom:20px; height:auto; }
+#bedsore .assess_stat .tit span { transform:none; }
+#bedsore .assess_stat table tr th { display:block; width:100%; padding:10px; background:#F1F8FF; }
+#bedsore .assess_risk table tr th small { display:inline-block; vertical-align:middle; margin-left:5px; }
+#bedsore .assess_stat table tr td { display:block; width:100%; padding:10px 0; }
+#bedsore .assess_stat table tr td p { display:block; margin-right:0!important; }
+#bedsore .assess_stat table :is(tr:nth-child(2) td, tr:nth-child(6) td, tr:nth-child(7) td) { display:block; }
+#bedsore .assess_stat table :-webkit-is(tr:nth-child(2) td, tr:nth-child(6) td, tr:nth-child(7) td) { display:block; }
+#bedsore .assess_stat table tr td.score {
+	top:0;
+	right:0;
+	height:37px;
+	padding:7px 0;
+	transform:none;
+}
+#bedsore .assess_stat table tr td.active::after { width:145px; right:55px; }
+#bedsore .assess_stat table tr:nth-child(3) td p,
+#bedsore .assess_stat table tr:nth-child(6) td p,
+#bedsore .assess_stat table tr:nth-child(7) td p { display:inline-block; width:49%; vertical-align:top; }
+#bedsore .assess_stat table tr td p { position:relative; padding-left:20px; }
+#bedsore .assess_stat table tr td p input { position:absolute; left:0; top:3px; }
+#bedsore .assess_stat table tr td p label { margin-left:0; width:100%; }
+#bedsore .assess_stat table tr td p label span { display:inline-block; vertical-align:top; }
+#bedsore .assess_stat table tr td p label span:first-of-type { width:25px; }
+#bedsore .assess_stat table tr td p label span+span { width:92.3%; margin-left:0; }
+#bedsore .assess_stat table tr:nth-child(3) td p span+span,
+#bedsore .assess_stat table tr:nth-child(6) td p span+span,
+#bedsore .assess_stat table tr:nth-child(7) td p span+span { width:83.2%; }
+
+#bedsore .n_plan { border-bottom:1px dashed #BEBEBE; }
+#bedsore .n_plan .tit {
+	margin:0 0 10px;
+	padding:12px;
+	background:url(../image/arrow_up.svg) no-repeat 96%;
+}
+#bedsore .n_plan .tit.inactive { background:url(../image/arrow_down2.svg) no-repeat 96%; }
+#bedsore .n_plan .mid { width:100%; left:0; top:85px; }
+#bedsore .n_plan .mid small { font-size:75%; }
+#bedsore .n_plan table tr {}
+#bedsore .n_plan table tr th { display:block; width:100%; padding-bottom:0; }
+#bedsore .n_plan table tr th:first-child { width:100%; }
+#bedsore .n_plan table :is(thead,tr) { display:block; width:100%; }
+#bedsore .n_plan table :-webkit-is(thead,tr) { display:block; width:100%; }
+#bedsore .n_plan table thead { margin-bottom:50px; }
+#bedsore .n_plan table thead tr th { padding:5px 10px; }
+#bedsore .n_plan table thead tr th:first-child { border-bottom:1px solid #A5C9FF; }
+#bedsore .n_plan table tbody tr:nth-child(1) th,
+#bedsore .n_plan table tbody tr:nth-child(2) th { text-align:left; }
+#bedsore .n_plan table tbody tr td { display:block; width:100%; }
+
+#bedsore .record9 span.label_t { width:auto; }
+
+/*====================================================================================================
+  11.計画書
+====================================================================================================*/
+#plan { width:97%; margin:0 auto; }
+#plan .nurse_record .d_right { width:100%; }
+#plan .nurse_record .d_right p { text-align:right; position:relative; }
+#plan .nurse_record .d_right .duplicate { position:absolute; left:0; bottom:0; }
+#plan .nurse_record .d_right .add { margin:7px 0 0 auto; }
+#plan .wrap { padding-top:115px; }
+#plan .goals { padding-top:5px; border-bottom:1px dashed #BEBEBE; }
+#plan .goals .rehab {}
+#plan .goals .rehab span.label_t {
+	width:100%;
+	margin:0;
+	color:#43425D;
+	font-weight:400;
+	padding:15px 10px;
+}
+#plan .goals .rehab textarea { width:100%; height:141px; margin-top:20px; }
+
+#plan .goals .rehab_box { border:1px solid #E8E8E8; margin-top:0; }
+#plan .goals .rehab_box table { width:95%; margin:0 auto; }
+#plan .goals .rehab_box table thead { display: none!important; }
+#plan .goals .rehab_box table tbody { height:auto; }
+#plan .goals .rehab_box table tr {
+	position:relative;
+	display:block;
+	width:100%;
+	table-layout:auto;
+	padding:10px 0;
+}
+#plan .goals .rehab_box table tbody tr::before { top:15px; left:15px; }
+#plan .goals .rehab_box table tr td { width:100%!important; display:block; padding:10px 5px; }
+#plan .goals .rehab_box table tr td:nth-child(1) { text-align:left; padding:0; }
+#plan .goals .rehab_box table tr td b {
+	display:block;
+	color:#174A84;
+	font-weight:500;
+	font-size:106.7%;
+	margin-bottom:5px;
+}
+#plan .goals .rehab_box table tr td span { position:absolute; right:5px; top:15px; padding:7px; margin-top:0; }
+#plan .goals .rehab_box table tr td input.date_no-Day { margin-left:30px; }
+#plan .goals .rehab_box table tr:last-child td { text-align:left; padding:10px 0 12px; }
+#plan .goals .rehab_box .add.pc { display:none; }
+#plan .goals .rehab_box .add.sm { display:inline-block; }
+
+#plan .goals .treatment .quest span.label_t { display:block; width:auto; }
+#plan .goals .treatment .treatment_guide { display:block; }
+#plan .goals .treatment .treatment_guide > * { width:100%; margin:10px 0; }
+#plan .goals .treatment .treatment_guide .mid { background:#F1F8FF url(../image/arrow_up.svg) no-repeat 96%; }
+#plan .goals .treatment .treatment_guide .mid.inactive { background:#F1F8FF url(../image/arrow_down2.svg) no-repeat 96%; }
+
+#plan .goals .occupation { display:block; }
+#plan .goals .occupation .visit { width:100%; }
+#plan .goals .occupation p { display:block; width:100%; }
+#plan .goals .occupation .visit p {
+	padding:12px 0;
+	font-weight:700;
+	line-height:100%;
+	margin-bottom:15px;
+}
+#plan .goals .occupation .visit p.inactive { background:url(../image/arrow_down2.svg) no-repeat 96%; }
+#plan .goals .occupation .visit p small { display:none; }
+#plan .goals .occupation .visit small { color:#174A84; }
+#plan .goals .occupation .remarks { width:100%; margin-top:20px; }
+#plan .goals .occupation .remarks p { width:100%; font-weight:700; font-size:93.8%; }
+
+
+/*====================================================================================================
+  30.報告書
+====================================================================================================*/
+#report { width:97%; margin:0 auto; }
+#report .wrap { padding-top:60px; }
+#report .user-details { border-bottom:1px dashed #BEBEBE; }
+
+#report .report_stat { padding-bottom:0; }
+
+#report .c_tit { padding:5px 0; }
+#report .month_c { display:block; }
+#report .month_c .m_head .c_tit { display:inline-block; }
+#report .month_c .m_head input { display:none; }
+#report .month_c .m_head select { display:inline-block; }
+#report .month_c .m_head span { display:inline-block; }
+#report .month_c .m_head select.month { width:42px; }
+#report .month_c .calendar { margin:0 auto; }
+#report .month_c .calendar2 { margin:20px auto 10px; }
+#report .month_c .note { width:100%; height:auto; }
+
+#report .stat_box textarea { height:60px; }
+#report .stat_box table tr { display:block; width:100%; table-layout:auto; margin:10px 0; border:none; }
+#report .stat_box table tr:first-child { border:none; }
+#report .stat_box table tr th { display:block; width:100%; table-layout:auto; line-height:130%; }
+#report .stat_box table tr td { display:block; width:100%; table-layout:auto; }
+
+#report .app_month .stat_box table tr th { background:#F1F8FF url(../image/arrow_up.svg) no-repeat 96%; }
+#report .app_month .stat_box table tr th.inactive { background:#F1F8FF url(../image/arrow_down2.svg) no-repeat 96%; }
+#report .app_month .stat_box textarea { height:162px; }
+
+#report .provision .stat_box { display:block; }
+#report .provision .recipient { width:100%; }
+#report .provision .provi_date { width:100%; }
+#report .provision .come textarea { height:60px; }
+#report .provision .come input { width:123px; }
+
+#report .special_note p { display:block; width:100%!important; }
+
+#report .record_info.disnon { display:block; }
+#report .info2 .personnel .gaf { margin-bottom:25px; }
+#report .info2 .personnel .gaf .tit { background:url(../image/arrow_up.svg) no-repeat 96%; }
+#report .info2 .personnel .gaf .tit.inactive { background:url(../image/arrow_down2.svg) no-repeat 96%; }
+#report .info2 .personnel .gaf .copy_btn { margin:0 0 0 auto; }
+#report .info2 .personnel .gaf .point_summary { justify-content:space-between; border-top:none; }
+#report .info2 .personnel .gaf .point_summary [class^="box"] { display:block; width:49%; }
+#report .info2 .personnel .gaf .point_summary .mid { width:100%; padding:5px 10px; text-align:left; }
+#report .info2 .personnel .gaf .point_summary .inp { margin:5px 0; }
+
+
+/*====================================================================================================
+  40. 画像関連：一覧
+====================================================================================================*/
+#image-list {}
+#image-list .user-details { margin-bottom:15px; }
+#image-list .user-details dl:first-child dt { width:65px; }
+#image-list .user-details .details_wrap p { display:block; margin:5px 0; }
+#image-list .user-details .details_wrap p span.label_t { width:60px; }
+#image-list .user-details .details_wrap p select { width:109px; margin:0; }
+#image-list .user-details .details_wrap p.app_date input { width:123px; }
+#image-list .user-details .d_right { position:initial; text-align:right; }
+#image-list .img_list ul { width:48%; margin:5px 0; }
+#image-list .img_list ul:last-child { display:none; }
+
+
+/*====================================================================================================
+  40. 画像関連:新規格納/詳細
+====================================================================================================*/
+#image-detail {}
+#image-detail .user-details dl:first-child dd { margin-left:10px; }
+#image-detail .patient_info { display:block; }
+#image-detail .patient_info .box-l { width:100%; padding:8px 10px 25px; }
+#image-detail .patient_info .box-l .upload {
+	width:134px;
+	font-size:87.5%;
+	text-indent:28px;
+	margin-bottom:5px;
+	background:#5AAEDF url(../image/icon_upload2.png) no-repeat 10px;
+}
+#image-detail .patient_info .box-l .pdf_view { padding-bottom:15px; }
+#image-detail .patient_info .box-l .zoom { bottom:5px; right:10px; }
+#image-detail .patient_info .box-r { width:100%; }
+#image-detail .patient_info .box-r .d_right { position:initial; text-align:right; margin:10px 0 25px; }
+#image-detail .patient_info .box-r .pdf_info span.label_t { width:21.3%; }
+#image-detail .patient_info .box-r .pdf_info select { margin:0; }
+#image-detail .patient_info .box-r .pdf_info textarea { display:block; width:100%; height:106px; }
+#image-detail .patient_info .box-r .record9 { border-top:1px dashed #BEBEBE; }
+
+
+/*====================================================================================================
+  6:週間スケジュール(旧：利用者カード):詳細
+====================================================================================================*/
+#record {}
+
+#record .cont_head { margin:0 1%; }
+#record .cont_head input { margin:0; }
+#record .cont_head select { margin:0; }
+#record .cont_head [class^="box"] { display:block; width:100%; margin:0; }
+#record .cont_head [class^="box"] > div { margin:5px 0; }
+#record .cont_head .name_box input { width:100%; }
+#record .cont_head .state p { margin-left:10px; }
+#record .cont_head .state p:last-child { display:none; }
+#record .cont_head .state input { margin-right:5px; }
+#record .cont_head .i_period p+p { margin:0 0 0 2px; }
+#record .cont_head .i_period span.disp_month { width:43px; padding:10.5px 6px; margin-left:0; }
+#record .cont_head .progress { display:flex; justify-content:space-between; }
+#record .cont_head .progress p:nth-child(3) { width:29%; }
+#record .cont_head .progress p:nth-child(2) { width:67.5%; text-align:right; }
+#record .cont_head .progress p:nth-child(2) select { width:100%; }
+#record .cont_head .progress p:nth-child(2) select+select { margin-top:5px; }
+#record .cont_head .btn_box { display:flex; flex-wrap:wrap; justify-content:space-between; margin-top:15px!important; }
+#record .cont_head .btn_box .s1 { margin-left:0; }
+#record .cont_head .btn_box .s2 { position:initial; width:170px; padding-left:40px; background-position:10px; }
+#record .cont_head .btn_box .add { position:relative; margin-top:15px; background-position:5px; }
+#record .cont_head .btn_box .add::after { font-size:93.9%; }
+#record .cont_head .btn_box .add a { padding-left:20px; }
+
+#record .wrap { margin-top:25px; }
+#record .wrap [class^="box"] { display:block; padding-bottom:5px; }
+#record .wrap table th:last-child { border-right:none; }
+#record .wrap .wrap-l { width:100%; }
+#record .wrap .wrap-l table { border-bottom:1px dotted #174A84; }
+#record .wrap .wrap-l table tr th:first-child span:nth-child(1) { text-align:center; }
+#record .wrap .wrap-l table tr th:first-child span:nth-child(2) { display:none; }
+#record .wrap .wrap-l table th:nth-child(1),
+#record .wrap .wrap-l table td:nth-child(1) { width:21.3%; }
+#record .wrap .wrap-l table th:nth-child(2),
+#record .wrap .wrap-l table td:nth-child(2) { width:32%; }
+#record .wrap .wrap-l table th:nth-child(3),
+#record .wrap .wrap-l table td:nth-child(3) { width:46.7%; }
+#record .wrap .wrap-l table td:last-child { border-right:none; }
+#record .wrap .wrap-l table tr:last-child td:first-child { padding-top:8px; }
+
+#record .wrap .wrap-r { width:99%; margin:15px auto 0; }
+#record .wrap .wrap-r .tit {
+	display:block;
+	color:#174A84;
+	padding:10px;
+	font-size:87.5%;
+	font-weight:500;
+	background:#F1F8FF url(../image/arrow_up.svg) no-repeat 96%;
+}
+#record .wrap .wrap-r .tit.inactive { background:#F1F8FF url(../image/arrow_down2.svg) no-repeat 96%; }
+#record .wrap .wrap-r table td {
+	padding:0 15px 15px;
+	display:block;
+	table-layout:auto;
+	border:none!important;
+	width:100%!important;
+}
+#record .wrap .wrap-r table tr:first-child td:first-child { padding-top:15px; }
+
+#record .wrap .box1 .wrap-r table tr:first-child { display:none; }
+#record .wrap .box1 .wrap-r table tr:nth-child(2) td:nth-child(1) { padding-top:15px; }
+#record .wrap .box1 .wrap-r table tr:nth-child(2) td:nth-child(1) .come textarea { height:auto; }
+
+#record .wrap .box2 .wrap-r table tr:nth-child(1) td > * { display:block; }
+#record .wrap .box2 .wrap-r table tr:nth-child(1) td .come { margin:0; }
+
+#record .wrap .box3 .wrap-r table tr td .mid { display:block; width:100%; text-align:left; }
+#record .wrap .box3 .wrap-r table tr:nth-child(1) td:first-child .come textarea { height:auto; }
+
+#record .wrap .box4 .wrap-r table tr:nth-child(1) td:first-child .come textarea { height:auto; }
+
+
+/*====================================================================================================
+  2.経過記録詳細:スマホ
+====================================================================================================*/
+
+#record-detail .user-details { border-bottom:1px dashed #BEBEBE; }
+#record-detail .user-details [class^="box"] > * { margin-right:0; display:block; }
+#record-detail .user-details span.label_t { width:80px!important; }
+#record-detail .user-details span.req { display:none; }
+#record-detail .user-details span.juuyou { margin-left:17px; }
+#record-detail .user-details .n_num { width:80px; }
+#record-detail .user-details .n_name { display:inline-block; margin-left:0; }
+#record-detail .user-details .n_search { width:33px; }
+#record-detail .user-details .entry .n_search { display:inline-block; }
+#record-detail .user-details .entry span.juuyou { display:none; }
+#record-detail .user-details .kubun { display:block; }
+#record-detail .user-details .kubun select { width:90px; }
+
+#record-detail .msg_cont table th { display:block; table-layout:auto; width:100%!important; margin-top:10px; }
+#record-detail .msg_cont table td { display:block; table-layout:auto; width:100%!important; padding:5px 0; }
+#record-detail .msg_cont table tr:nth-child(1) textarea { width:100%; height:65px; }
+
+
+/*====================================================================================================
+  6:週間スケジュール(旧：利用者カード):詳細
+====================================================================================================*/
+
+#schedule { position:relative; }
+#schedule .user-details {
+	display:none;
+	position:absolute;
+	top:45px;
+	z-index:9;
+	padding:20px;
+	width:100%;
+	background:#FFF;
+}
+#schedule .user-details span.label_t { display:block; width:auto; margin:0 0 10px; }
+#schedule .user-details .d_right { position:initial; }
+#schedule .user-details .name input[type="text"] { width:100px; }
+#schedule .user-details .i_period p { margin:5px 0; }
+#schedule .user-details .i_period span.label_t { margin-left:0; }
+#schedule .user-details .create_event {}
+#schedule .user-details .create_event > div { display:block; margin-bottom:20px; }
+#schedule .user-details .create_event > div:nth-child(2) { display:none; }
+#schedule .route_tit { margin-top:20px; }
+
+#schedule.calendar_data .c_wrap table thead th { width:175px; }
+#schedule.calendar_data .c_wrap table thead th:first-child { width:105px; }
+#schedule.calendar_data .c_wrap table tbody td { width:175px; }
+#schedule.calendar_data .c_wrap table tbody td.c_time { width:105px; }
+
+
+
+/*====================================================================================================
+  11.帳票一括確認:スマホ
+====================================================================================================*/
+#register-list .user-details { padding:0 0 15px; border-bottom:1px dashed #BEBEBE; margin-bottom:25px; }
+#register-list .user-details span.label_t { width:70px; }
+#register-list .user-details ul { overflow:hidden; width:70%; vertical-align:top; }
+#register-list .user-details ul li { display:block; float:left; width:50%; }
+#register-list .user-details ul li+li { margin-left:0; }
+#register-list .user-details .profile { overflow:hidden; }
+#register-list .user-details .profile:first-of-type span { float:right; }
+#register-list .user-details .profile input.user_name { width:100%; display:block; margin-bottom:7px; }
+#register-list .user-details .profile input.support { display:block; width:100%; margin:7px 0; }
+#register-list .user-details .profile select { display:block; }
+#register-list .user-details .profile input.month+.month { margin-left:5px; }
+#register-list .user-details .profile .n_num { width:84px; }
+#register-list .user-details .profile .n_name { display:inline-block; margin-left:0; }
+#register-list .user-details .d_right { display:none; }
+#register-list .user-details .rules > * { display:block; margin-left: 0!important; }
+#register-list .user-details .rules .search { display:block; width:119px; margin:10px auto 0; }
+#register-list .user-details .rules .kubun { margin:5px 0; }
+#register-list .user-details .rules .state ul li { width:auto; }
+#register-list .user-details .rules .state ul li+li { margin-left:25px; }
+
+#register-list .registered_list { overflow-x:scroll; }
+#register-list .registered_list table tbody { height:545px; overflow-y:overlay; }
+
+
+/*====================================================================================================
+  18.利用者予定実績 && 18.従業員予定実績面
+====================================================================================================*/
+.schedule_info { margin:0 auto; overflow:hidden; }
+.schedule_info ul.switch_toggle { position:initial; margin-bottom:15px; }
+.schedule_info .cont_head {
+	display:none;
+	margin:0;
+	position:absolute;
+	top:107px;
+	left:0;
+	z-index:9;
+	padding:5px 7px 25px;
+	background: #FFF;
+	box-shadow:0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.btn_box{margin: 15px 0;}
+.schedule_info.nursing .btn.add-op{margin-left: auto;}
+.schedule_info .cont_head span.label_t { width:50px; }
+.schedule_info .cont_head .profile > * { display:block; margin:10px 0!important; }
+.schedule_info .cont_head .profile .n_name { display:inline-block; margin-left:0; width:150px; }
+.schedule_info .cont_head .profile .add_rules { padding-left:55px; }
+.schedule_info .cont_head .profile .add_rules p { display:block; }
+.schedule_info .cont_head .profile .add_rules p+p { margin-left:0; }
+.schedule_info .cont_head .box2 { display:block; }
+.schedule_info .cont_head [class^="condition"] { width:100%!important; }
+
+.schedule_info .cont_head .condition2 ul { width:80%; justify-content:space-between; }
+.schedule_info .cont_head .condition2 ul li { flex-basis:40%; position:relative; margin:10px 0; line-height:120%; }
+.schedule_info .cont_head .condition2 ul li input { position:absolute; left:0; top:3px; }
+.schedule_info .cont_head .condition2 ul li label { padding-left:20px; margin-left:0; display:block; }
+.schedule_info .cont_head .schedule { position:initial; margin:0 auto; }
+.schedule_info .cont_head .schedule span.label_t { width:auto; }
+.schedule_info > .btn_box { text-align:right; margin:20px 0; }
+.schedule_info > .btn_box .add.pc { display:none; }
+.schedule_info > .btn_box .add.sm { display:inline-block; }
+
+.schedule_info .tit_box { display:none; }
+
+.schedule_info .sched1 { padding:8px 4px; }
+.schedule_info .sched1 .record_cont { display: flex;
+    flex-flow: row;
+    align-items: flex-start;
+    margin: 0 0 0 auto; }
+.schedule_info .sched1 .record_cont br{ display: none;}
+.schedule_info .sched1 .wr_head { margin:0 10px 10px; flex-basis:100%; display:flex; justify-content:space-between; }
+.schedule_info .sched1 .mid_date { padding:10px 0; background:#F2F6F9; }
+.schedule_info .sched2 .mid_date { display:none; }
+.schedule_info .sched1 .mid_detail { display:block; margin-bottom:10px; }
+.schedule_info .sched1 .temp_txt { color:rgba(0, 0, 0, 0.44); font-size:87.5%; }
+.schedule_info .sched1 ul.lists { width:100%; }
+.schedule_info .sched1 ul.lists li span.label_t { width:100%; display:block; }
+.schedule_info .sched1 ul.lists li p { display:block; }
+.schedule_info .sched1 .b_box { position:initial; text-align:left; width:100%; margin-top:10px; }
+.schedule_info .sched1 .s_update { font-size:62.5%; line-height:100%; }
+.schedule_info .sched1 .s_update span+span { margin-left:5px; }
+
+.schedule_info .sched1 .m_row { display:flex; flex-wrap: wrap; justify-content:space-between; }
+.schedule_info .sched1 .row { float:none!important; width:48%; display:block; padding:10px; margin:0!important; }
+.schedule_info .sched1 .row > div:not(.new_default) { line-height:150%; width:100%!important; padding:0; }
+.schedule_info .sched1 .row.sm { display:block; }
+.schedule_info .sched1 .row.pc { display:none; }
+.schedule_info .sched1 .row:not(.e_row) .btn_box { padding:10px 5px!important; }
+.schedule_info .sched1 .row.active:not(.e_row) .btn_box { display:none; }
+.schedule_info .sched1 .row.active:not(.e_row):hover > .btn_box { display:flex; }
+.schedule_info .sched1 .y_row { clear:both; }
+.schedule_info .sched1 .y_row:not(.e_row) .d_box1 { z-index:99; top:50%; width:78%!important; height:85px; }
+.schedule_info .sched1 .y_row:not(.e_row) .d_box1::before {
+	content: "";
+	position:absolute;
+	left:20px;
+	top:-8px;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 4px 8px 4px;
+	border-color: transparent transparent rgba(213, 231, 232, 0.87) transparent;
+}
+.schedule_info .sched1 .y_row:not(.e_row):hover .d_box1 { display:block; }
+.schedule_info .sched1 .y_row .d_box1 p+p { margin-left:0; margin-top:5px; }
+.schedule_info .sched1 .j_row { border-bottom:1px solid #D6D6D6; }
+.schedule_info .sched1 .j_row > div:not(.new_default) { border-bottom:none; }
+.schedule_info .sched1 .j_row > .btn_box { margin:0; }
+.schedule_info .sched1 .j_row:not(.e_row) .d_box2 { z-index:998; bottom:-37%; height:48px; top:auto; }
+.schedule_info .sched1 .j_row:not(.e_row) .d_box2::before {
+	content: "";
+	position:absolute;
+	left:20px;
+	top:-8px;
+	display: inline-block;
+	width: 0;
+	height: 0;
+	border-style: solid;
+	border-width: 0 4px 8px 4px;
+	border-color: transparent transparent rgba(213, 231, 232, 0.87) transparent;
+}
+.schedule_info .sched1 .j_row:not(.e_row):hover .d_box2 { display:block; }
+.schedule_info .sched1 .e_row { flex-basis:100%; border-bottom:none; }
+.schedule_info .sched1 .e_row:empty { padding:0; }
+.schedule_info .sched1 .m1_row { overflow:initial; }
+.schedule_info .sched1 .m1_row .y_row { position:initial; padding-bottom:30px; }
+.schedule_info .sched1 .m1_row .breakdown::after { bottom:-1px; }
+.schedule_info .sched1 .m1_row .y_row .time { text-indent:0; }
+.schedule_info .sched1 .m2_row .row { border-bottom:none; }
+.schedule_info .sched1 .m_row:nth-last-child(2) .j_row { border-bottom:none; }
+
+
+.schedule_info .sched1 span.cate { position:initial; width:auto; line-height:100%; padding:8px 7px; }
+.schedule_info .sched1 span.kiroku.sm { display:inline-block; }
+.schedule_info .sched1 .service_cont { display:none; }
+.schedule_info .sched1 .sched_name { padding-left:0!important; }
+.schedule_info .sched1 .sched_name span.wb { display:none; }
+.schedule_info .sched1 .sched_name small { display:block; margin-left:0; }
+.schedule_info .sched1 .sched_name small.sc { display:none; }
+.schedule_info .sched1 .modified span:not(.btn1) { display:none; }
+.schedule_info .sched1 .btn_box .btn.pc { display:none; }
+.schedule_info .sched1 .btn_box .btn.sm { display:inline-block; }
+
+.schedule_info .sched1 .e_row .time { width: 36%!important; display: inline; }
+.schedule_info .sched1 .e_row .sched_name { display: inline; width:63%!important; }
+.schedule_info .sched1 .e_row .sched_name select { margin:0; }
+.schedule_info .sched1 .y_e_row .btn_box { display:block; margin:30px 0 10px; }
+.schedule_info .sched1 .y_e_row .btn_box p { display:flex; justify-content:space-between; margin:7px 0; }
+.schedule_info .sched1 .y_e_row .btn_box p span.kiroku { display:none; }
+.schedule_info .sched1 .y_e_row .btn_box p:nth-child(1) .save { display:inline-block; }
+.schedule_info .sched1 .y_e_row .btn_box p:nth-child(2) .save { display:none; }
+.schedule_info .sched1 .j_e_row { background:rgba(227, 255, 248, 0.33); box-shadow:0 2px 6px rgba(0, 0, 0, 0.04); }
+.schedule_info .sched1 .j_e_row .respondent { width:100%; }
+.schedule_info .sched1 .j_e_row .btn_box { border-bottom:none; margin:30px 0 10px; }
+.schedule_info .sched1 .j_e_row .btn_box p .confirm { display:none; }
+.schedule_info .sched1 .j_e_row input[name="時刻"] { border-color:#A5C9FF; }
+
+.schedule_info .sch1 .box_wrap { padding-bottom:10px; }
+.schedule_info .sch2 .m1_row { padding-bottom:0; }
+.schedule_info .sch2 .m1_row .row > div:not(.new_default) { padding-bottom:0; }
+.schedule_info .sch2 .j_no_bg { background:rgba(227, 255, 248, 0.33); height:124px; border-bottom:none; }
+.schedule_info .sch2 .j_no_bg ul.lists { display:none; }
+.schedule_info .sch2 .m_row:last-child .row:empty { padding:0; }
+.schedule_info .sch2 .wrap2 .m1_row::after { display:none; }
+.schedule_info .sch2 .wrap2 .y_row { width:100%; }
+.schedule_info .sch2 .wrap2 .j_row { display:none; }
+.schedule_info .sch2 .wrap2 .m1_row .y_row { padding-bottom:0; width:48%; }
+.schedule_info .sch2 .wrap2 .m1_row .j_row { display:block; }
+.schedule_info .sch2 .wrap2 .m_row:last-child .y_row { padding:10px 0; }
+
+.schedule_info .form1 { width:100%; padding:0; }
+.schedule_info .form1 .box1 input.master_date { display:block; margin-bottom:10px; }
+.schedule_info .form1 .box1 p { display: inline-block; }
+.schedule_info .form1 .box1 p.mid { width:85px; margin-bottom:0; }
+.schedule_info .form1 .box1 p.own_expense { margin:0; }
+.schedule_info .form1 .box1 p.own_expense.new_line { float:none; margin-left:105px; }
+.schedule_info .form1 .box1:first-child p.mid { vertical-align:top; padding-top:10px; }
+.schedule_info .form1 .box_i { width:100%; margin:0 auto; }
+.schedule_info .form1 .box_i .box1:not(:first-child) p.mid { width:100px; }
+.schedule_info .form1 .box_i p.mid { width:100px; }
+.schedule_info .form1 .box_i .box1.kinkyuu p.mid { width:100%; }
+.schedule_info .form1 .add_sub ol { width:100%; }
+.schedule_info .form1 .add_sub .add_btn { position:initial; margin:0 0 0 auto; }
+.schedule_info .form1 .add_sub ol li p.period_txt a.f-right { float:none; margin-left:30px; }
+.schedule_info .form1 .cost > * { vertical-align:top; }
+.schedule_info .form1 .cost .cost_edit { left:0; top:45px; }
+.schedule_info .form1 .cost ul { width:70%; margin-left:10%; }
+.schedule_info .form1 .btn_box { display:block; margin-top:0; }
+.schedule_info .form1 .btn_box p { display:flex; justify-content:space-between; margin:7px 0; }
+.schedule_info .form1 .btn_box p:nth-child(1) .save { display:block; }
+.schedule_info .form1 .btn_box p:nth-child(2) .save { display:none; }
+.schedule_info .sched1 .form1 { padding:0; width:100%; }
+.schedule_info .form_result .box1:last-child p.mid { width:100%; }
+
+
+
+/*====================================================================================================
+  18.従業員予定実績面
+====================================================================================================*/
+#staff-schedule {}
+#staff-schedule .sched1 { padding:10px 4px; }
+#staff-schedule .sched1 span.kiroku.sm { font-size:62.5%; padding-left:20px; width:74px; }
+#staff-schedule .sched1 span.kiroku.sm::after { width:16px; height:16px; font-size:145.6%; background-size:contain; }
+#staff-schedule .sched1 span.recorded.sm::before { width:16px; height:16px; background-size:contain; }
+#staff-schedule .sched1 .mid_date { background-position:96%; }
+#staff-schedule .sched1 .mid_date.inactive { background-position:96%; }
+#staff-schedule .sched1 .sched_name small+small { text-indent:0; }
+#staff-schedule .sched1 .sched_name small.sm { display:block; }
+#staff-schedule .sched1 .respondent { font-size:75%; }
+#staff-schedule .sched1 .respondent span.sm { display:block; }
+#staff-schedule .sched1 .btn_box .btn { padding:6px 3px; }
+#staff-schedule .sched1 .k_rec { margin-top:7px; }
+#staff-schedule .sched1 .m_row.pc { display:none; }
+#staff-schedule .sched1 .mi_row { position:relative; }
+#staff-schedule .sched1 .mi_row .y_row{ position:initial; }
+#staff-schedule .sched1 .row.select1 { background:rgba(255, 197, 203, 0.44); }
+#staff-schedule .sched1 .row.selected { background:#FFF; }
+#staff-schedule .sched1 .y_row { width:48%; }
+#staff-schedule .sched1 .y_row:not(.e_row) .d_box1 { top:100%; }
+#staff-schedule .sched1 .y_row:not(.e_row):hover .d_box1 { display:block; }
+#staff-schedule .sched1 .j_row { width:48%; }
+#staff-schedule .sched1 .e_row .respondent input.resp1 { width:124px; margin-top:5px; }
+#staff-schedule .sched1 .e_row .respondent input.memo_resp { width:95%; }
+#staff-schedule .sched1 .y_e_row { padding:10px 5px; }
+#staff-schedule .sched1 .y_e_row .btn_box { margin:10px 0; }
+#staff-schedule .sched1 .j_e_row .btn_box { margin:30px 0 10px; }
+
+#staff-schedule .s_sch1 .box_wrap { padding-bottom:10px; }
+#staff-schedule .s_sch2 .child_toggle2 { display:none; }
+#staff-schedule .s_sch2 .mid_date { display:block; }
+#staff-schedule .s_sch3 .box_wrap { padding:10px 6px; }
+#staff-schedule .s_sch3 .m_row:nth-child(4) .y_row { display: none; }
+#staff-schedule .s_sch3 .m_row:nth-child(4) .j_row { flex-basis:100%; padding:10px 4px; }
+#staff-schedule .s_sch3 .m_row:nth-child(6) .y_row { display: none; }
+#staff-schedule .s_sch3 .m_row:nth-child(6) .j_row { flex-basis:100%; padding:10px 4px; }
+#staff-schedule .s_sch3 .m_row:nth-last-child(2) .j_row { padding-bottom:10px; border-bottom:1px solid #D6D6D6; }
+#staff-schedule .s_sch4 .box_wrap { padding:10px 6px; }
+#staff-schedule .s_sch4 .m_row .j_row { border-bottom:none; }
+#staff-schedule .s_sch4 .m_row:nth-child(1) .j_row { border-bottom:1px solid #D6D6D6; }
+#staff-schedule .s_sch4 .m_row:nth-child(1) .j_row::after { display:none; }
+#staff-schedule .s_sch5 .box_wrap { padding-bottom:10px; }
+#staff-schedule .s_sch5 .m_row:nth-last-child(2) .j_row::after { display:none; }
+
+#staff-schedule .form1 { margin-bottom:0; }
+#staff-schedule .form1 .box1 p.own_expense.new_line { margin-left:90px; }
+#staff-schedule .form1 .btn_box { margin-top:0; display:flex; justify-content:space-between; }
+#staff-schedule .form1 .btn_box p { display: initial; }
+#staff-schedule .form1 .btn_box .btn.pc { display:none; }
+#staff-schedule .form1 .btn_box p:nth-child(2) .save { display:inline-block; }
+#staff-schedule .form1 .box_i2 p.mid { width:93px; }
+#staff-schedule .form1 .box_i2 .kinkyuu p.mid { width:100%; }
+#staff-schedule .form1 .add_sub ol { width:100%; padding-right:0; }
+#staff-schedule .form1 .add_sub ol li select { width:87%; margin:0; }
+#staff-schedule .form1 .add_sub ol li p.list_delete { margin-top:5px; }
+#staff-schedule .form1 .add_sub .add_btn { margin-top:5px; }
+
+
+/*====================================================================================================
+  22.訪問看護記録Ⅱ詳細
+====================================================================================================*/
+h2 span.n_rec2 { display:none; }
+#nurse-record2 {}
+#nurse-record2 .user-details { border-bottom:1px dashed #BEBEBE; }
+#nurse-record2 .user-details [class^="box"] > * { display:block; margin-right:0; }
+#nurse-record2 .user-details span.label_t { width:95px; }
+#nurse-record2 .user-details .n_num { width:80px; }
+#nurse-record2 .user-details .profile .n_name { display:inline-block; margin-left:0; }
+#nurse-record2 .user-details .user_id span.label_t { margin-right:0; }
+#nurse-record2 .user-details span.juuyou { display:block; margin-left:100px; }
+#nurse-record2 .user-details .category p:nth-child(2) input[type="radio"] { margin-left:0; }
+#nurse-record2 .user-details .visit span.label_t { width:95px; text-align:left; vertical-align:middle; }
+#nurse-record2 .user-details .visit span.time { margin-left:100px; }
+#nurse-record2 .user-details .wrap1 { display:block; }
+#nurse-record2 .user-details .wrap1 .n_search { width:33px; }
+#nurse-record2 .user-details .wrap1 .prof1 { margin-left:0; }
+#nurse-record2 .user-details .wrap1 .n_name { width:134px; }
+#nurse-record2 .user-details .wrap1 select { display:block; margin-left:100px; }
+
+#nurse-record2 .vitals { display:block; }
+#nurse-record2 .vitals .d_left { width:100%; border-right:none; padding:0 0 5px; }
+#nurse-record2 .vitals .d_left span.label_t { width:auto; }
+#nurse-record2 .vitals .d_left input.i2 { width:100%; }
+#nurse-record2 .vitals .d_left select.s1 { width:117px; padding-left:10px; }
+#nurse-record2 .vitals .d_left select.s2 { width:25%; }
+#nurse-record2 .vitals .d_left table th { padding-left:0; width:15%; }
+#nurse-record2 .vitals .d_left table td { width:80%; }
+#nurse-record2 .vitals .d_left table td p.w_btn { float:none; display:block; }
+#nurse-record2 .vitals .d_left table td p.d_inl { margin-right:0; }
+#nurse-record2 .vitals .d_left table tr:nth-child(4) {}
+#nurse-record2 .vitals .d_left table tr:nth-child(4) p:first-child { display:block; }
+#nurse-record2 .vitals .d_left table tr:nth-child(4) p:last-child { margin-right:0; }
+#nurse-record2 .vitals .d_right { padding:20px 0 0; width:100%; border-top:1px dashed #BEBEBE; }
+
+#nurse-record2 .scale .gaf_scale { background:#E8E9EC; text-align:center; text-indent:0; }
+#nurse-record2 .scale .point { margin-left:5px; }
+
+#nurse-record2 .problem { padding-bottom:20px; }
+#nurse-record2 .problem dl dt { background-position:96%; }
+#nurse-record2 .problem dl dt.active { background-position:96%; }
+
+#nurse-record2 .care .box_wrap { display:block; }
+#nurse-record2 .care dl { margin-top:10px; }
+
+#nurse-record2 .others { border-top:1px dashed #BEBEBE; }
+
+
+
+
+
+
+/*====================================================================================================
+  24.看多機記録
+====================================================================================================*/
+#kantaki { margin: 0 auto; width: 97%; overflow: hidden; }
+#kantaki .tit { margin-bottom: 3px!important; color: #174A84; font-size: 93.5%; font-weight: 500; }
+#kantaki .tit-i {
+	border-top: 1px dashed #BEBEBE;
+	border-bottom: 1px dashed #BEBEBE;
+	padding: 10px 5px!important;
+	margin: 0!important;
+	background: url(../image/close.svg) no-repeat 98% center;
+}
+#kantaki .tit-i.inactive { background: url(../image/icon_plus3.svg) no-repeat 98% center; border-bottom: none; }
+#kantaki .user-details { padding-bottom: 0; margin-bottom: 0; }
+#kantaki .user-details .box { padding: 20px 0 10px; border-bottom: 1px dashed #BEBEBE; margin-bottom: 30px; display: block; }
+#kantaki .user-details input[type="text"] { padding: 8px 10px; margin-right: 0!important; }
+#kantaki .user-details span.label_t { width: 80px; }
+#kantaki .user-details span.label_t.pc { display: none; }
+#kantaki .user-details .name input.n_num[type="text"] { width: 24%; }
+#kantaki .user-details .name input.n_name[type="text"] { width: 38.5%; }
+#kantaki .user-details span.time { display: block; margin: 8px 0 15px 85px; }
+#kantaki .user-details input#service_impt[type="checkbox"] { margin-left: 85px; }
+#kantaki .user-details .service_date span.label_t { vertical-align: bottom; }
+
+#kantaki .user-details .staff_inch { margin-right: 0; width: 100%; }
+#kantaki .user-details .staff_inch span.label_t { margin-right: 0; vertical-align: top; }
+#kantaki .user-details .staff_inch .n_search { flex-basis: 37px; }
+#kantaki .user-details .staff_inch span.trash2 { position: relative; margin: 14px 0 14px 5px; top: 0; }
+#kantaki .user-details .staff_inch .staff_wrap { width: 76%; }
+#kantaki .user-details .staff_inch .staff_wrap p:nth-child(2) { flex-basis: 30%; }
+#kantaki .user-details .staff_inch .staff_wrap p:nth-child(3) { flex-basis: 52%; }
+#kantaki .user-details .staff_inch .staff_wrap input { width: 100%; }
+#kantaki .user-details .staff_inch .sline { padding-right: 0; justify-content: start; }
+#kantaki .user-details .staff_inch .sline > * { margin-right: 3px; }
+#kantaki .user-details .staff_inch .sline .care_worker { flex-basis: 60%; display: block; }
+#kantaki .user-details .staff_inch .sline .care_worker select { width: 100%; background-position: 92% center; margin: 10px 0; padding: 10px 25px 10px 15px; }
+#kantaki .user-details .staff_inch span.add { right: 0; bottom: 17px; position: absolute; }
+
+#kantaki .record2 .box_wrap { padding: 0; }
+#kantaki .record2 .box-l { width: 100%; border-right: none; padding-right: 0; }
+#kantaki .record2 .box-l .tit.sm { display: block; }
+#kantaki .record2 .box-l ul { background: none; flex-wrap: wrap; padding-right: 0; }
+#kantaki .record2 .box-l ul li { flex-basis: 50%; padding: 5px 10px; }
+#kantaki .record2 .box-l ul li > * { display: inline-block; width: auto!important; }
+#kantaki .record2 .box-l ul li input[type="checkbox"] { margin-right: 5px!important; }
+
+#kantaki .record2 .box-l .photo_body { padding: 80px 0; display: block; }
+#kantaki .record2 .box-l .photo_body .bubble_text [class^="bubble"] { width: 85%; padding: 8px; }
+#kantaki .record2 .box-l .photo_body .bubble_text [class^="bubble"] span.circle { width: 35px; height: 34px; }
+#kantaki .record2 .box-l .photo_body .bubble_text .bubble-arbtm span.circle { bottom: -88%; }
+#kantaki .record2 .box-l .photo_body .bubble_text .bubble1 span.circle { right: -15%; }
+#kantaki .record2 .box-l .photo_body .bubble1 { top: 2%; }
+#kantaki .record2 .box-l .photo_body .bubble2 { top: 25%; right: -41%; }
+#kantaki .record2 .box-l .photo_body .bubble3 { bottom: 23%; right: -20%; }
+#kantaki .record2 .box-l .photo_body .bubble4 { bottom: 3%; }
+#kantaki .record2 .box-l .photo_body .bubble5 { top: 14%; right: -15%; }
+#kantaki .record2 .box-l .photo_body .bubble6 { top: 13%; left: -5%; }
+#kantaki .record2 .box-l .photo_body .bubble_text .bubble6 span.circle { width: 60px; top: -100%; }
+
+#kantaki .record2 .box-r { width: 100%; }
+#kantaki .record2 .box-r .con_box { padding: 0 3%; }
+#kantaki .record2 .box-r .physical_box { margin-top: 10px; }
+#kantaki .record2 .box-r .con_box .box-i { display: block; margin-left: 0; border-bottom: none; padding: 10px 2% 17px 2%; }
+#kantaki .record2 .box-r .tit { margin: 0; }
+#kantaki .record2 .box-r ul li label { display: inline-block; }
+#kantaki .record2 .box-r ul li input[type="checkbox"] { width: auto!important; margin-right: 5px!important; display: inline-block; }
+#kantaki .record2 .box-r ul li input[type="text"] { width: 90px!important; margin: 0 5px 0 0!important; }
+#kantaki .record2 .box-r ul.receipt_box { width: 90%; margin: 10px auto 0; }
+#kantaki .record2 .box-r ul.receipt_box li:first-child span.label_t { width: 65px; }
+#kantaki .record2 .box-r ul.receipt_box li span.label_t { width: 70px; }
+#kantaki .record2 .box-r .tbox .box-i { padding: 10px 0 17px 0; }
+#kantaki .record2 .box-r .tbox .box-i span { position: relative; top: 0; text-align: right; }
+#kantaki .record2 .box-r .tbox textarea { height: 205px; }
+
+#kantaki .record5 { padding-bottom: 0; }
+#kantaki .record5 .tit { background: #F1F8FF url(../image/arrow_up.svg) no-repeat 96%; border: none; }
+#kantaki .record5 .tit-i { line-height: 100%; }
+#kantaki .record5 .box-i { padding-right: 0; }
+#kantaki .record5 .box-i > div { flex-basis: 100%; }
+#kantaki .table_box { margin: 15px auto 30px; }
+
+#kantaki .record5 .vital_box { margin-top: 10px; position: relative; }
+#kantaki .record5 .vital_box .table_box { border: none; padding-bottom: 37px; }
+#kantaki .record5 .vital_box table tr { border-radius: 8px; display: block; border: solid #A5C9FF; border-width: 1px 1px 0 1px; }
+#kantaki .record5 .vital_box table tr:nth-last-child(2) { border-bottom-width: 1px; }
+#kantaki .record5 .vital_box table tr td { display: block; width: 100%!important; padding: 0; }
+#kantaki .record5 .vital_box table tr td span.label_t { 
+	display: inline-block; 
+	background: #F1F8FF; 
+	font-size: 87.5%; 
+	font-weight: 500; 
+	border-right: 1px solid #A5C9FF;
+	padding: 16px 0;
+	text-align: center;
+	width: 60px;
+}
+#kantaki .record5 .vital_box table tr td span.label_t label { color: #174A84; }
+#kantaki .record5 .vital_box table tr td span.unit_m { right: unset; left: 115px; }
+#kantaki .record5 .vital_box table tr td input { display: inline-block; width: 30%; margin: 0 10px; vertical-align:middle; }
+#kantaki .record5 .vital_box table tr td input.vital_time { width: 35%; }
+#kantaki .record5 .vital_box table tr td input.vital_temp { width: 70px; }
+#kantaki .record5 .vital_box table tr td input.vital_pulse { width: 80px; }
+#kantaki .record5 .vital_box table tr td input.vital_sp { width: 20%; }
+#kantaki .record5 .vital_box table tr td+td { border-top: 1px solid #A5C9FF; }
+#kantaki .record5 .vital_box table tr:first-child,
+#kantaki .record5 .vital_box table tr:last-child  { display: none; } 
+#kantaki .record5 .vital_box table tr:not(:first-child) td:nth-child(1) { display: table-cell; width: 50%!important; }
+#kantaki .record5 .vital_box table tr:not(:first-child) td:nth-child(2) { display: table-cell; width: 50%!important; border-top: none; }
+#kantaki .record5 .vital_box table tr td:nth-child(4) input { margin: 5px 10px; }
+#kantaki .record5 .vital_box table tr td:nth-child(4) span:not(.label_t) { padding: 10px 0; }
+#kantaki .record5 .vital_box table tr td:nth-child(1) span.label_t { border-top-left-radius: 8px; }
+#kantaki .record5 .vital_box table tr td:nth-child(2) span.label_t { border-left: 1px solid #A5C9FF; }
+#kantaki .record5 .vital_box table tr td:nth-child(5) span.label_t { border-bottom-left-radius: 8px; }
+#kantaki .record5 .vital_box table tr td:nth-child(6) { display: none; }
+#kantaki .record5 .vital_box .add { bottom: -4px; padding-left: 25px; }
+
+#kantaki .record5 .intake_box table tr th:nth-child(1) { width: 20%; }
+#kantaki .record5 .intake_box table tr th:nth-child(2) { width: 22%; }
+#kantaki .record5 .intake_box table tr th:nth-child(3) { width: 40%; }
+#kantaki .record5 .intake_box table tr:last-child td { left:25%; }
+
+#kantaki .record5 .bmi_box .table_box { width: 75%; margin-left: 0; }
+#kantaki .record5 .bmi_box table tr td span.label_t { width: auto; }
+#kantaki .record5 .bmi_box table thead tr td div input { width: 69%; }
+#kantaki .record5 .bmi_box table tbody tr td div { width: 33%; }
+
+#kantaki .record5 .excretion_box table tr:not(:last-child) th:nth-child(1) { width: 20%; }
+#kantaki .record5 .excretion_box table tr th:nth-child(2) { width: 27%; }
+#kantaki .record5 .excretion_box table tr th:nth-child(3) { width: 35%; }
+#kantaki .record5 .excretion_box table tr td:nth-child(2) { width: 27%; }
+#kantaki .record5 .excretion_box table tr th:nth-child(3) { width: 35%; }
+
+#kantaki .record5 .goods_use_box .table_box { width: 75%; margin-left: 0; }
+#kantaki .record5 .goods_use_box table tr th:nth-child(1) { width: 50%; }
+
+#kantaki .record5 .meal_box .table_box { width: 85%; margin-left: 0; }
+#kantaki .record5 .meal_box table tr th { width: 15%; }
+#kantaki .record5 .meal_box table tr td.meal_main, 
+#kantaki .record5 .meal_box table tr td.meal_add { width: 21%; }
+
+#kantaki .record5 .fukuyaku_box { margin-right: 0; }
+#kantaki .record5 .fukuyaku_box table tr:first-child { background: #F1F8FF; border-radius: 8px 8px 0 0; }
+#kantaki .record5 .fukuyaku_box table tr { display: block; }
+#kantaki .record5 .fukuyaku_box table tr td { display: inline-block; }
+#kantaki .record5 .fukuyaku_box table tr td.mf_tit { width: 16%; }
+#kantaki .record5 .fukuyaku_box table tr td:nth-child(2),
+#kantaki .record5 .fukuyaku_box table tr td:nth-child(3) { width: 20%; }
+#kantaki .record5 .fukuyaku_box table tr:nth-child(5) td { width: 100%; }
+#kantaki .record5 .fukuyaku_box table tr:nth-child(-n+4) td:nth-child(4) { width: 40%; }
+#kantaki .record5 .fukuyaku_box table tr input#shushinzen_med { width: 67%; }
+#kantaki .record5 .fukuyaku_box table tr.new_input td:first-child { width: 45%; }
+#kantaki .record5 .fukuyaku_box table tr.new_input td:nth-child(2) { width: 28%; right: unset; left: 45%; }
+#kantaki .record5 .fukuyaku_box table tr span.label_t { width: auto; }
+#kantaki .record5 .fukuyaku_box table tr input[type="checkbox"] { width: auto; }
+
+#kantaki .patient_comment { padding: 0; }
+#kantaki .patient_comment .comm_box { width: 100%; margin: auto; }
+#kantaki .patient_comment .comm_box .box-i { margin: 5px auto 30px; }
+#kantaki .patient_comment .comm_box .tit-i { line-height: 130%; background: url(../image/arrow_up.svg) no-repeat 96%; }
+#kantaki .patient_comment .comm_box .tit-i.inactive { background: url(../image/arrow_down2.svg) no-repeat 96%; }
+#kantaki .patient_comment .comm_box .txt_note { text-align: right; line-height: 250%; }
+#kantaki .patient_comment .comm_box:nth-child(4) .txt_note { padding-bottom: 30px; }
+#kantaki .patient_comment .comm_box .txt_note span { bottom: 0; }
+#kantaki .patient_comment .comm_box textarea { height: 205px; }
+
+#kantaki .nursing_need-b { padding: 0; margin-bottom: 30px; }
+#kantaki .nursing_need-b .table_box { margin: 0; border-radius: 0; border: none; }
+#kantaki .nursing_need-b dl dt.tit_toggle { 
+	border-radius: 8px 8px 0 0; 
+	border: 1px solid #A5C9FF; 
+	border-bottom: none; 
+	background: #F1F8FF url(../image/arrow_up.svg) no-repeat 96%;
+}
+#kantaki .nursing_need-b dl dt.tit_toggle.inactive {
+	background: #F1F8FF url(../image/arrow_down2.svg) no-repeat 96%;
+	border-radius: 0;
+	border: none;
+}
+#kantaki .nursing_need-b dl dd { width: 100%; padding-top: 0; border: 1px solid #A5C9FF; }
+#kantaki .nursing_need-b dl dd:nth-child(2) { border-bottom: none; }
+#kantaki .nursing_need-b dl dd:nth-child(3) { border-radius: 0 0 8px 8px; }
+#kantaki .nursing_need-b dl dd:nth-child(3) table { border-radius: 0 0 8px 8px; }
+#kantaki .nursing_need-b dl dd table tr { position: relative; }
+#kantaki .nursing_need-b dl dd table tr th { table-layout: auto; display: block; width: 100%; padding: 13px 15px 5px; }
+#kantaki .nursing_need-b dl dd table tr th span { display: inline-block; margin-left: 0; }
+#kantaki .nursing_need-b dl dd table tr td { table-layout: auto; display: block; }
+#kantaki .nursing_need-b dl dd table tr td:nth-child(2) { width: 100%; padding: 13px 10px; }
+#kantaki .nursing_need-b dl dd table tr td p { margin: 0 20px 10px 0; }
+#kantaki .nursing_need-b dl dd table tr td.score { padding: 0!important; position: absolute; top: 13px; right: 10px; }
+#kantaki .nursing_need-b dl dd table tr td.score div {  }
+#kantaki .nursing_need-b dl dd table tr td.assistance_list { width: 100%; padding: 0 10px 13px; }
+#kantaki .nursing_need-b dl dd table tr:last-child { height: 65px; }
+#kantaki .nursing_need-b dl dd table tr td.total_score { top: 6px; }
+
+
+/*====================================================================================================
+  SEARCH DROP
+====================================================================================================*/
+.search_drop { 
+	background: #F1F8FF url(../image/arrow_down2.svg) no-repeat 97% center; 
+	border: 1px solid #F1F8FF;
+	color: #174A84; 
+	font-size: 93.8%; 
+	font-weight: 500; 
+	padding: 12px 10px; 
+	line-height: 100%;
+}
+.search_drop.active { background: #F1F8FF url(../image/arrow_up.svg) no-repeat 97% center;  }
+
+
+
+
+/*====================================================================================================
+  DELETE MESSAGE BOX POPUP
+====================================================================================================*/
+.msg_box { width: 85%; }
+
+
+
+
+/*====================================================================================================
+  1.従業員一覧:スマホ
+====================================================================================================*/
+#staff-list { position: relative; }
+#staff-list .user-details {
+	display: none; 
+	position: absolute; 
+	z-index: 99; 
+	background: #fff; 
+	padding: 10px 15px 80px; 
+	width: 93.6%; 
+	border: 1px solid rgba(202, 206, 213, .2); 
+	border-top: none; 
+}
+#staff-list .user-details > div:not(:last-child) { }
+#staff-list .user-details .affliation { display: block!important; }
+#staff-list .user-details .affliation select { width: 100%; margin-bottom: 0; }
+#staff-list .user-details .shain_info { display: flex!important; justify-content: space-between; flex-wrap: wrap; margin: auto; }
+#staff-list .user-details .shain_info span { flex-basis: 40%; margin: 10px 0; }
+#staff-list .user-details .shain_info span:nth-child(2) { flex-basis: 57%; }
+#staff-list .user-details .shain_info span:nth-child(3) { line-height: 100%; margin: 0 0 10px; }
+#staff-list .user-details .shain_info span label { margin: 0 5px 0 0!important; }
+#staff-list .user-details .shain_info input#emp_ID { width: 58%; }
+#staff-list .user-details .shain_info input#emp_name { width: 79%; }
+#staff-list .user-details .shain_info input[type="checkbox"] { margin-left: 0; }
+#staff-list .user-details .s_control { position: absolute; right: 15px; bottom: 65px; }
+#staff-list .user-details .outpg_control { top: unset; bottom: 15px; right: 15px; }
+#staff-list .user-details .outpg_control .excel { display: none; }
+#staff-list .user-details .outpg_control .add { padding: 0; }
+
+#staff-list .wrap { margin-top: 25px; }
+#staff-list .dis_box { overflow-x: scroll; }
+#staff-list table.dis_result th { padding: 13px 10px 10px!important; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; display: none; }
+#staff-list table.dis_result td { padding: 10px!important; display: none; }
+
+#staff-list table.dis_result tr th.th_name,
+#staff-list table.dis_result tr td:nth-child(2) { display: table-cell; width: 85px; }
+#staff-list table.dis_result tr th.th_affliate-base,
+#staff-list table.dis_result tr td:nth-child(5) { display: table-cell; width: 200px; }
+#staff-list table.dis_result tr th.th_em-contact,
+#staff-list table.dis_result tr td:nth-child(10) { display: table-cell; width: 95px; }
+
+#staff-list table.dis_result tr th.th_name-kana { background-position: 77% 65%; }
+
+
+
+/*====================================================================================================
+  2.従業員詳細:スマホ
+====================================================================================================*/
+#staff-detail { margin: 0 3%; overflow: hidden; }
+#staff-detail .user-details { display: block; }
+#staff-detail .user-details > * { flex-basis: 100%; }
+
+#staff-detail .box-l { border-right: none; padding-right: 0; }
+#staff-detail .box-l ul.name_info { padding-left: 0; }
+#staff-detail .box-l ul.name_info li:not(:first-child, :last-child) div { display: block; width: 49%; }
+#staff-detail .box-l ul.name_info li:not(:first-child, :last-child) div > * { width: 100%!important; }
+#staff-detail .box-l ul.name_info li:last-child > * { flex-basis: 100%!important; width: 100%; display: block; }
+#staff-detail .box-l ul.name_info li:last-child div { margin: 5px 0; }
+#staff-detail .box-l ul.name_info li:last-child label { width: 15%!important; }
+#staff-detail .box-l ul.name_info li input#emp_ID { width: 50%; }
+#staff-detail .box-l ul.name_info li input#renkei_data-name { width: 75%; }
+#staff-detail .box-l ul.name_info li input#renkei_data-code { width: 28%; }
+
+#staff-detail .box-l table#affliate_add thead th { width: 100%!important; display: block; padding: 5px 8px 0 8px; }
+#staff-detail .box-l table#affliate_add thead th:nth-child(3) { padding: 0 8px 5px 8px; }
+#staff-detail .box-l table#affliate_add thead th:nth-child(4) { position: absolute; top: 8px; right: 3px; background: none; width: 88px!important; }
+
+#staff-detail .box-l table#affliate_add tbody { height: 530px; padding-left: 0; }
+#staff-detail .box-l table#affliate_add td { width: 100%!important; display: block; }
+#staff-detail .box-l table#affliate_add td .add { bottom: 3px; right: 3px; }
+#staff-detail .box-l table#affliate_add td div { justify-content: start; }
+#staff-detail .box-l table#affliate_add td div input { width: 85.5%; }
+#staff-detail .box-l table#affliate_add td.del_tr { left: 0; width: 40px!important; }
+#staff-detail .box-l table#affliate_add td:nth-child(2) { padding: 0 75px 0 40px; display: inline-block; }
+#staff-detail .box-l table#affliate_add td:nth-child(2) div { margin: 10px 0 0; }
+#staff-detail .box-l table#affliate_add td.office_in { padding-left: 55px; padding-bottom: 0; }
+#staff-detail .box-l table#affliate_add td.office_in div:last-child { padding-bottom: 0; }
+#staff-detail .box-l table#affliate_add td.office_in input { margin-right: 0; width: 82%; }
+#staff-detail .box-l table#affliate_add td.office_in .del_inp { right: -36px; }
+#staff-detail .box-l table#affliate_add td.add_btn { width: 33px!important; bottom: 56px; }
+#staff-detail .box-l table#affliate_add td:last-child { position: relative; width: 80%; }
+#staff-detail .box-l table#affliate_add td:last-child div { justify-content: start; }
+#staff-detail .box-l table#affliate_add td input.date_no-Day { width: 130px; }
+#staff-detail .box-l table#affliate_add td small { margin: 4px 5px; }
+
+#staff-detail .box-r { margin: 0 0 20px; }
+#staff-detail .box-r .box-r-in dl.sm { display: flex; }
+#staff-detail .box-r .box-r-in dt.pc,
+#staff-detail .box-r .box-r-in dl dd div.pc { display: none; }
+
+#staff-detail .box-r .box-r-in dt { flex-basis: 35%; padding: 15px 0; line-height: 100%; }
+#staff-detail .box-r .box-r-in dd { flex-basis: 65%; }
+#staff-detail .box-r .box-r-in dd span.sm.label_t { display: inline-block; }
+#staff-detail .box-r .box-r-in dd ul li { margin: 5px 0; flex-basis: 46%; }
+#staff-detail .box-r .box-r-in dd select { background-position: 95% center; margin: 0; }
+#staff-detail .box-r .box-r-in dd input#shain-kubun { margin-left: 0; width: 85%; }
+#staff-detail .box-r .box-r-in dd input#emp_address { width: 99%; }
+#staff-detail .box-r .box-r-in dd input#emp_em-contact { margin-left: 0; width: 99%; }
+#staff-detail .box-r .box-r-in dd input#emp_email { width: 99%; }
+
+#staff-detail .box-r .box-r-in dl :is(:nth-child(4) dd, .date_birth > *, :nth-child(7) > *, :nth-child(8) dd, :nth-child(9) > *, :nth-child(11) > *) { flex-basis: 100%; }
+#staff-detail .box-r .box-r-in dl :-webkit-is(:nth-child(4) dd, .date_birth > *, :nth-child(7) > *, :nth-child(9) > *, :nth-child(11) > *) { flex-basis: 100%; }
+
+#staff-detail .box-r .box-r-in dl :is(:nth-child(3) dt, .date_birth dt, :nth-child(7) dt, :nth-child(9) dt, :nth-child(11) dt) { padding: 10px 0 0; }
+#staff-detail .box-r .box-r-in dl :-webkit-is(:nth-child(3) dt, .date_birth dt, :nth-child(7) dt, :nth-child(9) dt, :nth-child(11) dt) { padding: 10px 0 0; }
+
+#staff-detail .box-r .box-r-in dl:nth-child(1) dd div:nth-child(1) { margin-right: 0; width: 90%; }
+#staff-detail .box-r .box-r-in dl:nth-child(3) { display: block; }
+#staff-detail .box-r .box-r-in dl:nth-child(3) dd { padding-top: 0; }
+#staff-detail .box-r .box-r-in dl:nth-child(4) dd { display: flex; justify-content: space-between; flex-wrap: wrap; }
+#staff-detail .box-r .box-r-in dl:nth-child(4) dd div { flex-basis: 46%; margin: 0; }
+#staff-detail .box-r .box-r-in dl:nth-child(6) dt { flex-basis: 10%; }
+#staff-detail .box-r .box-r-in dl:nth-child(6) dd { flex-basis: 90%; }
+#staff-detail .box-r .box-r-in dl:nth-child(8) dd div { width: 40%!important; margin-right: 15px; }
+#staff-detail .box-r .box-r-in dl:nth-child(11) dd div:nth-child(1) { width: 100%; }
+#staff-detail .box-r .delete { right: unset; left: 0; position: relative; top: 10px; }
+
+#staff-detail .em-contact_box { margin-bottom: 30px; }
+#staff-detail .em-contact_box [class^="tb_box"] { width: 100%; padding-right: 0; }
+#staff-detail .em-contact_box .tb_box1 dl > * { flex-basis: 100%; }
+#staff-detail .em-contact_box .tb_box1 dl.sm { display: flex; }
+#staff-detail .em-contact_box .tb_box1 dl dd div.pc { display: none; }
+#staff-detail .em-contact_box .tb_box1 dt { flex-basis: 30%; }
+#staff-detail .em-contact_box .tb_box1 dd { flex-basis: 70%; }
+
+#staff-detail .em-contact_box input#em-con-gender { width: 50%; }
+#staff-detail .em-contact_box input#em-con-namek { width: 99%; }
+#staff-detail .em-contact_box input#em-con-mbango { width: 60%; }
+
+#staff-detail .em-contact_box .tb_box1 dl:nth-child(1) dd div:nth-child(1) { margin-right: 0; width: 100%; }
+#staff-detail .em-contact_box .tb_box1 dl:nth-child(4) dd div:nth-child(1) { width: 60%; }
+
+#staff-detail .box-r .box-r-in dd input[type="text"] { width: 99%; }
+
+#staff-detail .em-contact_box .tb_box2 { margin-top: 10px; }
+#staff-detail .em-contact_box .tb_box2 dl {}
+#staff-detail .em-contact_box .tb_box2 dl > * { flex-basis: 100%; }
+#staff-detail .em-contact_box .tb_box2 dl dd { padding-top: 0; }
+#staff-detail .em-contact_box .tb_box2 dl dd input { width: 100%!important; }
+
+
+.staff-d-navi .box { display: inherit!important; }
+
+
+
+
+
+/*====================================================================================================
+  CALENDAR  3.ルート管理 && 7.ルート表
+====================================================================================================*/
+.calendar_data .cont_head { width:100%; margin:5px auto 20px; padding:0; }
+.calendar_data .cont_head .txt_size { display:block; text-align:right; }
+.calendar_data .head2 .txt_size { position:absolute; left:auto; bottom:auto; right:0; top:0; }
+.calendar_data .cont_head .txt_size ul li span.label_t { width:auto; }
+.calendar_data .cont_head .schedule { display:none; }
+.calendar_data .cont_head .sched_blue.sc1 { display:inline-block; }
+.calendar_data .cont_head .sched_blue { display:inline-block; margin:0 0 20px; padding:2px 4px; }
+.calendar_data .cont_head .sched_blue span.label_t { width:auto; font-size:75%; }
+.calendar_data .cont_head .search_drop { margin-top:20px; }
+.calendar_data .cont_head .search_wrap {
+	width:100%;
+	display:none;
+	top:102px;
+	z-index:999;
+	background:#FFF;
+	padding:15px 5px;
+	position:absolute;
+}
+.calendar_data .cont_head .s_wrap { width:350px; margin:0 auto; }
+.calendar_data .cont_head .checklist { margin:0 0 10px; }
+.calendar_data .cont_head .checklist p { margin:0 3px; }
+.calendar_data .cont_head .search { margin-right:0; }
+.calendar_data .cont_head .btn_box { display:none; }
+.calendar_data .cont_head .schedule table tr td { width:35px; }
+
+.calendar_data .c_wrap { padding:0; }
+.calendar_data .c_wrap .month_select { top:-60px; left:35px; }
+.calendar_data .c_wrap .sched_parts { display:none; }
+
+
+
+/*====================================================================================================
+  16.お知らせ管理（旧:トピック一覧)
+====================================================================================================*/
+#info { width:100%; }
+#info .info_form { margin:0 2%; }
+#info .info_form table { table-layout: auto; }
+#info .info_form table tr th { table-layout: auto; display:block; width:100%; }
+#info .info_form table tr td { table-layout: auto; display:block; width:100%; }
+#info .info_form table tr:first-child { display:flex; }
+#info .info_form table tr:first-child th { width:100px; }
+#info .info_form table tr:first-child td p { display:block; }
+#info .info_form table tr td p:first-child { margin-right:0; }
+#info .info_form .info_box dl { display:block; padding:0; margin:10px 0; }
+#info .info_form .info_box dl:last-child { border:none; }
+#info .info_form .control_box { justify-content:space-between; margin-top:35px; }
+#info .info_form .control_box p .btn { margin-left:0; }
+#info .info_form .control_box p .cancel { margin-left:10px; }
+
+#info .info_wrap .info_list { padding:0 2%; overflow-x:scroll; box-shadow:none; border-radius:0; }
+#info .info_wrap .info_list table { table-layout:fixed; }
+#info .info_wrap .info_list table tr.list_tit th.base { width:210px; }
+#info .info_wrap .info_list table tr.list_tit th.publish_d { width:105px; }
+#info .info_wrap .info_list table tr.list_tit th.user { width:85px; }
+#info .info_wrap .info_list table tr.list_tit th.update_d { width:105px; }
+#info .info_wrap .info_list table tr.list_tit th.title { width:565px; }
+#info .info_wrap .info_list table tr.list_tit th.deploy { width:50px; }
+
+#info .info_wrap .info_list table tr.t_form {
+	padding:0;
+	width:92vw;
+	display:block;
+	table-layout:auto;
+	border-bottom:none;
+}
+#info .info_wrap .info_list table tr.t_form .info_form {
+	box-shadow:0 2px 10px rgba(0, 0, 0, 0.15);
+	padding:0 10px 20px;
+	border-radius:8px;
+	margin:0 0 20px;
+}
+#info .info_wrap .info_list table tr.t_form > td { display:block; width:100%!important; table-layout:auto; padding:0; }
+
+
+
+
+/*====================================================================================================
+  PARTS
+====================================================================================================*/
+.close { font-size:93.8%; line-height:130%; }
+.close span { font-size:80%; }
+
+.sched_details { z-index:960; }
+
+.new_default { width:350px; left:0; right:0; margin:auto; z-index:960; max-height:calc(100vh - 25%); overflow-y:auto; }
+.new_default .box1 p { display:block; width:auto; }
+.new_default .box1 p.mid { margin-bottom:5px; }
+.new_default .box1 p.day_list { margin-left:0; }
+.new_default .box1 p.month_list { margin-left:0; }
+.new_default .box1 p.own_expense { margin-top:-32px; }
+.new_default .add_sub > * { display:block; }
+.new_default .add_sub p.mid { width:auto; }
+.new_default .add_sub ol { width:89%; }
+.new_default .add_sub ol li select { width:81.5%; right:0; }
+.new_default .add_sub .add_btn { right:0; bottom:29px; }
+.new_default p.list_delete { right:0; top:6px; }
+.new_default .cost { display:block; }
+.new_default .cost .cost_edit { left:60px; top:10px; }
+.new_default .service_dets ul { position:relative; }
+.new_default .service_dets ul li select { margin:0; }
+.new_default .service_dets ul li:nth-child(4) { margin-top:5px; }
+.new_default .service_dets ul li:nth-child(5) {}
+.new_default .service_dets ul li p.list_delete { position:absolute; right:20px; bottom:8px; top:auto; }
+
+.add_root { z-index:960; }
+
+.root_insurance .box_i,
+.root_care .box_i { width:95%; margin:auto; }
+
+.root_type { z-index:960; }
+
+.employees { width:95%; padding:10px; z-index:960; }
+.employees .employee_list { overflow-x:scroll; }
+.employees dl { width:514px; }
+
+
+.cont_office { max-height: 100%; position: fixed; padding: 10px 15px 0 10px; width: 90%; }
+.cont_office .tit { background: none; }
+.cont_office .cont_list { overflow-x: scroll; width: 100%;  }
+
+.cont_nursing { max-height: 100%; position: fixed; padding: 10px 15px 0 10px; width: 90%; }
+.cont_nursing .tit { background: none; }
+.cont_nursing .cont_list { overflow-x: scroll; width: 100%;  }
+
+
+/* schedule.html 6:週間スケジュール：実費モダール（登録画面） */
+.actual_cost { width:93.8%; }
+.actual_cost .sched_tit { margin-bottom:0; }
+.actual_cost .add_sub { padding:0; }
+.actual_cost .add_sub table thead { display:none!important; }
+.actual_cost .add_sub table tbody { height:600px; }
+.actual_cost .add_sub table tr {
+	display:block;
+	padding:15px 0;
+	overflow:hidden;
+	border-bottom:1px solid #A5C9FF;
+}
+.actual_cost .add_sub table tr td { display:block; width:100%!important; }
+.actual_cost .add_sub table tr td.tax{ float:left; width:40%!important; }
+.actual_cost .add_sub table tr td.sales_tax { float:left; width:60%!important; }
+.actual_cost .add_sub table tr td.d_cate { clear:both; float:left; width:auto!important; }
+.actual_cost .add_sub table tr td:nth-child(7) { float:left; width:auto!important; }
+.actual_cost .add_sub table tr td:nth-child(8) { display:none; }
+.actual_cost .add_sub table tr td b {
+	color:#174A84;
+	font-size:87.5%;
+	font-weight:500;
+	line-height:120%;
+	margin-right:10px;
+	display:inline-block;
+	vertical-align:middle;
+}
+.actual_cost .add_sub table tr td select { margin:0; }
+.actual_cost .add_sub table tr td.item select { width:100%; }
+.actual_cost .add_sub .add_btn { position:initial; display:block; margin:10px 0 0 auto; }
+
+
+/* bedsore.html 30.各種帳票：褥瘡計画-画像表示モダール	 */
+.img_display { width:82%; padding:10px; }
+.img_display .part_head { display:block; }
+.img_display .part_head p { margin:10px 0; }
+.img_display .part_head span.label_t { display:block; margin-bottom:5px; }
+.img_display .img_list ul { float:none; width:95%; margin:10px auto; }
+.img_display .img_list ul:nth-child(3n+2) { margin:10px auto; }
+
+
+/* bedsore.html 30.各種帳票：褥瘡計画-画像表示モダール:詳細	 */
+.img_details { width:100%; padding:20px 10px; }
+.img_details .cont_details { height:330px; padding:0; margin-top:35px; }
+.img_details .back { display:block; position:initial; margin:25px auto 0; }
+
+
+/* plan.html 17.訪問看護記録Ⅰ-指示書モダール */
+.i_instructions { width:81.3%; max-height:calc(100vw - 10%); }
+.i_instructions .sched_tit { margin-bottom:10px; }
+.i_instructions table tr th:nth-child(1),
+.i_instructions table tr td:nth-child(1) { width:12.9%; }
+.i_instructions table tr th:nth-child(2),
+.i_instructions table tr td:nth-child(2) { width:8.6%; }
+.i_instructions table tr th:nth-child(3),
+.i_instructions table tr td:nth-child(3) { width:30.8%; }
+.i_instructions table tr th:nth-child(5),
+.i_instructions table tr td:nth-child(5) { width:23.1%; }
+.i_instructions table tr th:nth-child(4),
+.i_instructions table tr td:nth-child(4),
+.i_instructions table tr th:nth-child(6),
+.i_instructions table tr td:nth-child(6),
+.i_instructions table tr th:nth-child(7),
+.i_instructions table tr td:nth-child(7) { display:none; }
+.i_instructions table tr th:nth-child(8),
+.i_instructions table tr td:nth-child(8) { width:15.5%; }
+.i_instructions table tr td button { padding:0; }
+
+
+/* plan.html 17.訪問看護記録Ⅰ-病名データベースモダール */
+.dname_db { width:81.3%; }
+.dname_db table tr th:nth-child(1),
+.dname_db table tr td:nth-child(1) { width:8%; }
+.dname_db table tr th:nth-child(2),
+.dname_db table tr td:nth-child(2) { width:85%; }
+
+
+/* user-list.html 週間スケジュール展開ポップアップ */
+.dep_jouken { width: 100%; }
+
+
+/* report.html モダール_30.報告書 訪問看護記録Ⅱ */
+.gaf_inst table tr th:nth-child(3),
+.gaf_inst table tr td:nth-child(3) { width:34%; }
+.gaf_inst table tr th:nth-child(4),
+.gaf_inst table tr td:nth-child(4) { display:block; }
+.gaf_inst table tr th:nth-child(5),
+.gaf_inst table tr td:nth-child(5) { width:18%; }
+
+
+/* nurse-record2.html 22 Bristol便形状:訪看記録Ⅰ */
+.bristol_scale { width: 90%; }
+
+/* nurse-record2.html 22 GAF:訪看記録Ⅰ */
+.gaf_scale { width:90%; }
+
+
+/* user-schedule.html 18:新規作成_入力イメージ */
+.create_img { text-align:left; }
+
+/* user-schedule.html 18看多機通い:登録子画面  */
+.view_machine { width:90.4%!important; padding:10px!important; }
+.view_machine .box1:nth-child(2) p.mid { vertical-align:text-top; padding-top:2px; }
+.view_machine .box1 span.label_t { display:block; }
+
+
+/* UNKNOWN PART popup */
+
+.popup { overflow:unset; width:90%; }
+
+}
+
+/* Added 2024.July */
+.box_noinsurance{
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	flex-flow: wrap;
+	margin-top: 10px;
+}
+.noins_checkbox{
+	margin-right: 20px;
+}
+.noins_inputprice input{
+	margin-right: 5px;
+}
+.cancel_appt{
+	background-color: #dfe0e9;
+    font-size: 11px;
+    line-height: 1;
+    display: inline-flex;
+    align-items: center;
+	align-self: center;
+    justify-content: center;
+    padding: 5px;
+}
+#kantaki .record2 .box-l .photo_body [name="btnImageEdit"]{
+	display:inline-block;
+	font-size:87.5%;
+	color:#FFF;
+	line-height:100%;
+	padding:5px 10px;
+	border-radius:5px;
+	cursor:pointer;
+	user-select:none;
+	border:1px solid transparent;
+	text-decoration: none;
+	background: #53A9EB;
+	width: 58px;
+}
+#nurse-record1.nursing .copy_btn{
+	border:none;
+	line-height: 2;
+}
+#nurse-record2 .care dl dd label{
+	margin-left: 0;
+}
+#nurse-record2 .care dl dd label input[type="checkbox"]{
+	margin-right: 5px;
+}
+
+@media only screen and (max-width: 700px) {
+	#subpage .wrap ul.user-tab,
+	#header .head .head-r .p-form-validate{
+		display: none;
+	}
+	#header .head .head-r .p-form-validate.is_open{
+		display: block;
+		position: absolute;
+		top:50px;
+		left: 40px;
+		padding: 20px;
+		background-color: #fff;
+		box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .15);
+	}
+	.sp_user_name{
+		position: fixed;
+		top:70px;
+		right: 0;
+		width: 100px;
+		height: 34px;
+		background-color: #F3F3F3;
+		border-radius: 8px 0 0 8px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		z-index: 9999;
+	}
+	.sp_user_name p{
+		font-weight: 500;
+		font-size: 12px;
+		color: #174a84;
+	}
+	.search_drop.active{
+		width: calc(100% - 10px);
+        margin: 0 auto;
+	}
+	.schedule_info .p-form-validate.is_open{
+		padding: 0 5px;
+	}
+	.schedule_info .cont_head.is_open,
+	.schedule_info .is_open .cont_head{
+		display: block;
+		position: static;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	}
+	.schedule_info .cont_head .box2{
+		margin: 20px 0;
+	}
+	
+	.schedule_info .cont_head [class^="condition"]{
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		margin-bottom: 20px;
+	}
+	.schedule_info .cont_head .user .label_t{
+		width: 50px;
+		margin-right: 10px;
+	}
+	.schedule_info .cont_head [class^="condition"] .label_t{
+		height: 30px;
+		margin-right: 30px;
+		display: flex;
+        align-items: center;
+        justify-content: center;
+		line-height: 1;
+	}
+	.schedule_info .cont_head .condition2 ul{
+		width: calc(100% - 80px);
+	}
+	.schedule_info .cont_head .condition1 ul li,
+	.schedule_info .cont_head .condition2 ul li{
+		margin: 0 0 15px;
+	}
+	.schedule_info .cont_head .btn.search{
+		margin: 5px auto 0;
+		display: flex;
+	}
+	.schedule_info .layout-3col{
+		flex-flow: wrap;
+	}
+	.schedule_info .sched1 .row{
+		width: 100%;
+	}
+	.schedule_info .sched1 .record_cont{
+		display: flex;
+		flex-flow: wrap;
+        align-items: center;
+		justify-content: flex-end;
+		width: 100%;
+	}
+	.schedule_info .sched1 .record_cont br{
+		display: none;
+	}
+	.schedule_info.nursing .p-form-validate .btn_box{
+		margin-top: 10px;
+		display: flex;
+	}
+	.schedule_info.nursing .btn.add-op{
+		margin-left: auto;
+        width: auto !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: flex-start;
+	}
+	.schedule_info .sched1 .temp_txt{
+		line-height: 1.4;
+		padding-top: 10px;
+	}
+	div[id^=upln]{
+		width: 100%;
+	}
+	.schedule_info .cont_head .condition2 ul li label{
+		text-align: justify;
+	}
+	.modal_setting .new_default{
+		max-width: 95%;
+		max-width: 320px !important;
+		z-index: 99999;
+	}
+	.new_default .box1{
+		width: 100%;
+	}
+	.new_default .box1.col-wrap{
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-flow: wrap;
+		margin-top: 0;
+	}
+	.modal_setting .new_default .box_datetime{
+		display: flex;
+		margin-bottom: 0;
+	}
+	.modal_setting .new_default .box1.col-wrap p.mid{
+		max-width: 90px;
+        margin-top: 12px;
+	}
+	.modal_setting .new_default .box1.box_datetime p.mid{
+		max-width: 80px;
+        margin-top: 12px;
+	}
+	.new_default .s_detail{
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-flow: wrap;
+	}
+	.new_default .s_detail .box1 input[type="date"]{
+		display: block;
+		min-height: 40px;
+	}
+	.schedule_info .sched1 .row:not(.e_row) > .btn_box{
+		z-index: 9999;
+	}
+	.new_default .box1 datalist + p{
+		display: flex;
+		margin: 15px 0 20px !important;
+	}
+	.new_default .dynamic_modal .box1 select,
+	.new_default .dynamic_modal .box1 .datalist {
+		max-width: 94%;
+	}
+	.nursing .new_default .add_sub ol,
+	.nursing .dynamic_modal input[type="text"] {
+		max-width: 100%;
+		width: 100%;
+	}
+	.nursing .new_default .add_sub ol{
+		padding-bottom: 40px;
+	}
+	.nursing .dynamic_modal input[type="text"] {
+		margin-bottom: 5px;
+	}
+	.new_default .add_sub ol li{
+		margin-bottom: 20px;
+	}
+	.new_default .close{
+		position: absolute;
+        right: 10px;
+        top: 10px;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        line-height: 1;
+	}
+	.new_default .box1 select{
+		width: 40px;
+		max-width: 100%;
+		padding: 5px 8px;
+		background-size: 8px auto;
+		background-position: 98% center;
+	}
+	.new_default .box1 .datalist{
+		background-size: 8px auto;
+		background-position: 98% center;
+		max-width: 100%;
+	}
+	.new_default .box1 select + small{
+		font-size: 10px;
+	}
+	.new_default .box1:not(.col-wrap) .staff{
+		max-width: 100%;
+	}
+	.new_default .box1.col-wrap .staff{
+		max-width: calc(100% - 90px);
+	}
+	
+	.content_jippi{
+		overflow-x: scroll;
+		max-width: 100%;
+	}
+	.content_jippi thead{
+		display: none;
+	}
+	.content_jippi tbody tr{
+		display: flex;
+		flex-flow: wrap;
+	}
+	.content_jippi tbody tr:not(:last-child){
+		border-bottom:1px solid #81a8e9;
+		margin-bottom: 15px;
+	}
+	.content_jippi tbody td{
+		display: flex;
+		flex-flow: wrap;
+		align-items: center;
+        justify-content: flex-start;
+		padding-bottom: 10px;
+	}
+	.content_jippi tbody td.type,
+	.content_jippi tbody td.item,
+	.content_jippi tbody td.price{
+		width: 100%;
+	}
+	.content_jippi tbody td.tax{
+		width: 60%;
+	}
+	.content_jippi tbody td.sales_tax{
+		width: 40%;
+	}
+	.content_jippi tbody td:nth-child(9){
+		width: 20%;
+	}	
+	.content_jippi tbody td.d_cate{
+		width: 60%;
+	}
+	.content_jippi tbody .sm{
+		font-size: 87.5%;
+		font-weight: 500;
+		color: #174A84;
+		margin-right: 5px;
+	}
+	.content_jippi tbody td.tax .sm{
+		line-height: 1;
+	}
+	.content_jippi tbody td.tax .sm br{
+		display: none;
+	}
+	.nursing .content_jippi select{
+		width: 100%;
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.nursing .content_jippi .type select,
+	.nursing .content_jippi .tax select,
+	.nursing .content_jippi .d_cate select{
+		width: auto;
+		padding-left: 8px;
+        margin-bottom: 0;
+	}
+	.content_jippi tbody td .row_delete{
+		margin-left: 30px;
+	}
+	.nursing .dynamic_modal .content_jippi .uis_rate{
+		max-width: 40px;
+	}
+	.schedule_info .sched1 .row:not(.e_row):hover > .btn_box{
+		justify-content: center;
+	}
+	.schedule_info .cont_head .profile .add_rules{
+		padding-left: 0;
+	}
+	.schedule_info .cont_head .btn.search{
+		margin: 20px auto !important;
+	}
+	.add_rules ul{
+		margin: 20px 0 0;
+	}
+	.schedule_info .cont_head{
+		transition: max-height 0.3s, padding 0.3s 
+	}
+	.schedule_info .cont_head.is_open{
+		margin: 0 5px;
+		max-height:100%
+	}
+	#staff-schedule .search_drop{
+		width: calc(100% - 10px);
+		margin: 0 auto;
+	}
+	#staff-schedule .sched1 .y_row,
+	#staff-schedule .sched1 .j_row{
+		width: 98%;
+	}
+	#staff-schedule .sched1 .layout-3col-box.row_modified{
+		display: none;
+	}
+	#staff-schedule .sched1 .layout-3col-box{
+		width: calc(50% - 10px);
+	}
+	#staff-schedule .sched1 .layout-3col-box:first-child{
+		margin-right: 20px;
+	}
+	#staff-schedule .sched1 .layout-3col-box:first-child .row.y_row:first-child{
+		padding-top: 0;
+	}
+	#staff-schedule .sched1 .layout-3col-box:first-child .row.y_row:last-child{
+		border-bottom: none;
+	}
+	#staff-schedule.schedule_info .sched1 .box_wrap{
+		background-color:#fff;
+		margin-bottom: 15px;
+	}
+	.schedule_info .sched1 .row > .modified{
+		display: flex;
+		align-items: center;
+		flex-flow: wrap;
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	.schedule_info .cont_head .profile .add_rules [type="checkbox"]{
+		margin-right: 5px;
+	}
+	#staff-schedule.schedule_info .sched1{
+		background-color: rgba(202, 206, 213, 0.1);
+	}
+	#staff-schedule .sched_details{
+		left: 5px !important;
+		width: 97% !important;
+		padding: 15px;
+		box-shadow: 0px 2px 12px rgba(0, 0, 0, .15);
+	}
+	#staff-schedule .sched1 .mid_date.inactive{
+		margin-bottom: 15px;
+	}
+	#staff-schedule .sched_details .sched_tit{
+		margin-bottom: 10px;
+	}
+	#staff-schedule .sched_details p.mid{
+		width: 70px;
+	}
+	#staff-schedule .sched_details .box1 p.m_time{
+		margin-top: 5px;
+		margin-left: 73px;
+	}
+	#staff-schedule .sched_details .box1 p.m_time small{
+		font-size: 10px;
+	}
+	#staff-schedule .sched_details .box1 .m_time select{
+		width: 45px;
+		margin-left: -3px;
+		padding: 5px;
+	}
+	#staff-schedule .sched_details .box1{
+		margin-top: 0;
+		line-height: 1.5;
+		display: flex;
+        flex-flow: wrap;
+        align-items: center;
+        justify-content: flex-start;
+	}
+	#staff-schedule .dynamic_modal input[type="text"]{
+		width: calc(100% - 70px) !important;
+	}
+	#staff-schedule .sched_details .box1 textarea{
+		margin-top: 5px;
+		width: 100% !important;
+	}
+	#staff-schedule .sched_details .box1:last-child{
+		flex-flow: column;
+        align-items: flex-start;
+	}
+	#staff-schedule .sched_details .box1:last-child p:last-child{
+		width: 100%;
+	}
+	#staff-schedule.schedule_info .sched1 .row:not(.e_row) > .btn_box{
+		position: relative;
+		min-width: 300px;
+		top:0;
+		margin-top: 0;
+		opacity: 0;
+	}
+	#staff-schedule.schedule_info .sched1 .row:not(.e_row) > .btn_box p{
+		display: flex;
+		flex-flow: wrap;
+	}
+	#staff-schedule.schedule_info .sched1 .row:not(.e_row) > .btn_box p .btn:not(:last-child){
+		margin-right: 5px;
+		
+	}
+	#staff-schedule .sched1 .layout-3col-box:not(.layout_actual) .btn_box .btn{
+		margin-bottom: 5px;
+	}
+
+	
+	#staff-schedule.schedule_info .sched1 .row:not(.e_row):active > .btn_box,
+	#staff-schedule.schedule_info .sched1 .row:not(.e_row):hover > .btn_box::before{
+		content: '';
+		/* display: block;
+		position: absolute; */
+        top: -12px;
+        left: 5px;
+		width: 0;
+		height: 0;
+		border-bottom: 12px solid rgba(213, 231, 232, 0.87);
+		border-left: 6px solid transparent;
+		border-right: 6px solid transparent;
+	}
+	#staff-schedule.schedule_info .sched1 .row:not(.e_row):active > .btn_box,
+	#staff-schedule.schedule_info .sched1 .row:not(.e_row):hover > .btn_box{
+		opacity: 1;
+		min-width: 99%;
+		min-height: 46px;
+        top: auto;
+        bottom: -10px;
+	}
+	#staff-schedule.schedule_info .sched1 .layout-3col-box:first-child .row:not(.e_row):active > .btn_box,
+	#staff-schedule.schedule_info .sched1 .layout-3col-box:first-child .row:not(.e_row):hover > .btn_box{
+		width: 90vw !important;
+	}
+	#staff-schedule.schedule_info .sched1 .layout_actual .row:not(.e_row) > .btn_box{
+		min-width: 120%;
+	}
+	#staff-schedule.schedule_info .sched1 .row > .modified{
+		position: static;
+	}
+	.nursing .cont_user{
+		max-width: 94vw;
+		height: auto;
+        padding-bottom: 20px;
+		top:30%;
+	}
+	.nursing .cont_user .tit + div{
+		margin-bottom: 10px;
+	}
+	.nursing input[type="text"].searchKana{
+		width: calc(100% - 180px);
+	}
+	.nursing .cont_user .btnDlgSearch{
+		background-color: #43425d;
+		color: #fff;
+		border: none;
+		border-radius: 7px;
+		padding: 8px 12px;
+	}
+	.nursing .cont_user table tr th:first-child,
+	.nursing .cont_user table tr td:first-child{
+		width: 55px;
+		text-align: left;
+	}
+	.nursing .cont_user table tr th:nth-child(2),
+	.nursing .cont_user table tr td:nth-child(2){
+		width: 70px;
+	}
+	.nursing .cont_user table tr th:nth-child(3),
+	.nursing .cont_user table tr th:nth-child(4),
+	.nursing .cont_user table tr td:nth-child(3),
+	.nursing .cont_user table tr td:nth-child(4){
+		width: calc((100% - 125px)/2);
+	}
+	.nursing .cont_user table tr td button{
+		width: 45px;
+		padding: 8px 5px;
+		color: #43425d;
+        font-weight: bold;
+	}
+	#kantaki .user-details .name span.label_t.pc::before{
+		content: '';
+		display: block;
+		margin-top: 10px;
+	}
+	#kantaki .user-details span{
+		display: inline-flex;
+	}
+	#kantaki .user-details .name span.label_t{
+		width: 70px;
+        display: inline-flex;
+	}
+	#kantaki .user-details .name span.label_t.pc{
+		width: 80px;
+		}
+	#kantaki .user-details .box.child_toggle{
+		padding-top: 10px;
+	}
+	#kantaki .user-details .box.child_toggle .name{
+		display: none;
+	}
+	#kantaki .user-details .service_date,
+	#kantaki .user-details .staff_inch,
+	#kantaki .user-details .staff_inch .staff_wrap .service_inch1{
+		display: flex;
+		align-items: flex-start;
+		justify-content: flex-start;
+		flex-flow: wrap;
+	}
+	#kantaki .user-details span.label_t{
+		margin-right: 10px;
+		width: 70px;
+		padding: 5px;
+	}
+	#kantaki .user-details .service_date .time{
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 80px;
+	}
+	#kantaki .user-details .service_date .time::after{
+		content: '';
+		display: block;
+		margin-top: 10px;
+	}
+	#kantaki .user-details span.time + input[type="checkbox"]::before{
+		content: '';
+		display: block;
+		margin-top: 10px;
+	}
+	#kantaki .user-details span.time select{
+		max-width: 50px;
+        padding-right: 15px;
+		padding-left: 8px;
+	}
+	.mark_important{
+		display: inline-flex;
+		margin-bottom: 20px;
+		margin-left: 90px;
+	}
+	#kantaki .user-details .mark_important .label_t{
+		padding: 5px 3px;
+	}
+	#kantaki .user-details .label_t{
+		font-size: 14px;
+	}
+	#kantaki .user-details .staff_inch span.label_t{
+		margin-right: 10px;
+        width: 70px;
+        padding: 5px;
+	}
+	#kantaki .user-details .staff_inch .n_search{
+		background-size: 18px;
+	}
+	#kantaki .user-details .staff_inch .staff_wrap input{
+		padding: 10px;
+		margin-right: 5px !important;
+	}
+	#kantaki .user-details .staff_inch .sline .care_worker select{
+		padding: 10px 30px 10px 10px;
+		margin-bottom: 0;
+		width: auto;
+	}
+	#kantaki .user-details .staff_inch span.add{
+		bottom: 0;
+	}
+	.box_username{
+		margin-top: 10px;
+	}
+	#kantaki .user-details .name{
+		margin-bottom: 20px;
+	}
+	#kantaki .record2 .box-r ul.receipt_box .view_box-i .view_btn{
+		display: flex;
+	}
+	#kantaki .record5 .meal_box table tr td.meal_btn .photo_box-meal{
+		left: 10px;
+	}
+	#kantaki .record5 .meal_box table tr td.meal_btn:hover .photo_box-meal{
+		left: 10px;
+		width: 96vw;
+		position: fixed;
+	}
+	#kantaki .record2 .box-l .photo_body{
+		padding-top: 0;
+	}
+	#kantaki .record2 .box-l .photo_body .hbody{
+		padding-top: 0;
+	}
+	#kantaki #canvas-container{
+		max-width: 98%;
+	}
+	#kantaki .record5 .excretion_box table tr td{
+		vertical-align: middle;
+	}
+	#kantaki .record5 .excretion_box table tr td:nth-child(1){
+		width: calc(100% - (27% + 30% + 13%));
+	}
+	#kantaki .record5 .excretion_box table tr td:nth-child(4){
+		width: 13%;
+    	padding: 0;
+	}
+	#kantaki .record5 .excretion_box table tr td:nth-child(2) input[type="text"]{
+		width: calc(100% - 30px);
+	}
+	#kantaki .record5 .excretion_box table tr td:not(:first-child) input[type="text"]{
+		padding: 5px;
+	}
+	#kantaki .record5 .excretion_box table tr td input[type="checkbox"]{
+		width: 20px;
+		height: 20px;
+		margin-right: 0;
+	}
+	#kantaki .record5 .table_box .add::after{
+		left: 3px;
+    	font-size: 18px;
+	}
+	#kantaki .record5 .excretion_box table tr td:nth-child(3) input[type="text"]{
+		width: calc(100% - 30px);
+	}
+	#kantaki .record5 .excretion_box table tr td input[type="time"]{
+		position: relative;
+		padding-right: 18px;
+	}
+	  
+	#kantaki .record5 .excretion_box table tr td input[type="time"]::-webkit-calendar-picker-indicator {
+		  position: absolute;
+		  /*opacity: 0;*/
+		  right: 0;
+	}
+	#nurse-record2 .user-details span.label_t{
+		font-size: 13px;
+	}
+	#nurse-record2 .user-details .visit span.label_t,
+	#nurse-record2 .user-details span.label_t{
+		display: inline-flex;
+		width: 90px;
+		margin-right: 5px;
+	}
+	#nurse-record2 .user-details .profile .n_name{
+		padding: 5px;
+	}
+	#nurse-record2 .user-details .visit span.time{
+		display: flex;
+		align-items:center;
+		justify-content: flex-start;
+		margin-left: 95px;
+	}
+	#nurse-record2 .user-details .wrap1 .time select{
+		margin-left: 0;
+		padding-right: 5px;
+        width: 45px !important;
+	}
+	#nurse-record2 .user-details .visit span.time small{
+		font-size: 10px;
+		margin-right: -1px;
+        margin-left: -1px;
+	}
+	#nurse-record2 .user_id .n_search,
+	#nurse-record2 .user-details .wrap1 .n_search{
+		background-size: 16px auto;
+	}
+	#nurse-record2 .user-details  .user_id,
+	#nurse-record2 .user-details .n_name{
+		margin-bottom: 10px;
+	}
+	#nurse-record2 .user_id .n_search{
+		width: 33px;
+		margin-left: 5px;
+	}
+	#nurse-record2 .user-details .n_num{
+		width: 70px;
+        padding: 5px;
+        text-align: left;
+	}
+	#nurse-record2 .user-details .wrap1 .n_name{
+		padding: 5px;
+	}
+	#nurse-record1 .user-details dl{
+		margin-bottom: 10px;
+	}
+	#nurse-record1 .user-details dl+dl{
+		margin-left: 0;
+	}
+	#nurse-record1 .user-details dl:first-child dt,
+	#nurse-record1 .user-details dl dt{
+		width: 90px;
+	}
+	#nurse-record1 .n_search{
+		background-size: 16px auto;
+	}
+	#nurse-record1 .user-details dl dd{
+		margin-left: 0;
+	}
+	#nurse-record1 .user-details dl dd select{
+		margin: 0;
+		padding: 5px 10px;
+		font-size: 15px;
+	}
+	#nurse-record1 .nurse_record .line{
+		margin-top: 0;
+	}
+	#nurse-record1.nursing .copy_btn{
+		border:none;
+	}
+	#nurse-record1 .nurse_record .category p{
+		margin-right: 15px;
+	}
+	#nurse-record1 .nurse_record .line.category p + p{
+		margin-right: 0;
+	}
+	#nurse-record1 .nurse_record .line > div,
+	#nurse-record1 .nurse_record .line.visit{
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		flex-flow: wrap;
+	}
+	#nurse-record1 .nurse_record .label_t{
+		padding: 3px 5px;
+		display: inline-flex;
+	}
+	#nurse-record1 .user-details .label_t{
+		width: 90px;
+		padding: 3px 5px;
+		display: inline-flex;
+        margin-right: 10px;
+	}
+	#nurse-record1 .occu_list{
+		width: calc(100% - 110px);
+	}
+	#nurse-record1 .occu_list select{
+		width: 100%;
+	}
+	#nurse-record1 .nurse_record .profile .n_name{
+		margin-left: 100px;
+	}
+	#nurse-record1 .nurse_record .profile input.tgt-stf_cd{
+		margin-left: 10px;
+	}
+	#nurse-record1 .nurse_record .visit span.time{
+		margin-left: 100px;
+	}
+	#nurse-record1 .nurse_record input[type="radio"]{
+		margin-left: 0;
+	}
+	#nurse-record1 .nurse_record .visit span.time select{
+		padding: 10px 5px;
+        max-width: 50px;
+        font-size: 16px;
+	}
+	#nurse-record1 .nurse_record .visit span.time small{
+		margin: 0 -3px;
+	}
+	#nurse-record1 .record_info .nurse_record .label_t{
+		width: auto;
+	}
+	#nurse-record1 [type="checkbox"], 
+	#nurse-record1 [type="radio"]{
+		margin-right: 5px;
+	}
+	#nurse-record1 .nursing .record8 > *,
+	#nurse-record1 .nursing .record9 > *{
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+	}
+	#nurse-record1 .record8 .label_t{
+		width: auto;
+		margin-right: 10px;
+		padding: 5px 10px;
+	}
+	#nurse-record1.nursing .record9 span.label_t.hidzuke,
+	#nurse-record1.nursing .record9 span.label_t.time,
+	#nurse-record1.nursing .record9 span.label_t:last-child{
+		background-color: transparent;
+		padding: 0;
+		margin-left: 10px;
+	}
+	#nurse-record1.nursing .record9 span.label_t.time{
+		margin-right: 5px;
+	}
+	#nurse-record1.nursing .modal_setting table{
+		width: 100%;
+		font-size: 12px;
+		margin-top: 15px;
+		border-top: 1px solid #acabb8;
+		border-right: 1px solid #acabb8;
+	}
+	#nurse-record1.nursing .modal_setting table th{
+		background-color: #E0EAF3;
+		color: #43425D;
+		font-size: 12px;
+		min-width: 80px;
+		border-left: 1px solid #acabb8;
+		line-height: 1.2;
+		padding: 5px;
+	}
+	#nurse-record1.nursing .modal_setting table td{
+		border-left: 1px solid #acabb8;
+		border-bottom: 1px solid #acabb8;
+		line-height: 1.2;
+		padding: 5px;
+	}
+	#nurse-record1.nursing .modal_setting table th:nth-child(1),
+	#nurse-record1.nursing .modal_setting table td:nth-child(1){
+		min-width: 55px;
+		text-align: center;
+	}
+	#nurse-record1.nursing .modal_setting table th:nth-child(2),
+	#nurse-record1.nursing .modal_setting table td:nth-child(2){
+		min-width: 75px;
+	}
+	#nurse-record1.nursing .modal_setting table th:nth-child(4),
+	#nurse-record1.nursing .modal_setting table td:nth-child(4){
+		min-width: 120px;
+	}
+	#nurse-record1.nursing .modal_setting table th:nth-child(5),
+	#nurse-record1.nursing .modal_setting table td:nth-child(5){
+		min-width: 100px;
+	}
+	#nurse-record1.nursing .modal_setting table td{
+		min-width: 90px;
+	}
+	#nurse-record1.nursing .modal_setting .new_default{
+		top:50% !important;
+	}
+	#nurse-record1.nursing .modal_setting table td button{ 
+		border-radius: 4px;
+		width: 45px;
+        padding: 8px 5px;
+        color: #43425d;
+        font-weight: bold;
+		background: #F9F9F9;
+		border: 1px solid #E8E9EC;
+	}
+	#directions .patient_info .box-l ul.pdf_controls{
+		display: flex;
+	}
+	#directions .patient_info .box-l ul.pdf_controls li.delete{
+		background-position: 10px center !important;
+        margin-left: auto;
+        margin-right: 0;
+        width: 90px !important;
+        padding-left: 25px !important;
+        padding-right: 5px !important;
+	}
+	#directions .user_stat .m_injury ol{
+		width: 90%;
+	}
+	#directions .user_stat .m_injury ol li{
+		display: flex;
+		margin-bottom: 10px;
+	}
+	#directions.nursing .n_search{
+		margin-right: 5px;
+	}
+	#directions.nursing .nurse_record .profile .n_adr{
+		max-width: 100%;
+	}
+	#directions .user_stat .box_wrap > .j_date{
+        margin-bottom: 30px;
+	}
+	#directions .nurse_record .profile .i_period span.label_t{
+		width: 80px;
+        padding: 3px 5px;
+	}
+	#directions .nurse_record .profile .i_period .direction_months{
+		width: 80px;
+	}
+	#directions .nurse_record .profile .pl_date span.label_t, 
+	#directions .nurse_record .profile .rep_date span.label_t{
+		display: inline-block;
+		padding: 3px 5px;
+	}
+	
+	#directions .nurse_record input[type="text"].disease{
+		width: calc(100% - 50px);
+	}
+	#directions .user_stat .box_wrap > div.special:nth-child(2){
+		margin-top: 20px !important;
+		margin-left: 30px !important;
+	}
+	#directions .user_stat .special li{
+		display: flex;
+		align-items: flex-start;
+		margin-bottom: 10px;
+	}
+	#directions .user_stat .special input.appendix8Dtl{
+		width: 20px;
+		height: 20px;
+		margin-top: 2px;
+	}
+	#directions .user_stat .special li label{
+		line-height: 1.2;
+		width: calc(100% - 35px);
+	}
+	#nurse-record2 .user-details .visit span.label_t,
+	#nurse-record2 .user-details span.label_t{
+		width: 80px;
+	}
+	#nurse-record2.nursing  .btn.print{
+		display: none;
+	}
+	#nurse-record2 .vitals .d_left table th{
+        width: 40px;
+		vertical-align: top;
+	}
+	#nurse-record2 .vitals .d_left table tr:nth-child(6) th{
+		width: 50px;
+	}
+	#nurse-record2 .vitals .d_left span.label_t{
+		line-height: 1.2;
+		display: inline-block;
+	}
+	#nurse-record2 .vitals .d_left table td{
+        width: calc(100% - 50px);
+	}
+	#nurse-record2.nursing select{
+		padding-left: 5px;
+		width: auto;
+	}
+	#nurse-record2 .cont_staff,
+	#nurse-record2 .cont_staff2{
+		width: 98vw;
+	}
+	.cont_staff table :is(thead, tbody tr),
+	.cont_staff2 table :is(thead, tbody tr){
+		table-layout:auto;
+	}
+	.cont_staff table tr th,
+	.cont_staff table tr td,
+	.cont_staff2 table tr th,
+	.cont_staff2 table tr td{
+		width: 100px;
+	}
+	.cont_staff table tr th:nth-child(1),
+	.cont_staff2 table tr th:nth-child(1){
+		width: 55px;
+	}
+	.cont_staff table tr td:nth-child(1),
+	.cont_staff2 table tr td:nth-child(1){
+		width: 50px;
+	}
+	.cont_staff table tr td:nth-child(3),
+	.cont_staff table tr th:nth-child(3),
+	.cont_staff2 table tr td:nth-child(3),
+	.cont_staff2 table tr th:nth-child(3){
+		width: 120px;
+		padding: 5px;
+	}
+	.cont_staff table tr td:nth-child(5),
+	.cont_staff table tr th:nth-child(5),
+	.cont_staff2 table tr td:nth-child(5),
+	.cont_staff2 table tr th:nth-child(5){
+		width: 100px;
+	}
+	.cont_staff table tr td button,
+	.cont_staff2 table tr td button{
+		width: 40px;
+		height: 40px;
+	}
+	.gaf_scale{
+		max-width: 90vw;
+	}
+	#record-detail .user-details span.label_t{
+		display: inline-flex;
+		padding: 5px 2px;
+		width: 80px !important;
+		font-size: 14px;
+	}
+	#record-detail .user-details [class^="box"] > *{
+		margin-bottom: 10px;
+        margin-top: 0;
+	}
+	#record-detail .user-details span.juuyou{
+		margin-left: 85px;
+	}
+	#record-detail .user-details .n_search{
+		background-size: 14px auto;
+	}
+	#record-detail .user-details .div1 select,
+	#record-detail .user-details .div2 select{
+		margin: 0;
+		width: auto;
+		padding-right: 50px;
+		background-position: right 8px center;
+	}
+	#record-detail .btn.print{
+		display: none;
+	}
+	#record-detail .cont_staff{
+		max-width: 95vw;
+	}
+	.btnDlgSearchSt1{
+		margin-bottom: 10px;
+		background-color: #43425D;
+		border: none;
+        color: #fff;
+        -webkit-appearance: none;
+        height: 36px;
+        padding: 0 10px;
+        border-radius: 5px;
+	}
+	#kantaki .record5 .fukuyaku_box table tr input[type="checkbox"]{
+		width: 20px;
+		height: 20px;
+		margin-right: 3px;
+	}
+	#kantaki .record5 .fukuyaku_box table tr td:not(.mf_tit) label{
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		color: #333;
+		font-weight: 400;
+	}
+	#kantaki .record5 .fukuyaku_box table tr:nth-child(5) td span.label_t{
+		display: inline-flex;
+		margin-right: 0;
+		margin-bottom: 10px;
+		
+		padding: 3px;
+	}
+	#kantaki .record5 .fukuyaku_box table tr:nth-child(5) td span.label_t label{
+		color: #174A84;
+	}
+	
+}
+
+@media only screen and (min-width: 701px) {
+	.sp_user_name{
+		display: none;
+	}
+	.nursing .btn_box .btn.add2{
+		max-width: 100px;
+	}
+	.schedule_info .cont_head [class^="condition"] .label_t{
+		height: 30px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0 5px;
+	}
+	.schedule_info .cont_head [class^="condition"] ul{
+		width: calc(100% - 55px);
+	}
+	.schedule_info .cont_head [class^="condition"] ul li{
+		margin-bottom: 10px;
+	}
+	.schedule_info .cont_head .box2{
+		margin-bottom: 20px;
+	}
+	.schedule_info .cont_head .schedule{
+		position: static;
+	}
+	.schedule_info .tit_box .mid{
+		min-height: 35px;
+	}
+	.noins_checkbox{
+		margin-left: 200px;
+	}
+	.content_jippi thead th{
+		text-align: left;
+		font-size: 87.5%;
+		font-weight: 500;
+		color: #174A84;
+	}
+	.content_jippi thead th br{
+		display: none;
+	}
+	.new_default .add_sub .btn_append_jippi.add_btn{
+		bottom: 20px;
+	}
+	.mark_important{
+		display: inline-flex;
+	}
+	.nursing .record7 .status ul li input[type="checkbox"]{
+		margin-right: 5px;
+	}
+	
+}

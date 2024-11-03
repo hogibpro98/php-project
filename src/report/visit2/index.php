@@ -51,7 +51,7 @@
                     <!--/// CONTENT_START ///-->
                     <form action="" method="post" class="p-form-validate" enctype="multipart/form-data" accept-charset="UTF-8">
                         <h2 class="tit_sm">訪問看護記録Ⅱ<span class="n_rec2">詳細</span></h2>
-                        <div id="patient" class="sm">大橋 花子</div>
+                        <div id="patient" class="sm"><?= $dispData['user_name'] ?></div>
                         <div id="subpage"><div id="nurse-record2" class="nursing">
                                 <div class="wrap">
                                     <ul class="user-tab">
@@ -369,7 +369,7 @@
                                                 <?php foreach ($gnrList['身体介助'] as $key => $val): ?>
                                                     <dd>
                                                         <?php $check = strpos($dispData['deal_care'], $val) !== FALSE ? ' checked' : NULL; ?>
-                                                        <input type="checkbox" name="upDummy[deal_care][]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label>
+                                                        <label><input type="checkbox" name="upDummy[deal_care][]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label>
                                                     </dd>
                                                 <?php endforeach; ?>
                                             </dl>
@@ -378,7 +378,7 @@
                                                 <?php foreach ($gnrList['処置'] as $key => $val): ?>
                                                     <dd>
                                                         <?php $check = strpos($dispData['deal_care'], $val) !== FALSE ? ' checked' : NULL; ?>
-                                                        <input type="checkbox" name="upDummy[deal_care][]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label>
+                                                        <label><input type="checkbox" name="upDummy[deal_care][]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label>
                                                     </dd>
                                                 <?php endforeach; ?>
                                             </dl>
@@ -387,7 +387,7 @@
                                                 <?php foreach ($gnrList['管理・指導'] as $key => $val): ?>
                                                     <dd>
                                                         <?php $check = strpos($dispData['deal_care'], $val) !== FALSE ? ' checked' : NULL; ?>
-                                                        <input type="checkbox" name="upDummy[deal_care][]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label>
+                                                        <label><input type="checkbox" name="upDummy[deal_care][]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label>
                                                     </dd>
                                                 <?php endforeach; ?>
                                             </dl>
@@ -396,7 +396,7 @@
                                                 <?php foreach ($gnrList['リハビリ'] as $key => $val): ?>
                                                     <dd>
                                                         <?php $check = strpos($dispData['deal_care'], $val) !== FALSE ? ' checked' : NULL; ?>
-                                                        <input type="checkbox" name="upDummy[deal_care][]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label>
+                                                        <label><input type="checkbox" name="upDummy[deal_care][]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label>
                                                     </dd>
                                                 <?php endforeach; ?>
                                             </dl>
@@ -551,7 +551,7 @@
                         <!--/// CONTENT_END ///-->
                         <div class="fixed_navi patient_navi record2-navi">
                             <div class="box">
-                                <div class="btn back pc"><button type="submit" name="btnReturn" value="true">訪問看護記録Ⅱ一覧にもどる</button></div>
+                                <div class="btn back pc"><button type="submit" name="btnReturn" value="true">記録一覧にもどる</button></div>
                                 <div class="controls">
                                     <button type="submit" class="btn save" name="btnEntry" value="保存">保存</button>
                                 </div>

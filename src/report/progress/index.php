@@ -24,15 +24,15 @@
 <!--/// CONTENT_START ///-->
 <form action="" method="post" class="p-form-validate" enctype="multipart/form-data" accept-charset="UTF-8">
 <h2 class="tit_sm">経過記録</h2>
-<div id="patient" class="sm">大橋 花子</div>
+<div id="patient" class="sm"><?= $dispData['user_name'] ?></div>
 <div id="subpage"><div id="record-detail" class="nursing">
 
 <div class="wrap">
-                                        <ul class="user-tab">
-                                        <li><a href="/user/edit/?user=<?= $userId ?>">基本情報</a></li>
-                                        <li class="active"><a href="/report/list/?user=<?= $userId ?>">各種帳票</a></li>
-                                        <li><a href="/image/list/?user=<?= $userId ?>">画像関連</a></li>
-                                    </ul>
+     <ul class="user-tab">
+        <li><a href="/user/edit/?user=<?= $userId ?>">基本情報</a></li>
+        <li class="active"><a href="/report/list/?user=<?= $userId ?>">各種帳票</a></li>
+        <li><a href="/image/list/?user=<?= $userId ?>">画像関連</a></li>
+     </ul>
 
     <div class="nurse_record user-details">
         <div class="d_left">
@@ -71,8 +71,8 @@
                 <div class="kubun sm">
                     <span class="juuyou">
                         <?php $checked = !empty($dispData['importantly']) ? ' checked' : NULL; ?>
-                        <input type="checkbox" name="upAry[importantly]" value="重要" <?= $checked ?>>
-                        <label>重要</label>
+                        <label><input type="checkbox" name="upAry[importantly]" value="重要" <?= $checked ?>>
+                        重要</label>
                     </span>
                 </div>
                 <div class="cont_div div1">					
@@ -167,7 +167,7 @@
 <div class="fixed_navi patient_navi record-navi">
     <div class="box">
         <!--<div class="btn back pc"><button type="submit" name="btnReturn" value="true">利用者一覧にもどる</button></div>-->
-        <div class="btn back pc"><button type="submit" name="btnReturn" value="true">経過記録一覧にもどる</button></div>
+        <div class="btn back pc"><button type="submit" name="btnReturn" value="true">記録一覧にもどる</button></div>
         <div class="btn back sm"><a href="/report/report_list/index.php"><img src="/common/image/icon_return.png" alt="Return"></a></div>
         <div class="controls">
             <button type="submit" class="btn save" name="btnEntry" value="保存">保存

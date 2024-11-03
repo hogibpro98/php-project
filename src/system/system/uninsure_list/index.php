@@ -1,9 +1,9 @@
-<?php require_once(dirname(__FILE__)."/php/uninsure_list.php"); ?>
+<?php require_once(dirname(__FILE__) . "/php/uninsure_list.php"); ?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
 <!--COMMON-->
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/common/parts/common.php'); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/common/parts/common.php'); ?>
 <!--CONTENT-->
 <title>保険外マスタ一覧</title>
 </head>
@@ -11,7 +11,7 @@
 <body>
 <div id="wrapper"><div id="base">
 <!--HEADER-->
-<?php require_once($_SERVER['DOCUMENT_ROOT'].'/common/parts/header.php'); ?>
+<?php require_once($_SERVER['DOCUMENT_ROOT'] . '/common/parts/header.php'); ?>
 <!--CONTENT-->
 <article id="content">
 <!--/// CONTENT_START ///-->
@@ -22,7 +22,7 @@
 <div class="cont_head">
 	<div class="code">
 		<span class="label_t text_blue">コード</span>
-		<input type="text" name="sAry[code]" class="code_input" value="<?=!empty($dispSearch['code']) ? $dispSearch['code'] : NULL  ?>">
+		<input type="text" name="sAry[code]" class="code_input" value="<?=!empty($dispSearch['code']) ? $dispSearch['code'] : null  ?>">
 	</div>
 	<div class="type">
 		<span class="label_t text_blue">種類</span>
@@ -36,7 +36,7 @@
 	</div>
 	<div class="code_name">
 		<span class="label_t text_blue">コード名称</span>
-		<input type="text" name="sAry[name]" class="codename" value="<?=!empty($dispSearch['name']) ? $dispSearch['name'] : NULL ?>">
+		<input type="text" name="sAry[name]" class="codename" value="<?=!empty($dispSearch['name']) ? $dispSearch['name'] : null ?>">
 	</div>
 	<div class="expired">
 		<input type="checkbox" name="sAry[range]" id="ex_view" value="1" <?= (!empty($dispSearch['range']) && $dispSearch['range'] != '') ? 'checked' : '' ?>><label for="ex_view">有効期間が切れたマスタ表示</label>
@@ -69,18 +69,18 @@
 		<tr>
 			<form action="" class="p-form-validate" method="get">
 			<input type="hidden" name="id" value="<?= $val['unique_id'] ?>">
-			<td><?= $val['code1'].'　'.$val['code2']  ?></td>
+			<td><?= $val['code1'] . '　' . $val['code2']  ?></td>
 			<td><?= $val['type'] ?></td>
 			<td><?= $val['name'] ?></td>
 			<td><?= $val['disp_name'] ?></td>
 			<td><?= $val['standard_flg'] ?></td>
-			<td><?= $val['start_day'].'～'.$val['end_day'] ?></td>
-			<td><?= $val['price'].'円' ?></td>
+			<td><?= $val['start_day'] . '～' . $val['end_day'] ?></td>
+			<td><?= $val['price'] . '円' ?></td>
 			<td><?= $val['zei_type'] ?></td>
-			<td><?= $val['rate'].'％' ?></td>
+			<td><?= $val['rate'] . '％' ?></td>
 			<td><?= $val['subsidy'] ?></td>
 			<td><?= $val['office'] ?></td>
-			<td><?= $val['update_day'].'　'.$val['update_time'].'　'.$val['update_name'] ?></td>
+			<td><?= $val['update_day'] . '　' . $val['update_time'] . '　' . $val['update_name'] ?></td>
 			<td><div class="btn edit" style="min-width:50px"><a href="/system/uninsure_edit?id=<?= $tgtId ?>">編集</a></div></td>
 			<td><div class="btn delete" style="min-width:50px"S><button type="submit" name="btnDelete" value="true" class="btn delete">削除</button></div></td>
 			</form>

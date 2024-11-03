@@ -64,7 +64,7 @@
                                     <tr>
                                         <th class="">No</th>
                                         <th class="">帳票名</th>
-                                        <th class="">作成日時</th>
+                                        <th class="">指示期間</th>
                                         <th class="">利用者</th>
                                         <th class="">担当者</th>
                                         <th class="">ステータス</th>
@@ -76,7 +76,7 @@
                                         <tr>
                                             <td><?= $i ?></td>
                                             <td><?= $val['report_name'] ?></td>
-                                            <td><?= $val['create_date'] ?></td>
+                                            <td><?= $val['direction_dates'] ?></td>
                                             <td><?= $val['user_name'] ?></td>
                                             <td><?= $val['person_name'] ?></td>
                                             <td><?= $val['status'] ?></td>

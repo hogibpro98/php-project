@@ -7,6 +7,30 @@
         <!--CONTENT-->
         <script src="/user/list/js/user.js"></script>
         <title>利用者一覧 - やさしい手</title>
+        <style>
+        /* Default button styles */
+        .btn.save {
+            background: #188F9D;
+            color: #fff;
+            border-radius: 4px;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Disabled button styles */
+        .btn.save.disabled {
+            background-color: grey;
+            cursor: not-allowed;
+        }
+
+        /* Message styles */
+        #message {
+            display: none; /* Hidden by default */
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
     </head>
 
     <body>
@@ -26,9 +50,9 @@
                                             <div>
                                                 <input type="text" name="search[kana]" value="<?= $search['kana'] ?>" id="user_name-k" placeholder="全角カナを入力してください。">
                                                 <select name="search[sort]" class="fil_all">
-                                                    <?php $select = $search['sort'] == NULL || $search['sort'] === "other_id ASC" ? ' selected' : NULL; ?>
+                                                    <?php $select = $search['sort'] == null || $search['sort'] === "other_id ASC" ? ' selected' : null; ?>
                                                     <option value="other_id ASC" <?= $select ?>>利用者IDでソート</option>
-                                                    <?php $select = $search['sort'] === "last_kana ASC, first_kana ASC" ? ' selected' : NULL; ?>
+                                                    <?php $select = $search['sort'] === "last_kana ASC, first_kana ASC" ? ' selected' : null; ?>
                                                     <option value="last_kana ASC, first_kana ASC" <?= $select ?>>カナでソート</option>
                                                 </select>
                                                 <button type="submit" name="btnSearch" value="true" class="btn search">絞り込み</button>
@@ -37,11 +61,11 @@
                                         <div class="filter_box">
                                             <div class="fil_con">
                                                 <select id="fil_con" name="search[status]">
-                                                    <?php $select = !$search['status'] ? ' selected' : NULL; ?>
+                                                    <?php $select = !$search['status'] ? ' selected' : null; ?>
                                                     <option value=""<?= $select ?>>契約状態全て</option>
-                                                    <?php $select = $search['status'] === '契約中' ? ' selected' : NULL; ?>
+                                                    <?php $select = $search['status'] === '契約中' ? ' selected' : null; ?>
                                                     <option value="契約中"<?= $select ?>>契約中</option>
-                                                    <?php $select = $search['status'] === '停止中' ? ' selected' : NULL; ?>
+                                                    <?php $select = $search['status'] === '停止中' ? ' selected' : null; ?>
                                                     <option value="停止中"<?= $select ?>>契約中以外</option>
                                                 </select>
                                             </div>
@@ -49,16 +73,16 @@
                                                 <select id="fil_cat" name="search[service]">
                                                     <option value="">サービス利用区分全て</option>
                                                     <?php foreach ($codeList['利用者基本情報_基本情報']['サービス利用区分'] as $val): ?>
-                                                        <?php $select = $search['service'] === $val ? ' selected' : NULL; ?>
+                                                        <?php $select = $search['service'] === $val ? ' selected' : null; ?>
                                                         <option value="<?= $val ?>"<?= $select ?>><?= $val ?></option>
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
                                             <div class="fil_all">
                                                 <select id="fil_all" name="search[ng]">
-                                                    <?php $select = !$search['ng'] ? ' selected' : NULL; ?>
+                                                    <?php $select = !$search['ng'] ? ' selected' : null; ?>
                                                     <option value="" <?= $select ?>>NG状態全て</option>
-                                                    <?php $select = $search['ng'] ? ' selected' : NULL; ?>
+                                                    <?php $select = $search['ng'] ? ' selected' : null; ?>
                                                     <option value="ng" <?= $select ?>>NGのみ</option>
                                                 </select>
                                             </div>
@@ -69,7 +93,7 @@
                             </form>
 
                             <form  action="" class="p-form-validate" method="post">
-                                    <div class="btn deploy display_dets" style="top:200px;left:1020px;z-index:1;">展開</div>
+                                    <div class="btn deploy display_dets  disabled"  style="top:200px;left:1020px;z-index:1;">展開</div>
                                     <div class="sched_details dep_jouken cancel_act" style="top:260px;left:1000px;">
                                         <div class="close close_part">✕<span>閉じる</span></div>
                                         <div class="sched_tit">展開条件</div>
@@ -77,9 +101,9 @@
                                             <div class="box1">
                                                 <p class="mid"><span class="label_t">展開方法</span></p>
                                                 <p>
-                                                    <?php $check = $search['type'] != 2 ? ' checked' : NULL; ?>
+                                                    <?php $check = $search['type'] != 2 ? ' checked' : null; ?>
                                                     <span><input type="radio" name="search[type]" value="1" id="method1"<?= $check ?>><label for="method1">差分のみ展開</label></span>
-                                                    <?php $check = $search['type'] == 2 ? ' checked' : NULL; ?>
+                                                    <?php $check = $search['type'] == 2 ? ' checked' : null; ?>
                                                     <span><input type="radio" name="search[type]" value="2" id="method2"<?= $check ?>><label for="method2">既存削除後に上書き</label></span>
                                                 </p>
                                             </div>
@@ -103,6 +127,7 @@
                                                 <span class="btn cancel">キャンセル</span>
                                                 <!--<span class="btn save">上記の条件で一括展開する</span>-->
                                                 <button type="submit" class="btn save" name="btnMakePlanAll" value="true">展開</button>
+                                                <span id="message">利用者を選択してください</span>
                                             </p>
                                         </div>
                                         <script>
@@ -225,5 +250,56 @@
                 <!--CONTENT-->
             </div></div>
         <p id="page"><a href="#wrapper">PAGE TOP</a></p>
+        <script>
+            $(document).ready(function () {
+                const $selectAll = $('#select-all');
+                const $checkUsers = $('.check_user');
+                const $submitButton = $('.btn.save');
+                const $message = $('#message');
+
+                // Function to update submit button state and message
+                function updateButtonState() {
+                    const anyChecked = $checkUsers.is(':checked');
+                    if (anyChecked) {
+                        $submitButton.removeClass('disabled').prop('disabled', false);
+                        $message.hide();
+                    } else {
+                        $submitButton.addClass('disabled').prop('disabled', true);
+                        $message.show();
+                    }
+                }
+
+                // Select or deselect all checkboxes based on "select all" checkbox
+                $selectAll.on('click', function () {
+                    $checkUsers.prop('checked', this.checked);
+                    updateButtonState();
+                });
+
+                // Update submit button state when individual checkboxes are clicked
+                $checkUsers.on('click', function () {
+                    if (!$checkUsers.is(':checked')) {
+                        $selectAll.prop('checked', false);
+                    } else if ($checkUsers.filter(':checked').length === $checkUsers.length) {
+                        $selectAll.prop('checked', true);
+                    }
+                    updateButtonState();
+                });
+
+                // Initial button state check
+                updateButtonState();
+
+                // save position scroll into localStorage when click
+                $('#user-list table.dis_result td.disabled_list span a').on('click', function () {
+                    localStorage.setItem('scrollPosition', window.scrollY);
+                });
+
+                // set scroll position when reload
+                const scrollPosition = localStorage.getItem('scrollPosition');
+                if (scrollPosition) {
+                    window.scrollTo(0, parseInt(scrollPosition, 10));
+                    localStorage.removeItem('scrollPosition');
+                }
+            });
+        </script>
     </body>
 </html>

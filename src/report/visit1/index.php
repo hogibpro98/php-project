@@ -18,7 +18,7 @@
                     <form action="" method="post" class="p-form-validate" enctype="multipart/form-data" accept-charset="UTF-8">
 
                         <h2>訪問看護記録Ⅰ</h2>
-                        <div id="patient" class="sm">大橋 花子</div>
+                        <div id="patient" class="sm"><?= $dispData['user_name'] ?></div>
                         <div id="subpage"><div class="nursing" id="nurse-record1">
                                 <div class="wrap">
                                     <ul class="user-tab">
@@ -65,7 +65,7 @@
                                         </div>        
                                         <div class="nurse_record record1">
                                             <div class="line category">
-                                                <span class="label_t">訪問看護区分</span>
+                                                <span class="label_t">訪問看護<br class="sm">区分</span>
                                                 <p>
                                                     <?php $check = $dispData['care_kb'] !== '精神科訪問看護' ? ' checked' : NULL; ?>
                                                     <input type="radio" name="upAry[common][care_kb]" class="f-keyVal" value="訪問看護"<?= $check ?>>
@@ -83,7 +83,7 @@
                                                     <input type="date" class="" style="width:150px;" name="upAry[common][report_day]" value="<?= $dispData['report_day'] === '0000-00-00' ? NULL : $dispData['report_day'] ?>">
                                                 </div>
                                                 <div class="name">
-                                                    <span class="label_t">看護師等氏名</span>
+                                                    <span class="label_t">看護師等<br class="sm">氏名</span>
                                                     <p class="n_search staff_search" style="position:static">Search</p>
                                                     <input type="hidden" class="n_num tgt-stf_id f-keyVal" name="upAry[common][staff_id]" value="<?= $dispData['staff_id'] ?>">
                                                     <input type="text" class="n_num tgt-stf_cd f-keyVal" name="upDummy[staff_cd]" value="<?= $dispData['staff_cd'] ?>">
@@ -103,7 +103,7 @@
                                                 </div>
                                             </div>
                                             <div class="line visit">
-                                                <span class="label_t">初回訪問日</span>
+                                                <span class="label_t">初回<br class="sm">訪問日</span>
                                                 <input type="date" class="f-keyVal" name="upAry[common][first_day]" value="<?= $dispData['first_day'] === '0000-00-00' ? NULL : $dispData['first_day'] ?>" style="width:150px;">
                                                 <!--<span class="time"><input type="text" name="to" class="from" value="10:00"> ～ <input type="text" name="to" class="to" placeholder="時刻"></span>-->
                                                 <span class="time">
@@ -220,70 +220,70 @@
                                                         <span class="label_t">食事</span>
                                                         <?php foreach ($gnrList['食事'] as $val): ?>
                                                             <?php $check = $dispData['adl1'] == $val ? ' checked' : NULL; ?>
-                                                            <p><input type="radio" name="upAry[訪問看護][adl1]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                            <p><label><input type="radio" name="upAry[訪問看護][adl1]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                         <?php endforeach; ?>
                                                     </div>
                                                     <div class="transfer">
                                                         <span class="label_t">椅子とベッド間の移乗</span>
                                                         <?php foreach ($gnrList['椅子とベッドの移乗'] as $val): ?>
                                                             <?php $check = $dispData['adl2'] == $val ? ' checked' : NULL; ?>
-                                                            <p><input type="radio" name="upAry[訪問看護][adl2]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                            <p><label><input type="radio" name="upAry[訪問看護][adl2]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                         <?php endforeach; ?>
                                                     </div>
                                                     <div class="grooming">
                                                         <span class="label_t">整容</span>
                                                         <?php foreach ($gnrList['整容'] as $val): ?>
                                                             <?php $check = $dispData['adl3'] == $val ? ' checked' : NULL; ?>
-                                                            <p><input type="radio" name="upAry[訪問看護][adl3]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                            <p><label><input type="radio" name="upAry[訪問看護][adl3]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                         <?php endforeach; ?>
                                                     </div>
                                                     <div class="toilet">
                                                         <span class="label_t">トイレ動作</span>
                                                         <?php foreach ($gnrList['トイレ動作'] as $val): ?>
                                                             <?php $check = $dispData['adl4'] == $val ? ' checked' : NULL; ?>
-                                                            <p><input type="radio" name="upAry[訪問看護][adl4]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                            <p><label><input type="radio" name="upAry[訪問看護][adl4]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                         <?php endforeach; ?>
                                                     </div>
                                                     <div class="bath">
                                                         <span class="label_t">入浴</span>
                                                         <?php foreach ($gnrList['入浴'] as $val): ?>
                                                             <?php $check = $dispData['adl5'] == $val ? ' checked' : NULL; ?>
-                                                            <p><input type="radio" name="upAry[訪問看護][adl5]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                            <p><label><input type="radio" name="upAry[訪問看護][adl5]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                         <?php endforeach; ?>
                                                     </div>
                                                     <div class="walk">
                                                         <span class="label_t">平地歩行</span>
                                                         <?php foreach ($gnrList['平地歩行'] as $val): ?>
                                                             <?php $check = $dispData['adl6'] == $val ? ' checked' : NULL; ?>
-                                                            <p><input type="radio" name="upAry[訪問看護][adl6]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                            <p><label><input type="radio" name="upAry[訪問看護][adl6]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                         <?php endforeach; ?>
                                                     </div>
                                                     <div class="climb">
                                                         <span class="label_t">階段昇降</span>
                                                         <?php foreach ($gnrList['階段昇降'] as $val): ?>
                                                             <?php $check = $dispData['adl7'] == $val ? ' checked' : NULL; ?>
-                                                            <p><input type="radio" name="upAry[訪問看護][adl7]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                            <p><label><input type="radio" name="upAry[訪問看護][adl7]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                         <?php endforeach; ?>
                                                     </div>
                                                     <div class="change">
                                                         <span class="label_t">更衣</span>
                                                         <?php foreach ($gnrList['更衣'] as $val): ?>
                                                             <?php $check = $dispData['adl8'] == $val ? ' checked' : NULL; ?>
-                                                            <p><input type="radio" name="upAry[訪問看護][adl8]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                            <p><label><input type="radio" name="upAry[訪問看護][adl8]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                         <?php endforeach; ?>
                                                     </div>
                                                     <div class="b_control">
                                                         <span class="label_t">排便コントロール</span>
                                                         <?php foreach ($gnrList['排便コントロール'] as $val): ?>
                                                             <?php $check = $dispData['adl9'] == $val ? ' checked' : NULL; ?>
-                                                            <p><input type="radio" name="upAry[訪問看護][adl9]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                            <p><label><input type="radio" name="upAry[訪問看護][adl9]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                         <?php endforeach; ?>
                                                     </div>
                                                     <div class="v_control">
                                                         <span class="label_t">排尿コントロール</span>
                                                         <?php foreach ($gnrList['排尿コントロール'] as $val): ?>
                                                             <?php $check = $dispData['adl10'] == $val ? ' checked' : NULL; ?>
-                                                            <p><input type="radio" name="upAry[訪問看護][adl10]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                            <p><label><input type="radio" name="upAry[訪問看護][adl10]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                         <?php endforeach; ?>
                                                     </div>
                                                 </div>
@@ -295,13 +295,13 @@
                                                         <div class="opinion">
                                                             <?php foreach ($gnrList['障害自立度_見解'] as $val): ?>
                                                                 <?php $check = $dispData['handicap_opinion'] == $val ? ' checked' : NULL; ?>
-                                                                <input type="radio" name="upAry[訪問看護][handicap_opinion]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label>
+                                                                <label><input type="radio" name="upAry[訪問看護][handicap_opinion]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label>
                                                             <?php endforeach; ?>
                                                         </div>
                                                         <div class="none">
                                                             <?php foreach ($gnrList['障害自立度_ランク'] as $val): ?>
                                                                 <?php $check = $dispData['handicap_rank'] == $val ? ' checked' : NULL; ?>
-                                                                <p><input type="radio" name="upAry[訪問看護][handicap_rank]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                                <p><label><input type="radio" name="upAry[訪問看護][handicap_rank]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                             <?php endforeach; ?>
                                                         </div>
                                                         <div class="comment">
@@ -316,13 +316,13 @@
                                                         <div class="opinion">
                                                             <?php foreach ($gnrList['認知症自立度_見解'] as $val): ?>
                                                                 <?php $check = $dispData['dementia_opinion'] == $val ? ' checked' : NULL; ?>
-                                                                <input type="radio" name="upAry[訪問看護][dementia_opinion]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label>
+                                                                <label><input type="radio" name="upAry[訪問看護][dementia_opinion]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label>
                                                             <?php endforeach; ?>
                                                         </div>
                                                         <div class="none">
                                                             <?php foreach ($gnrList['認知症自立度_ランク'] as $val): ?>
                                                                 <?php $check = $dispData['dementia_rank'] == $val ? ' checked' : NULL; ?>
-                                                                <p><input type="radio" name="upAry[訪問看護][dementia_rank]" value="<?= $val ?>"<?= $check ?>><label><?= $val ?></label></p>
+                                                                <p><label><input type="radio" name="upAry[訪問看護][dementia_rank]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label></p>
                                                             <?php endforeach; ?>
                                                         </div>
                                                         <div class="comment">
@@ -660,8 +660,8 @@
                                                     <ul>
                                                     <?php endif; ?>
                                                     <li>
-                                                        <?php $check = strpos($dispData['use_service'], $val) !== FALSE ? ' checked' : NULL; ?>
-                                                        <input type="checkbox" name="upDummy[use_service][]" value="<?= $val ?>"<?= $check ?>><?= $val ?>
+                                                        <label><?php $check = strpos($dispData['use_service'], $val) !== FALSE ? ' checked' : NULL; ?>
+                                                        <input type="checkbox" name="upDummy[use_service][]" value="<?= $val ?>"<?= $check ?>><?= $val ?></label>
                                                     </li>
                                                     <?php if ($i > 9 || $tgtId == $lastKey): ?>
                                                     </ul>
@@ -729,7 +729,7 @@
                                 <!--        <div class="btn back pc">
                                             <button type="submit" name="btnReturn" value="true">利用者一覧にもどる</button>
                                         </div>-->
-                                <div class="btn back pc"><button type="submit" name="btnReturn" value="true">訪問看護記録Ⅰ一覧にもどる</button></div>
+                                <div class="btn back pc"><button type="submit" name="btnReturn" value="true">記録一覧にもどる</button></div>
                                 <div class="btn back sm"><a href="/report/report_list/index.php"><img src="/common/image/icon_return.png" alt="Return"></a></div>
                                 <div class="controls">
                                     <button type="submit" class="btn save" name="btnEntry" value="保存">保存</button>
@@ -746,32 +746,31 @@
             var tbl = document.getElementById("facility");
             var tbody = tbl.children[1];
             function addRows() {
-                var tr_new = "";
-                tr_new += '<tr>';
-                tr_new += '    <td>';
-                tr_new += '    </td>';
-                tr_new += '    <td>';
-                tr_new += '        <input name="upFcl1[contact][]" type="text">';
-                tr_new += '    </td>';
-                tr_new += '    <td>';
-                tr_new += '        <input name="upFcl1[person][]" type="text">';
-                tr_new += '    </td>';
-                tr_new += '    <td>';
-                tr_new += '        <input name="upFcl1[remarks][]" type="text">';
-                tr_new += '    </td>';
-                tr_new += '    <td>';
-                tr_new += '        <span class="btn trash" onclick="delRows(this)">';
-                tr_new += '        削除';
-                tr_new += '        </span>';
-                tr_new += '    </td>';
-                tr_new += '</tr>';
-                tbody.innerHTML += tr_new;
+                var tbl = document.getElementById("facility");
+                var tbody = tbl.getElementsByTagName("tbody")[0];
+                
+                // Create a new row
+                var newRow = tbody.insertRow();
+
+                // Create and insert cells
+                var cell1 = newRow.insertCell(0);
+                var cell2 = newRow.insertCell(1);
+                var cell3 = newRow.insertCell(2);
+                var cell4 = newRow.insertCell(3);
+                var cell5 = newRow.insertCell(4);
+
+                // Set the cell contents
+                cell1.innerHTML = '';
+                cell2.innerHTML = '<input name="upFcl1[contact][]" type="text">';
+                cell3.innerHTML = '<input name="upFcl1[person][]" type="text">';
+                cell4.innerHTML = '<input name="upFcl1[remarks][]" type="text">';
+                cell5.innerHTML = '<span class="btn trash" onclick="delRows(this)">削除</span>';
             }
 
-            //末尾行削除
-            function delRows(r) {
-                var row = r.parentNode.parentNode.rowIndex;
-                tbl.deleteRow(row);
+            //行削除
+            function delRows(element) {
+                var row = element.parentNode.parentNode;
+                row.parentNode.removeChild(row);
             }
             
             // 利用者基本情報から反映する

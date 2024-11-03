@@ -68,6 +68,18 @@ $userId = filter_input(INPUT_GET, 'user');
 if (!$userId) {
     $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : NULL;
 }
+if(!$userId && empty($_SESSION['user']))
+{
+    if ($keyId){
+        $where = array();
+        $where['delete_flg'] = 0;
+        $where['unique_id']  = $keyId;
+        $temp = select($table1, 'user_id', $where);
+        if (isset($temp[0])){
+            $userId = $temp[0]['user_id'];
+        }
+    }
+}
 
 // 複製時のパラメータ
 $copy = filter_input(INPUT_GET, 'copy');
@@ -411,9 +423,15 @@ if ($btnDel && $upData) {
 
 // 戻るボタン
 if ($btnReturn){
-    $nextPage = '/report/visit1_list/index.php';
-    header("Location:". $nextPage);
-    exit();    
+    // $nextPage = '/report/visit1_list/index.php';
+    // header("Location:". $nextPage);
+    // exit(); 
+    // Redirect to the stored search URL or fallback page if not set
+    $fallbackPage = '/report/visit1_list/index.php';
+    $redirectUrl = isset($_SESSION['search_url']) ? $_SESSION['search_url'] : $fallbackPage;
+    header("Location: " . $redirectUrl);
+    exit();
+   
 }
 
 /* =================================================== 
@@ -503,6 +521,12 @@ if ($keyId){
         // 格納
         $dispData = array_merge($dispData,$tgtData);
     }
+}
+
+if (empty($tgtData)) {
+    $dispData['staff_id']  = $loginUser['unique_id'];
+    $dispData['staff_cd']  = $loginUser['staff_id'];
+    $dispData['staff_name']  = $loginUser['name'];
 }
 /* -- 家族情報 -----------------------------*/
 if ($keyId){

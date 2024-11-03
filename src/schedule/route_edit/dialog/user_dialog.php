@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * 利用者編集モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -33,13 +33,13 @@ $upAry    = array();
 // 拠点ID
 $placeId = filter_input(INPUT_GET, 'place');
 if (!$placeId) {
-    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : NULL;
+    $placeId = !empty($_SESSION['place']) ? $_SESSION['place'] : null;
 }
 
 // スケジュールID
 $schId = filter_input(INPUT_GET, 'scheduleId');
 if (!$schId) {
-    $schId = !empty($_SESSION['scheduleId']) ? $_SESSION['scheduleId'] : NULL;
+    $schId = !empty($_SESSION['scheduleId']) ? $_SESSION['scheduleId'] : null;
 }
 
 /*-- 更新用パラメータ ---------------------------------------*/
@@ -67,7 +67,7 @@ if (!$schId) {
 $where = array();
 $where['delete_flg'] = 0;
 $temp = select('mst_add', '*', $where);
-foreach ($temp as $val){
+foreach ($temp as $val) {
     $type  = $val['type'];
     $tgtId = $val['code'];
     $addMst[$type][$tgtId] = $val['name'];
@@ -77,7 +77,7 @@ foreach ($temp as $val){
 $where = array();
 $where['delete_flg'] = 0;
 $temp = select('mst_service', '*', $where);
-foreach ($temp as $val){
+foreach ($temp as $val) {
     $type  = $val['type'];
     $tgtId = $val['code'];
     $svcMst[$type][$tgtId] = $val['name'];
@@ -87,7 +87,7 @@ foreach ($temp as $val){
 $where = array();
 $where['delete_flg'] = 0;
 $temp = select('mst_service_detail', '*', $where);
-foreach ($temp as $val){
+foreach ($temp as $val) {
     $type  = $val['type'];
     $tgtId = $val['unique_id'];
     $svcDtlMst[$type][$tgtId] = $val['name'];
@@ -119,33 +119,33 @@ $where['unique_id']  = $schId;
 $temp = select('dat_week_schedule', '*', $where);
 
 foreach ($temp as $val) {
-    
+
     // 曜日、開始・終了時刻、更新者名
     $val['week_name']   = $weekAry[$val['week']];
     $val['start_time']  = formatDateTime($val['start_time'], 'H:i');
     $val['end_time']    = formatDateTime($val['end_time'], 'H:i');
     $val['update_name'] = getStaffName($val['update_user']);
-    
+
     // 格納
     $tgtData['main'] = $val;
 }
 
 /* -- その他計画関連 ------------------------------*/
 if (!empty($tgtData)) {
-    
+
     /* -- 予定情報 ----------------------------*/
-    
+
     // 予定（加減算）
     $where = array();
     $where['delete_flg']  = 0;
     $where['schedule_id'] = $schId;
     $temp = select('dat_week_schedule_add', '*', $where);
     foreach ($temp as $val) {
-        
+
         // 計画情報、加減算ID
         $tgtPlan = $tgtData['main'];
         $planAddId = $val['unique_id'];
-        
+
         // 格納
         $tgtData['add'][$planAddId] = $val;
     }
@@ -156,11 +156,11 @@ if (!empty($tgtData)) {
     $where['schedule_id'] = $schId;
     $temp = select('dat_week_schedule_jippi', '*', $where);
     foreach ($temp as $val) {
-        
+
         // 計画情報、実費ID
         $tgtPlan = $tgtData['main'];
         $planJpId = $val['unique_id'];
-        
+
         // 格納
         $tgtData['jippi'][$planJpId] = $val;
     }
@@ -171,13 +171,13 @@ if (!empty($tgtData)) {
     $where['schedule_id'] = $schId;
     $temp = select('dat_week_schedule_service', '*', $where);
     foreach ($temp as $val) {
-        
+
         // 計画情報、開始・終了時刻、サービス詳細ID
         $tgtPlan = $tgtData['main'];
         $val['start_time'] = formatDateTime($val['start_time'], 'H:i');
         $val['end_time']   = formatDateTime($val['end_time'], 'H:i');
         $planSvcId = $val['unique_id'];
-        
+
         // 格納
         $tgtData['service'][$planSvcId] = $val;
     }

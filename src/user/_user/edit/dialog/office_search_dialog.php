@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * スタッフ検索モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -39,7 +39,7 @@ $temp = select('mst_area', $target, $where, $orderBy);
 foreach ($temp as $val) {
     $pref = $val['prefecture_name'];
     $city = $val['city_name'];
-    $areaMst[$pref][$city] = TRUE;
+    $areaMst[$pref][$city] = true;
 }
 
 /* ===================================================
@@ -63,7 +63,7 @@ foreach ($temp as $val) {
         <span class="label_t">都道府県</span>
         <select name="upAry[prefecture]" id="prefecture" class="f-keyVal search_prefecture">
             <?php foreach ($areaMst as $pref => $areaMst2): ?>
-                <?php $select = $pref === $dispData['standard']['prefecture'] ? ' selected' : NULL; ?>
+                <?php $select = $pref === $dispData['standard']['prefecture'] ? ' selected' : null; ?>
                 <option value="<?= $pref ?>"<?= $select ?>><?= $pref ?></option>
             <?php endforeach; ?>
         </select>

@@ -7,19 +7,20 @@
  *     2.検索配列
  *     3.検索順
  *     4.最大件数
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *     $res[field]     = 'テーブル格納データ' ←ID指定の場合
  *     $res[id][field] = 'テーブル格納データ'
- * 
+ *
  * -----------------------------------------------------------------------
  */
 
-function getData($table, $search = array(), $orderBy = 'unique_id ASC', $limit = NULL) {
+function getData($table, $search = array(), $orderBy = 'unique_id ASC', $limit = null)
+{
 
     /* -- 初期処理 -------------------------------------------- */
 
-// 初期化
+    // 初期化
     $res = array();
 
     /* -- データ取得 ------------------------------------------ */
@@ -64,26 +65,33 @@ function getData($table, $search = array(), $orderBy = 'unique_id ASC', $limit =
  *      ⑤ メインテーブルとの結合カラム名
  *      ⑥ ソート条件
  *      ⑦ 最大取得件数
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *     $res[field]     = 'テーブル格納データ' ←ID指定の場合
  *     $res[id][field] = 'テーブル格納データ'
- * 
+ *
  * -----------------------------------------------------------------------
  */
 
-function getMultiData($table, $tables, $target = NULL, $where = array(),
-    $joinCol = array(), $orderBy = NULL, $limit = NULL) {
+function getMultiData(
+    $table,
+    $tables,
+    $target = null,
+    $where = array(),
+    $joinCol = array(),
+    $orderBy = null,
+    $limit = null
+) {
 
     /* -- 初期処理 -------------------------------------------- */
 
-// 初期化
+    // 初期化
     $res = array();
     $joinWhere = array();
 
     /* -- 取得条件 -------------------------------------------- */
 
-// 検索条件
+    // 検索条件
     foreach ($where as $key => $val) {
         if ($key === 'delete_flg' && $val === 'all') {
             unset($where[$key]);
@@ -96,7 +104,7 @@ function getMultiData($table, $tables, $target = NULL, $where = array(),
         }
     }
 
-// 対象カラム
+    // 対象カラム
     if (empty($target)) {
         $target = $table . '.*';
         foreach ($tables as $val) {
@@ -104,7 +112,7 @@ function getMultiData($table, $tables, $target = NULL, $where = array(),
         }
     }
 
-// 結合条件
+    // 結合条件
     if (empty($joinCol)) {
         foreach ($tables as $val) {
             $joinWhere[$val][$val . '.link_header'] = $table . '.unique_id';
@@ -118,10 +126,9 @@ function getMultiData($table, $tables, $target = NULL, $where = array(),
     }
 
     /* -- データ取得 ------------------------------------------ */
-    $res = multiSelect($table, $tables, $target, $where, $joinWhere, $orderBy);
+    return multiSelect($table, $tables, $target, $where, $joinWhere, $orderBy);
 
     /* -- データ返却 ------------------------------------------ */
-    return $res;
 }
 
 /* =======================================================================
@@ -129,18 +136,19 @@ function getMultiData($table, $tables, $target = NULL, $where = array(),
  * =======================================================================
  *   [引数]
  *     ①選択肢分類
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *   ＜type指定あり＞
  *     $res[type][id][field] = 'テーブル格納データ'
- * 
+ *
  *   ＜type指定なし＞
  *     $res[id][field] = 'テーブル格納データ'
- * 
+ *
  * -----------------------------------------------------------------------
  */
 
-function getCode($keyGroup = NULL, $keyType = NULL) {
+function getCode($keyGroup = null, $keyType = null)
+{
 
     /* -- 初期処理 -------------------------------------------- */
     $res = array();
@@ -156,7 +164,7 @@ function getCode($keyGroup = NULL, $keyType = NULL) {
     }
     $target = 'unique_id,name,group_div,type';
     $orderBy = 'unique_id ASC';
-    $limit = NULL;
+    $limit = null;
     $temp = select('mst_code', $target, $where, $orderBy, $limit);
 
     /* -- データ変換 ------------------------------------------ */
@@ -187,14 +195,15 @@ function getCode($keyGroup = NULL, $keyType = NULL) {
  * =======================================================================
  */
 
-function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id ASC') {
+function getUserList($placeId = null, $search = array(), $orderBy = 'unique_id ASC')
+{
 
-// 初期化
+    // 初期化
     $res = array();
     $tgtOfc = array();
     $tgtUser = array();
 
-// 事業所マスタ取得
+    // 事業所マスタ取得
     $where = array();
     $where['delete_flg'] = 0;
     if ($placeId) {
@@ -214,7 +223,7 @@ function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id A
         $tgtOfc[] = $tgtId;
     }
 
-// 利用者所属事業所
+    // 利用者所属事業所
     $where = array();
     $where['delete_flg'] = 0;
     $where['office_id'] = $tgtOfc;
@@ -237,20 +246,20 @@ function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id A
             continue;
         }
         // 契約中／停止中判定
-        if (!empty($search['status'])){
-            if (!isset($search['status']['停止中'])){
-                if ($val['start_day'] > TODAY){
+        if (!empty($search['status'])) {
+            if (!isset($search['status']['停止中'])) {
+                if ($val['start_day'] > TODAY) {
                     continue;
                 }
-                if (!empty($val['end_day']) && $val['end_day'] < TODAY){
+                if (!empty($val['end_day']) && $val['end_day'] < TODAY) {
                     continue;
                 }
-            } 
-            if (!isset($search['status']['契約中'])){
-                if ($val['start_day'] <= TODAY){
+            }
+            if (!isset($search['status']['契約中'])) {
+                if ($val['start_day'] <= TODAY) {
                     continue;
                 }
-                if (!empty($val['end_day']) && $val['end_day'] >= TODAY){
+                if (!empty($val['end_day']) && $val['end_day'] >= TODAY) {
                     continue;
                 }
             }
@@ -258,7 +267,7 @@ function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id A
         $tgtUser[] = $tgtId;
     }
 
-// 利用者マスタ
+    // 利用者マスタ
     $where = array();
     $where['delete_flg'] = 0;
     $where['unique_id'] = $tgtUser;
@@ -273,7 +282,7 @@ function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id A
         $res[$tgtId] = $val;
     }
 
-// 返却
+    // 返却
     return $res;
 }
 
@@ -282,12 +291,13 @@ function getUserList($placeId = NULL, $search = array(), $orderBy = 'unique_id A
  * =======================================================================
  */
 
-function getUserInfo($userId, $multi = NULL) {
+function getUserInfo($userId, $multi = null)
+{
 
-// 初期化
+    // 初期化
     $res = array();
 
-// データ取得
+    // データ取得
     $where = array();
     $where['delete_flg'] = 0;
     $where['unique_id'] = $userId;
@@ -304,7 +314,7 @@ function getUserInfo($userId, $multi = NULL) {
         }
     }
 
-// 返却
+    // 返却
     return $res;
 }
 
@@ -313,14 +323,15 @@ function getUserInfo($userId, $multi = NULL) {
  * =======================================================================
  */
 
-function getStaffList($placeId = NULL) {
+function getStaffList($placeId = null)
+{
 
-// 初期化
+    // 初期化
     $res = array();
     $tgtOfc = array();
     $tgtStaff = array();
 
-// 事業所マスタ取得
+    // 事業所マスタ取得
     $where = array();
     $where['delete_flg'] = 0;
     if ($placeId) {
@@ -333,10 +344,10 @@ function getStaffList($placeId = NULL) {
     }
     foreach ($temp as $val) {
         $tgtId = $val['unique_id'];
-        $tgtOfc[$tgtId] = TRUE;
+        $tgtOfc[$tgtId] = true;
     }
 
-// 従業員所属事業所
+    // 従業員所属事業所
     $where = array();
     $where['delete_flg'] = 0;
     $target = 'staff_id,office1_id,office2_id';
@@ -347,12 +358,13 @@ function getStaffList($placeId = NULL) {
     foreach ($temp as $val) {
         $ofc1 = $val['office1_id'];
         $ofc2 = $val['office2_id'];
-        if (isset($tgtOfc[$ofc1]) || isset($tgtOfc[$ofc2]))
+        if (isset($tgtOfc[$ofc1]) || isset($tgtOfc[$ofc2])) {
             $tgtId = $val['staff_id'];
+        }
         $tgtStaff[] = $tgtId;
     }
 
-// 従業員マスタ
+    // 従業員マスタ
     $where = array();
     $where['delete_flg'] = 0;
     $where['unique_id'] = $tgtStaff;
@@ -365,7 +377,7 @@ function getStaffList($placeId = NULL) {
         $res[$tgtId] = $val;
     }
 
-// 返却
+    // 返却
     return $res;
 }
 
@@ -374,12 +386,13 @@ function getStaffList($placeId = NULL) {
  * =======================================================================
  */
 
-function getCareRank($userId, $tgtDay = TODAY) {
+function getCareRank($userId, $tgtDay = TODAY)
+{
 
-// 初期化
-    $res = NULL;
+    // 初期化
+    $res = null;
 
-// 介護保険証の情報取得
+    // 介護保険証の情報取得
     $where = array();
     $where['delete_flg'] = 0;
     $where['user_id'] = $userId;
@@ -391,12 +404,12 @@ function getCareRank($userId, $tgtDay = TODAY) {
     $orderBy = 'unique_id ASC';
     $temp = select('mst_user_insure1', $target, $where, $orderBy);
 
-// 最新値を格納
+    // 最新値を格納
     foreach ($temp as $val) {
         $res = $val['care_rank'];
     }
 
-// データ返却
+    // データ返却
     return $res;
 }
 
@@ -405,23 +418,23 @@ function getCareRank($userId, $tgtDay = TODAY) {
  * =======================================================================
  */
 
-function getStaffName($staffId) {
+function getStaffName($staffId)
+{
 
-// 初期化
-    $res = NULL;
+    // 初期化
+    $res = null;
 
-// 介護保険証の情報取得
+    // 介護保険証の情報取得
     $where = array();
     $where['delete_flg'] = 0;
     $where['unique_id'] = $staffId;
     $target = 'last_name, first_name';
     $temp = select('mst_staff', $target, $where);
 
-// 値を格納
-    $res = $temp ? $temp[0]['last_name'] . $temp[0]['first_name'] : NULL;
+    // 値を格納
+    return $temp ? $temp[0]['last_name'] . $temp[0]['first_name'] : null;
 
-// データ返却
-    return $res;
+    // データ返却
 }
 
 /* =======================================================================
@@ -429,13 +442,14 @@ function getStaffName($staffId) {
  * =======================================================================
  */
 
-function getOfficeList($placeId = NULL, $start = TODAY, $end = TODAY) {
+function getOfficeList($placeId = null, $start = TODAY, $end = TODAY)
+{
 
-// 初期化
-    $res = NULL;
+    // 初期化
+    $res = null;
     $tgtData = array();
 
-// 事業所マスタの取得
+    // 事業所マスタの取得
     $where = array();
     $where['delete_flg'] = 0;
     if ($placeId) {
@@ -444,23 +458,23 @@ function getOfficeList($placeId = NULL, $start = TODAY, $end = TODAY) {
     $where['start_day <='] = $start;
     $orderBy = 'unique_id ASC';
     $temp = select('mst_office', '*', $where, $orderBy);
-    
-// グループ単位で有効なレコードは一つとする
+
+    // グループ単位で有効なレコードは一つとする
     foreach ($temp as $val) {
-        if($val['end_day'] &&  $val['end_day'] <= $end ){
+        if ($val['end_day'] &&  $val['end_day'] <= $end) {
             continue;
         }
         $group = $val['office_group'];
         $tgtData[$group] = $val;
     }
 
-// 形式変更 unique_idをKEYとする
+    // 形式変更 unique_idをKEYとする
     foreach ($tgtData as $group => $val) {
         $tgtId = $val['unique_id'];
         $res[$tgtId] = $val;
     }
 
-// 返却
+    // 返却
     return $res;
 }
 
@@ -469,12 +483,13 @@ function getOfficeList($placeId = NULL, $start = TODAY, $end = TODAY) {
  * =======================================================================
  */
 
-function getOfficeName($tgtId, $tgtDay = TODAY, $type = NULL) {
+function getOfficeName($tgtId, $tgtDay = TODAY, $type = null)
+{
 
-// 初期化
-    $res = NULL;
+    // 初期化
+    $res = null;
 
-// 利用者からの所属事業所名称取得
+    // 利用者からの所属事業所名称取得
     if (!$type || $type === 'user') {
         $where = array();
         $where['delete_flg'] = 0;
@@ -486,16 +501,16 @@ function getOfficeName($tgtId, $tgtDay = TODAY, $type = NULL) {
         $orderBy = 'unique_id ASC';
         $temp = select('mst_user_office1', $target, $where, $orderBy);
         foreach ($temp as $val) {
-            
-            if ($val['end_day']){
-                if ($val['end_day'] < $tgtDay){
+
+            if ($val['end_day']) {
+                if ($val['end_day'] < $tgtDay) {
                     continue;
                 }
             }
-            
+
             $res = $val['office_name'];
         }
-// マスタからの事業所名称取得
+        // マスタからの事業所名称取得
     } else {
         $where = array();
         $where['unique_id'] = $tgtId;
@@ -507,7 +522,7 @@ function getOfficeName($tgtId, $tgtDay = TODAY, $type = NULL) {
         }
     }
 
-// データ返却
+    // データ返却
     return $res;
 }
 
@@ -516,12 +531,13 @@ function getOfficeName($tgtId, $tgtDay = TODAY, $type = NULL) {
  * =======================================================================
  */
 
-function getPlaceList() {
+function getPlaceList()
+{
 
-// 初期化
+    // 初期化
     $res = array();
 
-// マスタ情報取得
+    // マスタ情報取得
     $where = array();
     $where['delete_flg'] = 0;
     $temp = select('mst_place', '*', $where);
@@ -530,7 +546,7 @@ function getPlaceList() {
         $res[$tgtId] = $val['name'];
     }
 
-// データ返却
+    // データ返却
     return $res;
 }
 
@@ -539,15 +555,16 @@ function getPlaceList() {
  * =======================================================================
  */
 
-function getPlaceInfo($placeId = NULL) {
+function getPlaceInfo($placeId = null)
+{
 
-// 初期化
+    // 初期化
     $res = initTable('mst_place');
     if (!$placeId) {
         return $res;
     }
 
-// マスタ情報取得
+    // マスタ情報取得
     $where = array();
     $where['unique_id'] = $placeId;
     $temp = select('mst_place', '*', $where);
@@ -555,7 +572,7 @@ function getPlaceInfo($placeId = NULL) {
         $res = $temp[0];
     }
 
-// データ返却
+    // データ返却
     return $res;
 }
 
@@ -564,13 +581,14 @@ function getPlaceInfo($placeId = NULL) {
  * =======================================================================
  */
 
-function getServiceConfig($svcId) {
+function getServiceConfig($svcId)
+{
 
-// 初期化
-    $res['code'] = NULL;
-    $res['name'] = NULL;
+    // 初期化
+    $res['code'] = null;
+    $res['name'] = null;
 
-// データ取得
+    // データ取得
     $where = array();
     $where['delete_flg'] = 0;
     $where['unique_id'] = $svcId;
@@ -582,7 +600,7 @@ function getServiceConfig($svcId) {
         $res['name'] = $val['name'];
     }
 
-// データ返却
+    // データ返却
     return $res;
 }
 
@@ -595,163 +613,164 @@ function getServiceConfig($svcId) {
  *     ③ サービス利用区分(看多機)
  *     ④ サービス利用区分(訪問看護)
  *     ⑤ 利用者ID
- * 
- *   [戻り値] 
+ *
+ *   [戻り値]
  *     配列
- * 
+ *
  * -----------------------------------------------------------------------
  */
 
-function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtUser = NULL) {
+function getAccount($placeId = null, $month, $type1 = null, $type2 = null, $tgtUser = null)
+{
 
     /* -- 初期処理 --------------------------------------------------- */
     $res = array();
     $userAry = array();
     $idx = 0;
 
-// レコード初期値
+    // レコード初期値
     // データコード00
     $def00 = array();
-    $def00['user_name'] = NULL;
-    $def00['code'] = NULL;
+    $def00['user_name'] = null;
+    $def00['code'] = null;
     for ($i = 1; $i <= 1; $i++) {
-        $def00['f' . $i] = NULL;
+        $def00['f' . $i] = null;
     }
 
     // データコード11
     $def11 = array();
-    $def11['user_name'] = NULL;
-    $def11['code'] = NULL;
+    $def11['user_name'] = null;
+    $def11['code'] = null;
     for ($i = 1; $i <= 7; $i++) {
-        $def11['f' . $i] = NULL;
+        $def11['f' . $i] = null;
     }
 
     // データコード12
     $def12 = array();
-    $def12['user_name'] = NULL;
-    $def12['code'] = NULL;
+    $def12['user_name'] = null;
+    $def12['code'] = null;
     for ($i = 1; $i <= 9; $i++) {
-        $def12['f' . $i] = NULL;
+        $def12['f' . $i] = null;
     }
 
     // データコード13
     $def13 = array();
-    $def13['user_name'] = NULL;
-    $def13['code'] = NULL;
+    $def13['user_name'] = null;
+    $def13['code'] = null;
     for ($i = 1; $i <= 10; $i++) {
-        $def13['f' . $i] = NULL;
+        $def13['f' . $i] = null;
     }
 
     // データコード21
     $def21 = array();
-    $def21['user_name'] = NULL;
-    $def21['code'] = NULL;
+    $def21['user_name'] = null;
+    $def21['code'] = null;
     for ($i = 1; $i <= 8; $i++) {
-        $def21['f' . $i] = NULL;
+        $def21['f' . $i] = null;
     }
 
     // データコード22
     $def22 = array();
-    $def22['user_name'] = NULL;
-    $def22['code'] = NULL;
+    $def22['user_name'] = null;
+    $def22['code'] = null;
     for ($i = 1; $i <= 4; $i++) {
-        $def22['f' . $i] = NULL;
+        $def22['f' . $i] = null;
     }
 
     // データコード23
     $def23 = array();
-    $def23['user_name'] = NULL;
-    $def23['code'] = NULL;
+    $def23['user_name'] = null;
+    $def23['code'] = null;
     for ($i = 1; $i <= 4; $i++) {
-        $def23['f' . $i] = NULL;
+        $def23['f' . $i] = null;
     }
 
     // データコード24
     $def24 = array();
-    $def24['user_name'] = NULL;
-    $def24['code'] = NULL;
+    $def24['user_name'] = null;
+    $def24['code'] = null;
     for ($i = 1; $i <= 4; $i++) {
-        $def24['f' . $i] = NULL;
+        $def24['f' . $i] = null;
     }
 
     // データコード25
     $def25 = array();
-    $def25['user_name'] = NULL;
-    $def25['code'] = NULL;
+    $def25['user_name'] = null;
+    $def25['code'] = null;
     for ($i = 1; $i <= 15; $i++) {
-        $def25['f' . $i] = NULL;
+        $def25['f' . $i] = null;
     }
 
     // データコード31
     $def31 = array();
-    $def31['user_name'] = NULL;
-    $def31['code'] = NULL;
+    $def31['user_name'] = null;
+    $def31['code'] = null;
     for ($i = 1; $i <= 16; $i++) {
-        $def31['f' . $i] = NULL;
+        $def31['f' . $i] = null;
     }
 
     // データコード32
     $def32 = array();
-    $def32['user_name'] = NULL;
-    $def32['code'] = NULL;
+    $def32['user_name'] = null;
+    $def32['code'] = null;
     for ($i = 1; $i <= 16; $i++) {
-        $def32['f' . $i] = NULL;
+        $def32['f' . $i] = null;
     }
 
     // データコード33
     $def33 = array();
-    $def33['user_name'] = NULL;
-    $def33['code'] = NULL;
+    $def33['user_name'] = null;
+    $def33['code'] = null;
     for ($i = 1; $i <= 11; $i++) {
-        $def33['f' . $i] = NULL;
+        $def33['f' . $i] = null;
     }
 
     // データコード34
     $def34 = array();
-    $def34['user_name'] = NULL;
-    $def34['code'] = NULL;
+    $def34['user_name'] = null;
+    $def34['code'] = null;
     for ($i = 1; $i <= 13; $i++) {
-        $def34['f' . $i] = NULL;
+        $def34['f' . $i] = null;
     }
 
     // データコード35
     $def35 = array();
-    $def35['user_name'] = NULL;
-    $def35['code'] = NULL;
+    $def35['user_name'] = null;
+    $def35['code'] = null;
     for ($i = 1; $i <= 5; $i++) {
-        $def35['f' . $i] = NULL;
+        $def35['f' . $i] = null;
     }
 
     // データコード36
     $def36 = array();
-    $def36['user_name'] = NULL;
-    $def36['code'] = NULL;
+    $def36['user_name'] = null;
+    $def36['code'] = null;
     for ($i = 1; $i <= 15; $i++) {
-        $def36['f' . $i] = NULL;
+        $def36['f' . $i] = null;
     }
 
     // データコード37
     $def37 = array();
-    $def37['user_name'] = NULL;
-    $def37['code'] = NULL;
+    $def37['user_name'] = null;
+    $def37['code'] = null;
     for ($i = 1; $i <= 5; $i++) {
-        $def37['f' . $i] = NULL;
+        $def37['f' . $i] = null;
     }
 
     // データコード38
     $def38 = array();
-    $def38['user_name'] = NULL;
-    $def38['code'] = NULL;
+    $def38['user_name'] = null;
+    $def38['code'] = null;
     for ($i = 1; $i <= 4; $i++) {
-        $def38['f' . $i] = NULL;
+        $def38['f' . $i] = null;
     }
 
     // データコード41
     $def41 = array();
-    $def41['user_name'] = NULL;
-    $def41['code'] = NULL;
+    $def41['user_name'] = null;
+    $def41['code'] = null;
     for ($i = 1; $i <= 11; $i++) {
-        $def41['f' . $i] = NULL;
+        $def41['f' . $i] = null;
     }
 
     if (empty($type1) && empty($type2)) {
@@ -774,29 +793,29 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     // 利用者リスト
     $userList = getUserList($placeId);
 
-//    debug($ofcList);
-//    debug($userList);
+    //    debug($ofcList);
+    //    debug($userList);
 
 
     foreach ($userList as $userId => $val) {
 
         // 初期化
-        $flg = FALSE;
+        $flg = false;
 
         // 利用者判定
         if ($tgtUser && $userId !== $tgtUser) {
-            $flg = TRUE;
+            $flg = true;
         }
         // 事業所種別・看多機判定
 
         $type = $val['service_type'];
         if ((mb_strpos($type, '看多機') !== false || mb_strpos($type, '看護小規模多機能') !== false) && empty($type1)) {
-            $flg = TRUE;
+            $flg = true;
         }
 
         // 事業所種別・訪問看護判定
         if ((mb_strpos($type, '訪問看護') !== false || mb_strpos($type, '訪看') !== false) && empty($type2)) {
-            $flg = TRUE;
+            $flg = true;
         }
 
         // NG判定
@@ -804,17 +823,17 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
             unset($userList[$userId]);
             continue;
         }
-        
+
         // サービス区分判定
         $serviceDiv = "";
-        if(mb_strpos($val['service_type'], '医療') !== false){
+        if (mb_strpos($val['service_type'], '医療') !== false) {
             $serviceDiv = "2";
-        }else{
+        } else {
             $serviceDiv = "1";
         }
         $userList[$userId]['service_div'] = $serviceDiv;
 
-// 検索対象利用者
+        // 検索対象利用者
         $userAry[] = $userId;
     }
 
@@ -839,8 +858,8 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     /* -- 利用者基本情報(11) --------------------------- */
     foreach ($userList as $userId => $val) {
 
-        $val['birthday'] = $val['birthday'] === "0000-00-00" ? NULL : $val['birthday'];
- 
+        $val['birthday'] = $val['birthday'] === "0000-00-00" ? null : $val['birthday'];
+
         // レコード設定
         $dat = $def11;
         $dat['code'] = '11';
@@ -851,7 +870,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $dat['f4'] = trimStrWidth(formatDateTime($val['birthday'], 'Ymd'), 8, "");
         $dat['f5'] = trimStrWidth($val['sex'] ? $sexType[$val['sex']] : 3, 1, "");
         $dat['f6'] = trimStrWidth($val['prefecture'] . $val['area'] . $val['address1'] . $val['address2'] . $val['address3'], 120, "");
-        $dat['f7'] = NULL;
+        $dat['f7'] = null;
 
         // 格納
         $idx++;
@@ -872,7 +891,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
 
         $ins3List[$userId] = $val;
     }
-    
+
     /* -- 公費情報(12) --------------------------------- */
 
     // データ取得
@@ -886,10 +905,10 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
 
         // 利用者
         $userId = $val['user_id'];
-        
-        $val['start_day'] = $val['start_day'] === "0000-00-00" ? NULL : $val['start_day'];
-        $val['end_day'] = $val['end_day'] === "0000-00-00" ? NULL : $val['end_day'];
-        
+
+        $val['start_day'] = $val['start_day'] === "0000-00-00" ? null : $val['start_day'];
+        $val['end_day'] = $val['end_day'] === "0000-00-00" ? null : $val['end_day'];
+
         // 公費名称
         $ins3Name = isset($ins3List[$userId]['name']) ? $ins3List[$userId]['name'] : '';
 
@@ -913,7 +932,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     }
     /* -- 利用者金融期間情報(13) ----------------------- */
 
-// 銀行区分
+    // 銀行区分
     $bankType['銀行'] = 1;
     $bankType['信用金庫'] = 2;
     $bankType['農協'] = 3;
@@ -930,32 +949,32 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     $payType['振込'] = 2;
     $payType['現金'] = 3;
 
-// データ取得
+    // データ取得
     $where = array();
     $where['delete_flg'] = 0;
     $where['user_id'] = $userAry;
     $temp = select('mst_user_pay', '*', $where);
     foreach ($temp as $val) {
 
-// 利用者
+        // 利用者
         $userId = $val['user_id'];
 
-// レコード設定
+        // レコード設定
         $dat = $def13;
         $dat['code'] = '13';
         $dat['user_name'] = $userList[$userId]['name'];
         $dat['f1'] = $userList[$userId]['other_id'];
-        $dat['f2'] = trimStrWidth($val['bank_type'] ? $bankType[$val['bank_type']] : NULL, 1, "");
+        $dat['f2'] = trimStrWidth($val['bank_type'] ? $bankType[$val['bank_type']] : null, 1, "");
         $dat['f3'] = trimStrWidth($val['bank_code'], 4, "");
         $dat['f4'] = trimStrWidth($val['bank_name'], 20, "");
         $dat['f5'] = trimStrWidth($val['branch_code'], 3, "");
         $dat['f6'] = trimStrWidth($val['branch_name'], 20, "");
-        $dat['f7'] = trimStrWidth($val['deposit_type'] ? $dpsType[$val['deposit_type']] : NULL, 1, "");
+        $dat['f7'] = trimStrWidth($val['deposit_type'] ? $dpsType[$val['deposit_type']] : null, 1, "");
         $dat['f8'] = trimStrWidth($val['deposit_code'], 7, "");
         $dat['f9'] = trimStrWidth($val['deposit_name'], 30, "");
         $dat['f10'] = trimStrWidth($val['method'] ? $payType[$val['method']] : "", 1, "");
 
-// 格納
+        // 格納
         $idx++;
         $res[$idx] = $dat;
     }
@@ -978,7 +997,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     $careType['要介護４'] = '24';
     $careType['要介護５'] = '25';
 
-// データ取得
+    // データ取得
     $where = array();
     $where['delete_flg'] = 0;
     $where['user_id'] = $userAry;
@@ -989,12 +1008,12 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
 
         // 利用者
         $userId = $val['user_id'];
-        
+
         // 日付変換
-        $val['start_day1'] = $val['start_day1'] === "0000-00-00" ? NULL : $val['start_day1'];
-        $val['end_day1'] = $val['end_day1'] === "0000-00-00" ? NULL : $val['end_day1'];
-        $val['start_day2'] = $val['start_day2'] === "0000-00-00" ? NULL : $val['start_day2'];
-        $val['end_day2'] = $val['end_day2'] === "0000-00-00" ? NULL : $val['end_day2'];
+        $val['start_day1'] = $val['start_day1'] === "0000-00-00" ? null : $val['start_day1'];
+        $val['end_day1'] = $val['end_day1'] === "0000-00-00" ? null : $val['end_day1'];
+        $val['start_day2'] = $val['start_day2'] === "0000-00-00" ? null : $val['start_day2'];
+        $val['end_day2'] = $val['end_day2'] === "0000-00-00" ? null : $val['end_day2'];
 
         // レコード設定
         $dat = $def21;
@@ -1028,21 +1047,21 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $userId = $val['user_id'];
 
         // 日付変換
-        $val['start_day'] = $val['start_day'] === "0000-00-00" ? NULL : $val['start_day'];
-        $val['end_day'] = $val['end_day'] === "0000-00-00" ? NULL : $val['end_day'];
+        $val['start_day'] = $val['start_day'] === "0000-00-00" ? null : $val['start_day'];
+        $val['end_day'] = $val['end_day'] === "0000-00-00" ? null : $val['end_day'];
 
         // 給付率
         $rate = "00";
-        $rate = sprintf('%02d',$val['rate']);
-            
+        $rate = sprintf('%02d', $val['rate']);
+
         // レコード設定
         $dat = $def22;
         $dat['code'] = '22';
         $dat['user_name'] = $userList[$userId]['name'];
         $dat['f1'] = $userList[$userId]['other_id'];
-        $dat['f2'] = trimStrWidth(formatDateTime($val['start_day'], 'Ymd'),8,"");
+        $dat['f2'] = trimStrWidth(formatDateTime($val['start_day'], 'Ymd'), 8, "");
         $dat['f3'] = trimStrWidth(formatDateTime($val['end_day'], 'Ymd'), 8, "");
-        $dat['f4'] = trimStrWidth($rate, 2,"");
+        $dat['f4'] = trimStrWidth($rate, 2, "");
 
         // 格納
         $idx++;
@@ -1071,17 +1090,17 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $userId = $val['user_id'];
 
         // 日付変換
-        $val['start_day'] = $val['start_day'] === "0000-00-00" ? NULL : $val['start_day'];
-        $val['end_day'] = $val['end_day'] === "0000-00-00" ? NULL : $val['end_day'];
+        $val['start_day'] = $val['start_day'] === "0000-00-00" ? null : $val['start_day'];
+        $val['end_day'] = $val['end_day'] === "0000-00-00" ? null : $val['end_day'];
 
         // レコード設定
         $dat = $def23;
         $dat['code'] = '23';
         $dat['user_name'] = $userList[$userId]['name'];
         $dat['f1'] = $userList[$userId]['other_id'];
-        $dat['f2'] = trimStrWidth(formatDateTime($val['start_day'], 'Ymd'),8,"");
-        $dat['f3'] = trimStrWidth(formatDateTime($val['end_day'], 'Ymd'),8,"");
-        $dat['f4'] = trimStrWidth(!empty($val['cancel_type']) ? $cxlType[$val['cancel_type']] : NULL, 1,"");
+        $dat['f2'] = trimStrWidth(formatDateTime($val['start_day'], 'Ymd'), 8, "");
+        $dat['f3'] = trimStrWidth(formatDateTime($val['end_day'], 'Ymd'), 8, "");
+        $dat['f4'] = trimStrWidth(!empty($val['cancel_type']) ? $cxlType[$val['cancel_type']] : null, 1, "");
 
         // 格納
         $idx++;
@@ -1089,25 +1108,25 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     }
     /* -- 居宅介護支援事業者情報(24) ------------------- */
 
-// データ取得
-//    $where = array();
-//    $where['delete_flg']   = 0;
-//    $where['user_id']      = $userAry;
-//    $where['start_day <='] = $lastDay;
-//    $where['end_day >=']   = $firstDay;
-//    $temp = select('mst_user_office2', '*', $where);
-    
+    // データ取得
+    //    $where = array();
+    //    $where['delete_flg']   = 0;
+    //    $where['user_id']      = $userAry;
+    //    $where['start_day <='] = $lastDay;
+    //    $where['end_day >=']   = $firstDay;
+    //    $temp = select('mst_user_office2', '*', $where);
+
     $plnType['居宅支援作成'] = 1;
     $plnType['居宅介護支援事業者作成'] = 1;
     $plnType['$plnType'] = 2;
     $plnType['予防支援作成'] = 3;
-    
+
     foreach ($temp as $val) {
 
-        if(isset($plnType[$val['plan_type']]) === false){
+        if (isset($plnType[$val['plan_type']]) === false) {
             continue;
         }
-        
+
         // 利用者
         $userId = $val['user_id'];
 
@@ -1117,8 +1136,8 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $dat['user_name'] = $userList[$userId]['name'];
         $dat['f1'] = $userList[$userId]['other_id'];
         $dat['f2'] = $plnType[$val['plan_type']];
-        $dat['f3'] = trimStrWidth($val['office_code'],10,"");
-        $dat['f4'] = trimStrWidth($val['office_name'],50,"");
+        $dat['f3'] = trimStrWidth($val['office_code'], 10, "");
+        $dat['f4'] = trimStrWidth($val['office_name'], 50, "");
 
         // 格納
         $idx++;
@@ -1132,7 +1151,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     }
 
     // 実績親データ
-    $rcdAry = NULL;
+    $rcdAry = null;
     $sendData = array();
     $recData = array();
     $where = array();
@@ -1190,7 +1209,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     }
 
     // 実績加減算データ
-    $rcdAddAry = NULL;
+    $rcdAddAry = null;
     $recAddList = array();
     $recAddData = array();
     $where = array();
@@ -1203,7 +1222,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         }
         $rcdId = $val['user_record_id'];
         $svcId = $recData[$rcdId]['service_id'];
-        $tgtMst = isset($svcMst[$svcId]) ? $svcMst[$svcId] : NULL;
+        $tgtMst = isset($svcMst[$svcId]) ? $svcMst[$svcId] : null;
 
         $recId = $val['user_record_id'];
         $addId = $val['add_id'];
@@ -1217,8 +1236,8 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $val['add_name'] = $addMst[$addId]['name'];
         $val['user_id'] = $userId;
         $val['service_id'] = $svcId;
-        $val['service_code'] = isset($svcData[$svcId]) ? $svcData[$svcId]['code'] : NULL;
-        $val['service_name'] = isset($svcData[$svcId]) ? $svcData[$svcId]['name'] : NULL;
+        $val['service_code'] = isset($svcData[$svcId]) ? $svcData[$svcId]['code'] : null;
+        $val['service_name'] = isset($svcData[$svcId]) ? $svcData[$svcId]['name'] : null;
 
         $recAddData[$addId . $start_time] = $val;
         $recAddList[$userId][$addId . $start_time][$uniqueId] = $val;
@@ -1237,11 +1256,11 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
                 if (substr($val['service_code'], 0, 1) == 7) {
                     continue;
                 }
-                
+
                 // 日付変換
-                $val['use_day'] = $val['use_day'] === "0000-00-00" ? NULL : $val['use_day'];
-                $val['start_day'] = $val['start_day'] === "0000-00-00" ? NULL : $val['start_day'];
-                $val['end_day'] = $val['end_day'] === "0000-00-00" ? NULL : $val['end_day'];
+                $val['use_day'] = $val['use_day'] === "0000-00-00" ? null : $val['use_day'];
+                $val['start_day'] = $val['start_day'] === "0000-00-00" ? null : $val['start_day'];
+                $val['end_day'] = $val['end_day'] === "0000-00-00" ? null : $val['end_day'];
 
                 /* -- 介護提供日情報(F10)作成 --------------------- */
                 $tgtDay = $val['use_day'];
@@ -1259,7 +1278,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
                 }
                 // 看護小規模初期加算の場合は加減算で指定された日付範囲に1を立てる
                 // 日割の場合は日割期間に1を立てる
-                else if ($val['service_name'] === "看護小規模初期加算" || strpos($val['service_name'], "日割") !== false) {
+                elseif ($val['service_name'] === "看護小規模初期加算" || strpos($val['service_name'], "日割") !== false) {
                     $d1 = dateToDay($val['start_day']);
                     $d2 = dateToDay($val['end_day']);
                     if ($d1 < 1 || $d2 < 1) {
@@ -1302,11 +1321,11 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
             $f9 = "";
             if (mb_strpos($svcName, "通い") !== false) {
                 $f9 = "1";
-            } else if (mb_strpos($svcName, "宿泊") !== false) {
+            } elseif (mb_strpos($svcName, "宿泊") !== false) {
                 $f9 = "2";
-            } else if (mb_strpos($svcName, "訪問介護") !== false) {
+            } elseif (mb_strpos($svcName, "訪問介護") !== false) {
                 $f9 = "3";
-            } else if (mb_strpos($svcName, "訪問看護") !== false) {
+            } elseif (mb_strpos($svcName, "訪問看護") !== false) {
                 $f9 = "4";
             }
 
@@ -1322,15 +1341,15 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
             $ymd = dateToDay($useDay, "Ymd") ? sprintf("%06d", dateToDay($useDay, "Ymd")) : "";
             if ($svcCode === '134003') {
                 $f13 = $md;
-            } else if ($svcCode === '634003') {
+            } elseif ($svcCode === '634003') {
                 $f13 = $md;
-            } else if ($svcCode === '774003') {
+            } elseif ($svcCode === '774003') {
                 $f13 = $md;
-            } else if ($svcCode === '134004') {
+            } elseif ($svcCode === '134004') {
                 $f13 = $d;
-            } else if ($svcCode === '137000') {
+            } elseif ($svcCode === '137000') {
                 $f13 = $Ymd;
-            } else if ($svcCode === '776100') {
+            } elseif ($svcCode === '776100') {
                 $f13 = $Ymd;
             } else {
                 $f13 = "";
@@ -1341,20 +1360,20 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
             $dat['code'] = '25';
             $dat['user_name'] = $userList[$userId]['name'];
             $dat['f1'] = $userList[$userId]['other_id'];
-            $dat['f2'] = trimStrWidth(sprintf('%d', $f2),2,"");
-            $dat['f3'] = trimStrWidth($f3,1,"");
-            $dat['f4'] = trimStrWidth($recAddData[$svcId]['service_code'],6,"");
-            $dat['f5'] = trimStrWidth($f5,4,"");
-            $dat['f6'] = trimStrWidth($f6,4,"");
-            $dat['f7'] = trimStrWidth($f7,1,"");
-            $dat['f8'] = trimStrWidth($f8,1,"");
-            $dat['f9'] = trimStrWidth($f9,1,"");
-            $dat['f10'] = trimStrWidth($f10Data,31,"");
-            $dat['f11'] = trimStrWidth($f11Data,31,"");
-            $dat['f12'] = trimStrWidth($f12Data,31,"");
-            $dat['f13'] = trimStrWidth($f13,31,"");
-            $dat['f14'] = trimStrWidth($f14,31,"");
-            $dat['f15'] = trimStrWidth($f15,31,"");
+            $dat['f2'] = trimStrWidth(sprintf('%d', $f2), 2, "");
+            $dat['f3'] = trimStrWidth($f3, 1, "");
+            $dat['f4'] = trimStrWidth($recAddData[$svcId]['service_code'], 6, "");
+            $dat['f5'] = trimStrWidth($f5, 4, "");
+            $dat['f6'] = trimStrWidth($f6, 4, "");
+            $dat['f7'] = trimStrWidth($f7, 1, "");
+            $dat['f8'] = trimStrWidth($f8, 1, "");
+            $dat['f9'] = trimStrWidth($f9, 1, "");
+            $dat['f10'] = trimStrWidth($f10Data, 31, "");
+            $dat['f11'] = trimStrWidth($f11Data, 31, "");
+            $dat['f12'] = trimStrWidth($f12Data, 31, "");
+            $dat['f13'] = trimStrWidth($f13, 31, "");
+            $dat['f14'] = trimStrWidth($f14, 31, "");
+            $dat['f15'] = trimStrWidth($f15, 31, "");
 
             // 格納
             $idx++;
@@ -1394,7 +1413,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     $skmType['下船後３カ月以内'] = 1;
     $skmType['通勤災害'] = 1;
 
-// データ取得
+    // データ取得
     $where = array();
     $where['delete_flg'] = 0;
     $where['user_id'] = $userAry;
@@ -1405,10 +1424,10 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
 
         // 利用者
         $userId = $val['user_id'];
-        
-       // 日付変換
-        $val['start_day'] = $val['start_day'] === "0000-00-00" ? NULL : $val['start_day'];
-        $val['end_day'] = $val['end_day'] === "0000-00-00" ? NULL : $val['end_day'];
+
+        // 日付変換
+        $val['start_day'] = $val['start_day'] === "0000-00-00" ? null : $val['start_day'];
+        $val['end_day'] = $val['end_day'] === "0000-00-00" ? null : $val['end_day'];
 
         $f5 = $val['number3'] . '・' . $val['number4'];
 
@@ -1434,23 +1453,23 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $dat['code'] = '31';
         $dat['user_name'] = $userList[$userId]['name'];
         $dat['f1'] = $userList[$userId]['other_id'];
-        $dat['f2'] = trimStrWidth(formatDateTime($val['start_day'], 'Ymd'),8,"");
-        $dat['f3'] = trimStrWidth($val['end_day'] ? formatDateTime($val['end_day'], 'Ymd') : "99999999",8,"");
-        $dat['f4'] = trimStrWidth($val['number1'],8,"");
-        $dat['f5'] = trimStrWidth($f5,28,"");
-        $dat['f6'] = trimStrWidth(!empty($val['type1']) ? $iryType[$val['type1']] : NULL,1,"");
-        $dat['f7'] = trimStrWidth(!empty($val['type1']) ? $honType[$val['type2']] : NULL,1,"");
-        $dat['f8'] = trimStrWidth(!empty($val['type1']) ? $stkType[$val['type3']] : NULL,1,"");
-        $dat['f9'] = trimStrWidth($f9,1,"");
-        $dat['f10'] = trimStrWidth($val['select2'],1,"");
-        $dat['f11'] = trimStrWidth($val['number2'],2,"");
-        $dat['f12'] = trimStrWidth($f12,32,"");
-        $dat['f13'] = trimStrWidth(!empty($val['type4']) ? $skmType[$val['type4']] : NULL,1,"");
-        $dat['f14'] = NULL;
-        $dat['f15'] = NULL;
-        $dat['f16'] = trimStrWidth($f16,4,"");
+        $dat['f2'] = trimStrWidth(formatDateTime($val['start_day'], 'Ymd'), 8, "");
+        $dat['f3'] = trimStrWidth($val['end_day'] ? formatDateTime($val['end_day'], 'Ymd') : "99999999", 8, "");
+        $dat['f4'] = trimStrWidth($val['number1'], 8, "");
+        $dat['f5'] = trimStrWidth($f5, 28, "");
+        $dat['f6'] = trimStrWidth(!empty($val['type1']) ? $iryType[$val['type1']] : null, 1, "");
+        $dat['f7'] = trimStrWidth(!empty($val['type1']) ? $honType[$val['type2']] : null, 1, "");
+        $dat['f8'] = trimStrWidth(!empty($val['type1']) ? $stkType[$val['type3']] : null, 1, "");
+        $dat['f9'] = trimStrWidth($f9, 1, "");
+        $dat['f10'] = trimStrWidth($val['select2'], 1, "");
+        $dat['f11'] = trimStrWidth($val['number2'], 2, "");
+        $dat['f12'] = trimStrWidth($f12, 32, "");
+        $dat['f13'] = trimStrWidth(!empty($val['type4']) ? $skmType[$val['type4']] : null, 1, "");
+        $dat['f14'] = null;
+        $dat['f15'] = null;
+        $dat['f16'] = trimStrWidth($f16, 4, "");
 
-// 格納
+        // 格納
         $idx++;
         $res[$idx] = $dat;
     }
@@ -1475,7 +1494,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     $attached8Dtl['真皮を越える褥瘡の状態にある者'] = 56;
     $attached8Dtl['在宅患者訪問点滴注射管理指導料を算定している者'] = 57;
 
-// データ取得
+    // データ取得
     $where = array();
     $where['delete_flg'] = 0;
     $where['user_id'] = $userAry;
@@ -1485,13 +1504,13 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
 
     foreach ($temp as $val) {
 
-// 利用者
+        // 利用者
         $userId = $val['user_id'];
 
         $f14 = "";
         if ($val['seriously_child'] === '超重症児') {
             $f14 = "1";
-        } else if ($val['seriously_child'] === '準超重症児') {
+        } elseif ($val['seriously_child'] === '準超重症児') {
             $f14 = "2";
         }
 
@@ -1515,21 +1534,21 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $dat['code'] = '32';
         $dat['user_name'] = $userList[$userId]['name'];
         $dat['f1'] = $userList[$userId]['other_id'];
-        $dat['f2'] = trimStrWidth(formatDateTime($val['judgement_day'], 'Ymd'),8,"");
-        $dat['f3'] = NULL;
-        $dat['f4'] = trimStrWidth($val['sickness1'],50,"");
-        $dat['f5'] = trimStrWidth($val['sickness2'],50,"");
-        $dat['f6'] = trimStrWidth($val['sickness3'],50,"");
-        $dat['f7'] = trimStrWidth($val['sickness4'],50,"");
-        $dat['f8'] = trimStrWidth($val['sickness5'],50,"");
-        $dat['f9'] = trimStrWidth($val['sickness6'],50,"");
-        $dat['f10'] = trimStrWidth($val['sickness7'],50,"");
-        $dat['f11'] = trimStrWidth($val['sickness8'],50,"");
-        $dat['f12'] = trimStrWidth($val['sickness9'],50,"");
-        $dat['f13'] = trimStrWidth($val['sickness10'],50,"");
-        $dat['f14'] = trimStrWidth($f14,1,"");
-        $dat['f15'] = trimStrWidth($f15,1,"");
-        $dat['f16'] = trimStrWidth($f16,2,"");
+        $dat['f2'] = trimStrWidth(formatDateTime($val['judgement_day'], 'Ymd'), 8, "");
+        $dat['f3'] = null;
+        $dat['f4'] = trimStrWidth($val['sickness1'], 50, "");
+        $dat['f5'] = trimStrWidth($val['sickness2'], 50, "");
+        $dat['f6'] = trimStrWidth($val['sickness3'], 50, "");
+        $dat['f7'] = trimStrWidth($val['sickness4'], 50, "");
+        $dat['f8'] = trimStrWidth($val['sickness5'], 50, "");
+        $dat['f9'] = trimStrWidth($val['sickness6'], 50, "");
+        $dat['f10'] = trimStrWidth($val['sickness7'], 50, "");
+        $dat['f11'] = trimStrWidth($val['sickness8'], 50, "");
+        $dat['f12'] = trimStrWidth($val['sickness9'], 50, "");
+        $dat['f13'] = trimStrWidth($val['sickness10'], 50, "");
+        $dat['f14'] = trimStrWidth($f14, 1, "");
+        $dat['f15'] = trimStrWidth($f15, 1, "");
+        $dat['f16'] = trimStrWidth($f16, 2, "");
 
         // 格納
         $idx++;
@@ -1550,7 +1569,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     $cancelReason['死亡'] = "4";
     $cancelReason['その他'] = "5";
 
-    // 死亡状況 
+    // 死亡状況
     $deathPlace['自宅'] = "1";
     $deathPlace['施設'] = "2";
     $deathPlace['病院'] = "3";
@@ -1570,13 +1589,13 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $userId = $val['user_id'];
 
         // 日付変換
-        $val['start_day'] = $val['start_day'] === "0000-00-00" ? NULL : $val['start_day'];
-        $val['end_day'] = $val['end_day'] === "0000-00-00" ? NULL : $val['end_day'];
-        $val['death_day'] = $val['death_day'] === "0000-00-00" ? NULL : $val['death_day'];
-    
+        $val['start_day'] = $val['start_day'] === "0000-00-00" ? null : $val['start_day'];
+        $val['end_day'] = $val['end_day'] === "0000-00-00" ? null : $val['end_day'];
+        $val['death_day'] = $val['death_day'] === "0000-00-00" ? null : $val['death_day'];
+
         $f4 = isset($startType[$val['start_type']]) ? $startType[$val['start_type']] : "0";
-        
-        // 前ステーション訪問日 
+
+        // 前ステーション訪問日
         $f5 = "";
 
         // 退院日
@@ -1589,9 +1608,9 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $f7 = !isset($val['cancel_reason']) ? $cancelReason[$val['cancel_reason']] : "";
         $f8 = $val['death_day'];
         $f9 = !empty($val['death_day']) ? $val['death_time'] : "";
-        if(!empty($val['death_place'])){
+        if (!empty($val['death_place'])) {
             $f10 = $deathPlace[$val['death_place']];
-        }else{
+        } else {
             $f10 = "";
         }
         // 死亡状況
@@ -1604,7 +1623,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         // 死亡場所施設又はその他
         $f11 = "";
         if ($f10 === 2 || $f10 === 5) {
-            $f11 = !empty($val['death_reason']) ? $val['death_reason'] : NULL;
+            $f11 = !empty($val['death_reason']) ? $val['death_reason'] : null;
         }
 
         // レコード設定
@@ -1612,16 +1631,16 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $dat['code'] = '33';
         $dat['user_name'] = $userList[$userId]['name'];
         $dat['f1'] = $userList[$userId]['other_id'];
-        $dat['f2'] = trimStrWidth(formatDateTime($val['start_day'], 'Ymd'),8,"");
-        $dat['f3'] = trimStrWidth(formatDateTime($val['end_day'], 'Ymd'),8,"");
-        $dat['f4'] = trimStrWidth($f4,1,"");
-        $dat['f5'] = trimStrWidth($f5,31,"");
-        $dat['f6'] = trimStrWidth($f6,8,"");
-        $dat['f7'] = trimStrWidth($f7,2,"");
-        $dat['f8'] = trimStrWidth($f8,8,"");
-        $dat['f9'] = trimStrWidth($f9,4,"");
-        $dat['f10'] = trimStrWidth($f10,1,"");
-        $dat['f11'] = trimStrWidth($f11,20,"");
+        $dat['f2'] = trimStrWidth(formatDateTime($val['start_day'], 'Ymd'), 8, "");
+        $dat['f3'] = trimStrWidth(formatDateTime($val['end_day'], 'Ymd'), 8, "");
+        $dat['f4'] = trimStrWidth($f4, 1, "");
+        $dat['f5'] = trimStrWidth($f5, 31, "");
+        $dat['f6'] = trimStrWidth($f6, 8, "");
+        $dat['f7'] = trimStrWidth($f7, 2, "");
+        $dat['f8'] = trimStrWidth($f8, 8, "");
+        $dat['f9'] = trimStrWidth($f9, 4, "");
+        $dat['f10'] = trimStrWidth($f10, 1, "");
+        $dat['f11'] = trimStrWidth($f11, 20, "");
 
         // 格納
         $idx++;
@@ -1646,12 +1665,12 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
 
         // 利用者
         $userId = $val['user_id'];
-        
+
         // 日付変換
-        $val['direction_start'] = $val['direction_start'] === "0000-00-00" ? NULL : $val['direction_start'];
-        $val['direction_end'] = $val['direction_end'] === "0000-00-00" ? NULL : $val['direction_end'];
-        $val['plan_day'] = $val['plan_day'] === "0000-00-00" ? NULL : $val['plan_day'];
-        $val['report_day'] = $val['report_day'] === "0000-00-00" ? NULL : $val['report_day'];
+        $val['direction_start'] = $val['direction_start'] === "0000-00-00" ? null : $val['direction_start'];
+        $val['direction_end'] = $val['direction_end'] === "0000-00-00" ? null : $val['direction_end'];
+        $val['plan_day'] = $val['plan_day'] === "0000-00-00" ? null : $val['plan_day'];
+        $val['report_day'] = $val['report_day'] === "0000-00-00" ? null : $val['report_day'];
 
         $f3 = isset($directionKb[$val['direction_kb']]) ? $directionKb[$val['direction_kb']] : "";
         $f6 = "";
@@ -1661,9 +1680,9 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $f11 = "";
         $f12 = "";
         $f13 = "";
-//        if ($directionKb[$val['direction_kb']] === 1) {
+        //        if ($directionKb[$val['direction_kb']] === 1) {
         if ($val['direction_kb'] === '通常指示') {
-            
+
             $f10 = $val['other_station1_address'];
             $f11 = $val['other_station1'];
             $f12 = $val['other_station2_address'];
@@ -1675,18 +1694,18 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $dat['code'] = '34';
         $dat['user_name'] = $userList[$userId]['name'];
         $dat['f1'] = $userList[$userId]['other_id'];
-        $dat['f2'] = trimStrWidth($careKb[$val['care_kb']],1,"");
-        $dat['f3'] = trimStrWidth($directionKb[$val['direction_kb']],1,"");
-        $dat['f4'] = trimStrWidth(formatDateTime($val['direction_start'], 'Ymd'),8,"");
-        $dat['f5'] = trimStrWidth(formatDateTime($val['direction_end'], 'Ymd'),8,"");
-        $dat['f6'] = trimStrWidth($val['hospital'],32,"");
-        $dat['f7'] = trimStrWidth($val['doctor'],50,"");
-        $dat['f8'] = trimStrWidth(formatDateTime($val['plan_day'], 'Ymd'),8,"");
-        $dat['f9'] = trimStrWidth($f9,8,"");
-        $dat['f10'] = trimStrWidth($f10,72,"");
-        $dat['f11'] = trimStrWidth($f11,72,"");
-        $dat['f12'] = trimStrWidth($f12,72,"");
-        $dat['f13'] = trimStrWidth($f13,72,"");
+        $dat['f2'] = trimStrWidth($careKb[$val['care_kb']], 1, "");
+        $dat['f3'] = trimStrWidth($directionKb[$val['direction_kb']], 1, "");
+        $dat['f4'] = trimStrWidth(formatDateTime($val['direction_start'], 'Ymd'), 8, "");
+        $dat['f5'] = trimStrWidth(formatDateTime($val['direction_end'], 'Ymd'), 8, "");
+        $dat['f6'] = trimStrWidth($val['hospital'], 32, "");
+        $dat['f7'] = trimStrWidth($val['doctor'], 50, "");
+        $dat['f8'] = trimStrWidth(formatDateTime($val['plan_day'], 'Ymd'), 8, "");
+        $dat['f9'] = trimStrWidth($f9, 8, "");
+        $dat['f10'] = trimStrWidth($f10, 72, "");
+        $dat['f11'] = trimStrWidth($f11, 72, "");
+        $dat['f12'] = trimStrWidth($f12, 72, "");
+        $dat['f13'] = trimStrWidth($f13, 72, "");
 
         // 格納
         $idx++;
@@ -1695,25 +1714,25 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     }
     /* -- 情報提供情報(35) ----------------------------- */
 
-//    foreach ($temp as $val){
-//    
-//        // 利用者
-//        $userId = $val['user_id'];    
-//        
-//        // レコード設定
-//        $dat = $def35;
-//        $dat['code']      = '35';
-//        $dat['user_name'] = $userList[$userId]['name'];
-//        $dat['f1']   = $userList[$userId]['other_id'];
-//        $dat['f2']   = NULL;
-//        $dat['f3']   = NULL;
-//        $dat['f4']   = NULL;
-//        $dat['f5']   = NULL;
-//        
-//        // 格納
-//        $idx++;
-//        $res[$idx] = $dat; 
-//    }
+    //    foreach ($temp as $val){
+    //
+    //        // 利用者
+    //        $userId = $val['user_id'];
+    //
+    //        // レコード設定
+    //        $dat = $def35;
+    //        $dat['code']      = '35';
+    //        $dat['user_name'] = $userList[$userId]['name'];
+    //        $dat['f1']   = $userList[$userId]['other_id'];
+    //        $dat['f2']   = NULL;
+    //        $dat['f3']   = NULL;
+    //        $dat['f4']   = NULL;
+    //        $dat['f5']   = NULL;
+    //
+    //        // 格納
+    //        $idx++;
+    //        $res[$idx] = $dat;
+    //    }
     /* -- 医療実績情報(36) ----------------------------- */
 
     $svcType['基本療養費Ⅰ'] = "01";
@@ -1802,7 +1821,7 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
                 }
                 // 看護小規模初期加算の場合は加減算で指定された日付範囲に1を立てる
                 // 日割の場合は日割期間に1を立てる
-                else if ($val['service_name'] === "看護小規模初期加算" || mb_strpos($val['service_name'], "日割") !== false) {
+                elseif ($val['service_name'] === "看護小規模初期加算" || mb_strpos($val['service_name'], "日割") !== false) {
                     $d1 = dateToDay($val['start_day']);
                     $d2 = dateToDay($val['end_day']);
                     if ($d1 < 1 || $d2 < 1) {
@@ -1834,8 +1853,8 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
                 $f6 = "9999";
             } else {
                 // 日付変換
-                $recAddData[$svcId]['start_day'] = $recAddData[$svcId]['start_day'] === "0000-00-00" ? NULL : $recAddData[$svcId]['start_day'];
-                $recAddData[$svcId]['end_day'] = $recAddData[$svcId]['end_day'] === "0000-00-00" ? NULL : $recAddData[$svcId]['end_day'];
+                $recAddData[$svcId]['start_day'] = $recAddData[$svcId]['start_day'] === "0000-00-00" ? null : $recAddData[$svcId]['start_day'];
+                $recAddData[$svcId]['end_day'] = $recAddData[$svcId]['end_day'] === "0000-00-00" ? null : $recAddData[$svcId]['end_day'];
 
                 $f5 = $recAddData[$svcId]['start_day'] ? str_replace(":", "", $recAddData[$svcId]['start_day']) : "";
                 $f6 = $recAddData[$svcId]['end_day'] ? str_replace(":", "", $recAddData[$svcId]['end_day']) : "";
@@ -1862,17 +1881,17 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
             $dat['code'] = '36';
             $dat['user_name'] = $userList[$userId]['name'];
             $dat['f1'] = $userList[$userId]['other_id'];
-            $dat['f2'] = trimStrWidth(sprintf('%d', $f2),2,"");
-            $dat['f3'] = trimStrWidth($f3,1,"");
-            $dat['f4'] = trimStrWidth($recAddData[$svcId]['service_code'],2,"");
-            $dat['f5'] = trimStrWidth($f5,4,"");
-            $dat['f6'] = trimStrWidth($f6,4,"");
-            $dat['f7'] = trimStrWidth($f7Data,31,"");
-            $dat['f8'] = trimStrWidth($f8Data,31,"");
-            $dat['f9'] = trimStrWidth($f9Data,31,"");
-            $dat['f10'] = trimStrWidth($f10Data,31,"");
-            $dat['f11'] = trimStrWidth($f11Data,31,"");
-            $dat['f12'] = trimStrWidth($f12Data,31,"");
+            $dat['f2'] = trimStrWidth(sprintf('%d', $f2), 2, "");
+            $dat['f3'] = trimStrWidth($f3, 1, "");
+            $dat['f4'] = trimStrWidth($recAddData[$svcId]['service_code'], 2, "");
+            $dat['f5'] = trimStrWidth($f5, 4, "");
+            $dat['f6'] = trimStrWidth($f6, 4, "");
+            $dat['f7'] = trimStrWidth($f7Data, 31, "");
+            $dat['f8'] = trimStrWidth($f8Data, 31, "");
+            $dat['f9'] = trimStrWidth($f9Data, 31, "");
+            $dat['f10'] = trimStrWidth($f10Data, 31, "");
+            $dat['f11'] = trimStrWidth($f11Data, 31, "");
+            $dat['f12'] = trimStrWidth($f12Data, 31, "");
             $dat['f13'] = $f13;
             $dat['f14'] = $f14;
             $dat['f15'] = $f15;
@@ -1885,26 +1904,26 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
 
     /* -- 高額療養費情報(37) --------------------------- */
 
-//    // データ取得
-//    foreach ($temp as $val){
-//    
-//        // 利用者
-//        $userId = $val['user_id'];    
-//
-//        // レコード設定
-//        $dat = $def37;
-//        $dat['code']      = '37';
-//        $dat['user_name'] = $userList[$userId]['name'];
-//        $dat['f1']   = $userList[$userId]['other_id'];
-//        $dat['f2']   = NULL;
-//        $dat['f3']   = NULL;
-//        $dat['f4']   = NULL;
-//        $dat['f5']   = NULL;
-//        
-//        // 格納
-//        $idx++;
-//        $res[$idx] = $dat; 
-//    }        
+    //    // データ取得
+    //    foreach ($temp as $val){
+    //
+    //        // 利用者
+    //        $userId = $val['user_id'];
+    //
+    //        // レコード設定
+    //        $dat = $def37;
+    //        $dat['code']      = '37';
+    //        $dat['user_name'] = $userList[$userId]['name'];
+    //        $dat['f1']   = $userList[$userId]['other_id'];
+    //        $dat['f2']   = NULL;
+    //        $dat['f3']   = NULL;
+    //        $dat['f4']   = NULL;
+    //        $dat['f5']   = NULL;
+    //
+    //        // 格納
+    //        $idx++;
+    //        $res[$idx] = $dat;
+    //    }
     /* -- 報告書情報(38) ------------------------------- */
 
     // データ取得
@@ -1924,9 +1943,9 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $dat['code'] = '38';
         $dat['user_name'] = $userList[$userId]['name'];
         $dat['f1'] = $userList[$userId]['other_id'];
-        $dat['f2'] = trimStrWidth(formatDateTime($val['report_day'], 'Ymd'),8,"");
-        $dat['f3'] = trimStrWidth(!empty($val['gaf_score']) ? $val['gaf_score'] : "",3,"");
-        $dat['f4'] = trimStrWidth(!empty($val['gaf_date'] && $val['gaf_date'] != "0000-00-00") ? formatDateTime($val['gaf_date'], 'Ymd') : "",8,"");
+        $dat['f2'] = trimStrWidth(formatDateTime($val['report_day'], 'Ymd'), 8, "");
+        $dat['f3'] = trimStrWidth(!empty($val['gaf_score']) ? $val['gaf_score'] : "", 3, "");
+        $dat['f4'] = trimStrWidth(!empty($val['gaf_date'] && $val['gaf_date'] != "0000-00-00") ? formatDateTime($val['gaf_date'], 'Ymd') : "", 8, "");
 
         // 格納
         $idx++;
@@ -1940,14 +1959,14 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     $zeiType['非課税'] = 0;
     $zeiType['課税'] = 1;
     $zeiType['税込'] = 1;
-    
+
     // データ取得
     $mstSvc = array();
     $where = array();
     $where['delete_flg'] = 0;
     $temp = select('mst_service', '*', $where);
     foreach ($temp as $val) {
-        $typeNm = $val['type']; 
+        $typeNm = $val['type'];
         $mstSvc[$typeNm] = $val;
     }
 
@@ -1957,9 +1976,9 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
     $where['user_record_id'] = $rcdAry;
     $temp = select('dat_user_record_jippi', '*', $where);
     foreach ($temp as $val) {
-        
+
         // 日付変換
-        $val['use_day'] = $val['use_day'] === "0000-00-00" ? NULL : $val['use_day'];
+        $val['use_day'] = $val['use_day'] === "0000-00-00" ? null : $val['use_day'];
 
         // 利用者、利用日
         $rcdId = $val['user_record_id'];
@@ -1968,23 +1987,24 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
         $tgtDay = $recData[$rcdId]['use_day'];
         $type   = $mstSvc['code'];
         $f4 =  substr($type, 0, 2);
-        
-        debug($f4);exit;
+
+        debug($f4);
+        exit;
         // レコード設定
         $dat = $def41;
         $dat['code'] = '41';
         $dat['user_name'] = $userList[$userId]['name'];
         $dat['f1'] = $userList[$userId]['other_id'];
-        $dat['f2'] = trimStrWidth(formatDateTime($tgtDay, 'd'),2,"");
-        $dat['f3'] = trimStrWidth($val['name'],40,"");
+        $dat['f2'] = trimStrWidth(formatDateTime($tgtDay, 'd'), 2, "");
+        $dat['f3'] = trimStrWidth($val['name'], 40, "");
         $dat['f4'] = $f4;
         $dat['f5'] = 2;
-        $dat['f6'] = NULL;
-        $dat['f7'] = NULL;
-        $dat['f8'] = trimStrWidth($val['price'],9,"");
-        $dat['f9'] = trimStrWidth($val['zei_type'] ? $zeiType[$val['zei_type']] : NULL,1,"");
-        $dat['f10'] = trimStrWidth($val['rate'],7,"");
-        $dat['f11'] = trimStrWidth($val['subsidy'] ? $subsidyType[$val['subsidy']] : NULL,1,"");
+        $dat['f6'] = null;
+        $dat['f7'] = null;
+        $dat['f8'] = trimStrWidth($val['price'], 9, "");
+        $dat['f9'] = trimStrWidth($val['zei_type'] ? $zeiType[$val['zei_type']] : null, 1, "");
+        $dat['f10'] = trimStrWidth($val['rate'], 7, "");
+        $dat['f11'] = trimStrWidth($val['subsidy'] ? $subsidyType[$val['subsidy']] : null, 1, "");
 
         // 格納
         $idx++;
@@ -1999,30 +2019,31 @@ function getAccount($placeId = NULL, $month, $type1 = NULL, $type2 = NULL, $tgtU
 //  $dataArry       ：データ配列
 //  $tgtColumnName  ：抽出項目
 // =======================================================================
-function monthMapConv($dataArry, $tgtColumnName) {
-// マップデータ初期化
+function monthMapConv($dataArry, $tgtColumnName)
+{
+    // マップデータ初期化
     $mapAry = array();
     for ($i = 0; $i <= 31; $i++) {
         $mapAry[$i] = "0";
     }
-// データ数分ループ
+    // データ数分ループ
     foreach ($dataArry as $val) {
-// 対象データ抽出
+        // 対象データ抽出
         $date = $val[$tgtColumnName];
         if (empty($date)) {
             continue;
         }
-// ハイフン区切り3桁ではない場合は対象外
+        // ハイフン区切り3桁ではない場合は対象外
         $tgtAry = explode("-", $date);
         if (count($tgtAry) !== 3) {
             continue;
         }
         $day = $tgtAry[2];
-// 対象日に1を立てる
+        // 対象日に1を立てる
         $mapAry[intval($day)] = "1";
     }
     $result = "";
-// 文字列作成
+    // 文字列作成
     for ($i = 1; $i <= 31; $i++) {
         $result .= $mapAry[$i];
     }
@@ -2030,42 +2051,45 @@ function monthMapConv($dataArry, $tgtColumnName) {
 }
 
 // 日付配列を文字列に変換する
-function arryMapToStr($mapAry) {
+function arryMapToStr($mapAry)
+{
     $result = "";
-// 文字列作成
+    // 文字列作成
     for ($i = 1; $i <= 31; $i++) {
         $result .= $mapAry[$i];
     }
     return $result;
 }
 
-function dateToDay($date) {
-    $idx = intval(formatDateTime($date, "d"));
-    return $idx;
+function dateToDay($date)
+{
+    return intval(formatDateTime($date, "d"));
 }
 // コンダクト連携用終了日対応
-function endDayCnv($endDay){
-//    if(empty($endDay){
-//        
-//    }
-    
+function endDayCnv($endDay)
+{
+    //    if(empty($endDay){
+    //
+    //    }
+
 }
 
 // =======================================================================
 // サービス内容が対象データとなるか判定する
 // =======================================================================
-function chkSvcType($serviceName, $type1, $type2) {
+function chkSvcType($serviceName, $type1, $type2)
+{
 
     // 訪問看護、看多機両方指定されている場合は無条件にOK
-//    if (!empty($type1) && !empty($type2)) {
-//        return true;
-//    }
+    //    if (!empty($type1) && !empty($type2)) {
+    //        return true;
+    //    }
     // 訪問看護、看多機両方指定されてい場合はfalse
     if (empty($type1) && empty($type2)) {
         return false;
     }
     // サービス内容が設定されていない場合はfalse
-    else if (empty($serviceName)) {
+    elseif (empty($serviceName)) {
         return false;
     }
 
@@ -2086,11 +2110,12 @@ function chkSvcType($serviceName, $type1, $type2) {
 // =======================================================================
 // 集計CSVデータ取得
 // =======================================================================
-function getTotal($search) {
-    
+function getTotal($search)
+{
+
     /* -- 初期処理 ----------------------------------------- */
     $res = array();
-    
+
     /* -- 利用者情報 --------------------------------------- */
     if ($search['type'] === '利用者情報') {
 
@@ -2105,42 +2130,42 @@ function getTotal($search) {
         // 利用者
         $plcId = $search['place'];
         $userList = getUserList($search['place'], $search);
-        foreach ($userList as $val){
+        foreach ($userList as $val) {
             $userIds[] = $val['unique_id'];
         }
-        
+
         // 基本情報
-        if (isset($search['target']['standard'])){
+        if (isset($search['target']['standard'])) {
             $res['standard'] = $userList;
         }
         // 介護保険証情報
-        if (isset($search['target']['insure1'])){
+        if (isset($search['target']['insure1'])) {
             $where = array();
             $where['user_id'] = $userIds;
-            $res['insure1'] = getData('mst_user_insure1',$where);
+            $res['insure1'] = getData('mst_user_insure1', $where);
         }
         // 医療保険証情報
-        if (isset($search['target']['insure3'])){
+        if (isset($search['target']['insure3'])) {
             $where = array();
             $where['user_id'] = $userIds;
-            $res['insure3'] = getData('mst_user_insure3',$where);
+            $res['insure3'] = getData('mst_user_insure3', $where);
         }
         // 流入流出情報
-        if (isset($search['target']['introduct'])){
+        if (isset($search['target']['introduct'])) {
             $where = array();
             $where['user_id'] = $userIds;
-            $res['introduct'] = getData('mst_user_introduct',$where);
+            $res['introduct'] = getData('mst_user_introduct', $where);
         }
         // 連絡先情報
-        if (isset($search['target']['family'])){
+        if (isset($search['target']['family'])) {
             $where = array();
             $where['user_id'] = $userIds;
-            $res['family'] = getData('mst_user_family',$where);
+            $res['family'] = getData('mst_user_family', $where);
         }
     }
     /* -- 利用者スケジュール ------------------------------- */
     if ($search['type'] === '利用者スケジュール') {
-        
+
         // 初期化
         $userIds          = array();
         $planIds          = array();
@@ -2148,76 +2173,76 @@ function getTotal($search) {
         $res['service']   = array();
         $res['add']       = array();
         $res['jippi']     = array();
-        
+
         // 利用者
         $plcId = $search['place'];
         $userList = getUserList($search['place'], $search);
-        foreach ($userList as $val){
+        foreach ($userList as $val) {
             $userIds[] = $val['unique_id'];
         }
-        
+
         // 利用者スケジュール
-        if (isset($search['target']['user_plan'])){
+        if (isset($search['target']['user_plan'])) {
             $where = array();
             $where['user_id'] = $userIds;
-            if (!empty($search['start_day'])){
+            if (!empty($search['start_day'])) {
                 $where['user_day >='] = $search['start_day'];
             }
-            if (!empty($search['end_day'])){
+            if (!empty($search['end_day'])) {
                 $where['user_day <='] = $search['end_day'];
             }
-            $planData    = getData('dat_user_plan',$where);
+            $planData    = getData('dat_user_plan', $where);
             $res['user_plan'] = $planData;
-            foreach ($planData as $val){
+            foreach ($planData as $val) {
                 $planIds[] = $val['unique_id'];
             }
         }
         // 利用者スケジュール内訳
-        if (isset($search['target']['service']) && $planIds){
+        if (isset($search['target']['service']) && $planIds) {
             $where = array();
             $where['user_plan_id'] = $planIds;
-            $res['service'] = getData('dat_user_plan_service',$where);
+            $res['service'] = getData('dat_user_plan_service', $where);
         }
         // 加減算情報
-        if (isset($search['target']['add']) && $planIds){
+        if (isset($search['target']['add']) && $planIds) {
             $where = array();
             $where['user_plan_id'] = $planIds;
-            $res['add'] = getData('dat_user_plan_add',$where);
+            $res['add'] = getData('dat_user_plan_add', $where);
         }
         // 実費情報
-        if (isset($search['target']['jippi']) && $planIds){
+        if (isset($search['target']['jippi']) && $planIds) {
             $where = array();
             $where['user_plan_id'] = $planIds;
-            $res['jippi'] = getData('dat_user_plan_jippi',$where);
+            $res['jippi'] = getData('dat_user_plan_jippi', $where);
         }
     }
     /* -- 従業員スケジュール ------------------------------- */
     if ($search['type'] === '従業員スケジュール') {
-        
+
         // 初期化
         $stfIds            = array();
         $res['staff_plan'] = array();
-        
+
         // 従業員
         $plcId = $search['place'];
         $stfList = getStaffList($search['place']);
-        foreach ($stfList as $val){
+        foreach ($stfList as $val) {
             $stfIds[] = $val['unique_id'];
         }
-        
+
         // 従業員スケジュール
-        if (isset($search['target']['staff_plan'])){
+        if (isset($search['target']['staff_plan'])) {
             $where = array();
             $where['staff_id'] = $stfIds;
-            if (!empty($search['start_day'])){
+            if (!empty($search['start_day'])) {
                 $where['target_day >='] = $search['start_day'];
             }
-            if (!empty($search['end_day'])){
+            if (!empty($search['end_day'])) {
                 $where['target_day <='] = $search['end_day'];
             }
-            $planData    = getData('dat_staff_plan',$where);
+            $planData    = getData('dat_staff_plan', $where);
             $res['staff_plan'] = $planData;
-            foreach ($planData as $val){
+            foreach ($planData as $val) {
                 $planIds[] = $val['unique_id'];
             }
         }
@@ -2229,10 +2254,9 @@ function getTotal($search) {
 // =======================================================================
 // デバッグ関数
 // =======================================================================
-function debug($target = array()) {
+function debug($target = array())
+{
     echo '<pre>';
     print_r($target);
     echo '</pre>';
 }
-
-?>

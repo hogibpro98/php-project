@@ -27,7 +27,7 @@
                     <div id="subpage">
                         <div id="root" class="nursing calendar_data">
                             <!-- ヘッダーパーツ(start) -->
-                            <div class="cont_head nurse_record">
+                            <div class="cont_head nurse_record" style=" margin-bottom: 80px; ">
                                 <div class="schedule">
                                     <span class="label_t" style="background: #F35523;">未割当<br>スケジュール</span>
                                     <div class="sched_box">
@@ -59,6 +59,40 @@
                                     <span class="subject">件</span>
                                 </div>
                                 <div class="btn_box">
+                                    <div class="d_right" style="margin-right: 30px;">
+                                        <div class="user">
+                                            <span class="label_t text_blue">利用者</span>
+                                            <p class="n_search user_search">Search</p>
+                                            <input id="tgt-other_id" type="text" name="search[other_id]" class="n_num tgt-usr_id" value="<?= $search['other_id']; ?>" maxlength="7" pattern="^[0-9]+$" autocomplete="off">
+                                            <input id="tgt-unique_id" type="hidden" name="search[user_id]" class="n_num tgt-unique_id" value="<?= $search['user_id'] ?>">
+                                            <input type="text" name="search[user_name]" value="<?= $search['user_name']; ?>" class="n_name tgt-usr_name bg-gray2" style="width:200px;" readonly>
+                                            <!-- <button type="submit" name="btnSearch" value="true" id="btnReloaded" class="btn search reloaded">再表示</button> -->
+                                        </div>
+                                        <!--ダイアログ呼出し-->
+                                        <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/schedule/route_edit/dialog/user.php'); ?>
+                                        <div class="category" style="margin: 15px 0px 15px 0px;">
+                                            <span class="label_t" style="color: #174A84;font-weight: 500;">展開条件</span>
+                                            <span class="label_t" style="font-weight: 500;">展開方法</span>
+                                            <?php $check = $search['type'] != 2 ? ' checked' : null; ?>
+                                            <input type="radio" name="search[type]" value="1" id="差分のみ展開"<?= $check ?>>
+                                            <label for="差分のみ展開">差分のみ展開</label>
+                                            <?php $check = $search['type'] == 2 ? ' checked' : null; ?>
+                                            <input type="radio" name="search[type]" value="2" id="既存削除後に上書き"<?= $check ?>>
+                                            <label for="既存削除後に上書き">既存削除後に上書き</label>
+                                        </div>
+                                        <div class="i_period" style="display: flex; justify-content: space-between; justify-content: center;">
+                                            <span class="label_t" style="margin-top: 10px; height: 15px; margin-left: 70px; font-weight: 500;">展開範囲</span>
+                                            <p><input type="date" name="search[start_day]" class="month_from" value="<?= $search['start_day'] ?>">
+                                                <small>～</small>
+                                                <input type="date" name="search[end_day]" class="month_to" value="<?= $search['end_day'] ?>">
+                                            </p>
+                                            <p style=" margin: 0px 4px 0px 4px;">
+                                                <input type="button" name="当月" class="month btn_prev_mon" value="当月">
+                                                <input type="button" name="翌月" class="month btn_next_mon" value="翌月">
+                                            </p>
+                                            <button type="submit" class="btn deploy" name="btnMakePlan" value="true">展開</button>
+                                        </div>
+                                    </div>
                                     <!-- ルート追加ボタン -->
                                     <button type="button" id="btn_add_root" class="btn add display_dets">ルート追加</button>
                                     <!-- <div>
@@ -158,7 +192,7 @@
                                 <!-- 曜日選択コンボ(end) -->
                                 <!-- ダイアログ流し込みエリア -->
                                 <div class="modal_setting"></div>
-                                <div class="table_grp grp1">
+                                <div class="table_grp grp1" style="overflow-x: initial;">
                                     <!-- タイムスケジューラエリア -->
                                     <div id="skeduler-container" class="skeduler-container" style="overflow:visible !important;">
                                         <div class="skeduler-headers" style="user-select:none;position:sticky;">
@@ -174,7 +208,7 @@
                                                      ><?= $name ?></div>
                                                  <?php endforeach; ?>
                                         </div>
-                                        <div class="skeduler-main">
+                                        <div class="skeduler-main" style="overflow: auto; width: fit-content; max-height: 850px; min-width: calc(100vw - 120px);">
                                             <div class="skeduler-main-timeline" style="user-select: none;">
                                                 <?php foreach ($timeScaleList as $time) : ?>
                                                     <div draggable="false" id="<?= $time ?>"><?= $time ?></div>
@@ -220,7 +254,7 @@
                                                                                         $startCnvMin = (int) $startSplit[0] * 60 + (int) $startSplit[1];
                                                                                         $endCnvMin = (int) $endSplit[0] * 60 + (int) $endSplit[1];
                                                                                         $top = $startCnvMin / 5 * 32;
-                                                                                        $height = abs($endCnvMin - $startCnvMin) / 5 * 31-4;
+                                                                                        $height = abs($endCnvMin - $startCnvMin) / 5 * 31 - 4;
                                                                                         ?>
                                                                                         <div id="item" class="data data-grn" 
                                                                                              draggable="true" 
@@ -257,7 +291,7 @@
                                                                                             $startCnvMin = (int) $startSplit[0] * 60 + (int) $startSplit[1];
                                                                                             $endCnvMin = (int) $endSplit[0] * 60 + (int) $endSplit[1];
                                                                                             $top = $startCnvMin / 5 * 32;
-                                                                                            $height = abs($endCnvMin - $startCnvMin) / 5 * 32-4;
+                                                                                            $height = abs($endCnvMin - $startCnvMin) / 5 * 32 - 4;
                                                                                             ?>
                                                                                             <div id="item" class="data data-grn" 
                                                                                                  draggable="true" 

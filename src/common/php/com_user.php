@@ -6,17 +6,31 @@
 
 /*-- 初期値、パラメータ ------------------------------*/
 
-// User type constants
-const SYSTEM_ADMINISTRATOR = 'システム管理者';
-const CORPORATE_ADMINISTRATOR = '法人管理者';
+// employee role
+const SYSTEM_ADMIN = 'システム管理者';
+const CORPORATE_ADMIN = '法人管理者';
 const EMPLOYEE = '社員';
-const FUNCTIONAL_LIMITATIONS = '機能制限';
+const LIMITED_FUNCTION = '機能制限';
 
-// Employee classification constants
+// employee type
 const FULL_TIME_EMPLOYEE = '正社員';
-const DAILY_WAGE = '日給';
-const REGISTERED_TYPE = '登録型';
+const DAILY_ALLOWANCE = '日給';
+const REGISTRATION_TYPE = '登録型';
 
+// data mapping role when sync data from Ocean
+const OCEAN_MAPPING_ROLE = [
+    '部長' => '法人管理者',
+    '副部長' => '法人管理者',
+    'グループ長' => '法人管理者',
+    '支社長' => '法人管理者',
+    '副支社長' => '法人管理者',
+    '拠点長' => '社員',
+    '副拠点長' => '社員',
+    '相談員' => '社員',
+    'リーダー' => '社員',
+    '一般' => '社員',
+    '管理者' => '社員',
+];
 
 // ログイン画面メッセージ初期化
 $loginMsg = null;
@@ -104,7 +118,8 @@ if ($server['requestUri'] === '/'
             $_SESSION['login'] = $staffInfo;
 
             // 画面遷移先
-            nextPage(TOP_PAGE);
+            header('Location:' . TOP_PAGE);
+            exit;
 
             //該当id/pass無し
         } else {
@@ -126,7 +141,8 @@ if ($server['requestUri'] === '/'
 } else {
     $loginUser = !empty($_SESSION['login']) ? $_SESSION['login'] : null;
     if (!$loginUser) {
-        nextPage();
+        header('Location:' . LOGIN_PAGE);
+        exit;
     }
 
 }
@@ -135,17 +151,6 @@ if ($server['requestUri'] === '/'
 if ($btnLogout) {
     $_SESSION = array();
     session_destroy();
-    nextPage();
-}
-
-/**
- * $page へ遷移する
- *
- * @param string $page 遷移先ページ
- * @return void
- */
-function nextPage(string $page = LOGIN_PAGE)
-{
-    header('Location:' . $page);
+    header('Location:' . LOGIN_PAGE);
     exit;
 }

@@ -4,7 +4,7 @@
 // [ajax]住所検索(緊急連絡先)
 //=====================================================================
 try {
-    /* =================================================== 
+    /* ===================================================
      * 初期処理
      * ===================================================
      */
@@ -13,19 +13,19 @@ try {
     require_once($_SERVER['DOCUMENT_ROOT'] . '/common/php/com_start.php');
 
     /* --変数定義------------------------------------------------- */
-    $notice = NULL;
+    $notice = null;
     $sendData = "";
     $dispData = array();
 
-    /* =================================================== 
+    /* ===================================================
      * 入力情報取得
      * ===================================================
      */
 
-// 検索場所
+    // 検索場所
     $freeword = h(filter_input(INPUT_POST, 'freeword'));
     $prefecture = h(filter_input(INPUT_POST, 'prefecture'));
-    /* =================================================== 
+    /* ===================================================
      * イベント後処理(描画用データ作成)
      * ===================================================
      */
@@ -33,8 +33,8 @@ try {
     $where = array();
     $where['delete_flg'] = 0;
     $where['prefecture'] = $prefecture;
-//    $orderBy = "office_name ASC";
-//    $limit = 1000;
+    //    $orderBy = "office_name ASC";
+    //    $limit = 1000;
     $temp = select('mst_office_other', '*', $where);//, $orderBy);//, $limit);
     foreach ($temp as $val) {
 
@@ -99,7 +99,7 @@ try {
     $sendData .= '      var address = $(this).data("address");';
     $sendData .= '      var tel = $(this).data("tel");';
     $sendData .= '      var fax = $(this).data("fax");';
-                                
+
     $sendData .= '      $(".ofc2_office_code").val(officeCode);';
     $sendData .= '      $(".ofc2_office_name").val(officeName);';
     $sendData .= '      $(".ofc2_address").val(address);';
@@ -109,26 +109,26 @@ try {
     $sendData .= '    });';
     $sendData .= '  });';
     $sendData .= '</script>';
-    
+
     /* -- データ送信 ---------------------------------------- */
     if ($sendData) {
         echo $sendData;
     }
 
-// メッセージ送信
+    // メッセージ送信
     if ($notice) {
         echo sprintf("noticeModal(%s);", jsonEncode($notice));
     }
-    exit();
+    exit;
 
-    /* =================================================== 
+    /* ===================================================
      * 例外処理
      * ===================================================
      */
 } catch (Exception $e) {
     debug($e);
-    exit();
+    exit;
     $_SESSION['err'] = !empty($err) ? $err : array();
     header("Location:" . ERROR_PAGE);
-    exit();
+    exit;
 }

@@ -76,7 +76,9 @@ if (!$keyId && $copyId){
 // 利用者ID
 $userId = filter_input(INPUT_GET, 'user');
 if (!$userId) {
-    $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : NULL;
+    if ($keyId){
+        $userId = !empty($_SESSION['user']) ? $_SESSION['user'] : NULL;
+    }
 }
 
 /*-- 更新用パラメータ ---------------------------------------*/

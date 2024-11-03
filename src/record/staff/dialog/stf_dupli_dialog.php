@@ -1,10 +1,10 @@
 <?php
-/* =================================================== 
+/* ===================================================
  * 従業員スケジュール複製(予定)モーダル
  * ===================================================
  */
 
-/* =================================================== 
+/* ===================================================
  * 初期処理
  * ===================================================
  */
@@ -75,7 +75,7 @@ $dispData = $tgtData;
 <div class="dynamic_modal sched_details add_memo_details rt_memo cancel_act" style="left:50%;width:450px;display:block;">
     <div class="close close_part modal_close">✕<span class="modal_close">閉じる</span></div>
     <?php $mainPrefix = "upStfPlan"; ?>
-    <?PHP $planId = 0; ?>
+    <?php $planId = 0; ?>
     <div class="sched_tit">従業員スケジュール複製(予定)</div>
     <div class="fukusei_stat">複製中</div>
     <div class="s_detail">
