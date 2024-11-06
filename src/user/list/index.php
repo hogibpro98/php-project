@@ -250,6 +250,7 @@
                 <!--CONTENT-->
             </div></div>
         <p id="page"><a href="#wrapper">PAGE TOP</a></p>
+        <script src="https://unpkg.com/wanakana"></script>
         <script>
             $(document).ready(function () {
                 const $selectAll = $('#select-all');
@@ -299,6 +300,64 @@
                     window.scrollTo(0, parseInt(scrollPosition, 10));
                     localStorage.removeItem('scrollPosition');
                 }
+
+                // No98
+                function replaceStringByArrayOfIndex(str, src, dest) {
+                    let len = src.length;
+                    for (let i = 0; i < len; i++) {
+                        str = replaceAll(str, src[i], dest[i])
+                    }
+                    return str;
+                }
+
+                function replaceAll(target, from, to) {
+                    console.log(target+" "+from+" "+to);
+                    if (target.indexOf(from) < 0) {
+                        return target;
+                    } else {
+                        return target.split(from).join(to)
+                    }
+                }
+
+                const HKANA = ["ｶﾞ", "ｷﾞ", "ｸﾞ", "ｹﾞ", "ｺﾞ", "ｻﾞ", "ｼﾞ", "ｽﾞ", "ｾﾞ", "ｿﾞ",
+                    "ﾀﾞ", "ﾁﾞ", "ﾂﾞ", "ﾃﾞ", "ﾄﾞ", "ﾊﾞ", "ﾋﾞ", "ﾌﾞ", "ﾍﾞ", "ﾎﾞ", "ｳﾞ", //濁音
+                    "ﾊﾟ", "ﾋﾟ", "ﾌﾟ", "ﾍﾟ", "ﾎﾟ", //半濁音
+                    "ｧ", "ｨ", "ｩ", "ｪ", "ｫ", "ｬ", "ｭ", "ｮ", "ｯ", "ｰ", // 小文字
+                    "ｱ", "ｲ", "ｳ", "ｴ", "ｵ", "ｶ", "ｷ", "ｸ", "ｹ", "ｺ", // 50音
+                    "ｻ", "ｼ", "ｽ", "ｾ", "ｿ", "ﾀ", "ﾁ", "ﾂ", "ﾃ", "ﾄ",
+                    "ﾅ", "ﾆ", "ﾇ", "ﾈ", "ﾉ", "ﾊ", "ﾋ", "ﾌ", "ﾍ", "ﾎ",
+                    "ﾏ", "ﾐ", "ﾑ", "ﾒ", "ﾓ", "ﾔ", "ﾕ", "ﾖ",
+                    "ﾗ", "ﾘ", "ﾙ", "ﾚ", "ﾛ", "ﾜ", "ｦ", "ﾝ"];
+
+                const WKANA = ["ガ", "ギ", "グ", "ゲ", "ゴ", "ザ", "ジ", "ズ", "ゼ", "ゾ",
+                    "ダ", "ヂ", "ヅ", "デ", "ド", "バ", "ビ", "ブ", "ベ", "ボ", "ヴ", //濁音
+                    "パ", "ピ", "プ", "ペ", "ポ", //半濁音
+                    "ァ", "ィ", "ゥ", "ェ", "ォ", "ャ", "ュ", "ョ", "ッ", "ー", // 小文字
+                    "ア", "イ", "ウ", "エ", "オ", "カ", "キ", "ク", "ケ", "コ", // 50音 start
+                    "サ", "シ", "ス", "セ", "ソ", "タ", "チ", "ツ", "テ", "ト",
+                    "ナ", "ニ", "ヌ", "ネ", "ノ", "ハ", "ヒ", "フ", "ヘ", "ホ",
+                    "マ", "ミ", "ム", "メ", "モ", "ヤ", "ユ", "ヨ",
+                    "ラ", "リ", "ル", "レ", "ロ", "ワ", "ヲ", "ン"];
+
+                const halfWidthKatakanaRegex = /[\uFF66-\uFF9F]/;
+
+                // dom input
+                const $input = $('#user_name-k');
+
+                // convert to full-width katakana
+                function convertToFullWidthKatakana() {
+                    const currentValue = $input.val();
+                    if (halfWidthKatakanaRegex.test(currentValue)) {
+                        const convertedValue = replaceStringByArrayOfIndex(currentValue, HKANA, WKANA);
+                        $input.val(convertedValue);
+                    } else {
+                        $input.val(wanakana.toKatakana(currentValue, { useObsoleteKana: true, upcaseKatakana: true }));
+                    }
+
+                }
+
+                // add event to input
+                $input.on('input', convertToFullWidthKatakana);
             });
         </script>
     </body>
